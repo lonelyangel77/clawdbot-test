@@ -253,11 +253,6 @@ ref table Shopify_ROW_OT
 ref table Budget_ROW
 ref table Targets_ROW
 ref table ROW_Measures
-ref table Forecast
-ref table 'Pricing & Dilution'
-ref table 'Sales Measures'
-ref table 'Targets & Budget'
-ref table 'Time Intelligence'
 
 ref cultureInfo en-US
 
