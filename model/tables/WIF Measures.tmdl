@@ -1,0 +1,176 @@
+table 'WIF Measures'
+	lineageTag: 3577519e-9754-4587-9343-16946491df1f
+
+	measure 'WIF OFTACLASS' = CALCULATE([Remaining Tget]*(1+[WIF_OFT_ACLASS Value]),Stores[Brand]="Outfitters",Stores[Store Class-O]="A-Class")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 7d5376c4-d2a2-481e-88cd-2f5f67bb1bd5
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure WIFEoMOFTACLASS = (CALCULATE([Sale-Value],Stores[Brand]="Outfitters",Stores[Store Class-O]="A-Class")+[WIF OFTACLASS])
+		dataType: variant
+		formatString: #,0
+		lineageTag: 16fbe728-480f-4a7e-9610-ee6789fdf10a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'WIF OFTFOL' = CALCULATE([Remaining Tget],Stores[Brand]="Outfitters",Stores[Store Class-O]="FOL")*(1+[WIF_OFT_FOL Value])
+		dataType: variant
+		lineageTag: bc591652-65d4-4fbd-aee2-7c5e6540209e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure WIFEoMOFTFOL = CALCULATE([Sale-Value],Stores[Brand]="Outfitters",Stores[Store Class-O]="FOL")+[WIF OFTFOL]
+		dataType: variant
+		lineageTag: 87ec4640-7eb5-4979-80ac-4a18d4e9ffc4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure WIFEoMTotal =
+			SWITCH(
+			    SELECTEDVALUE('Brand_Headers'[Subtotal]),
+			    1, [WIFEoMOFTACLASS],
+			    2, [WIFEoMOFTFOL],
+			    3, [WIFEoMOFTONLINE],
+			    4, [WIFEoMETHACLASS],
+			    5, [WIFEoMETHFOL],
+			    6, [WIFEoMETHONLINE]
+			    )
+		dataType: variant
+		formatString: #,0
+		lineageTag: 35bce65d-cac0-4c2a-90d4-f9405651dc83
+
+	measure 'WIF OFTONLINE' = CALCULATE([Remaining Tget]*(1+[WIF_OFT_ONLINE Value]),Stores[Brand]="Outfitters",Stores[Store Class-O]="Online")
+		dataType: variant
+		lineageTag: 8193f607-66fb-412b-855d-4f62c26392cb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure WIFEoMOFTONLINE = CALCULATE([Sale-Value],Stores[Brand]="Outfitters",Stores[Store Class-O]="Online")+[WIF OFTONLINE]
+		dataType: variant
+		formatString: #,0
+		lineageTag: 10bd984c-afbb-4b37-b246-bf737e435afe
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'WIF ETHACLASS' = (CALCULATE([Remaining Tget],Stores[Brand]="Ethnic",Stores[Store Class-O]="A-Class")*(1+[WIF_ETH_ACLASS Value]))
+		dataType: variant
+		lineageTag: 10b86e44-1a04-46f4-8296-ed28fead8b2a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'WIF ETHFOL' = CALCULATE([Remaining Tget]*(1+[WIF_ETH_FOL Value]),Stores[Brand]="Ethnic",Stores[Store Class-O]="FOL")
+		dataType: variant
+		lineageTag: 1bd2a523-26a6-4253-b144-fc55a4901093
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'WIF ETHONLINE' = CALCULATE([Remaining Tget]*(1+[WIF_ETH_ONLINE Value]),Stores[Brand]="Ethnic",Stores[Store Class-O]="Online")
+		dataType: variant
+		lineageTag: f25df9cd-fec5-4ff7-b978-48bfb06b7b04
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure WIFEoMETHACLASS = (CALCULATE([Sale-Value],Stores[Brand]="Ethnic",Stores[Store Class-O]="A-Class")+[WIF ETHACLASS])
+		dataType: variant
+		lineageTag: 6e0e3403-ed92-4f29-a585-e0a1566dfca9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure WIFEoMETHFOL = (CALCULATE([Sale-Value],Stores[Brand]="Ethnic",Stores[Store Class-O]="FOL")+[WIF ETHFOL])
+		dataType: variant
+		lineageTag: db888984-0391-4d5b-ba3c-929e98826ded
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure WIFEoMETHONLINE = (CALCULATE([Sale-Value],Stores[Brand]="Ethnic",Stores[Store Class-O]="Online")+[WIF ETHONLINE])
+		dataType: variant
+		lineageTag: cef35494-ef4e-474e-877b-9d681c8d6a7c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure WIF_Total = [WIFEoMETHACLASS]+[WIFEoMETHFOL]+[WIFEoMETHONLINE]+[WIFEoMOFTACLASS]+[WIFEoMOFTFOL]+[WIFEoMOFTONLINE]
+		dataType: variant
+		formatString: #,0
+		lineageTag: ac5a709a-ef76-4da7-874a-7f9543dc8703
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure WIFEoM% =
+			SWITCH(
+			    SELECTEDVALUE('Brand_Headers'[Subtotal]),
+			    1, [WIF_OFT_ACLASS Value],
+			    2, [WIF_OFT_FOL Value],
+			    3, [WIF_OFT_ONLINE Value],
+			    4, [WIF_ETH_ACLASS Value],
+			    5, [WIF_ETH_FOL Value],
+			    6, [WIF_ETH_ONLINE Value]
+			    )
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 5a150c19-493a-4332-8bdb-a9ab429ca9d1
+
+	measure WIF_Total% = DIVIDE([WIF_Total]-[TGT],[tgt])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: f4cda8ef-6f62-4238-81c1-b8d05dabf686
+
+	measure 'WIF Sale Total' =
+			SWITCH(
+			    SELECTEDVALUE('Brand_Headers'[Subtotal]),
+			    1, [WIF OFTACLASS],
+			    2, [WIF OFTFOL],
+			    3, [WIF OFTONLINE],
+			    4, [WIF ETHACLASS],
+			    5, [WIF ETHFOL],
+			    6, [WIF ETHONLINE]
+			    )
+		dataType: variant
+		lineageTag: b3226a91-2698-40bc-b5b2-5283e9a2618b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure WIFSaleTotal = [WIF ETHACLASS]+[WIF ETHFOL]+[WIF ETHONLINE]
+		dataType: variant
+		formatString: #,0.00
+		lineageTag: 30af4262-90bb-40c4-9ebf-1e17cb5a157e
+
+	measure WIF_Total_E = [WIFEoMETHACLASS]+[WIFEoMETHFOL]+[WIFEoMETHONLINE]
+		dataType: variant
+		formatString: #,0
+		lineageTag: 29e3c289-a252-453e-afdf-9730e751ac58
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure WIF_Total_O = [WIFEoMOFTACLASS]+[WIFEoMOFTFOL]+[WIFEoMOFTONLINE]
+		dataType: variant
+		formatString: #,0
+		lineageTag: 9e2f2598-344b-4fb8-a4d6-3cc31be247d5
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: 02b64e6d-59e3-463e-92f3-5c226bcd2f6a
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'WIF Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

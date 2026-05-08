@@ -1,0 +1,26 @@
+table WIF_ETH_ONLINE
+	lineageTag: bcb32d58-c592-4695-8273-965ad31cd7e3
+
+	measure 'WIF_ETH_ONLINE Value' = SELECTEDVALUE('WIF_ETH_ONLINE'[WIF_ETH_ONLINE], 0)
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 42c9f730-ef09-415b-981a-0d977b9e1f65
+
+	column WIF_ETH_ONLINE
+		dataType: double
+		formatString: 0%;-0%;0%
+		lineageTag: 9b6a8433-718e-47f0-b1c1-e70f5128a5b0
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata = {"version":0}
+
+		annotation SummarizationSetBy = User
+
+	partition WIF_ETH_ONLINE = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 6fb4def7551a44c58772a97fa0c74aa4
+

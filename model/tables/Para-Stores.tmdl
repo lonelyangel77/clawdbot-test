@@ -1,0 +1,57 @@
+table Para-Stores
+	lineageTag: f0912b5a-4ee3-4996-a416-ef01d524f4c9
+
+	column Para-Stores
+		dataType: string
+		lineageTag: 3f97205b-f8aa-491d-b35a-226c463e6721
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Para-Stores Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Para-Stores Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para-Stores Fields'
+		dataType: string
+		isHidden
+		lineageTag: ddc76e1a-188c-457b-8239-f877e0eb78dd
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Para-Stores Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para-Stores Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 69b2743c-9c60-43d5-b3ac-fb7b6e9d7902
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Para-Stores-0a1e53cc-e497-4977-b42d-d1a16c6de877 = calculated
+		mode: import
+		source =
+				{
+				    ("Brand", NAMEOF('Stores'[Brand]), 1),
+				    ("Brick & Morter", NAMEOF('Stores'[Brick & Morter]), 2),
+				    ("City", NAMEOF('Stores'[City]), 5),
+				    ("Region", NAMEOF('Stores'[Region-1]), 4),
+				    ("Store Channel", NAMEOF('Stores'[Store Class-O]), 3),
+				    ("MTD Status", NAMEOF('Stores'[MTD Status]), 7),
+				    ("YTD Status", NAMEOF('Stores'[YTD Status]), 8),
+				    ("Store Name", NAMEOF('Stores'[StoreName-1]), 6),
+				    ("Territory", NAMEOF('Stores'[Territory]), 0)
+				}
+
+	annotation PBI_Id = 896b625ae83e4a629fb1514ea76a2b5a
+

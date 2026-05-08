@@ -1,0 +1,101 @@
+table Store-Budget
+	lineageTag: b6ecec29-0b61-4334-a279-9a3af72e7563
+
+	column 'Store code'
+		dataType: string
+		lineageTag: b4b6da5c-e1eb-4245-842c-a1bc53d643a7
+		summarizeBy: none
+		sourceColumn: Store code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shop Name'
+		dataType: string
+		lineageTag: b7a765c3-82db-4fcc-a1c2-917c90098627
+		summarizeBy: none
+		sourceColumn: Shop Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Retail Code'
+		dataType: string
+		lineageTag: 7c0c8624-3546-48ff-844c-41350cdb065c
+		summarizeBy: none
+		sourceColumn: Retail Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 5f0147f5-47c9-4cab-86f8-b4b84b6413f0
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5c55ec5f-75f3-47cc-99fb-a9a82109a03f
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Net Sale'
+		dataType: double
+		lineageTag: cc5e80b8-25e5-4c10-ad91-e1377499d20e
+		summarizeBy: sum
+		sourceColumn: Net Sale
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Tax'
+		dataType: double
+		lineageTag: 8eb103d1-e101-4e16-a419-7ce7ff31f474
+		summarizeBy: sum
+		sourceColumn: Sales Tax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Sales'
+		dataType: double
+		lineageTag: 260de750-1986-47f2-9cfb-7e2588b94a36
+		summarizeBy: sum
+		sourceColumn: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Comb
+		dataType: string
+		lineageTag: 9914921e-7d28-489f-af3f-98c0e5ad4a50
+		summarizeBy: none
+		sourceColumn: Comb
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Store-Budget = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Store-month wise Budget Sales.xlsx"), null, true),
+				    #"Store-Budget_Sheet" = Source{[Item="Store-Budget",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Store-Budget_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Store code", type text}, {"Shop Name", type text}, {"Retail Code", type text}, {"Brand", type text}, {"Month", type date}, {"Net Sale", type number}, {"Sales Tax", type number}, {"Gross Sales", type number}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Comb", each [Retail Code]&[Brand]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Comb", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

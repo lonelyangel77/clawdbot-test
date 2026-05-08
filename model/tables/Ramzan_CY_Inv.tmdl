@@ -1,0 +1,239 @@
+table Ramzan_CY_Inv
+	excludeFromModelRefresh
+	lineageTag: 1e52d65a-a7ab-44fc-99ce-f32101ade6fe
+
+	column 'Resource type'
+		dataType: string
+		lineageTag: 887b1d70-d48d-4f71-95ba-f0e41ecfe1ad
+		summarizeBy: none
+		sourceColumn: Resource type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resource
+		dataType: string
+		lineageTag: 5f4f0bf7-c665-4e92-bf2d-edd3e8f7396c
+		summarizeBy: none
+		sourceColumn: Resource
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: 10cdeb7b-a3f4-4c21-9c97-734daa051996
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column Size
+		dataType: string
+		lineageTag: 6fd4a4bf-8bf0-4884-896e-1f74969cacbb
+		summarizeBy: none
+		sourceColumn: Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site
+		dataType: string
+		lineageTag: ade6856b-731e-4b4a-94e2-0347c46d1a02
+		summarizeBy: none
+		sourceColumn: Site
+
+		annotation SummarizationSetBy = Automatic
+
+	column Warehouse
+		dataType: string
+		lineageTag: 60981495-03fe-419e-a8be-aa232242ce31
+		summarizeBy: none
+		sourceColumn: Warehouse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reference
+		dataType: string
+		lineageTag: 6f0dabd8-4e7f-4fc0-8c58-f10f11d37bb4
+		summarizeBy: none
+		sourceColumn: Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Financial quantity'
+		dataType: double
+		lineageTag: f832644c-8e7c-4b30-9f66-54fb8754fcf0
+		summarizeBy: sum
+		sourceColumn: Inventory: Financial quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inventory: Financial amount'
+		dataType: double
+		lineageTag: d9771ee3-570b-4bca-bd98-137e48a0f92e
+		summarizeBy: sum
+		sourceColumn: Inventory: Financial amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inventory: Physical quantity posted'
+		dataType: double
+		lineageTag: da070ba8-d138-44d3-b8af-290112a7a886
+		summarizeBy: sum
+		sourceColumn: Inventory: Physical quantity posted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inventory: Physical amount posted'
+		dataType: double
+		lineageTag: a69d28ab-4c4c-46d6-93ec-c865eb83593d
+		summarizeBy: sum
+		sourceColumn: Inventory: Physical amount posted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inventory: Physical quantity not posted'
+		dataType: double
+		lineageTag: 93fa841e-1941-4b08-a975-7a69fed8679d
+		summarizeBy: sum
+		sourceColumn: Inventory: Physical quantity not posted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inventory: Physical amount not posted'
+		dataType: double
+		lineageTag: 955825ab-9dba-4304-ad1f-02caaf18f03b
+		summarizeBy: sum
+		sourceColumn: Inventory: Physical amount not posted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inventory: Quantity'
+		dataType: double
+		lineageTag: eb2de300-9165-4822-94ea-78f9735c4107
+		summarizeBy: sum
+		sourceColumn: Inventory: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inventory: Amount'
+		dataType: double
+		lineageTag: dc9b84bb-b40e-4973-b427-bd9ea731c222
+		summarizeBy: sum
+		sourceColumn: Inventory: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'COGS: Financial quantity'
+		dataType: double
+		lineageTag: a823f72f-bb80-42e6-bb9b-66d872398b06
+		summarizeBy: sum
+		sourceColumn: COGS: Financial quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'COGS: Financial amount'
+		dataType: double
+		lineageTag: f0cf5501-7329-42dc-b172-8c3e5653bb29
+		summarizeBy: sum
+		sourceColumn: COGS: Financial amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Kit Component' = IF(LOOKUPVALUE(Kit[Quantity],Kit[Style],[Resource])=BLANK(),1,LOOKUPVALUE(Kit[Quantity],Kit[Style],[Resource]))
+		dataType: int64
+		formatString: 0
+		lineageTag: d66c55c0-d843-49ab-b18b-fe01969e4e2a
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Solid Qty' = [Inventory: Quantity]*[Kit Component]
+		dataType: double
+		lineageTag: f15a826b-b035-4b47-95e9-d349b63770d4
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Solid Item'
+		dataType: string
+		lineageTag: ea9a3cd2-cb0a-4d9d-a496-f525251324ca
+		summarizeBy: none
+		sourceColumn: Solid Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net Price'
+		dataType: int64
+		formatString: 0
+		lineageTag: d3443cc4-6ec5-4cfc-92b3-e8141358cd60
+		summarizeBy: sum
+		sourceColumn: Net Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COST PRICE'
+		dataType: double
+		lineageTag: 71618f7b-b245-45b3-b9c1-0aaa59cfbf52
+		summarizeBy: sum
+		sourceColumn: COST PRICE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost.V' = [Solid Qty]*[COST PRICE]
+		dataType: double
+		lineageTag: a4171435-17ee-4ef2-bc67-c04cc336d9aa
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Ramzan_CY_Inv = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Ramzan inventory\CY_Ramzan_Inventory.xlsx"), null, true),
+				    AxTable1_Table = Source{[Item="AxTable1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(AxTable1_Table,{{"Resource type", type text}, {"Resource", type text}, {"Color", type text}, {"Size", type text}, {"Site", type text}, {"Warehouse", type text}, {"Reference", type text}, {"Inventory: Financial quantity", type number}, {"Inventory: Financial amount", type number}, {"Inventory: Physical quantity posted", type number}, {"Inventory: Physical amount posted", type number}, {"Inventory: Physical quantity not posted", type number}, {"Inventory: Physical amount not posted", type number}, {"Inventory: Quantity", type number}, {"Inventory: Amount", type number}, {"COGS: Financial quantity", type number}, {"COGS: Financial amount", type number}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "Resource", "Resource - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "Resource - Copy", Splitter.SplitTextByEachDelimiter({":"}, QuoteStyle.Csv, false), {"Resource - Copy.1", "Resource - Copy.2"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Split Column by Delimiter",{"Resource - Copy.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Resource - Copy.1", "Solid Item"}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Renamed Columns", {"Solid Item"}, Active_Price, {"Product number"}, "Active_Price", JoinKind.LeftOuter),
+				    #"Expanded Active_Price" = Table.ExpandTableColumn(#"Merged Queries", "Active_Price", {"Net Price"}, {"Net Price"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Expanded Active_Price", {"Solid Item"}, Cost_Inv, {"ITEMNUMBER"}, "Cost_Inv", JoinKind.LeftOuter),
+				    #"Expanded Cost_Inv" = Table.ExpandTableColumn(#"Merged Queries1", "Cost_Inv", {"PURCHASEPRICE"}, {"PURCHASEPRICE"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded Cost_Inv",{{"PURCHASEPRICE", "COST PRICE"}})
+				in
+				    #"Renamed Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,74 @@
+table Active_Price
+	lineageTag: 29fbb035-05c6-408c-9881-c733cbd960d5
+
+	column 'Product number'
+		dataType: string
+		lineageTag: 790b2a35-210c-43c5-aa6c-d11d853b87a3
+		summarizeBy: none
+		sourceColumn: Product number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product name'
+		dataType: string
+		lineageTag: a492962d-ef8c-4824-8d9e-e7851df9f280
+		summarizeBy: none
+		sourceColumn: Product name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Active price'
+		dataType: int64
+		formatString: 0
+		lineageTag: 55da3338-c6ff-4014-900a-fd62d5aa52f5
+		summarizeBy: sum
+		sourceColumn: Active price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Calculated discount'
+		dataType: double
+		formatString: 0
+		lineageTag: 61ead49b-5d2c-427f-9b25-9c1eda200324
+		summarizeBy: sum
+		sourceColumn: Calculated discount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net Price'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ff84b67-b3b0-4bc3-887d-7b1447bd4adb
+		summarizeBy: sum
+		sourceColumn: Net Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Price Type' = IF([Active price]=[Net Price],"Full Price","Discounted")
+		dataType: string
+		lineageTag: 182d51f8-7b04-408e-969f-f5d43393b7bf
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Active_Price-65c36144-c233-4c24-bbf3-c8e353353292 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Active Price.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Product number", type text}, {"Product name", type text}, {"Currency", type text}, {"Price", Int64.Type}, {"Price adjustments", type any}, {"Discounts", type text}, {"Active price", Int64.Type}, {"Calculated discount", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Currency", "Price", "Price adjustments", "Discounts"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Columns",null,0,Replacer.ReplaceValue,{"Calculated discount"}),
+				    #"Added Custom" = Table.AddColumn(#"Replaced Value", "Net Price", each [Active price]-[Calculated discount]),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Custom", each true),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Filtered Rows",{{"Net Price", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

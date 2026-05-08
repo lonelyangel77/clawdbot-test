@@ -1,0 +1,1137 @@
+table UK_Lines
+	excludeFromModelRefresh
+	lineageTag: 6cc0e51e-6df1-4f8a-b786-ec11ee337c50
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: fed1d34f-8e49-409a-bd95-ecd1f2a4db63
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVENTORYLOTID
+		dataType: string
+		lineageTag: 60397efc-8c66-496c-a4ba-c020a7bed0c6
+		summarizeBy: none
+		sourceColumn: INVENTORYLOTID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ALLOWEDOVERDELIVERYPERCENTAGE
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cf6a1b8-afde-4a57-be29-621af9a7ac2f
+		summarizeBy: sum
+		sourceColumn: ALLOWEDOVERDELIVERYPERCENTAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ALLOWEDUNDERDELIVERYPERCENTAGE
+		dataType: int64
+		formatString: 0
+		lineageTag: aaf0455c-6da5-437f-91a5-20732d5d7ae6
+		summarizeBy: sum
+		sourceColumn: ALLOWEDUNDERDELIVERYPERCENTAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column BOMID
+		dataType: string
+		lineageTag: b6d26d6b-a4f6-41b3-8ab9-fae349e78f09
+		summarizeBy: none
+		sourceColumn: BOMID
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMMISSIONSALESREPRESENTATIVEGROUPID
+		dataType: string
+		lineageTag: 68eb39a8-1b0f-4cb5-b801-c0e07ee70f03
+		summarizeBy: none
+		sourceColumn: COMMISSIONSALESREPRESENTATIVEGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONFIRMEDRECEIPTDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9555b57c-14b3-449c-88a1-fffc604c262c
+		summarizeBy: none
+		sourceColumn: CONFIRMEDRECEIPTDATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONFIRMEDSHIPPINGDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 797083d5-00ed-417a-a977-a5986c2c7600
+		summarizeBy: none
+		sourceColumn: CONFIRMEDSHIPPINGDATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREDITNOTEREASONCODE
+		dataType: string
+		lineageTag: 31bdf865-0532-42d5-a5df-42747db15317
+		summarizeBy: none
+		sourceColumn: CREDITNOTEREASONCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CURRENCYCODE
+		dataType: string
+		lineageTag: 001050fc-e43a-4068-94ac-c426966bbf75
+		summarizeBy: none
+		sourceColumn: CURRENCYCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMERREQUISITIONNUMBER
+		dataType: string
+		lineageTag: 6b537d0d-9732-43e7-be0a-cc56b8ecb201
+		summarizeBy: none
+		sourceColumn: CUSTOMERREQUISITIONNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMERSLINENUMBER
+		dataType: int64
+		formatString: 0
+		lineageTag: b6f7105a-43f4-4c36-bf55-b8674972669e
+		summarizeBy: sum
+		sourceColumn: CUSTOMERSLINENUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTLEDGERDIMENSIONDISPLAYVALUE
+		dataType: string
+		lineageTag: 1b43588b-bc41-4c44-9a45-9c03594be607
+		summarizeBy: none
+		sourceColumn: DEFAULTLEDGERDIMENSIONDISPLAYVALUE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSCITY
+		dataType: string
+		lineageTag: 6d087762-366c-4c9b-8056-39c961a9fd83
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSCITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSCOUNTRYREGIONID
+		dataType: string
+		lineageTag: e3d00370-3dd1-4ea9-b056-65347a037655
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSCOUNTRYREGIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSCOUNTRYREGIONISOCODE
+		dataType: string
+		lineageTag: fc92cc4a-f034-48c4-a3bc-2023e7473ab1
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSCOUNTRYREGIONISOCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSCOUNTYID
+		dataType: string
+		lineageTag: 836d10da-f9f9-4f94-a457-aa02397029da
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSCOUNTYID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSDESCRIPTION
+		dataType: string
+		lineageTag: 2d9a7f32-86f4-461b-89a3-b1356865d509
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSDISTRICTNAME
+		dataType: string
+		lineageTag: 048d5b5f-c7f7-4588-ba2b-d6465479d0f4
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSDISTRICTNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSDUNSNUMBER
+		dataType: string
+		lineageTag: 3fe98bee-6a44-4c46-b303-5912bac8eabc
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSDUNSNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSLATITUDE
+		dataType: int64
+		formatString: 0
+		lineageTag: b0911f2b-2883-45cf-9257-ee3dd260a319
+		summarizeBy: sum
+		sourceColumn: DELIVERYADDRESSLATITUDE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSLOCATIONID
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c123759-136b-46ef-b72d-5937ebd30d70
+		summarizeBy: count
+		sourceColumn: DELIVERYADDRESSLOCATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSLONGITUDE
+		dataType: int64
+		formatString: 0
+		lineageTag: f3b69670-3281-4da2-a6b1-d05d842bd8b9
+		summarizeBy: sum
+		sourceColumn: DELIVERYADDRESSLONGITUDE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSNAME
+		dataType: string
+		lineageTag: 754ff957-e952-4f1f-9af3-94ec2658de28
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSPOSTBOX
+		dataType: string
+		lineageTag: db96da70-bcab-47e9-be88-8aa76106e2d6
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSPOSTBOX
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSSTATEID
+		dataType: string
+		lineageTag: 16931e68-3a32-426c-a338-0523c7ba9c5e
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSSTATEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSSTREET
+		dataType: string
+		lineageTag: 20b5ab9b-bfe7-4083-8ab9-c608f0f1c696
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSSTREET
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSSTREETNUMBER
+		dataType: string
+		lineageTag: b3eaab24-274b-4ef4-9c54-c7a197b9018f
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSSTREETNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSTIMEZONE
+		dataType: string
+		lineageTag: b45e471e-6e19-4bf8-88ee-dc49eb304c3f
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSTIMEZONE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYADDRESSZIPCODE
+		dataType: string
+		lineageTag: 87013453-bd09-4c40-9ea7-ec94db851c7e
+		summarizeBy: none
+		sourceColumn: DELIVERYADDRESSZIPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYBUILDINGCOMPLIMENT
+		dataType: string
+		lineageTag: edefd069-3507-425d-8945-110cc9149c79
+		summarizeBy: none
+		sourceColumn: DELIVERYBUILDINGCOMPLIMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYMODECODE
+		dataType: string
+		lineageTag: 4f57d612-813e-4364-a503-2c48a6b34134
+		summarizeBy: none
+		sourceColumn: DELIVERYMODECODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYTERMSID
+		dataType: string
+		lineageTag: 26ff28ad-bf30-4f4d-8e49-19a6936dd562
+		summarizeBy: none
+		sourceColumn: DELIVERYTERMSID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EINVOICEDIMENSIONACCOUNTCODE
+		dataType: string
+		lineageTag: a71531e9-4418-4764-936a-6656be528c2e
+		summarizeBy: none
+		sourceColumn: EINVOICEDIMENSIONACCOUNTCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column EXTERNALITEMNUMBER
+		dataType: string
+		lineageTag: 5a75f7db-da3f-4746-8e15-aa9e58627385
+		summarizeBy: none
+		sourceColumn: EXTERNALITEMNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column FIXEDPRICECHARGES
+		dataType: int64
+		formatString: 0
+		lineageTag: e2177ba6-9021-4adb-9c81-5cc0ca4cb9d3
+		summarizeBy: sum
+		sourceColumn: FIXEDPRICECHARGES
+
+		annotation SummarizationSetBy = Automatic
+
+	column FORMATTEDDELVERYADDRESS
+		dataType: string
+		lineageTag: 39888948-c5ca-4f31-9edb-a65c1620ac1c
+		summarizeBy: none
+		sourceColumn: FORMATTEDDELVERYADDRESS
+
+		annotation SummarizationSetBy = Automatic
+
+	column FULFILLMENTSTATUS
+		dataType: string
+		lineageTag: 0f07d142-c245-4f65-b6d4-f5c1dcff1963
+		summarizeBy: none
+		sourceColumn: FULFILLMENTSTATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column FULFILLMENTSTOREID
+		dataType: string
+		lineageTag: 0e39ac00-20f4-456d-be88-d36556e21271
+		summarizeBy: none
+		sourceColumn: FULFILLMENTSTOREID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FULLRUNCTPSTATUS
+		dataType: string
+		lineageTag: b5009f1d-036d-4a4d-a80c-68634fb42d15
+		summarizeBy: none
+		sourceColumn: FULLRUNCTPSTATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column GIFTCARDBUYEREMAIL
+		dataType: string
+		lineageTag: 7479a480-26ed-4b05-8edf-f56fb9559bf0
+		summarizeBy: none
+		sourceColumn: GIFTCARDBUYEREMAIL
+
+		annotation SummarizationSetBy = Automatic
+
+	column GIFTCARDBUYERNAME
+		dataType: string
+		lineageTag: bb9b0e99-ad50-44f5-97c2-9a81d804bca8
+		summarizeBy: none
+		sourceColumn: GIFTCARDBUYERNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column GIFTCARDGIFTMESSAGE
+		dataType: string
+		lineageTag: c82c8532-ffdb-4c1b-b45c-f7c35bfbcb32
+		summarizeBy: none
+		sourceColumn: GIFTCARDGIFTMESSAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column GIFTCARDNUMBER
+		dataType: string
+		lineageTag: 8600d500-5ae0-485d-805d-905a7af14444
+		summarizeBy: none
+		sourceColumn: GIFTCARDNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column GIFTCARDRECIPIENTEMAIL
+		dataType: string
+		lineageTag: 7aa4d70a-0311-40e7-bc8b-4d64d5de64b3
+		summarizeBy: none
+		sourceColumn: GIFTCARDRECIPIENTEMAIL
+
+		annotation SummarizationSetBy = Automatic
+
+	column GIFTCARDRECIPIENTNAME
+		dataType: string
+		lineageTag: 9bd7d0fe-b772-4ed6-b738-ae706c6ff592
+		summarizeBy: none
+		sourceColumn: GIFTCARDRECIPIENTNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column GIFTCARDTYPE
+		dataType: string
+		lineageTag: f10fb895-8ebb-4214-bcdb-d23bd190953a
+		summarizeBy: none
+		sourceColumn: GIFTCARDTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INTRASTATCOMMODITYCODE
+		dataType: string
+		lineageTag: 0f27477f-5edc-4e2d-9ea1-f7eedd8ff0bc
+		summarizeBy: none
+		sourceColumn: INTRASTATCOMMODITYCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INTRASTATPORTID
+		dataType: string
+		lineageTag: 1b2809d5-68c1-49fe-9778-155ae99fc8fa
+		summarizeBy: none
+		sourceColumn: INTRASTATPORTID
+
+		annotation SummarizationSetBy = Automatic
+
+	column INTRASTATSPECIALMOVEMENTCODE
+		dataType: string
+		lineageTag: a0b00078-16b1-47b7-b08f-a02445f3e31e
+		summarizeBy: none
+		sourceColumn: INTRASTATSPECIALMOVEMENTCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INTRASTATSTATISTICSPROCEDURECODE
+		dataType: string
+		lineageTag: d6520f64-798b-48d6-88e1-b3b27fcf27d8
+		summarizeBy: none
+		sourceColumn: INTRASTATSTATISTICSPROCEDURECODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INTRASTATTRANSACTIONCODE
+		dataType: string
+		lineageTag: 975a03ff-e319-4009-9c9c-e1a4bf620f0a
+		summarizeBy: none
+		sourceColumn: INTRASTATTRANSACTIONCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INTRASTATTRANSPORTMODECODE
+		dataType: string
+		lineageTag: 5f6e578c-c8a0-4e36-9882-3d43b885b4ce
+		summarizeBy: none
+		sourceColumn: INTRASTATTRANSPORTMODECODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVENTORYRESERVATIONMETHOD
+		dataType: string
+		lineageTag: 428b6bed-12bf-435c-a444-25424c8027d6
+		summarizeBy: none
+		sourceColumn: INVENTORYRESERVATIONMETHOD
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVENTORYSERVICERESERVATIONID
+		dataType: string
+		lineageTag: 7e6d7bb2-2766-470b-91f7-476366c0e071
+		summarizeBy: none
+		sourceColumn: INVENTORYSERVICERESERVATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISDELIVERYADDRESSORDERSPECIFIC
+		dataType: string
+		lineageTag: 9fbfc7ba-a77b-49ee-bcd3-0f49459a3f7d
+		summarizeBy: none
+		sourceColumn: ISDELIVERYADDRESSORDERSPECIFIC
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISDELIVERYADDRESSPRIVATE
+		dataType: string
+		lineageTag: 4640439b-e2b0-4808-919e-c43f08a0f65c
+		summarizeBy: none
+		sourceColumn: ISDELIVERYADDRESSPRIVATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISINTRASTATTRIANGULARDEAL
+		dataType: string
+		lineageTag: 615e71b1-5615-4827-bcb8-4aaa169ec259
+		summarizeBy: none
+		sourceColumn: ISINTRASTATTRIANGULARDEAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISLINESTOPPED
+		dataType: string
+		lineageTag: 1624e761-d7b6-4f16-8787-74878b0fe784
+		summarizeBy: none
+		sourceColumn: ISLINESTOPPED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISPRICELOCKED
+		dataType: string
+		lineageTag: a4f289a0-5c75-4a83-8957-ec50017719e0
+		summarizeBy: none
+		sourceColumn: ISPRICELOCKED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ITEMBATCHNUMBER
+		dataType: string
+		lineageTag: 53b4df03-5174-473b-ab6d-ff43176c9cc5
+		summarizeBy: none
+		sourceColumn: ITEMBATCHNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ITEMNUMBER
+		dataType: string
+		lineageTag: 663ab08c-fa2c-403c-858a-a40b71f89c53
+		summarizeBy: none
+		sourceColumn: ITEMNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ITEMSERIALNUMBER
+		dataType: string
+		lineageTag: b66e846c-b175-48bc-ab54-114b21ed9d2e
+		summarizeBy: none
+		sourceColumn: ITEMSERIALNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ITEMWITHHOLDINGTAXCODEGROUPCODE
+		dataType: string
+		lineageTag: 3eefeda0-335f-4455-ae6d-e1729c78460b
+		summarizeBy: none
+		sourceColumn: ITEMWITHHOLDINGTAXCODEGROUPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINEAMOUNT
+		dataType: double
+		lineageTag: 954c3011-111a-45c3-b5a1-625dd2c4338d
+		summarizeBy: sum
+		sourceColumn: LINEAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LINECREATIONSEQUENCENUMBER
+		dataType: int64
+		formatString: 0
+		lineageTag: d0017099-4c61-40a9-a27f-e7b304513299
+		summarizeBy: sum
+		sourceColumn: LINECREATIONSEQUENCENUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINEDESCRIPTION
+		dataType: string
+		lineageTag: 959f9c23-0e0d-4aee-8b63-192a538bd781
+		summarizeBy: none
+		sourceColumn: LINEDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINEDISCOUNTAMOUNT
+		dataType: double
+		lineageTag: 1d3c54d6-33b6-42a7-9166-20a2f65c9935
+		summarizeBy: sum
+		sourceColumn: LINEDISCOUNTAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LINEDISCOUNTPERCENTAGE
+		dataType: int64
+		formatString: 0
+		lineageTag: 6953c506-ad60-49f4-9661-fba1c365d613
+		summarizeBy: sum
+		sourceColumn: LINEDISCOUNTPERCENTAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINENUMBER
+		dataType: int64
+		formatString: 0
+		lineageTag: a348fc16-b348-4ad6-a8e7-2badde4d5cc9
+		summarizeBy: sum
+		sourceColumn: LINENUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column MAINACCOUNTIDDISPLAYVALUE
+		dataType: string
+		lineageTag: 3147e12a-9ed7-4346-9482-239793ec83e6
+		summarizeBy: none
+		sourceColumn: MAINACCOUNTIDDISPLAYVALUE
+
+		annotation SummarizationSetBy = Automatic
+
+	column MULTILINEDISCOUNTAMOUNT
+		dataType: int64
+		formatString: 0
+		lineageTag: e55031b3-a9ff-4b33-b5f1-1a6385d7b156
+		summarizeBy: sum
+		sourceColumn: MULTILINEDISCOUNTAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column MULTILINEDISCOUNTPERCENTAGE
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c3213ec-3b49-4a43-b8b0-058f56dd535b
+		summarizeBy: sum
+		sourceColumn: MULTILINEDISCOUNTPERCENTAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDEREDINVENTORYSTATUSID
+		dataType: string
+		lineageTag: e1ed647a-65ab-4cd1-a528-86cb0cf570e7
+		summarizeBy: none
+		sourceColumn: ORDEREDINVENTORYSTATUSID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDEREDSALESQUANTITY
+		dataType: int64
+		formatString: 0
+		lineageTag: 5417c4ea-bc53-41aa-8105-e984f838b324
+		summarizeBy: sum
+		sourceColumn: ORDEREDSALESQUANTITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column OVERRIDESALESTAX
+		dataType: string
+		lineageTag: 442d935a-2376-4ce8-b4b6-63a6b174e157
+		summarizeBy: none
+		sourceColumn: OVERRIDESALESTAX
+
+		annotation SummarizationSetBy = Automatic
+
+	column PACKINGUNITSYMBOL
+		dataType: string
+		lineageTag: d647692f-92b0-42e2-bc16-90aadb259a8e
+		summarizeBy: none
+		sourceColumn: PACKINGUNITSYMBOL
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLANNINGPRIORITY
+		dataType: int64
+		formatString: 0
+		lineageTag: 25475ddd-6c80-4cc7-9fe5-1fa2c11241aa
+		summarizeBy: sum
+		sourceColumn: PLANNINGPRIORITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTCOLORID
+		dataType: string
+		lineageTag: 6d383fc3-ded6-4858-b759-6b3ab707ca4d
+		summarizeBy: none
+		sourceColumn: PRODUCTCOLORID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTCONFIGURATIONID
+		dataType: string
+		lineageTag: 9d214322-9a39-4855-9ce2-84795e0e233f
+		summarizeBy: none
+		sourceColumn: PRODUCTCONFIGURATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTSIZEID
+		dataType: string
+		lineageTag: 76a046a7-7938-4aae-8db9-067f38848119
+		summarizeBy: none
+		sourceColumn: PRODUCTSIZEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTSTYLEID
+		dataType: string
+		lineageTag: 24eaf8bc-1a8b-42af-9d6e-ee4dfda74090
+		summarizeBy: none
+		sourceColumn: PRODUCTSTYLEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECTCATEGORYID
+		dataType: string
+		lineageTag: ff4b08b7-225e-47ae-8695-4a40ecb5ab29
+		summarizeBy: none
+		sourceColumn: PROJECTCATEGORYID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECTID
+		dataType: string
+		lineageTag: 31b398e3-e2f8-473b-9d01-f19cad681f5c
+		summarizeBy: none
+		sourceColumn: PROJECTID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROJECTLINEPROPERTYID
+		dataType: string
+		lineageTag: c3f59993-d08d-47f6-8977-6d57f9f3527f
+		summarizeBy: none
+		sourceColumn: PROJECTLINEPROPERTYID
+
+		annotation SummarizationSetBy = Automatic
+
+	column REQUESTEDRECEIPTDATE
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: ce1d6ca3-2526-4a66-b8fe-117252e0764b
+		summarizeBy: none
+		sourceColumn: REQUESTEDRECEIPTDATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column REQUESTEDSHIPPINGDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1a95b801-50c2-413e-b227-519b9413e39b
+		summarizeBy: none
+		sourceColumn: REQUESTEDSHIPPINGDATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETAILCALCULATEDLINEDISCOUNTAMOUNT
+		dataType: int64
+		formatString: 0
+		lineageTag: ad265300-fced-43f1-8b8f-da44fa9b618b
+		summarizeBy: sum
+		sourceColumn: RETAILCALCULATEDLINEDISCOUNTAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETAILCALCULATEDLINEDISCOUNTPERCENTAGE
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ad097f7-5e43-4b99-8420-bd9bfbb40b00
+		summarizeBy: sum
+		sourceColumn: RETAILCALCULATEDLINEDISCOUNTPERCENTAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETAILCALCULATEDMANUALLINEDISCOUNTAMOUNT
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b408c07-8556-430d-a63f-3cc857821a41
+		summarizeBy: sum
+		sourceColumn: RETAILCALCULATEDMANUALLINEDISCOUNTAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETAILCALCULATEDMANUALLINEDISCOUNTPERCENTAGE
+		dataType: int64
+		formatString: 0
+		lineageTag: fb7270fe-b78f-4c62-90e7-a8a43c02539a
+		summarizeBy: sum
+		sourceColumn: RETAILCALCULATEDMANUALLINEDISCOUNTPERCENTAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETAILCALCULATEDPERIODICDISCOUNTAMOUNT
+		dataType: int64
+		formatString: 0
+		lineageTag: 51dedcba-d8b8-4d3c-bd5f-bc8470cda6be
+		summarizeBy: sum
+		sourceColumn: RETAILCALCULATEDPERIODICDISCOUNTAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETAILCALCULATEDPERIODICDISCOUNTPERCENTAGE
+		dataType: int64
+		formatString: 0
+		lineageTag: 69e3cbe7-eb5a-4ea2-9014-d5190fa6d686
+		summarizeBy: sum
+		sourceColumn: RETAILCALCULATEDPERIODICDISCOUNTPERCENTAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETAILCALCULATEDTENDERDISCOUNTAMOUNT
+		dataType: int64
+		formatString: 0
+		lineageTag: a02f82d5-1f9b-4406-be5b-22ea27a6e332
+		summarizeBy: sum
+		sourceColumn: RETAILCALCULATEDTENDERDISCOUNTAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETAILCALCULATEDTENDERDISCOUNTPERCENTAGE
+		dataType: int64
+		formatString: 0
+		lineageTag: e733f098-ad7a-439a-815e-fb3672ad208a
+		summarizeBy: sum
+		sourceColumn: RETAILCALCULATEDTENDERDISCOUNTPERCENTAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETAILCALCULATEDTOTALDISCOUNTAMOUNT
+		dataType: int64
+		formatString: 0
+		lineageTag: 94963334-bd2b-426e-a76b-bbdd10ca7813
+		summarizeBy: sum
+		sourceColumn: RETAILCALCULATEDTOTALDISCOUNTAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column RETAILCALCULATEDTOTALDISCOUNTPERCENTAGE
+		dataType: int64
+		formatString: 0
+		lineageTag: 175125aa-58ac-4ece-92e8-0041db43b4ec
+		summarizeBy: sum
+		sourceColumn: RETAILCALCULATEDTOTALDISCOUNTPERCENTAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column REVRECCONTRACTENDDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8d1a3c83-93e4-42f5-9a72-927c36d42fe6
+		summarizeBy: none
+		sourceColumn: REVRECCONTRACTENDDATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column REVRECCONTRACTSTARTDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3f39e353-347f-458d-8e5e-33720fa14a4f
+		summarizeBy: none
+		sourceColumn: REVRECCONTRACTSTARTDATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column REVRECOCCURRENCES
+		dataType: int64
+		formatString: 0
+		lineageTag: ccdb5587-df62-44e3-ba71-e46b37fca8cf
+		summarizeBy: sum
+		sourceColumn: REVRECOCCURRENCES
+
+		annotation SummarizationSetBy = Automatic
+
+	column REVRECREVENUESCHEDULEID
+		dataType: string
+		lineageTag: d24825ff-14da-4e21-bf61-4208d6f0ea2d
+		summarizeBy: none
+		sourceColumn: REVRECREVENUESCHEDULEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column REVRECSALESDELIVERNOW
+		dataType: int64
+		formatString: 0
+		lineageTag: 3aa57321-bb73-476d-ae3a-e3c723dda472
+		summarizeBy: sum
+		sourceColumn: REVRECSALESDELIVERNOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column ROUTEID
+		dataType: string
+		lineageTag: bddaa66f-8f37-4f1e-9466-ac5fbef8f9d8
+		summarizeBy: none
+		sourceColumn: ROUTEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESDELIVERNOW
+		dataType: int64
+		formatString: 0
+		lineageTag: 56f3b176-f7fd-4c1c-a14f-55fd380b5fc0
+		summarizeBy: sum
+		sourceColumn: SALESDELIVERNOW
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESORDERLINECREATIONMETHOD
+		dataType: string
+		lineageTag: ddae6359-6efe-4186-ad37-dc0322b10fab
+		summarizeBy: none
+		sourceColumn: SALESORDERLINECREATIONMETHOD
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESORDERLINESTATUS
+		dataType: string
+		lineageTag: 429a4796-f5e2-41c0-86fc-8a3bf582ef17
+		summarizeBy: none
+		sourceColumn: SALESORDERLINESTATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESORDERNUMBER
+		dataType: string
+		lineageTag: bc0ba5d2-c9b5-45c6-9c3c-ac6d5c9826fe
+		summarizeBy: none
+		sourceColumn: SALESORDERNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESORDERPROMISINGMETHOD
+		dataType: string
+		lineageTag: 3760f828-bfcc-415a-bb00-21cd96595652
+		summarizeBy: none
+		sourceColumn: SALESORDERPROMISINGMETHOD
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESPRICE
+		dataType: double
+		lineageTag: f7e48887-ca77-433a-b740-74c44271d453
+		summarizeBy: sum
+		sourceColumn: SALESPRICE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SALESPRICEQUANTITY
+		dataType: int64
+		formatString: 0
+		lineageTag: 13809243-e0f7-4033-9545-18e6c5aabb30
+		summarizeBy: sum
+		sourceColumn: SALESPRICEQUANTITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESPRODUCTCATEGORYNAME
+		dataType: string
+		lineageTag: a8112eda-bc25-4be8-b55b-b6f78faef0ab
+		summarizeBy: none
+		sourceColumn: SALESPRODUCTCATEGORYNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESREBATEPRODUCTGROUPID
+		dataType: string
+		lineageTag: 893ae9c1-6431-4794-aa6a-bd7d5645aa77
+		summarizeBy: none
+		sourceColumn: SALESREBATEPRODUCTGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESTAXGROUPCODE
+		dataType: string
+		lineageTag: 8cc75482-be1f-4002-99f6-341562cee6a1
+		summarizeBy: none
+		sourceColumn: SALESTAXGROUPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESTAXITEMGROUPCODE
+		dataType: string
+		lineageTag: 5a569e57-af6b-40c5-ad5d-6dc73ec8bbaf
+		summarizeBy: none
+		sourceColumn: SALESTAXITEMGROUPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESUNITSYMBOL
+		dataType: string
+		lineageTag: 6f1b98e2-6076-4e40-9992-f32022b13089
+		summarizeBy: none
+		sourceColumn: SALESUNITSYMBOL
+
+		annotation SummarizationSetBy = Automatic
+
+	column SERVICEORDERNUMBER
+		dataType: string
+		lineageTag: 9c387d54-5d5a-404a-9b8f-4c9ea1663245
+		summarizeBy: none
+		sourceColumn: SERVICEORDERNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIPPINGSITEID
+		dataType: string
+		lineageTag: a7605a06-198b-4a77-a648-b1dd1ead8819
+		summarizeBy: none
+		sourceColumn: SHIPPINGSITEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIPPINGWAREHOUSEID
+		dataType: string
+		lineageTag: 810c0166-27a7-47c0-8d97-6826c9ee7b81
+		summarizeBy: none
+		sourceColumn: SHIPPINGWAREHOUSEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIPPINGWAREHOUSELOCATIONID
+		dataType: string
+		lineageTag: 8ad0b6bd-267b-4f81-acf0-cbf09a229af5
+		summarizeBy: none
+		sourceColumn: SHIPPINGWAREHOUSELOCATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKIPCREATEAUTOCHARGES
+		dataType: string
+		lineageTag: 5ea0863f-8090-4e28-9cf7-79ab3f65b84b
+		summarizeBy: none
+		sourceColumn: SKIPCREATEAUTOCHARGES
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBBILLREVENUESPLIT
+		dataType: string
+		lineageTag: dba7b0ff-00c8-4355-99e0-5b0aeb9bd17e
+		summarizeBy: none
+		sourceColumn: SUBBILLREVENUESPLIT
+
+		annotation SummarizationSetBy = Automatic
+
+	column WILLAUTOMATICINVENTORYRESERVATIONCONSIDERBATCHATTRIBUTES
+		dataType: string
+		lineageTag: 958f4154-0e3a-476f-91d6-37002bac16cd
+		summarizeBy: none
+		sourceColumn: WILLAUTOMATICINVENTORYRESERVATIONCONSIDERBATCHATTRIBUTES
+
+		annotation SummarizationSetBy = Automatic
+
+	column WILLREBATECALCULATIONEXCLUDELINE
+		dataType: string
+		lineageTag: 65bb1ee3-e813-426a-acdb-737eef4a03af
+		summarizeBy: none
+		sourceColumn: WILLREBATECALCULATIONEXCLUDELINE
+
+		annotation SummarizationSetBy = Automatic
+
+	column WITHHOLDINGTAXGROUPCODE
+		dataType: string
+		lineageTag: 1dad6002-89df-4a59-822f-79e67eb77ef0
+		summarizeBy: none
+		sourceColumn: WITHHOLDINGTAXGROUPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHOPIFYORDER
+		dataType: string
+		lineageTag: d219dfe3-00f6-4eb6-8047-442131bc2965
+		summarizeBy: none
+		sourceColumn: SHOPIFYORDER
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rate
+		dataType: double
+		lineageTag: fbba7163-7666-4506-b789-6fa88f679876
+		summarizeBy: sum
+		sourceColumn: Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sale in RS'
+		dataType: double
+		lineageTag: 6cc44688-c7f7-4adf-a284-c04c074b3b7a
+		summarizeBy: sum
+		sourceColumn: Sale in RS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CostPrice
+		dataType: double
+		lineageTag: a0a4d42a-1007-4f22-91fc-b77c8c21e876
+		summarizeBy: sum
+		sourceColumn: CostPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Costof Sales'
+		dataType: double
+		lineageTag: efa591c2-7a80-4190-a99d-ea095dedb0e4
+		summarizeBy: sum
+		sourceColumn: Costof Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Combine
+		dataType: string
+		lineageTag: 85429fc1-5e6a-4558-ac24-733cdb5eacb1
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 27f49330-e874-43b1-b142-6e8bb3aaed0b
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition UK_Lines = m
+		mode: import
+		source =
+				let
+				    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\SALES INVOICE\Sales-UK\Lines"),
+				    #"Filtered Hidden Files1" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (13)", each #"Transform File (13)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (13)"}),
+				    #"Expanded Transform File (13)" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (13)", {"INVENTORYLOTID", "ALLOWEDOVERDELIVERYPERCENTAGE", "ALLOWEDUNDERDELIVERYPERCENTAGE", "BOMID", "COMMISSIONSALESREPRESENTATIVEGROUPID", "CONFIRMEDRECEIPTDATE", "CONFIRMEDSHIPPINGDATE", "CREDITNOTEREASONCODE", "CURRENCYCODE", "CUSTOMERREQUISITIONNUMBER", "CUSTOMERSLINENUMBER", "DEFAULTLEDGERDIMENSIONDISPLAYVALUE", "DELIVERYADDRESSCITY", "DELIVERYADDRESSCOUNTRYREGIONID", "DELIVERYADDRESSCOUNTRYREGIONISOCODE", "DELIVERYADDRESSCOUNTYID", "DELIVERYADDRESSDESCRIPTION", "DELIVERYADDRESSDISTRICTNAME", "DELIVERYADDRESSDUNSNUMBER", "DELIVERYADDRESSLATITUDE", "DELIVERYADDRESSLOCATIONID", "DELIVERYADDRESSLONGITUDE", "DELIVERYADDRESSNAME", "DELIVERYADDRESSPOSTBOX", "DELIVERYADDRESSSTATEID", "DELIVERYADDRESSSTREET", "DELIVERYADDRESSSTREETNUMBER", "DELIVERYADDRESSTIMEZONE", "DELIVERYADDRESSZIPCODE", "DELIVERYBUILDINGCOMPLIMENT", "DELIVERYMODECODE", "DELIVERYTERMSID", "EINVOICEDIMENSIONACCOUNTCODE", "EXTERNALITEMNUMBER", "FIXEDPRICECHARGES", "FORMATTEDDELVERYADDRESS", "FULFILLMENTSTATUS", "FULFILLMENTSTOREID", "FULLRUNCTPSTATUS", "GIFTCARDBUYEREMAIL", "GIFTCARDBUYERNAME", "GIFTCARDGIFTMESSAGE", "GIFTCARDNUMBER", "GIFTCARDRECIPIENTEMAIL", "GIFTCARDRECIPIENTNAME", "GIFTCARDTYPE", "INTRASTATCOMMODITYCODE", "INTRASTATPORTID", "INTRASTATSPECIALMOVEMENTCODE", "INTRASTATSTATISTICSPROCEDURECODE", "INTRASTATTRANSACTIONCODE", "INTRASTATTRANSPORTMODECODE", "INVENTORYRESERVATIONMETHOD", "INVENTORYSERVICERESERVATIONID", "ISDELIVERYADDRESSORDERSPECIFIC", "ISDELIVERYADDRESSPRIVATE", "ISINTRASTATTRIANGULARDEAL", "ISLINESTOPPED", "ISPRICELOCKED", "ITEMBATCHNUMBER", "ITEMNUMBER", "ITEMSERIALNUMBER", "ITEMWITHHOLDINGTAXCODEGROUPCODE", "LINEAMOUNT", "LINECREATIONSEQUENCENUMBER", "LINEDESCRIPTION", "LINEDISCOUNTAMOUNT", "LINEDISCOUNTPERCENTAGE", "LINENUMBER", "MAINACCOUNTIDDISPLAYVALUE", "MULTILINEDISCOUNTAMOUNT", "MULTILINEDISCOUNTPERCENTAGE", "ORDEREDINVENTORYSTATUSID", "ORDEREDSALESQUANTITY", "OVERRIDESALESTAX", "PACKINGUNITSYMBOL", "PLANNINGPRIORITY", "PRODUCTCOLORID", "PRODUCTCONFIGURATIONID", "PRODUCTSIZEID", "PRODUCTSTYLEID", "PROJECTCATEGORYID", "PROJECTID", "PROJECTLINEPROPERTYID", "REQUESTEDRECEIPTDATE", "REQUESTEDSHIPPINGDATE", "RETAILCALCULATEDLINEDISCOUNTAMOUNT", "RETAILCALCULATEDLINEDISCOUNTPERCENTAGE", "RETAILCALCULATEDMANUALLINEDISCOUNTAMOUNT", "RETAILCALCULATEDMANUALLINEDISCOUNTPERCENTAGE", "RETAILCALCULATEDPERIODICDISCOUNTAMOUNT", "RETAILCALCULATEDPERIODICDISCOUNTPERCENTAGE", "RETAILCALCULATEDTENDERDISCOUNTAMOUNT", "RETAILCALCULATEDTENDERDISCOUNTPERCENTAGE", "RETAILCALCULATEDTOTALDISCOUNTAMOUNT", "RETAILCALCULATEDTOTALDISCOUNTPERCENTAGE", "REVRECCONTRACTENDDATE", "REVRECCONTRACTSTARTDATE", "REVRECOCCURRENCES", "REVRECREVENUESCHEDULEID", "REVRECSALESDELIVERNOW", "ROUTEID", "SALESDELIVERNOW", "SALESORDERLINECREATIONMETHOD", "SALESORDERLINESTATUS", "SALESORDERNUMBER", "SALESORDERPROMISINGMETHOD", "SALESPRICE", "SALESPRICEQUANTITY", "SALESPRODUCTCATEGORYNAME", "SALESREBATEPRODUCTGROUPID", "SALESTAXGROUPCODE", "SALESTAXITEMGROUPCODE", "SALESUNITSYMBOL", "SERVICEORDERNUMBER", "SHIPPINGSITEID", "SHIPPINGWAREHOUSEID", "SHIPPINGWAREHOUSELOCATIONID", "SKIPCREATEAUTOCHARGES", "SUBBILLREVENUESPLIT", "WILLAUTOMATICINVENTORYRESERVATIONCONSIDERBATCHATTRIBUTES", "WILLREBATECALCULATIONEXCLUDELINE", "WITHHOLDINGTAXGROUPCODE"}, {"INVENTORYLOTID", "ALLOWEDOVERDELIVERYPERCENTAGE", "ALLOWEDUNDERDELIVERYPERCENTAGE", "BOMID", "COMMISSIONSALESREPRESENTATIVEGROUPID", "CONFIRMEDRECEIPTDATE", "CONFIRMEDSHIPPINGDATE", "CREDITNOTEREASONCODE", "CURRENCYCODE", "CUSTOMERREQUISITIONNUMBER", "CUSTOMERSLINENUMBER", "DEFAULTLEDGERDIMENSIONDISPLAYVALUE", "DELIVERYADDRESSCITY", "DELIVERYADDRESSCOUNTRYREGIONID", "DELIVERYADDRESSCOUNTRYREGIONISOCODE", "DELIVERYADDRESSCOUNTYID", "DELIVERYADDRESSDESCRIPTION", "DELIVERYADDRESSDISTRICTNAME", "DELIVERYADDRESSDUNSNUMBER", "DELIVERYADDRESSLATITUDE", "DELIVERYADDRESSLOCATIONID", "DELIVERYADDRESSLONGITUDE", "DELIVERYADDRESSNAME", "DELIVERYADDRESSPOSTBOX", "DELIVERYADDRESSSTATEID", "DELIVERYADDRESSSTREET", "DELIVERYADDRESSSTREETNUMBER", "DELIVERYADDRESSTIMEZONE", "DELIVERYADDRESSZIPCODE", "DELIVERYBUILDINGCOMPLIMENT", "DELIVERYMODECODE", "DELIVERYTERMSID", "EINVOICEDIMENSIONACCOUNTCODE", "EXTERNALITEMNUMBER", "FIXEDPRICECHARGES", "FORMATTEDDELVERYADDRESS", "FULFILLMENTSTATUS", "FULFILLMENTSTOREID", "FULLRUNCTPSTATUS", "GIFTCARDBUYEREMAIL", "GIFTCARDBUYERNAME", "GIFTCARDGIFTMESSAGE", "GIFTCARDNUMBER", "GIFTCARDRECIPIENTEMAIL", "GIFTCARDRECIPIENTNAME", "GIFTCARDTYPE", "INTRASTATCOMMODITYCODE", "INTRASTATPORTID", "INTRASTATSPECIALMOVEMENTCODE", "INTRASTATSTATISTICSPROCEDURECODE", "INTRASTATTRANSACTIONCODE", "INTRASTATTRANSPORTMODECODE", "INVENTORYRESERVATIONMETHOD", "INVENTORYSERVICERESERVATIONID", "ISDELIVERYADDRESSORDERSPECIFIC", "ISDELIVERYADDRESSPRIVATE", "ISINTRASTATTRIANGULARDEAL", "ISLINESTOPPED", "ISPRICELOCKED", "ITEMBATCHNUMBER", "ITEMNUMBER", "ITEMSERIALNUMBER", "ITEMWITHHOLDINGTAXCODEGROUPCODE", "LINEAMOUNT", "LINECREATIONSEQUENCENUMBER", "LINEDESCRIPTION", "LINEDISCOUNTAMOUNT", "LINEDISCOUNTPERCENTAGE", "LINENUMBER", "MAINACCOUNTIDDISPLAYVALUE", "MULTILINEDISCOUNTAMOUNT", "MULTILINEDISCOUNTPERCENTAGE", "ORDEREDINVENTORYSTATUSID", "ORDEREDSALESQUANTITY", "OVERRIDESALESTAX", "PACKINGUNITSYMBOL", "PLANNINGPRIORITY", "PRODUCTCOLORID", "PRODUCTCONFIGURATIONID", "PRODUCTSIZEID", "PRODUCTSTYLEID", "PROJECTCATEGORYID", "PROJECTID", "PROJECTLINEPROPERTYID", "REQUESTEDRECEIPTDATE", "REQUESTEDSHIPPINGDATE", "RETAILCALCULATEDLINEDISCOUNTAMOUNT", "RETAILCALCULATEDLINEDISCOUNTPERCENTAGE", "RETAILCALCULATEDMANUALLINEDISCOUNTAMOUNT", "RETAILCALCULATEDMANUALLINEDISCOUNTPERCENTAGE", "RETAILCALCULATEDPERIODICDISCOUNTAMOUNT", "RETAILCALCULATEDPERIODICDISCOUNTPERCENTAGE", "RETAILCALCULATEDTENDERDISCOUNTAMOUNT", "RETAILCALCULATEDTENDERDISCOUNTPERCENTAGE", "RETAILCALCULATEDTOTALDISCOUNTAMOUNT", "RETAILCALCULATEDTOTALDISCOUNTPERCENTAGE", "REVRECCONTRACTENDDATE", "REVRECCONTRACTSTARTDATE", "REVRECOCCURRENCES", "REVRECREVENUESCHEDULEID", "REVRECSALESDELIVERNOW", "ROUTEID", "SALESDELIVERNOW", "SALESORDERLINECREATIONMETHOD", "SALESORDERLINESTATUS", "SALESORDERNUMBER", "SALESORDERPROMISINGMETHOD", "SALESPRICE", "SALESPRICEQUANTITY", "SALESPRODUCTCATEGORYNAME", "SALESREBATEPRODUCTGROUPID", "SALESTAXGROUPCODE", "SALESTAXITEMGROUPCODE", "SALESUNITSYMBOL", "SERVICEORDERNUMBER", "SHIPPINGSITEID", "SHIPPINGWAREHOUSEID", "SHIPPINGWAREHOUSELOCATIONID", "SKIPCREATEAUTOCHARGES", "SUBBILLREVENUESPLIT", "WILLAUTOMATICINVENTORYRESERVATIONCONSIDERBATCHATTRIBUTES", "WILLREBATECALCULATIONEXCLUDELINE", "WITHHOLDINGTAXGROUPCODE"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Transform File (13)",{{"Source.Name", type text}, {"INVENTORYLOTID", type text}, {"ALLOWEDOVERDELIVERYPERCENTAGE", Int64.Type}, {"ALLOWEDUNDERDELIVERYPERCENTAGE", Int64.Type}, {"BOMID", type any}, {"COMMISSIONSALESREPRESENTATIVEGROUPID", type any}, {"CONFIRMEDRECEIPTDATE", type datetime}, {"CONFIRMEDSHIPPINGDATE", type datetime}, {"CREDITNOTEREASONCODE", type any}, {"CURRENCYCODE", type text}, {"CUSTOMERREQUISITIONNUMBER", type any}, {"CUSTOMERSLINENUMBER", Int64.Type}, {"DEFAULTLEDGERDIMENSIONDISPLAYVALUE", type text}, {"DELIVERYADDRESSCITY", type text}, {"DELIVERYADDRESSCOUNTRYREGIONID", type text}, {"DELIVERYADDRESSCOUNTRYREGIONISOCODE", type text}, {"DELIVERYADDRESSCOUNTYID", type any}, {"DELIVERYADDRESSDESCRIPTION", type text}, {"DELIVERYADDRESSDISTRICTNAME", type text}, {"DELIVERYADDRESSDUNSNUMBER", type any}, {"DELIVERYADDRESSLATITUDE", Int64.Type}, {"DELIVERYADDRESSLOCATIONID", Int64.Type}, {"DELIVERYADDRESSLONGITUDE", Int64.Type}, {"DELIVERYADDRESSNAME", type text}, {"DELIVERYADDRESSPOSTBOX", type any}, {"DELIVERYADDRESSSTATEID", type text}, {"DELIVERYADDRESSSTREET", type text}, {"DELIVERYADDRESSSTREETNUMBER", type any}, {"DELIVERYADDRESSTIMEZONE", type any}, {"DELIVERYADDRESSZIPCODE", type text}, {"DELIVERYBUILDINGCOMPLIMENT", type any}, {"DELIVERYMODECODE", type text}, {"DELIVERYTERMSID", type any}, {"EINVOICEDIMENSIONACCOUNTCODE", type any}, {"EXTERNALITEMNUMBER", type any}, {"FIXEDPRICECHARGES", Int64.Type}, {"FORMATTEDDELVERYADDRESS", type text}, {"FULFILLMENTSTATUS", type text}, {"FULFILLMENTSTOREID", type any}, {"FULLRUNCTPSTATUS", type text}, {"GIFTCARDBUYEREMAIL", type any}, {"GIFTCARDBUYERNAME", type any}, {"GIFTCARDGIFTMESSAGE", type any}, {"GIFTCARDNUMBER", type any}, {"GIFTCARDRECIPIENTEMAIL", type any}, {"GIFTCARDRECIPIENTNAME", type any}, {"GIFTCARDTYPE", type text}, {"INTRASTATCOMMODITYCODE", type any}, {"INTRASTATPORTID", type any}, {"INTRASTATSPECIALMOVEMENTCODE", type any}, {"INTRASTATSTATISTICSPROCEDURECODE", type any}, {"INTRASTATTRANSACTIONCODE", type any}, {"INTRASTATTRANSPORTMODECODE", type any}, {"INVENTORYRESERVATIONMETHOD", type text}, {"INVENTORYSERVICERESERVATIONID", type any}, {"ISDELIVERYADDRESSORDERSPECIFIC", type text}, {"ISDELIVERYADDRESSPRIVATE", type text}, {"ISINTRASTATTRIANGULARDEAL", type text}, {"ISLINESTOPPED", type text}, {"ISPRICELOCKED", type text}, {"ITEMBATCHNUMBER", type any}, {"ITEMNUMBER", type text}, {"ITEMSERIALNUMBER", type any}, {"ITEMWITHHOLDINGTAXCODEGROUPCODE", type any}, {"LINEAMOUNT", type number}, {"LINECREATIONSEQUENCENUMBER", Int64.Type}, {"LINEDESCRIPTION", type text}, {"LINEDISCOUNTAMOUNT", type number}, {"LINEDISCOUNTPERCENTAGE", Int64.Type}, {"LINENUMBER", Int64.Type}, {"MAINACCOUNTIDDISPLAYVALUE", type any}, {"MULTILINEDISCOUNTAMOUNT", Int64.Type}, {"MULTILINEDISCOUNTPERCENTAGE", Int64.Type}, {"ORDEREDINVENTORYSTATUSID", type text}, {"ORDEREDSALESQUANTITY", Int64.Type}, {"OVERRIDESALESTAX", type text}, {"PACKINGUNITSYMBOL", type any}, {"PLANNINGPRIORITY", Int64.Type}, {"PRODUCTCOLORID", type text}, {"PRODUCTCONFIGURATIONID", type any}, {"PRODUCTSIZEID", type text}, {"PRODUCTSTYLEID", type any}, {"PROJECTCATEGORYID", type any}, {"PROJECTID", type any}, {"PROJECTLINEPROPERTYID", type any}, {"REQUESTEDRECEIPTDATE", type datetime}, {"REQUESTEDSHIPPINGDATE", type datetime}, {"RETAILCALCULATEDLINEDISCOUNTAMOUNT", Int64.Type}, {"RETAILCALCULATEDLINEDISCOUNTPERCENTAGE", Int64.Type}, {"RETAILCALCULATEDMANUALLINEDISCOUNTAMOUNT", Int64.Type}, {"RETAILCALCULATEDMANUALLINEDISCOUNTPERCENTAGE", Int64.Type}, {"RETAILCALCULATEDPERIODICDISCOUNTAMOUNT", Int64.Type}, {"RETAILCALCULATEDPERIODICDISCOUNTPERCENTAGE", Int64.Type}, {"RETAILCALCULATEDTENDERDISCOUNTAMOUNT", Int64.Type}, {"RETAILCALCULATEDTENDERDISCOUNTPERCENTAGE", Int64.Type}, {"RETAILCALCULATEDTOTALDISCOUNTAMOUNT", Int64.Type}, {"RETAILCALCULATEDTOTALDISCOUNTPERCENTAGE", Int64.Type}, {"REVRECCONTRACTENDDATE", type datetime}, {"REVRECCONTRACTSTARTDATE", type datetime}, {"REVRECOCCURRENCES", Int64.Type}, {"REVRECREVENUESCHEDULEID", type any}, {"REVRECSALESDELIVERNOW", Int64.Type}, {"ROUTEID", type any}, {"SALESDELIVERNOW", Int64.Type}, {"SALESORDERLINECREATIONMETHOD", type text}, {"SALESORDERLINESTATUS", type text}, {"SALESORDERNUMBER", type text}, {"SALESORDERPROMISINGMETHOD", type text}, {"SALESPRICE", type number}, {"SALESPRICEQUANTITY", Int64.Type}, {"SALESPRODUCTCATEGORYNAME", type any}, {"SALESREBATEPRODUCTGROUPID", type any}, {"SALESTAXGROUPCODE", type text}, {"SALESTAXITEMGROUPCODE", type text}, {"SALESUNITSYMBOL", type text}, {"SERVICEORDERNUMBER", type any}, {"SHIPPINGSITEID", type text}, {"SHIPPINGWAREHOUSEID", type text}, {"SHIPPINGWAREHOUSELOCATIONID", type text}, {"SKIPCREATEAUTOCHARGES", type text}, {"SUBBILLREVENUESPLIT", type text}, {"WILLAUTOMATICINVENTORYRESERVATIONCONSIDERBATCHATTRIBUTES", type text}, {"WILLREBATECALCULATIONEXCLUDELINE", type text}, {"WITHHOLDINGTAXGROUPCODE", type any}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"SALESORDERNUMBER"}, UK_Headers, {"SALESORDERNUMBER"}, "UK_Headers", JoinKind.LeftOuter),
+				    #"Expanded UK_Headers" = Table.ExpandTableColumn(#"Merged Queries", "UK_Headers", {"CUSTOMERSORDERREFERENCE"}, {"CUSTOMERSORDERREFERENCE"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded UK_Headers",{{"CUSTOMERSORDERREFERENCE", "SHOPIFYORDER"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"REQUESTEDRECEIPTDATE", type date}}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Changed Type1", {"REQUESTEDRECEIPTDATE"}, GBP_PKR, {"Date"}, "GBP_PKR", JoinKind.LeftOuter),
+				    #"Expanded GBP_PKR" = Table.ExpandTableColumn(#"Merged Queries1", "GBP_PKR", {"Price"}, {"Price"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Expanded GBP_PKR",{{"Price", "Rate"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns2", "Sale in RS", each [LINEAMOUNT]*[Rate]),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Sale in RS", type number}}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Changed Type2", {"ITEMNUMBER"}, UK_Cost, {"Item"}, "UK_Cost", JoinKind.LeftOuter),
+				    #"Expanded UK_Cost" = Table.ExpandTableColumn(#"Merged Queries2", "UK_Cost", {"Amount in transaction currency"}, {"UK_Cost.Amount in transaction currency"}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Expanded UK_Cost",{{"UK_Cost.Amount in transaction currency", "CostPrice"}}),
+				    #"Added Custom1" = Table.AddColumn(#"Renamed Columns3", "Costof Sales", each [ORDEREDSALESQUANTITY]*[CostPrice]),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Added Custom1",{{"Costof Sales", type number}}),
+				    #"Merged Queries3" = Table.NestedJoin(#"Changed Type3", {"SHIPPINGWAREHOUSEID"}, WarehouseDB, {"Warehouse"}, "WarehouseDB", JoinKind.LeftOuter),
+				    #"Expanded WarehouseDB" = Table.ExpandTableColumn(#"Merged Queries3", "WarehouseDB", {"Name"}, {"Name"}),
+				    #"Added Custom2" = Table.AddColumn(#"Expanded WarehouseDB", "Combine", each [Name]&"Ethnic-UK")
+				in
+				    #"Added Custom2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

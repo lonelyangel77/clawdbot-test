@@ -1,0 +1,731 @@
+table 'Sales Measures'
+	isHidden
+
+	measure Sale-Value = SUM(SALES[NetAmount])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: ad1f3deb-59f5-4aa5-88e9-f8b475a8de4b
+
+	measure Sale-Units = SUM(SALES[QtySold])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 0a239d7f-2267-4c2b-95f6-a08a01b6fbf8
+
+	measure 'Net Sales' = [Sale-Value]-[Sales Tax]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: c31da3fc-e4dd-4b66-89e1-be0f7a339dd3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Net Sales-1' = [Sale-Value]-[Sales Tax-1]
+		dataType: variant
+		displayFolder: Base
+		lineageTag: 8b2e97a2-7f74-4f97-b5c9-28b38a98d1c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Tax' = SUM('SALES-TAX DATA'[Sales Tax])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: a1068529-827c-4bc8-b907-5c98a3ca0031
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sales Tax-1' = SUM('SALES'[Sal Tax])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 6bf811bf-565f-4ceb-8f8d-fe4a1557138a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure CGS = SUM(SALES[CostSale])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 952d7b5b-0c1e-4f8c-b408-fa892f37187f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure CGS-1 = SUMX(SALES,SALES[QtySold]*RELATED(DimCost[Final Cost]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 98584f42-9747-4d0c-8299-c70a0b39a3cd
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure GP = [Sale-Value]-[Sales Tax]-[CGS]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 4bd6b713-eb2f-4d8d-84d5-cce7df4cb3b9
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure GP-1 = [Sale-Value]-[Sales Tax-1]-[CGS]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: b6a7b15b-3473-43d2-949d-294f5ac50f1a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure GP% = [GP]/([Sale-Value]-[Sales Tax])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Base
+		lineageTag: 59ec4566-d33a-453c-a9f6-319aa04e0f93
+
+		changedProperty = FormatString
+
+	measure GP%-1 = [GP-1]/([Sale-Value]-[Sales Tax-1])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Base
+		lineageTag: 2f1772b9-273b-422e-8e2d-e3778e26a975
+
+	measure 'Sale Share %' = ```
+			
+			DIVIDE(
+			    SUM('SALES'[NetAmount]),
+			    CALCULATE(
+			        SUM('SALES'[NetAmount]),
+			        ALLSELECTED('SALES')
+			    )
+			)
+			
+			```
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Base
+		lineageTag: 28539d21-87ae-4477-a9b9-d0842b05ddc1
+
+	measure 'NetSales Var%' = DIVIDE([Net Sales]-[LY NetSales],[LY NetSales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Base
+		lineageTag: bc2bd2ee-fff8-4f1c-9930-65d851c87995
+
+	measure 'Brand Name' = SELECTEDVALUE(Stores[Brand])
+		dataType: variant
+		displayFolder: Base
+		lineageTag: 85ac7989-098c-422b-b034-6a1882e9aceb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Transaction Var%' = DIVIDE([Transactions]-[LY Transactions],[LY Transactions])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Base
+		lineageTag: 8e0e962d-6052-4fee-a4ad-c4da0a0757ab
+
+		changedProperty = FormatString
+
+	measure 'Total MTD Sale' = CALCULATE([MTD Sales],ALLSELECTED('Para-Product-Inv'))
+		dataType: variant
+		displayFolder: Base
+		lineageTag: bb3cf221-0e6a-4956-b6d1-0a39247a3373
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sale Return (U)' = CALCULATE([Sale-Units],SALES[QtySold]<0)*-1
+		dataType: variant
+		formatString: #,0
+		displayFolder: Returns
+		lineageTag: 5e802480-eddc-4335-8cae-ee1085076544
+
+	measure 'Sale Return (V)' = CALCULATE([Sale-Value],SALES[NetAmount]<0)*-1
+		dataType: variant
+		formatString: #,0
+		displayFolder: Returns
+		lineageTag: a98d7f49-8d4c-4a04-93ea-b796c16d8404
+
+	measure 'Sale Return %' = [Sale Return (U)]/[Sale-Units]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Returns
+		lineageTag: 59879566-59a2-4f88-9f25-a80abbd5320f
+
+	measure 'A.S.P' = DIVIDE([Sale-Value],[Sale-Units])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Pricing
+		lineageTag: 0fbaef71-ee8d-44b0-889e-41cba617c351
+
+		changedProperty = FormatString
+
+	measure 'Avg Sale Price' = [Sale-Value]/[Sale-Units]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Pricing
+		lineageTag: df130404-0a12-4fe4-9675-0bc5686a91ce
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY A.S.P' = CALCULATE([A.S.P],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Pricing
+		lineageTag: 2dad8d3b-0137-4dd5-abd6-c3fb49b3fce0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'A.S.P Var%' = DIVIDE([A.S.P]-[LY A.S.P],[LY A.S.P])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Pricing
+		lineageTag: 817a2ac2-487b-4b50-80cd-1912967a7aa2
+
+	measure 'LY Avg Sale Price' = CALCULATE([Avg Sale Price],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Pricing
+		lineageTag: 386b9705-b44d-4563-a490-e35c1517f602
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Per Day Sale' = [Sale-Value]/[No of Days]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Productivity
+		lineageTag: d0d7d63b-13b6-427c-bf29-f9448931df3b
+
+	measure 'No of Days' = DISTINCTCOUNT(SALES[Date])
+		dataType: variant
+		displayFolder: Productivity
+		lineageTag: 05605db7-4c4c-46c7-9575-60fcfd786e0b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'No of Month' = DISTINCTCOUNT(SALES[Month])
+		dataType: variant
+		displayFolder: Productivity
+		lineageTag: aa89ef49-fdf0-485d-95df-027ddca19266
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sale per Month' = ([Sale-Value]/[No of Month])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Productivity
+		lineageTag: f4b7ceb5-0ead-4914-bb0a-4af65c2a5f64
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Per Day-Per Emp Sale' = DIVIDE([Per Day Sale],[Emp_Store_Count])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Productivity
+		lineageTag: e745a890-e8aa-4600-96cb-b9a7f1586b0d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Emp_Store_Count = AVERAGE(Emp_HeadCount[Value])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Productivity
+		lineageTag: be96d23c-a19a-490a-934b-1bce70712184
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sale per Sq. FT per Month' = IFERROR(([Sale-Value]/[SQ Ft Area])/[No of Days]*30,0)
+		dataType: variant
+		formatString: #,0
+		displayFolder: Productivity
+		lineageTag: 6842feb6-79cf-4754-947e-ed7506b535b2
+
+	measure 'LY Sale per Sq. FT per Month' = CALCULATE([Sale per Sq. FT per Month],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Productivity
+		lineageTag: 46098170-bb1f-4889-8f30-b698893b46cc
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sale per Sq. FT per Month Var%' = ([Sale per Sq. FT per Month]-[LY Sale per Sq. FT per Month])/[LY Sale per Sq. FT per Month]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Productivity
+		lineageTag: 3c01b562-c0e6-4b39-b871-d5ab0c7e15ed
+
+	measure SQFTAREA =
+			CALCULATE (
+			    SUM ( WarehouseSQFT[Sq.FT] ),
+			    FILTER (
+			        WarehouseSQFT,
+			        CALCULATE ( SUM ( SALES[NetAmount] ) ) > 0
+			    )
+			)
+		dataType: variant
+		formatString: #,0
+		displayFolder: Productivity
+		lineageTag: 0587a951-b97f-4000-be9e-dcce0c4572b1
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure LYSQFTArea = CALCULATE([SQFTAREA],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Productivity
+		lineageTag: c4dd6c56-b266-4a46-aab5-15b9b0a8b470
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Total No. of Days' = DISTINCTCOUNT('calendar'[Date])
+		dataType: variant
+		formatString: 0
+		displayFolder: Productivity
+		lineageTag: f9ceaa77-8bed-4f2f-b178-99a9bc758e6f
+
+	measure 'WA No of Days' = ([Sale-Value]*[Total No. of Days])/[Sale-Value]
+		dataType: variant
+		formatString: 0
+		displayFolder: Productivity
+		lineageTag: f2b958fb-be1d-4909-99f7-31f9f3ee0e66
+
+	measure 'Per Day Units Sold' =
+			var NoOfDaysPassed =
+			VAR _Yesterday = [Yesterday Date]
+			RETURN
+			CALCULATE(
+			    COUNTROWS('Calendar'),
+			    FILTER(
+			        ALL('Calendar'[Date]),
+			        'Calendar'[Date] <= _Yesterday &&
+			        MONTH('Calendar'[Date]) = MONTH(_Yesterday) &&
+			        YEAR('Calendar'[Date]) = YEAR(_Yesterday)
+			    )
+			)
+			VAR sellthru = [MTD Sales (U)]
+			
+			Return
+			DIVIDE(sellthru,NoOfDaysPassed)
+		dataType: variant
+		formatString: #,0
+		displayFolder: Productivity
+		lineageTag: 5528ba27-ba37-4d97-8640-be352e650f57
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Per Day Units Sold YTD' =
+			
+			VAR NoOfDaysPassed =
+			    VAR _Yesterday = [Yesterday Date]
+			    RETURN
+			    CALCULATE(
+			        COUNTROWS('Calendar'),
+			        FILTER(
+			            ALL('Calendar'[Date]),
+			            'Calendar'[Date] <= _Yesterday &&
+			            YEAR('Calendar'[Date]) = YEAR(_Yesterday)
+			        )
+			    )
+			VAR sellthru = [YTD Sales (U)]
+			RETURN
+			DIVIDE(sellthru, NoOfDaysPassed)
+		dataType: variant
+		formatString: #,0
+		displayFolder: Productivity
+		lineageTag: 0ce5d71f-831f-4052-b848-71dde844cf6c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Per Day Sell Thru%' =
+			var NoOfDaysPassed =
+			VAR _Yesterday = [Yesterday Date]
+			RETURN
+			CALCULATE(
+			    COUNTROWS('Calendar'),
+			    FILTER(
+			        ALL('Calendar'[Date]),
+			        'Calendar'[Date] <= _Yesterday &&
+			        MONTH('Calendar'[Date]) = MONTH(_Yesterday) &&
+			        YEAR('Calendar'[Date]) = YEAR(_Yesterday)
+			    )
+			)
+			VAR sellthru = [SellThru%_MTD]
+			
+			Return
+			DIVIDE(sellthru,NoOfDaysPassed)
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Productivity
+		lineageTag: deabcf33-c131-4ed5-8d18-f0d7066f2de6
+
+	measure 'Per Day SellThru% YTD' =
+			
+			VAR NoOfDaysPassed =
+			    VAR _Yesterday = [Yesterday Date]
+			    RETURN
+			    CALCULATE(
+			        COUNTROWS('Calendar'),
+			        FILTER(
+			            ALL('Calendar'[Date]),
+			            'Calendar'[Date] <= _Yesterday &&
+			            YEAR('Calendar'[Date]) = YEAR(_Yesterday)
+			        )
+			    )
+			VAR sellthru = [SellThru%_YTD]
+			RETURN
+			DIVIDE(sellthru, NoOfDaysPassed)
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Productivity
+		lineageTag: f5aad628-2087-4cd4-9c3b-9a92d330ed42
+
+	measure 'Opening Date' = CALCULATE(FIRSTDATE(SALES[Date]),ALL('SALES'[Date]))
+		dataType: variant
+		formatString: d mmmm\, yyyy
+		displayFolder: Store Info
+		lineageTag: 95e33e8d-3f07-4e92-a459-31900d8bf555
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	measure 'Active Days' = CALCULATE(DISTINCTCOUNT(SALES[Date]),ALL('Calendar'[Date]))
+		dataType: variant
+		formatString: 0
+		displayFolder: Store Info
+		lineageTag: c715250c-1501-4f65-b7d7-dda838706a90
+
+	measure 'Store New Status' = IF(TODAY()-[Opening Date]<360,"New","Old")
+		dataType: variant
+		displayFolder: Store Info
+		lineageTag: 163e9490-05b9-4737-b9dd-f595f2399693
+
+	measure 'Last Sale' = LASTDATE(SALES[Date])
+		dataType: variant
+		displayFolder: Store Info
+		lineageTag: 93fee049-461b-4fd7-8e9b-a73f4c6443a7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'last Sale Age' = INT(TODAY()-[Last Sale])
+		dataType: variant
+		displayFolder: Store Info
+		lineageTag: ec528fba-ffb9-40c9-bc0b-2aa25edf280b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure First_Date = FIRSTDATE(SALES[Date])
+		dataType: variant
+		displayFolder: Store Info
+		lineageTag: da2e2415-1c5d-4eab-a81d-63acd16fee22
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Last_Date = LASTDATE(SALES[Date])
+		dataType: variant
+		displayFolder: Store Info
+		lineageTag: ec8dff48-ee94-48b4-85c2-b40511a57dc2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'No Sale Days' = IF([First_Date]=BLANK(),90,INT(TODAY()-[Last_date]-1))
+		dataType: variant
+		displayFolder: Store Info
+		lineageTag: d7d29d63-bdf1-4439-9f8a-15a9641102b6
+
+	measure 'Ly Active Days' = CALCULATE([Active Days],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: 0
+		displayFolder: Store Info
+		lineageTag: e44b1075-3df2-42aa-9e99-4a3a42a5ac6d
+
+	measure 'Rank Item' = RANKX(ALL('Product'),[Sale-Units])
+		dataType: variant
+		displayFolder: Rankings
+		lineageTag: e91ad5eb-9636-4791-8b59-28530742ba20
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rank Visb' =
+			IF(HASONEVALUE('Product'[ItemID]),
+			     RANKX(ALLSELECTED('Product'), [Sale-Units]),
+			     BLANK()
+			    )
+		dataType: variant
+		displayFolder: Rankings
+		lineageTag: 8b79d5d0-c49c-4a29-82e6-224d6fcf4640
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Bottom5Stores = ```
+			
+			VAR BottomStores =
+			    TOPN(
+			        5,
+			        SUMMARIZE(
+			            SALES,
+			            SALES[Store],
+			            "TotalSales", SUM(SALES[NetAmount])
+			        ),
+			        [TotalSales],
+			        ASC
+			    )
+			RETURN
+			SUMX(BottomStores, [TotalSales])
+			
+			```
+		dataType: variant
+		displayFolder: Rankings
+		lineageTag: cf41faa8-c561-433f-903a-18fc8a8d0385
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Sale-Discount = CALCULATE([Sale-Value],SALES[Sale Type]="Discounted")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Discounting
+		lineageTag: 0779c4fc-9264-49bd-8a4c-7f7b7d86bb40
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sale-Full Price' = [Sale-Value]+[Discount (Val)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Discounting
+		lineageTag: 616e74a2-a08d-40e5-9a33-867bacd89ae9
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'FP Sale Share' = CALCULATE([Sale-Value],'SALES'[Sale Type]="Full Price")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Discounting
+		lineageTag: d306c241-e6d7-4499-a2af-c82e9349c227
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Disc Sale Share' = CALCULATE([Sale-Value],'SALES'[Sale Type]="Discounted")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Discounting
+		lineageTag: d5c27d78-8711-477d-8e58-62a3d026b13e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Discount (Val)' = SUM(SALES[Disc Val])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Discounting
+		lineageTag: f3d417fd-23bf-433d-81a6-653d4eb8376c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Full Price Sale' = SUM(SALES[FP Sale])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Discounting
+		lineageTag: 64662a28-6aee-4282-b473-a15e40800cd6
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sale-OFT = CALCULATE([MTD Sales],WarehouseDB[Brand]="Outfitters")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Brand Split
+		lineageTag: 3987b10b-ae65-4751-9b6d-9909c07e3b8a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Sale-ETH = CALCULATE([MTD Sales],WarehouseDB[Brand]="Ethnic")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Brand Split
+		lineageTag: d5c63e48-c2a5-411e-b2ef-1ed69d50c44b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure TGT-OFT = CALCULATE([MTD Target],WarehouseDB[Brand]="Outfitters")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Brand Split
+		lineageTag: c2ffe97b-ac61-40fc-b268-e6acef9add57
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure TGT-ETH = CALCULATE([MTD Target],WarehouseDB[Brand]="Ethnic")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Brand Split
+		lineageTag: f967a235-a949-44ae-b539-ba7b649fc5c3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'OFT-Sale Var%' = DIVIDE([Sale-OFT]-[TGT-OFT],[TGT-OFT])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Brand Split
+		lineageTag: d17770bc-820e-47eb-8837-b621cba86d2f
+
+	measure 'ETH-Sale var%' = DIVIDE([Sale-ETH]-[TGT-ETH],[TGT-ETH])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Brand Split
+		lineageTag: 093ece83-5057-4c70-bba8-7a8003a51674
+
+	measure 'Retail GP' = [Retail Price]-[Retail Sales Tax]-[Retail Cost Price]
+		dataType: variant
+		displayFolder: Retail Catalog
+		lineageTag: f59eb5b2-ff6b-42d7-866a-213d0bafe4a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Retail GP%' = IFERROR([Retail GP]/([Retail Price]-[Retail Sales Tax]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Retail Catalog
+		lineageTag: 3b799ddc-f9ce-44e1-8e79-67f24ec23a7e
+
+	measure 'Retail Price' = SUM('Product_Inv'[RetailPrice])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Retail Catalog
+		lineageTag: 75d503a9-c998-46a7-bc79-26e2d2e3789b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Retail Sales Tax' = SUM('Product_Inv'[Tax Val])
+		dataType: variant
+		displayFolder: Retail Catalog
+		lineageTag: 1ce3a4ee-8665-4b20-bed2-bf576d67e9d2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Retail Cost Price' = SUM('Product_Inv'[Cost Price])
+		dataType: variant
+		displayFolder: Retail Catalog
+		lineageTag: 44e946fd-6a09-4207-b1f7-080fbe0a5569
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost Value (Retail)' = SUM(Product_Inv[Cost Price])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Retail Catalog
+		lineageTag: d3d05eda-78db-4be6-a9b2-a87a48e3b30a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'No of Items (Retail)' = DISTINCTCOUNT('Product_Inv'[Solid Item])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Retail Catalog
+		lineageTag: 59d83dd9-f062-4d62-9772-6e306ae21703
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'AVG Cost (Retail)' = [Cost Value (Retail)]/[No of Items (Retail)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Retail Catalog
+		lineageTag: 92108e35-13e4-46e4-80fc-316f39bc6171
+
+	measure 'AVG Price (Retail)' = [Retail Value (Retail)]/[No of Items (Retail)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Retail Catalog
+		lineageTag: 31673740-e078-416d-b1da-e3e09dfc3126
+
+	measure 'Retail Value (Retail)' =
+			var Retail_V=SUM('Product_Inv'[RetailPrice])
+			return
+			CALCULATE(Retail_V,Product_Inv[RetailPrice]<0)
+		dataType: variant
+		formatString: #,0
+		displayFolder: Retail Catalog
+		lineageTag: 04d57339-52a4-4918-9068-28f777115c80
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'GP (Retail)' = [Retail Value (Retail)]-[Sales Tax (Retail)]-[Cost Value (Retail)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Retail Catalog
+		lineageTag: aa85a1e4-7e05-4a2c-8ada-6e52600f0bbf
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'GP% (Retail)' = IFERROR([GP (Retail)]/([Retail Value (Retail)]-[Sales Tax (Retail)]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Retail Catalog
+		lineageTag: 02c4c735-b597-44e7-8f03-907a10fec0b0
+
+	measure 'Cost Factor' = CALCULATE(AVERAGEX(Cost,DIVIDE(Cost[Retail Price],Cost[COST PRICE])),USERELATIONSHIP(Cost[OFTR. STYLE], 'Product'[ItemID]))
+		dataType: variant
+		displayFolder: Retail Catalog
+		lineageTag: 69891a25-5d75-46ce-bee3-fec1a72861bf
+
+	measure 'Cost Factor (Retail)' = [Retail Value (Retail)]/[Cost Value (Retail)]
+		dataType: variant
+		formatString: 0.00
+		displayFolder: Retail Catalog
+		lineageTag: 40318a1e-9b7a-4906-8837-1ea703498fcb
+
+	measure Test =
+			
+			VAR LatestDate =
+			    CALCULATE ( MAX ( 'Calendar'[Date] ), ALL ( 'Calendar' ) )
+			RETURN
+			    IF ( MAX ( 'Calendar'[Date] ) = LatestDate, 1, 0 )
+		dataType: variant
+		displayFolder: _Dev
+		lineageTag: 1928d1f3-e81e-4a52-a10c-eab8379342a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'LY G.P' = CALCULATE([GP-1],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		displayFolder: _Dev
+		lineageTag: 98fcf7ce-35b1-48d7-a77b-630acf4218a5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'zaro CGS Items Without Cost' = ```
+			
+			COUNTROWS (
+			    FILTER (
+			        Sales,
+			        NOT ( SALES[StyleCode] IN VALUES ( DimCost[Solid Item]) )
+			    )
+			)
+			
+			```
+		dataType: variant
+		displayFolder: _Dev
+		lineageTag: 0a62399e-3bbc-40dc-8dda-f6c323b31ebb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CGS Diff' = [CGS]-[CGS-1]
+		dataType: variant
+		displayFolder: _Dev
+		lineageTag: 4cd602fc-bc6c-40eb-b501-2ed7636b51fb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Per Day Sale Var%' = DIVIDE(([Per Day Sale]-[LY Per Day Sale]),[LY Per Day Sale])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: """Productivity"""
+		lineageTag: ac3ce33f-d440-4270-bb67-8cc471a9788d
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

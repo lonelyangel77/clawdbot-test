@@ -1,0 +1,90 @@
+table DimCost
+	lineageTag: c05f1398-68d6-4f67-b21e-5d50033c3bde
+
+	column 'Solid Item'
+		dataType: string
+		lineageTag: 92dd115a-adf8-4fff-854c-b13a66a2020b
+		summarizeBy: none
+		sourceColumn: Solid Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quoted-Cost
+		dataType: double
+		lineageTag: 06bb8ff2-2c3f-4ccd-bae6-a2cdc4d289b3
+		summarizeBy: none
+		sourceColumn: Quoted-Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Amount in transaction currency'
+		dataType: double
+		lineageTag: e6567aa1-0514-41ca-9099-a25024d7152f
+		summarizeBy: none
+		sourceColumn: Amount in transaction currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PURCHASEPRICE
+		dataType: double
+		lineageTag: 10fc1795-eebb-4656-a303-4ccb71bf4b40
+		summarizeBy: none
+		sourceColumn: PURCHASEPRICE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Final Cost'
+		dataType: string
+		lineageTag: f051bfc9-899e-4a36-b409-4669972e2395
+		summarizeBy: none
+		sourceColumn: Final Cost
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCost = m
+		mode: import
+		source = ```
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Product Category Assignments.xlsx"), null, true),
+				    Product_category_assignments_Sheet = Source{[Item="Product_category_assignments",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Product_category_assignments_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PRODUCTNUMBER", type text}, {"PRODUCTCATEGORYNAME", type text}, {"PRODUCTCATEGORYHIERARCHYNAME", type text}, {"DISPLAYORDER", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([PRODUCTCATEGORYHIERARCHYNAME] = "OUTFITTERS STORES FG CATEGORY")),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"PRODUCTNUMBER"}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Removed Other Columns", "PRODUCTNUMBER", "PRODUCTNUMBER - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "PRODUCTNUMBER - Copy", Splitter.SplitTextByEachDelimiter({":"}, QuoteStyle.Csv, false), {"PRODUCTNUMBER - Copy.1", "PRODUCTNUMBER - Copy.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"PRODUCTNUMBER - Copy.1", type text}, {"PRODUCTNUMBER - Copy.2", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"PRODUCTNUMBER - Copy.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"PRODUCTNUMBER - Copy.1", "Solid Item"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns",{"PRODUCTNUMBER"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns1"),
+				    #"Merged Queries" = Table.NestedJoin(#"Removed Duplicates", {"Solid Item"}, #"QP Cost", {"Article"}, "QP Cost", JoinKind.LeftOuter),
+				    #"Expanded QP Cost" = Table.ExpandTableColumn(#"Merged Queries", "QP Cost", {"Quoted-Cost"}, {"Quoted-Cost"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Expanded QP Cost", {"Solid Item"}, Agreement, {"Item"}, "Agreement", JoinKind.LeftOuter),
+				    #"Expanded Agreement" = Table.ExpandTableColumn(#"Merged Queries1", "Agreement", {"Amount in transaction currency"}, {"Amount in transaction currency"}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Expanded Agreement", {"Solid Item"}, Purchase_order_lines_V2, {"ITEMNUMBER"}, "Purchase_order_lines_V2", JoinKind.LeftOuter),
+				    #"Expanded Purchase_order_lines_V2" = Table.ExpandTableColumn(#"Merged Queries2", "Purchase_order_lines_V2", {"PURCHASEPRICE"}, {"PURCHASEPRICE"}),
+				    #"Sorted Rows" = Table.Sort(#"Expanded Purchase_order_lines_V2",{{"Solid Item", Order.Ascending}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Sorted Rows",null,0,Replacer.ReplaceValue,{"Quoted-Cost", "Amount in transaction currency", "PURCHASEPRICE"}),
+				    #"Added Custom" = Table.AddColumn(#"Replaced Value", "Final Cost", each if [#"Quoted-Cost"] > 0 then [#"Quoted-Cost"] 
+				    else if [#"Quoted-Cost"] = 0 and [Amount in transaction currency] <> 0 then [Amount in transaction currency] 
+				    else if [Amount in transaction currency] = 0 then [PURCHASEPRICE] 
+				    else [#"Quoted-Cost"]),
+				    #"Trimmed Text" = Table.TransformColumns(#"Added Custom",{{"Solid Item", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"Solid Item", Text.Clean, type text}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Cleaned Text", each ([Final Cost] <> 0)),
+				    #"Removed Duplicates1" = Table.Distinct(#"Filtered Rows1", {"Solid Item"})
+				in
+				    #"Removed Duplicates1"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,74 @@
+table Grouping
+	excludeFromModelRefresh
+	lineageTag: fc4f5011-7bf6-423b-a310-26d6a9a19cae
+
+	column 'Grouping Con'
+		dataType: string
+		lineageTag: 0a23549a-dcd2-45ec-96d6-461e8d5cef5f
+		summarizeBy: none
+		sourceColumn: Grouping Con
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grade
+		dataType: string
+		lineageTag: 2169db79-5aea-429a-a35d-31c51b54ab70
+		summarizeBy: none
+		sourceColumn: Grade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weather
+		dataType: string
+		lineageTag: 35782ec4-f40d-4f43-a55c-1d158a375226
+		summarizeBy: none
+		sourceColumn: Weather
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source
+		dataType: string
+		lineageTag: 6a1654ad-a64f-4bc8-986b-f0dbdbdc616f
+		summarizeBy: none
+		sourceColumn: Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Class'
+		dataType: string
+		lineageTag: 4a7123ef-46f0-4bb6-9e85-10f5dd809bcb
+		summarizeBy: none
+		sourceColumn: Season Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: c203a5d7-ac39-4d2f-ae78-dffeb5d42cb9
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grouping
+		dataType: string
+		lineageTag: dee0d896-029f-46ae-8e50-853eb1d7e0dc
+		summarizeBy: none
+		sourceColumn: Grouping
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Grouping-2a79f162-9397-4a01-a1e6-60d353e4b6ce = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Grouping Structure.xlsx"), null, true),
+				    Grouping_Sheet = Source{[Item="Grouping",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Grouping_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Grouping Con", type text}, {"Grade", type text}, {"Weather", type text}, {"Source", type text}, {"Season Class", type text}, {"Location", type text}, {"Grouping", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+

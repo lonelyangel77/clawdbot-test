@@ -1,0 +1,32 @@
+table 'Pick Measure'
+	lineageTag: 239f6b3e-e819-4ebe-b159-fdd95364f101
+
+	calculationGroup
+		precedence: 1
+
+		calculationItem Targets = [TGT]
+
+		calculationItem GP = [GP-1]
+
+		calculationItem Units = [Sale-Units]
+
+		calculationItem Value = [Sale-Value]
+
+	column 'P Measures'
+		dataType: string
+		lineageTag: bb8ec603-7fc6-4b9b-9325-f9229aa88315
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: efe604b8-cf58-46d7-84c0-e76218004326
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

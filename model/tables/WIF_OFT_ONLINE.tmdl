@@ -1,0 +1,26 @@
+table WIF_OFT_ONLINE
+	lineageTag: 7b25d2b1-4997-4208-9a1c-3cefed6b99f5
+
+	measure 'WIF_OFT_ONLINE Value' = SELECTEDVALUE('WIF_OFT_ONLINE'[WIF_OFT_ONLINE], 0)
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 018960fd-4859-4f7c-ab6a-6aaab112504f
+
+	column WIF_OFT_ONLINE
+		dataType: double
+		formatString: 0%;-0%;0%
+		lineageTag: b16ab8e3-7857-4473-a7df-2aada0874793
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata = {"version":0}
+
+		annotation SummarizationSetBy = User
+
+	partition WIF_OFT_ONLINE = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = ca144a317508432ca549bc83a28f3895
+

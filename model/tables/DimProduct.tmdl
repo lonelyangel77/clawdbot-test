@@ -1,0 +1,96 @@
+table DimProduct
+	lineageTag: 7c456b08-0ba4-44b4-9f82-92aa744d56bc
+
+	column PRODUCTNUMBER
+		dataType: string
+		lineageTag: b670a9e1-ad30-4333-b72f-09f4af34e636
+		summarizeBy: none
+		sourceColumn: PRODUCTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTCATEGORYNAME
+		dataType: string
+		lineageTag: fed41274-c8e3-4f6e-8538-68d417c22ba0
+		summarizeBy: none
+		sourceColumn: PRODUCTCATEGORYNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 87b8d5ec-1905-4e35-beca-841acb9ca6ac
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 45775ebc-7d4c-456f-a272-fa6edf6491a0
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collectiom
+		dataType: string
+		lineageTag: cedeada6-0a7e-469a-a0dc-abdc6346b6ff
+		summarizeBy: none
+		sourceColumn: Collectiom
+
+		annotation SummarizationSetBy = Automatic
+
+	column Class
+		dataType: string
+		lineageTag: d9cd686b-1916-41d8-8dbb-739931af0e2c
+		summarizeBy: none
+		sourceColumn: Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubClass
+		dataType: string
+		lineageTag: e80a9359-fc14-4385-b19d-c7455ac7756b
+		summarizeBy: none
+		sourceColumn: SubClass
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season
+		dataType: string
+		lineageTag: 48adc3f7-2602-4bef-87ac-12323ee714ac
+		summarizeBy: none
+		sourceColumn: Season
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProduct = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Product Category Assignments.xlsx"), null, true),
+				    Product_category_assignments_Sheet = Source{[Item="Product_category_assignments",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Product_category_assignments_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PRODUCTNUMBER", type text}, {"PRODUCTCATEGORYNAME", type text}, {"PRODUCTCATEGORYHIERARCHYNAME", type text}, {"DISPLAYORDER", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([PRODUCTCATEGORYHIERARCHYNAME] = "OUTFITTERS STORES FG CATEGORY")),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"PRODUCTNUMBER", "PRODUCTCATEGORYNAME"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Other Columns","- ","-",Replacer.ReplaceText,{"PRODUCTCATEGORYNAME"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Replaced Value", {"PRODUCTCATEGORYNAME"}, Product_category, {"Name"}, "Product_categories (2)", JoinKind.LeftOuter),
+				    #"Expanded Product_categories (2)" = Table.ExpandTableColumn(#"Merged Queries", "Product_categories (2)", {"Brand", "Gender", "Class", "Subclass"}, {"Brand", "Gender", "Class", "Subclass"}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Expanded Product_categories (2)", "PRODUCTCATEGORYNAME", "PRODUCTCATEGORYNAME - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "PRODUCTCATEGORYNAME - Copy", Splitter.SplitTextByEachDelimiter({"-"}, QuoteStyle.Csv, false), {"PRODUCTCATEGORYNAME - Copy.1", "PRODUCTCATEGORYNAME - Copy.2"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Split Column by Delimiter",{"PRODUCTCATEGORYNAME - Copy.1"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Class", "Collectiom"}, {"Subclass", "Class"}, {"PRODUCTCATEGORYNAME - Copy.2", "SubClass"}}),
+				    #"Merged Queries1" = Table.FuzzyNestedJoin(#"Renamed Columns", {"PRODUCTNUMBER"}, Product_attri, {"PRODUCTNUMBER"}, "Product_attri", JoinKind.LeftOuter, [IgnoreCase=false, IgnoreSpace=false, Threshold=0.70]),
+				    #"Expanded Product_attri" = Table.ExpandTableColumn(#"Merged Queries1", "Product_attri", {"TEXTVALUE"}, {"TEXTVALUE"}),
+				    #"Sorted Rows" = Table.Sort(#"Expanded Product_attri",{{"PRODUCTNUMBER", Order.Ascending}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Sorted Rows",{{"TEXTVALUE", "Season"}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns1", {"PRODUCTNUMBER"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

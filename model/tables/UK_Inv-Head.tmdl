@@ -1,0 +1,251 @@
+table UK_Inv-Head
+	excludeFromModelRefresh
+	lineageTag: 6c1c292f-ed0e-4272-b10c-a3461d49a051
+
+	column INVOICENUMBER
+		dataType: string
+		lineageTag: 5e192491-65c5-4aba-93f7-f8eaf3e41650
+		summarizeBy: none
+		sourceColumn: INVOICENUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 92baa8fb-a67c-411d-b4cf-e80111555139
+		summarizeBy: none
+		sourceColumn: INVOICEDATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column LEDGERVOUCHER
+		dataType: string
+		lineageTag: 3a48a80f-8de3-45f1-93a7-1885edffafee
+		summarizeBy: none
+		sourceColumn: LEDGERVOUCHER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTACTPERSONID
+		dataType: string
+		lineageTag: 21ff843e-7067-454d-af83-deb283c379d3
+		summarizeBy: none
+		sourceColumn: CONTACTPERSONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CURRENCYCODE
+		dataType: string
+		lineageTag: c0e2cd1b-34f1-4acc-b225-dce6907fdfa2
+		summarizeBy: none
+		sourceColumn: CURRENCYCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMERSORDERREFERENCE
+		dataType: string
+		lineageTag: 61404f2a-f1af-46c7-a0bb-3522e2b1f2b4
+		summarizeBy: none
+		sourceColumn: CUSTOMERSORDERREFERENCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYMODECODE
+		dataType: string
+		lineageTag: e07f3560-3763-424e-8579-84c461d87100
+		summarizeBy: none
+		sourceColumn: DELIVERYMODECODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DELIVERYTERMSCODE
+		dataType: string
+		lineageTag: a86842aa-8de0-400e-98fc-095871f501ab
+		summarizeBy: none
+		sourceColumn: DELIVERYTERMSCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEADDRESSCITY
+		dataType: string
+		lineageTag: 832ca0fc-5719-4435-b47f-fff85113d6bc
+		summarizeBy: none
+		sourceColumn: INVOICEADDRESSCITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEADDRESSCOUNTRYREGIONID
+		dataType: string
+		lineageTag: 6b2a5b07-5c47-4c43-bbe3-d17dadf8b719
+		summarizeBy: none
+		sourceColumn: INVOICEADDRESSCOUNTRYREGIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEADDRESSCOUNTRYREGIONISOCODE
+		dataType: string
+		lineageTag: d895c7c3-519c-415f-88bc-012770ca1e82
+		summarizeBy: none
+		sourceColumn: INVOICEADDRESSCOUNTRYREGIONISOCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEADDRESSSTATE
+		dataType: string
+		lineageTag: a88562a7-e004-4ed5-bbc4-3e89ef866c6b
+		summarizeBy: none
+		sourceColumn: INVOICEADDRESSSTATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEADDRESSSTREET
+		dataType: string
+		lineageTag: 6d6a3c7c-9abc-4503-8ec9-f054986c9b15
+		summarizeBy: none
+		sourceColumn: INVOICEADDRESSSTREET
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEADDRESSSTREETNUMBER
+		dataType: string
+		lineageTag: e1294187-4058-4711-9b4c-5ed293f07b0b
+		summarizeBy: none
+		sourceColumn: INVOICEADDRESSSTREETNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEADDRESSZIPCODE
+		dataType: string
+		lineageTag: 3ef67d7d-0de0-43ac-a77c-1c3cee8c126c
+		summarizeBy: none
+		sourceColumn: INVOICEADDRESSZIPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICECUSTOMERACCOUNTNUMBER
+		dataType: string
+		lineageTag: 21dc4f29-2558-4926-b761-5a4f40b41390
+		summarizeBy: none
+		sourceColumn: INVOICECUSTOMERACCOUNTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEHEADERTAXAMOUNT
+		dataType: int64
+		formatString: 0
+		lineageTag: ee18ffbd-c633-429d-8919-29fff74df1e8
+		summarizeBy: sum
+		sourceColumn: INVOICEHEADERTAXAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAYMENTTERMSNAME
+		dataType: string
+		lineageTag: fe05d589-f591-48e5-9fd3-07ccf1cb84c7
+		summarizeBy: none
+		sourceColumn: PAYMENTTERMSNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESORDERNUMBER
+		dataType: string
+		lineageTag: 640dbb1b-8ff1-43e0-91e6-c4668a66972f
+		summarizeBy: none
+		sourceColumn: SALESORDERNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESORDERORIGINCODE
+		dataType: string
+		lineageTag: 21e2b279-077d-43f4-af7b-b95a5a84a712
+		summarizeBy: none
+		sourceColumn: SALESORDERORIGINCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESORDERRESPONSIBLEPERSONNELNUMBER
+		dataType: string
+		lineageTag: 1acd169b-1962-4aa8-b1e5-0d11d4dbf58f
+		summarizeBy: none
+		sourceColumn: SALESORDERRESPONSIBLEPERSONNELNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTALCHARGEAMOUNT
+		dataType: double
+		lineageTag: fdefb579-eade-41db-80aa-d2bd22727faf
+		summarizeBy: sum
+		sourceColumn: TOTALCHARGEAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTALDISCOUNTCUSTOMERGROUPCODE
+		dataType: string
+		lineageTag: 27ce0ded-0cd3-44bc-8dc7-1e18cbd53b51
+		summarizeBy: none
+		sourceColumn: TOTALDISCOUNTCUSTOMERGROUPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTALINVOICEAMOUNT
+		dataType: double
+		lineageTag: f1207e7c-8d2c-4248-9a68-59823bd83b4b
+		summarizeBy: sum
+		sourceColumn: TOTALINVOICEAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTALTAXAMOUNT
+		dataType: double
+		lineageTag: 4c298cfd-cae8-4b83-b36e-1577935b1fd0
+		summarizeBy: sum
+		sourceColumn: TOTALTAXAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CASHDISCOUNT
+		dataType: string
+		lineageTag: 9279c767-518c-4b27-82f2-8d8f01119cb3
+		summarizeBy: none
+		sourceColumn: CASHDISCOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENDDISCOUNT
+		dataType: string
+		lineageTag: 192ef052-dd70-40c5-b672-210adae179a8
+		summarizeBy: none
+		sourceColumn: ENDDISCOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTALLINEDISCOUNT
+		dataType: string
+		lineageTag: c5a662c8-a7e5-4ae7-b6e1-ebfe5abb6553
+		summarizeBy: none
+		sourceColumn: TOTALLINEDISCOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition UK_Inv-Head = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\SALES INVOICE\Sales-UK\Sales Invoice\Header\Headers.xlsx"), null, true),
+				    Sales_invoice_headers_V2_Sheet = Source{[Item="Sales_invoice_headers_V4",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sales_invoice_headers_V2_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"INVOICENUMBER", type text}, {"INVOICEDATE", type datetime}, {"LEDGERVOUCHER", type text}, {"CONTACTPERSONID", type any}, {"CURRENCYCODE", type text}, {"CUSTOMERSORDERREFERENCE", type text}, {"DELIVERYMODECODE", type text}, {"DELIVERYTERMSCODE", type any}, {"INVOICEADDRESSCITY", type text}, {"INVOICEADDRESSCOUNTRYREGIONID", type text}, {"INVOICEADDRESSCOUNTRYREGIONISOCODE", type text}, {"INVOICEADDRESSSTATE", type text}, {"INVOICEADDRESSSTREET", type text}, {"INVOICEADDRESSSTREETNUMBER", type any}, {"INVOICEADDRESSZIPCODE", type text}, {"INVOICECUSTOMERACCOUNTNUMBER", type text}, {"INVOICEHEADERTAXAMOUNT", Int64.Type}, {"PAYMENTTERMSNAME", type any}, {"SALESORDERNUMBER", type text}, {"SALESORDERORIGINCODE", type any}, {"SALESORDERRESPONSIBLEPERSONNELNUMBER", type text}, {"TOTALCHARGEAMOUNT", type number},{"TOTALINVOICEAMOUNT", type number}, {"TOTALTAXAMOUNT", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

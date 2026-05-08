@@ -1,0 +1,702 @@
+table 'Time Intelligence'
+	isHidden
+
+	measure 'MTD Sales' = TOTALMTD([Sale-Value],'calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: MTD
+		lineageTag: 82d7142b-cf06-40c0-a4ed-4bdb822e5022
+
+	measure 'MTD Sales (U)' = TOTALMTD([Sale-Units],'calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: MTD
+		lineageTag: 343c409b-20e8-49da-9597-468a8560ff24
+
+	measure 'MTD GP' = TOTALMTD([GP-1],'calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: MTD
+		lineageTag: 73ee8928-99fc-489b-872d-b29a78904652
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD GP%' = TOTALMTD([GP%],'calendar'[Date])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: MTD
+		lineageTag: defd30ab-23ce-44a8-b9c5-7bd8665e87c4
+
+	measure 'MTD Sales LY Var %' = DIVIDE([MTD Sales],[LY MTD Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: MTD
+		lineageTag: 6d9f1e76-2c75-4343-a0b0-018e94906d41
+
+		changedProperty = FormatString
+
+	measure 'LY MTD Sales' = CALCULATE([MTD Sales],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: MTD\LY
+		lineageTag: 2f5b766e-2da8-481a-b256-fde659a6bad1
+
+	measure 'LY MTD Sales (U)' = CALCULATE([MTD Sales (U)],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: MTD\LY
+		lineageTag: 9f232f43-db0f-46a3-8d98-2c41c665b26c
+
+	measure 'LY MTD GP' = CALCULATE([MTD GP],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: MTD\LY
+		lineageTag: ca92d576-3f6f-4ce8-8991-1b1bffe79e70
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY MTD GP%' = CALCULATE([MTD GP%],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: MTD\LY
+		lineageTag: 048ce034-e262-443a-ab0e-7a34a760e830
+
+	measure 'MTD Var' = [MTD Sales]-[LY MTD Sales]
+		dataType: variant
+		formatString: #,0
+		displayFolder: MTD\Variance
+		lineageTag: 14e5a651-6f1a-46cb-9952-7c1286da2678
+
+	measure 'MTD Var (U)' = [MTD Sales (U)]-[LY MTD Sales (U)]
+		dataType: variant
+		formatString: 0
+		displayFolder: MTD\Variance
+		lineageTag: c2a75b2f-d2ea-4609-a96d-b2fd258c5d0d
+
+	measure 'LY MTD Var%' = IFERROR([MTD Var]/[LY MTD Sales],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: MTD\Variance
+		lineageTag: 09c077da-aa10-4396-97f1-fd2c478a3f37
+
+	measure 'LY MTD (U) Var%' = IFERROR(DIVIDE([MTD Sales (U)]-[LY MTD Sales (U)],[LY MTD Sales (U)]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: MTD\Variance
+		lineageTag: 599879e3-20d3-4ca1-83d1-098568ca537d
+
+	measure 'MTD GP Var' = [MTD GP]-[LY MTD GP]
+		dataType: variant
+		formatString: #,0
+		displayFolder: MTD\Variance
+		lineageTag: f2829bdc-4c57-4909-994b-cf922134767f
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD GP Var%' = DIVIDE([MTD GP]-[LY MTD GP],[LY MTD GP])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: MTD\Variance
+		lineageTag: af6b7956-5b14-4dfa-b9af-f21a66f7c8f0
+
+	measure 'MTD GP% Var%' = ([MTD GP%]-[LY MTD GP%])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: MTD\Variance
+		lineageTag: 1a8ea1ef-ae98-422c-a6a5-b051ab450da9
+
+		changedProperty = FormatString
+
+	measure 'YTD Sales' = TOTALYTD([Sale-Value],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 8aad1264-049a-4eef-914c-1e1fa6da260e
+
+	measure 'YTD Sales (U)' = TOTALYTD([Sale-Units],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: 00deb2c9-eb59-4058-bdd4-ea4ad75ad79b
+
+	measure 'YTD GP' = TOTALYTD([GP],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: YTD
+		lineageTag: a772bfb8-94f4-4414-a3a1-9668a0e07d83
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD GP%' = TOTALYTD([GP%],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: YTD
+		lineageTag: 375d161b-310e-4bed-b71f-62559dcccbef
+
+	measure 'YTD Sales LY Var %' = DIVIDE([YTD Sales],[LYTD Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: YTD
+		lineageTag: 417ed89f-df59-4c95-b8c0-21c3b6a469b7
+
+		changedProperty = FormatString
+
+	measure 'LYTD Sales' = CALCULATE([YTD Sales],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: YTD\LY
+		lineageTag: c2e6289e-70d4-4175-a9e8-1fd4a90736a9
+
+	measure 'LYTD Sales (U)' = CALCULATE([YTD Sales (U)],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: YTD\LY
+		lineageTag: 0adce1f3-1575-49cf-94c3-034efb8c9360
+
+	measure 'LYTD GP' = CALCULATE([YTD GP],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: YTD\LY
+		lineageTag: 109d2703-a47d-49d0-ae02-2d286c820e35
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LYTD GP%' = CALCULATE([YTD GP%],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: YTD\LY
+		lineageTag: 2ed477a1-31d0-4e34-bad6-1b349fbb0e5b
+
+	measure 'YTD Var' = [YTD Sales]-[LYTD Sales]
+		dataType: variant
+		formatString: #,0
+		displayFolder: YTD\Variance
+		lineageTag: 7e235caa-2fd7-40d8-a7e6-dacd4d3f2c43
+
+	measure 'YTD Var%' = IFERROR([YTD Var]/[LYTD Sales],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: YTD\Variance
+		lineageTag: 41bce694-1c79-4604-978a-74edb82e63c9
+
+	measure 'YTD (U) Var' = [YTD Sales (U)]-[LYTD Sales (U)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: YTD\Variance
+		lineageTag: d2e584ab-8f08-46cd-8cc6-72b72661ca59
+
+	measure 'YTD (U) Var%' = IFERROR(DIVIDE([YTD (U) Var],[LYTD Sales (U)]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: YTD\Variance
+		lineageTag: 6606e7b5-cffe-4551-b9d1-1a1e3f9d7e53
+
+	measure 'YTD GP Var' = [YTD GP]-[LYTD GP]
+		dataType: variant
+		formatString: #,0
+		displayFolder: YTD\Variance
+		lineageTag: 9df3081b-89fc-4ee5-8990-a1987cbb5d09
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD GP Var%' = IFERROR([YTD GP Var]/[LYTD GP],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: YTD\Variance
+		lineageTag: 398edfd9-6b71-4b53-b1c5-7c5de6eabf05
+
+	measure 'YTD GP% var' = [YTD GP%]-[LYTD GP%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: YTD\Variance
+		lineageTag: 83f9ccc9-5b00-4ab9-b3bc-e2e58fc63e97
+
+	measure 'LY Units Var%' = DIVIDE([Sale-Units]-[LY Units],[LY Units])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: YTD\Variance
+		lineageTag: 65eeb5c8-698b-4348-8344-c6bd14b4d218
+
+		changedProperty = FormatString
+
+	measure WTD_Value = IF (HASONEVALUE ( 'calendar'[Date (Year)]) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( [Sale-Value], FILTER ( ALL ( 'calendar' ), 'calendar'[Date (Year)] = VALUES ( 'calendar'[Date (Year)] ) && 'calendar'[Week No] = VALUES ( 'calendar'[Week No] ) && 'calendar'[Date] <= MAX ( 'calendar'[Date]))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD
+		lineageTag: 1a2b1dd6-88a7-4d09-9245-e2bfef398564
+
+	measure 'WTD Units' = IF (HASONEVALUE ( 'calendar'[Date (Year)]) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( [Sale-Units], FILTER ( ALL ( 'calendar' ), 'calendar'[Date (Year)] = VALUES ( 'calendar'[Date (Year)] ) && 'calendar'[Week No] = VALUES ( 'calendar'[Week No] ) && 'calendar'[Date] <= MAX ( 'calendar'[Date]))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD
+		lineageTag: 291fd88d-3942-429c-9d03-8d8e3fb2a42f
+
+	measure 'WTD GP' = IF (HASONEVALUE ( 'calendar'[Date (Year)]) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( [GP-1], FILTER ( ALL ( 'calendar' ), 'calendar'[Date (Year)] = VALUES ( 'calendar'[Date (Year)] ) && 'calendar'[Week No] = VALUES ( 'calendar'[Week No] ) && 'calendar'[Date] <= MAX ( 'calendar'[Date]))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD
+		lineageTag: 0f4a0da6-a21d-4ec2-be7a-dac8368b01c6
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'WTD GP%' = IF (HASONEVALUE ( 'calendar'[Date (Year)]) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( [GP%], FILTER ( ALL ( 'calendar' ), 'calendar'[Date (Year)] = VALUES ( 'calendar'[Date (Year)] ) && 'calendar'[Week No] = VALUES ( 'calendar'[Week No] ) && 'calendar'[Date] <= MAX ( 'calendar'[Date]))))
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: WTD
+		lineageTag: 9bbf9df5-9d18-42eb-9c92-b5e9e8be50fe
+
+	measure 'WTD Sales Var' = [WTD_Value]-[LY WTD Value]
+		dataType: variant
+		formatString: 0
+		displayFolder: WTD
+		lineageTag: ad2ff25f-0d7c-4ea2-89fb-cbd22fc8d622
+
+	measure 'WTD Sales Var%' = IFERROR( [WTD Sales Var]/[LY WTD Value],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: WTD
+		lineageTag: 75f60546-5358-4b5d-8b5e-9943e85bc6df
+
+	measure 'WTD Units Var%' =
+			
+			([WTD Units]-[LY WTD Units])/[LY WTD Units]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: WTD
+		lineageTag: 3593502b-e29f-4c29-9ecd-c87684790c38
+
+	measure 'WTD TGT Var' = [WTD_Value]-[WTD Target]
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD
+		lineageTag: c183b356-231b-4925-b0a8-dbf548418adb
+
+	measure 'WTD TGT Ach%' = IFERROR(DIVIDE([WTD_Value]-[WTD Target],[WTD Target]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: WTD
+		lineageTag: 1d9283db-7006-4046-b083-e784c7f2bf47
+
+		changedProperty = FormatString
+
+	measure 'WTD Target' = IF (HASONEVALUE ( 'calendar'[Date (Year)]) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( [TGT], FILTER ( ALL ( 'calendar' ), 'calendar'[Date (Year)] = VALUES ( 'calendar'[Date (Year)] ) && 'calendar'[Week No] = VALUES ( 'calendar'[Week No] ) && 'calendar'[Date] <= MAX ( 'calendar'[Date]))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD
+		lineageTag: e93256c6-6bac-4928-8330-c86f63ad346b
+
+	measure 'LY WTD Value' = IF (HASONEVALUE ( 'calendar'[Year] ) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( SUM ( SALES[NetAmount]), FILTER (ALL ( 'calendar' ),'calendar'[Year] = FORMAT(VALUES ( 'calendar'[Year] )-1,"") && 'calendar'[Week No]= VALUES ( 'calendar'[Week No]) && 'calendar'[Date] <= MAX ( 'calendar'[Date] ))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD\LY
+		lineageTag: 9bef02a5-34fb-4f62-b65e-6ffb44095393
+
+	measure 'LY WTD Units' = IF (HASONEVALUE ( 'calendar'[Year] ) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( SUM ( SALES[QtySold]), FILTER (ALL ( 'calendar' ),'calendar'[Year] = FORMAT(VALUES ( 'calendar'[Year] )-1,"") && 'calendar'[Week No]= VALUES ( 'calendar'[Week No]) && 'calendar'[Date] <= MAX ( 'calendar'[Date] ))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD\LY
+		lineageTag: 669ff2a3-39ff-4964-b494-03da665dde8c
+
+	measure 'LY WTD GP' = [LY WTD Value]-[LY WTD Sales Tax]-[LY WTD CGS]
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD\LY
+		lineageTag: b40c8a5f-0cf5-4fa6-8618-91bf9c3c8971
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY WTD GP%' = [LY WTD GP]/([LY WTD Value]-[LY WTD Sales Tax])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: WTD\LY
+		lineageTag: 4e27202d-aee2-47e1-a476-2b6a00901f34
+
+	measure 'LY WTD Sales Tax' = IF (HASONEVALUE ( 'calendar'[Year] ) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( SUM ( 'SALES'[Sal Tax]), FILTER (ALL ( 'calendar' ),'calendar'[Year] = FORMAT(VALUES ( 'calendar'[Year] )-1,"") && 'calendar'[Week No]= VALUES ( 'calendar'[Week No]) && 'calendar'[Date] <= MAX ( 'calendar'[Date] ))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD\LY
+		lineageTag: da8d157a-ec56-4c5e-a348-206de83d5bb9
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY WTD CGS' = IF (HASONEVALUE ( 'calendar'[Year] ) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( SUM ( 'SALES'[Costsale]), FILTER (ALL ( 'calendar' ),'calendar'[Year] = FORMAT(VALUES ( 'calendar'[Year] )-1,"") && 'calendar'[Week No]= VALUES ( 'calendar'[Week No]) && 'calendar'[Date] <= MAX ( 'calendar'[Date] ))))
+		dataType: variant
+		displayFolder: WTD\LY
+		lineageTag: 585eb91c-8e39-4bd3-baf5-a11e7b7efb41
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'LY WTD Target' = IF (HASONEVALUE ( 'calendar'[Year] ) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( SUM ( 'Targets'[Target]), FILTER (ALL ( 'calendar' ),'calendar'[Year] = FORMAT(VALUES ( 'calendar'[Year] )-1,"") && 'calendar'[Week No]= VALUES ( 'calendar'[Week No]) && 'calendar'[Date] <= MAX ( 'calendar'[Date] ))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD\LY
+		lineageTag: 5756d489-cb68-4791-a1db-7342feca70cf
+
+	measure WTD_Value-UK = IF (HASONEVALUE ( 'calendar'[Date (Year)]) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( [UK_Sale(Rs)], FILTER ( ALL ( 'calendar' ), 'calendar'[Date (Year)] = VALUES ( 'calendar'[Date (Year)] ) && 'calendar'[Week No] = VALUES ( 'calendar'[Week No] ) && 'calendar'[Date] <= MAX ( 'calendar'[Date]))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD\UK
+		lineageTag: f594e8f8-81b5-4a4f-ba22-29e678fee019
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure WTD_Value-UK_BM = IF (HASONEVALUE ( 'calendar'[Date (Year)]) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( [UK_Sale_B&M (Rs)], FILTER ( ALL ( 'calendar' ), 'calendar'[Date (Year)] = VALUES ( 'calendar'[Date (Year)] ) && 'calendar'[Week No] = VALUES ( 'calendar'[Week No] ) && 'calendar'[Date] <= MAX ( 'calendar'[Date]))))
+		dataType: variant
+		displayFolder: WTD\UK
+		lineageTag: 3868d757-7a5c-4c90-b589-682108fca7e6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'WTD Target-UK' = IF (HASONEVALUE ( 'calendar'[Date (Year)]) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( [UK_Targets(PKR)], FILTER ( ALL ( 'calendar' ), 'calendar'[Date (Year)] = VALUES ( 'calendar'[Date (Year)] ) && 'calendar'[Week No] = VALUES ( 'calendar'[Week No] ) && 'calendar'[Date] <= MAX ( 'calendar'[Date]))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD\UK
+		lineageTag: 6309a1b1-8801-4614-b3b0-f0d7a2a9e9bb
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure WTD_Value-US = IF (HASONEVALUE ( 'calendar'[Date (Year)]) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( [US_Sale(Rs)], FILTER ( ALL ( 'calendar' ), 'calendar'[Date (Year)] = VALUES ( 'calendar'[Date (Year)] ) && 'calendar'[Week No] = VALUES ( 'calendar'[Week No] ) && 'calendar'[Date] <= MAX ( 'calendar'[Date]))))
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD\US
+		lineageTag: 50d2de03-53ca-482b-8124-22b9f7333b12
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'WTD Target-US' =
+			CALCULATE(
+			IF (HASONEVALUE ( 'calendar'[Date (Year)]) && HASONEVALUE ('calendar'[Week No] ), CALCULATE( [US_Targets Value], FILTER ( ALL ( 'calendar' ), 'calendar'[Date (Year)] = VALUES ( 'calendar'[Date (Year)] ) && 'calendar'[Week No] = VALUES ( 'calendar'[Week No] ) && 'calendar'[Date] <= MAX ( 'calendar'[Date])))),
+			        USERELATIONSHIP ( 'US_Targets'[Code], 'WarehouseDB'[Warehouse] )
+			    )
+		dataType: variant
+		displayFolder: WTD\US
+		lineageTag: d13452ec-7ef7-4905-b829-76791ea0960b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'WTD targets All' = [WTD Target]+[WTD Target-UK]+[WTD Target-US]
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD\Combined
+		lineageTag: 5ea9d054-2ecc-4b36-bb98-3ba5e0432929
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'WTD Value All' = [WTD_Value]+[WTD_Value-UK]+[WTD_Value-US]+[WTD_Value-UK_BM]
+		dataType: variant
+		formatString: #,0
+		displayFolder: WTD\Combined
+		lineageTag: 924cea4d-5cb5-4066-9ad5-0e2b7c7b33d6
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'WTD Var% All' = DIVIDE([WTD Value All]-[WTD targets All],[WTD targets All])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: WTD\Combined
+		lineageTag: 207e129e-f828-4c05-b869-3a4e4b483d7a
+
+	measure 'This Week' = CALCULATE(sum('SALES'[NetAmount]), FILTER(ALL('Calendar'),'Calendar'[Week Rank]=max('Calendar'[Week Rank])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Weekly
+		lineageTag: 607f2b44-38b5-43c4-a6c3-8f292be5abf9
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Last Week' = CALCULATE(sum('SALES'[NetAmount]), FILTER(ALL('Calendar'),'Calendar'[Week Rank]=max('Calendar'[Week Rank])-1))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Weekly
+		lineageTag: 4f7633bb-11c1-4e26-8715-22c1400e057b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Week Day Sale' = CALCULATE(sum('SALES'[NetAmount]), FILTER(ALL('Calendar'),'Calendar'[Week Rank]=max('Calendar'[Week Rank]) && 'Calendar'[Weekday] <=max('Calendar'[Weekday])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Weekly
+		lineageTag: cb452879-c622-47a8-8790-663278f766e3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Last Week Day Sale' = CALCULATE(sum('SALES'[NetAmount]), FILTER(ALL('Calendar'),'Calendar'[Week Rank]=(max('Calendar'[Week Rank]) -1) && 'Calendar'[Weekday] <=max('Calendar'[Weekday])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Weekly
+		lineageTag: 9365abaa-a46f-4f09-b8b5-df49632b60ea
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Previous Week Var%' = DIVIDE([This Week]-[Last Week],[Last Week])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Weekly
+		lineageTag: 5874b402-ca96-4e5d-b9ab-c0387c483ea8
+
+	measure 'Week Day Var%' = DIVIDE([Week Day Sale]-[Last Week Day Sale],[Last Week Day Sale])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Weekly
+		lineageTag: 22e75380-a9fe-40ef-b1e4-e2cfea2b8198
+
+	measure 'This Week-UK' = CALCULATE(SUM(Shopify_UK_OT[SaleV]), FILTER(ALL('Calendar'),'Calendar'[Week Rank]=max('Calendar'[Week Rank])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Weekly\UK
+		lineageTag: 9866895a-99ad-4203-9a92-93fa2d59bd3e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'This Week-US' = CALCULATE(SUM(Shopify_US_OT[SaleV]), FILTER(ALL('Calendar'),'Calendar'[Week Rank]=max('Calendar'[Week Rank])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Weekly\US
+		lineageTag: 07d55fd4-5591-48be-9ffd-9353fc2790e3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'This Week-All' = [This Week]+[This Week-UK]+[This Week-US]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Weekly\Combined
+		lineageTag: be9b03cf-447a-487b-934e-f04a8f3d5fec
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'This Week-Targets-PK' = CALCULATE(sum('Targets'[Target]), FILTER(ALL('Calendar'),'Calendar'[Week Rank]=max('Calendar'[Week Rank])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Weekly\Combined
+		lineageTag: 44e6ea76-a526-499f-a3a1-78f3174c66de
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Sales' = CALCULATE([Sale-Value],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 921581e8-7935-4010-86a2-f8fe07fe6a96
+
+	measure 'LY Units' = CALCULATE([Sale-Units],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: e1909947-9bc9-436e-8d11-8d69a964c607
+
+	measure 'LY GP' = CALCULATE([GP-1],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: f8080000-bdfa-4c76-93c1-daca687fd0a8
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY GP%' = CALCULATE([GP%],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: LY
+		lineageTag: e4ed9498-7c3c-4f86-a3ff-47c519845ebc
+
+		changedProperty = FormatString
+
+	measure 'LY NetSales' = CALCULATE([Net Sales],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 4741bc47-fa36-4f4d-86f4-97f93f29db8c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Per Day Sale' = [LY Sales]/[LY No of Days]
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 48002c3d-8be5-452e-ae12-b3af9a76866b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY No of Days' = CALCULATE([No of Days],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		displayFolder: LY
+		lineageTag: bf331771-4cc9-46d3-ba81-08f7efa0990e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'LY Season Sale' = CALCULATE([Sale-Value],'Product'[Season-SS]="WS-19")
+		dataType: variant
+		formatString: 0
+		displayFolder: LY
+		lineageTag: d84560d4-fd2c-4568-a950-1b4eca114104
+
+	measure 'LY Season Sale-0' = CALCULATE([Sale-Value],SAMEPERIODLASTYEAR('Calendar'[Date]),Product_Inv[Curt Season]="LY Season")
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: a9005070-1323-48ce-8c53-2d2369649fa9
+
+	measure 'LY Season Sale-(U)' = CALCULATE([Sale-Units],SAMEPERIODLASTYEAR('Calendar'[Date]),Product[LY Season]="LY Season")
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 0744209d-32a3-4369-86ad-4ffaca3923f8
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sales Var' = [Sale-Value]-[LY Sales]
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY\Variance
+		lineageTag: 42f08f17-aa3f-4c51-83a0-eced73659c7c
+
+	measure 'Sales Var %' = DIVIDE([Sales Var],[LY Sales])
+		dataType: variant
+		formatString: #,0%;-#,0%;#,0%
+		displayFolder: LY\Variance
+		lineageTag: 639298a0-f4e2-4b8c-9b13-0c7760674bac
+
+	measure 'Units Var' = [Sale-Units]-[LY Units]
+		dataType: variant
+		formatString: 0
+		displayFolder: LY\Variance
+		lineageTag: d33084ac-9efd-464d-aedf-a46e377217f9
+
+	measure 'Units Var %' = DIVIDE([Units Var],[LY Units])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: LY\Variance
+		lineageTag: 65e458bf-2417-439c-85ae-431fc009eb53
+
+	measure 'GP var' = [GP]-[LY GP]
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY\Variance
+		lineageTag: da920fe1-2963-4335-972c-5058043898de
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'GP Var%' = IFERROR([GP var]/[LY GP],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: LY\Variance
+		lineageTag: 89f545eb-9ed4-4c35-9a5a-7107a460ec40
+
+	measure GP%Var = [GP%]-[LY GP%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: LY\Variance
+		lineageTag: 8851853d-d9e4-4437-a2d5-346163153ea5
+
+	measure 'GP Growth' = [GP%]-[LY GP%]
+		dataType: variant
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: LY\Variance
+		lineageTag: aa444111-c61c-4ac6-8e0c-a5b6d0a1a9be
+
+	measure 'LY Ach %' = IFERROR([Sale-Value]/[LY Sales],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: LY\Variance
+		lineageTag: 2b1c3358-0a87-4566-8fda-34207833adce
+
+		changedProperty = FormatString
+
+	measure 'Previous Day Sales' = CALCULATE([Sale-Value],PREVIOUSDAY('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Previous Period
+		lineageTag: f979ebfc-8edd-4656-8c85-69cdc021b07f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Previous Day %' = IFERROR(DIVIDE([Sale-Value]-[Previous Day Sales],[Previous Day Sales]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Previous Period
+		lineageTag: 249bd40d-5c5b-478d-a1bf-f7861fd5800c
+
+	measure 'Previous Month Sales' =
+			
+			CALCULATE(
+			    [MTD Sales],
+			    DATEADD('Calendar'[Date],-1,MONTH))
+		dataType: variant
+		displayFolder: Previous Period
+		lineageTag: abe7deba-0d1e-4e7f-acf0-90fc49ced3e4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Previous Year Sales' =
+			CALCULATE(
+			    [YTD Sales],
+			    DATEADD('Calendar'[Date],-1,YEAR))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Previous Period
+		lineageTag: 8d2a9778-70b3-4bc9-a9f1-8622b1ae59be
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure HA = ```
+			//Horizontal Analysis
+			VAR vPreviousDay = 
+			CALCULATE(
+			    [Sale-Value],
+			    PREVIOUSDAY('Calendar'[Date])
+			)
+			RETURN
+			DIVIDE( [Sale-Value] - vPreviousDay , ABS(vPreviousDay))
+			```
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Previous Period
+		lineageTag: 3fff148a-2962-4330-bd41-fb4b602bd9ba
+
+	measure HA-week =
+			//Horizontal Analysis
+			DIVIDE( [Sale-Value] - [PW SALES] , ABS([PW SALES]))
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Previous Period
+		lineageTag: 7955b79f-47c3-4c6c-abd2-84a5f988afc3
+
+	measure 'PW SALES' = ```
+			
+			VAR Currentweek =
+			    SELECTEDVALUE ( 'Calendar'[Week No] )
+			VAR CurrentYear =
+			    SELECTEDVALUE ( Calendar[Year] )
+			VAR MAXweeknumber =
+			    CALCULATE ( MAX ( 'Calendar'[Week No] ), ALL ( 'Calendar'[Date] ) )
+			
+			RETURN
+			    SUMX (
+			        FILTER (
+			            ALL ( 'Calendar' ),'Calendar'[Week No]=IF (Currentweek = 1, MAXweeknumber,  Currentweek - 1)&&'Calendar'[Year]=IF (Currentweek = 1, CurrentYear-1,  CurrentYear)),[Sale-Value])
+			  
+			```
+		dataType: variant
+		formatString: #,0
+		displayFolder: Previous Period
+		lineageTag: dc967761-a5f5-4f5b-a8ef-2a4d61402b81
+
+	measure 'Sales LY Var %' = DIVIDE([Sale-Value],[LY Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: YoY
+		lineageTag: 123015b8-b83e-4d3c-a97d-c873a793f1e8
+
+		changedProperty = FormatString
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,7 @@
+table 'Key Measures'
+	lineageTag: 2b04dd58-0731-4e67-a1fb-30b6fc3762a1
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

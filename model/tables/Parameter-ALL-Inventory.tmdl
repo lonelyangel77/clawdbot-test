@@ -1,0 +1,68 @@
+table Parameter-ALL-Inventory
+	lineageTag: 7c0ae6dc-2cb5-4b7e-88f9-a6ad42d653c0
+
+	column Parameter-Inventory
+		dataType: string
+		lineageTag: 4284c24a-39b0-495e-b466-8d2209e0bbfe
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter-Inventory Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter-Inventory Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter-Inventory Fields'
+		dataType: string
+		isHidden
+		lineageTag: 649d3f5a-9aa0-43a9-9a36-9bd8013d3306
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter-Inventory Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter-Inventory Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5e365512-065d-412c-8e28-afd4ec3b4b68
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter-ALL-Inventory = calculated
+		mode: import
+		source = ```
+				{
+					("Brand-WH", NAMEOF('WarehouseDB'[Brand]), 0),
+				    ("Brick & Morter", NAMEOF('WarehouseDB'[Brick & Morter]), 1),
+				    ("Region", NAMEOF('WarehouseDB'[Region]), 2),
+				    ("City", NAMEOF('WarehouseDB'[City]), 3),
+				    ("Store Class", NAMEOF('WarehouseDB'[Store Class]), 4),
+				    ("Store Code", NAMEOF('WarehouseDB'[Warehouse]), 5),
+				    ("Name", NAMEOF('WarehouseDB'[Name]), 5),
+				    ("MTD Status", NAMEOF('WarehouseDB'[MTD Status]), 6),
+				    ("YTD Status", NAMEOF('WarehouseDB'[YTD Status]), 7),
+					
+					("Brand-Product", NAMEOF('Product_Inv'[Brand]), 8),
+				    ("Collection", NAMEOF('Product_Inv'[Collection]), 9),
+				    ("Class", NAMEOF('Product_Inv'[Class]), 10),
+				    ("Sub Class", NAMEOF('Product_Inv'[Sub Class]), 11),
+				    ("Gender", NAMEOF('Product_Inv'[Gender-1]), 12),
+				    ("Season-SS", NAMEOF('Product_Inv'[Season-SS]), 13),
+				    ("Season", NAMEOF('Product_Inv'[Season D365]), 14),
+				    ("Item", NAMEOF('Product_Inv'[Solid Item]), 15),
+				     ("Cluster", NAMEOF('Product_Inv'[Cluster]), 16)
+				    }
+				```
+
+	annotation PBI_Id = 9a9cd814bf644f29ab24716965097c20
+

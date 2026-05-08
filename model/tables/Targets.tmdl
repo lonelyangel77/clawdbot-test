@@ -1,0 +1,88 @@
+table Targets
+	lineageTag: 000147d0-11ef-40ba-8634-e5edb4eff707
+
+	column Shop
+		dataType: string
+		lineageTag: dda923af-e57e-4f3d-8787-3d1c948462ae
+		summarizeBy: none
+		sourceColumn: Shop
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: a4c4dc79-079b-4863-987c-dc6d8a5936c4
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: daae6d50-abc6-4ae8-a623-509306c3a5c6
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Target
+		dataType: double
+		lineageTag: bc479b15-b784-4e82-a14a-0ed3274c5068
+		summarizeBy: sum
+		sourceColumn: Target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Combine = [Shop]&[Brand]
+		dataType: string
+		lineageTag: 9064f1c1-fae7-4aa6-b975-e039946ec7ca
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ramzan No.' = LOOKUPVALUE(Ramzan[R.No],Ramzan[Date],Targets[Date])
+		dataType: string
+		lineageTag: 9370bf65-8f45-43d4-aa88-b1bb04bcc66c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column7
+		dataType: string
+		lineageTag: 9975388f-e7a3-462a-ade2-a5aa909106dc
+		summarizeBy: none
+		sourceColumn: Column7
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODE
+		dataType: string
+		lineageTag: 23d84bd6-441a-4ee2-bac3-4a1bec72cde1
+		summarizeBy: none
+		sourceColumn: CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Targets-0def5c2f-30b4-4f0e-860e-851efc5995e8 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Day wise Targets.xlsx"), null, true),
+				    #"Day wise Targets_Sheet" = Source{[Item="Day wise Targets",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Day wise Targets_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Shop", type text}, {"Brand", type text}, {"Date", type date}, {"Target", type number}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Fill"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns",{{"CODE", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

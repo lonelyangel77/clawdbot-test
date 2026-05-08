@@ -1,0 +1,78 @@
+table Para_Sales
+	lineageTag: 749eaa61-b2b1-421a-a60d-55e60a8ad295
+
+	column Para_Sales
+		dataType: string
+		lineageTag: 29e0fac0-356c-4ed0-8303-ad30f494e65e
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Para_Sales Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Para_Sales Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_Sales Fields'
+		dataType: string
+		isHidden
+		lineageTag: b2464593-f8e5-435d-8cfa-a84dce74f1eb
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Para_Sales Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_Sales Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d38023a7-863d-4427-a5ab-1825cba975a4
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Para_Sales = calculated
+		mode: import
+		source =
+				{
+				    ("Sale-Value", NAMEOF('Key Measures'[Sale-Value]), 0),
+				("LY Sales", NAMEOF('Key Measures'[LY Sales]), 1),
+				("Sales%", NAMEOF('Key Measures'[Sales Var %]), 2),
+				("Sale-Units", NAMEOF('Key Measures'[Sale-Units]), 3),
+				("LY Units", NAMEOF('Key Measures'[LY Units]), 4),
+				("Units%", NAMEOF('Key Measures'[LY Units Var%]), 5),
+				("Budget", NAMEOF('Key Measures'[Budgeted Sales]), 6),
+				("Budget%", NAMEOF('Key Measures'[Bud. Sale Var%]), 7),
+				("Target", NAMEOF('Key Measures'[TGT]), 7),
+				("Target%", NAMEOF('Key Measures'[Target Ach %]), 7),
+				    ("CGS", NAMEOF('Key Measures'[CGS]), 8),
+				    ("Net Sales", NAMEOF('Key Measures'[Net Sales]), 9),
+				    ("LY NetSales", NAMEOF('Key Measures'[LY NetSales]), 10),
+				    ("NetSales Var%", NAMEOF('Key Measures'[NetSales Var%]), 11),
+				("Sales Tax", NAMEOF('Key Measures'[Sales Tax]), 12),
+				    ("GP", NAMEOF('Key Measures'[GP]), 13),
+				    ("LY GP", NAMEOF('Key Measures'[LY GP]), 14),
+				    ("GP var%", NAMEOF('Key Measures'[GP Var%]), 15),
+				    ("GP%", NAMEOF('Key Measures'[GP%]), 16),
+				    ("LY GP%", NAMEOF('Key Measures'[LY GP%]), 17),
+				    ("GP% var", NAMEOF('Key Measures'[GP%Var]), 18),
+				    ("Dilution%", NAMEOF('Key Measures'[Dilution%]), 19),
+				    ("LY Dilution%", NAMEOF('Key Measures'[LY Dilution]), 20),
+				    ("Dilution% Var", NAMEOF('Key Measures'[Dilution% Var]), 21),
+				    ("Sale Share%", NAMEOF('Key Measures'[Sale Share %]), 22),
+				    ("FP Sale Share", NAMEOF('Key Measures'[FP Sale Share]), 23),
+				    ("Discounted Sale Share", NAMEOF('Key Measures'[Disc Sale Share]), 24),
+				    ("A.S.P", NAMEOF('Key Measures'[A.S.P]), 25),
+				    ("LY A.S.P", NAMEOF('Key Measures'[LY A.S.P]), 26),
+				    ("A.S.P Var", NAMEOF('Key Measures'[A.S.P Var%]), 27)
+				}
+
+	annotation PBI_Id = 102d3846865245c2b40f8fec19f673ca
+

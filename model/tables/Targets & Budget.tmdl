@@ -1,0 +1,366 @@
+table 'Targets & Budget'
+	isHidden
+
+	measure TGT = SUM('Targets'[Target])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales Target
+		lineageTag: bb870d0e-0a7f-44f1-835e-d552f8375ce2
+
+	measure 'MTD Target' = TOTALMTD([TGT],'calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales Target
+		lineageTag: 25b50d33-14df-40d3-8662-8a44464afdff
+
+	measure 'YTD Target' = TOTALYTD([TGT],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales Target
+		lineageTag: 64b6d7df-6b3b-4569-9dcf-1eebff6170ee
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Target Ach %' = IFERROR([Sale-Value]/[TGT],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sales Target\Variance
+		lineageTag: ba6a0663-ec52-4a6b-83c6-ea41d0cc1d01
+
+	measure 'MTD Target Ach %' = IFERROR([MTD Sales]/[MTD Target],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sales Target\Variance
+		lineageTag: cf6d8bd7-247b-4697-ba9e-256007a33d04
+
+		changedProperty = FormatString
+
+	measure 'YTD Target Ach %' = IFERROR([YTD Sales]/[YTD Target],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sales Target\Variance
+		lineageTag: 043a0540-7450-4f6d-b2fd-84bc6411c748
+
+		changedProperty = FormatString
+
+	measure 'MTD Tar Var%' = IFERROR(DIVIDE([MTD Sales]-[MTD Target],[MTD Target]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sales Target\Variance
+		lineageTag: b595b683-e516-48ce-b69f-598aa29bfab2
+
+	measure 'MTD Tar Var' = ([MTD Sales]-[MTD Target])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales Target\Variance
+		lineageTag: 10722277-14ee-46e6-8e2b-b96bd9536e4c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD Tar Var%' = IFERROR(DIVIDE([YTD Sales]-[YTD Target],[YTD Target]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sales Target\Variance
+		lineageTag: b8f232a5-785f-4c99-b888-8686c580aade
+
+	measure 'YTD Tar Var' = [YTD Sales]-[YTD Target]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales Target\Variance
+		lineageTag: e91dde04-24ff-4438-a8e3-513ee0999715
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Remaining Target' = [Sale-Value]-[tgt]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales Target\Variance
+		lineageTag: 4895e1a2-2e45-412d-9d70-bca4ce95194b
+
+	measure 'Remaining YTD Target' = [YTD Sales]-[YTD Target]
+		dataType: variant
+		displayFolder: Sales Target\Variance
+		lineageTag: aeab7a44-a3ec-4439-b421-0c7e705346b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TGT Var' = [Sale-Value]-[TGT]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales Target\Variance
+		lineageTag: 89904b9a-5fd8-4da6-9cef-79b542b5b9da
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Target Balance %' = IFERROR(DIVIDE([Sale-Value]-[TGT],[TGT]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sales Target\Variance
+		lineageTag: 1ebd3285-bca5-4ec7-a9a1-d763f3d9d1a6
+
+		changedProperty = FormatString
+
+	measure TGT-U = SUM('Targets-Units'[Target])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Units Target
+		lineageTag: d376f983-cf07-483f-a352-a13d7701dac0
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD TGT-U' = TOTALMTD([TGT-U],'calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Units Target
+		lineageTag: 9b5f7921-fb7a-4282-8867-cf64ba2950c0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD TGT-U' = TOTALYTD([TGT-U],'calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Units Target
+		lineageTag: 24cfd7a1-0060-4545-9a0c-6761e1ac8183
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'TGT-U Var' = [Sale-Units]-[TGT-U]
+		dataType: variant
+		displayFolder: Units Target\Variance
+		lineageTag: 5cb484db-f140-49ee-851b-f8793bdb4f2d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'TGT-U Var%' = DIVIDE([Sale-Units]-[TGT-U],[TGT-U])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Units Target\Variance
+		lineageTag: 95b09d6c-0517-402c-8be3-75e2dfa2382a
+
+		changedProperty = FormatString
+
+	measure 'MTD Tar-U Var%' = IFERROR(DIVIDE([MTD Sales (U)]-[MTD TGT-U],[MTD TGT-U]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Units Target\Variance
+		lineageTag: 3193fb71-8da1-4eba-8253-5734279e6682
+
+	measure 'YTD TGT-U Var%' = IFERROR(DIVIDE([YTD Sales (U)]-[YTD TGT-U],[YTD TGT-U]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Units Target\Variance
+		lineageTag: fc9c472d-2bdf-4ce7-9597-e89eb966a532
+
+	measure 'TGT-Units Var%' = [Sale-Units]/[TGT-U]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Units Target\Variance
+		lineageTag: 2a956da5-ebee-4a12-8081-13a108186dd8
+
+		changedProperty = FormatString
+
+	measure TGT-GP = SUM('Budgeted GP'[Value])
+		dataType: variant
+		formatString: #,0
+		displayFolder: GP Target
+		lineageTag: 80cea2e1-9856-487b-821b-86758f865d17
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD TGT GP' = TOTALMTD([TGT-GP],'calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: GP Target
+		lineageTag: 9dcd663b-f1b1-4b80-b20a-e3e227105338
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD TGT GP' = TOTALYTD([TGT-GP],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: GP Target
+		lineageTag: 6df1cc99-0bb5-4930-bce1-21f885a59762
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'TGT GP Var %' = IFERROR(DIVIDE([GP-1]-[TGT-GP],[TGT-GP]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: GP Target\Variance
+		lineageTag: 048cc6ab-a379-4374-ad9a-17b05545250a
+
+	measure 'GP TGT Var%' = IFERROR(DIVIDE([GP-1]-[TGT-GP],[TGT-GP]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: GP Target\Variance
+		lineageTag: 63ce9955-5a25-40cc-98d9-06d4d146a375
+
+		changedProperty = FormatString
+
+	measure 'MTD TGT GP Var%' = IFERROR(DIVIDE([MTD GP]-[MTD TGT GP],[MTD TGT GP]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: GP Target\Variance
+		lineageTag: 9ec427b0-9560-4ee6-8b1e-ac6b48095b7f
+
+	measure 'MTD TGT GP VAR' = [MTD GP]-[MTD TGT GP]
+		dataType: variant
+		formatString: #,0
+		displayFolder: GP Target\Variance
+		lineageTag: f57951e1-1ab0-4a32-92b1-edb4fea094f8
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD TGT GP Var' = [YTD GP]-[YTD TGT GP]
+		dataType: variant
+		formatString: #,0
+		displayFolder: GP Target\Variance
+		lineageTag: 203fadab-037e-4565-af50-a3e28ec7497d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD TGT GP Var%' = IFERROR(DIVIDE([YTD GP]-[YTD TGT GP],[YTD TGT GP]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: GP Target\Variance
+		lineageTag: a3ccee8e-978f-4cdd-bc2a-a500a4639cd5
+
+	measure 'MTD TGT Var% %' =
+			calculate(
+			    divide([Sale-Value]-(SUM(Targets[Target])), SUM(Targets[Target])),
+			    datesbetween(
+			        Calendar[Date],
+			        firstdate(Calendar[Date]),
+			        min(lastdate(Calendar[Date]), lastdate('Sales'[date]))
+			    )
+			)
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: GP Target\Variance
+		lineageTag: 2f252d13-fba3-4393-ba52-9bb1577e5965
+
+	measure 'Budgeted Sales' = SUM('Budget Target'[Qty])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 362a8aa0-f367-4fc7-ad4a-4d669de9754b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Bud NetSales' = SUM('NetSales Target'[Qty])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 09adac2b-6cbc-4e63-a421-2947a5b88c8a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Bud. Sale Var%' = DIVIDE([Sale-Value]-[Budgeted Sales],[Budgeted Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget
+		lineageTag: 4c7f4f10-71a6-4651-b2ae-43d79d3c9863
+
+	measure 'Target vs Budget (Value)' = [TGT]-[Budgeted Sales]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 0c89522e-d474-4cb2-876f-51339fd52c1b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Remaining Bud. Sales' = [Sale-Value]-[Budgeted Sales]
+		dataType: variant
+		displayFolder: Budget
+		lineageTag: 8d116c38-3c2f-47a2-8e3a-936fd5c95f87
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Bud GP%' = DIVIDE([TGT-GP],[Bud NetSales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget\GP
+		lineageTag: 7cab97a5-ee0d-4a48-a513-308c42573a01
+
+	measure 'Bud GP% Var' = [GP%]-[Bud GP%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget\GP
+		lineageTag: e6af7174-7173-4924-8616-4c88787848fa
+
+	measure 'MTD Bud GP%' = TOTALMTD([Bud GP%],'calendar'[Date])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget\GP
+		lineageTag: 3e89067c-c0e7-48e6-a2ad-9aa25a2be444
+
+	measure 'MTD Bud GP% Var' = [MTD GP%]-[MTD Bud GP%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget\GP
+		lineageTag: 519bc4fb-16ae-4cc3-87d0-8996c97b4d25
+
+	measure 'YTD Bud GP%' = TOTALYTD([Bud GP%],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget\GP
+		lineageTag: ec4db533-3c41-4f01-b2c0-cd9772f27f76
+
+	measure 'YTD Bud GP% var' = [YTD GP%]-[YTD Bud GP%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget\GP
+		lineageTag: 3e7fcc70-42ef-4ac4-b40d-a9f08e4ab897
+
+	measure 'LY MTD Targets' = CALCULATE([MTD Target],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY Targets
+		lineageTag: 614c63d6-5d57-4156-94b2-c223af21bd5c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Target' = CALCULATE([MTD Target],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: 0
+		displayFolder: LY Targets
+		lineageTag: 8a1fd73d-3697-4bf7-afdf-a6ddec620c84
+
+	measure 'Target Var' = [MTD Target]-[LY Target]
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY Targets
+		lineageTag: 49c6dd44-f4f1-4dbf-8bbc-3a05327afecf
+
+	measure 'LY Tar Var%' = IFERROR([Target Var]/[LY Target],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: LY Targets
+		lineageTag: d46f0d20-4571-481f-b20f-3a39a909908a
+
+	measure 'LY Tar Bal %' = IFERROR([LY Sales]/[LY Target]-1,"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: LY Targets
+		lineageTag: 84f9b7bd-b066-4053-8f9d-e4b636bd63fe
+
+	measure 'Tar% Var' = [Target Balance %]-[LY Tar Bal %]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: LY Targets
+		lineageTag: f8702367-ff9e-4d77-9ff8-41a0bd85d4b4
+
+	measure 'TGT GP Var%' = [GP-1]/[TGT-GP]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: GP
+		lineageTag: ee5ac26f-700e-4b8c-8f2f-bef6b00d0e97
+
+		changedProperty = FormatString
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

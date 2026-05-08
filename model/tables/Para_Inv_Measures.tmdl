@@ -1,0 +1,54 @@
+table Para_Inv_Measures
+	lineageTag: a6989e25-7937-4cb8-9ca4-5e66763c25c5
+
+	column Para_Inv_Measures
+		dataType: string
+		lineageTag: 05c2e5d3-eb20-41ca-94dc-6dca3bd86dbf
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Para_Inv_Measures Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Para_Inv_Measures Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_Inv_Measures Fields'
+		dataType: string
+		isHidden
+		lineageTag: 2f935fbd-f197-4d1a-a6ae-4eda0a91e3a0
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Para_Inv_Measures Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_Inv_Measures Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4dd87861-51fc-479b-b6e9-00fda70be3ed
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Para_Inv_Measures = calculated
+		mode: import
+		source =
+				{
+				    ("No of Inv Items", NAMEOF('Key Measures_Inv'[No of Inv Items]), 0),
+				    ("Inv_Units", NAMEOF('Key Measures_Inv'[Inv_Units]), 1),
+				    ("Inv_Cost", NAMEOF('Key Measures_Inv'[Inv_Cost]), 2),
+				    ("Inv_Retail", NAMEOF('Key Measures_Inv'[Inv_Retail]), 3),
+				    ("Inv_Retail_FP", NAMEOF('Key Measures_Inv'[Inv_Retail_FP]), 4),
+				    ("Inv_Retail_Disc", NAMEOF('Key Measures_Inv'[Inv_Retail_Disc]), 5)
+				}
+
+	annotation PBI_Id = d352f33a217840588f69dd6c3497750e
+

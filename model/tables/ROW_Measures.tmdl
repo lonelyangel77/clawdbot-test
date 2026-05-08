@@ -1,0 +1,147 @@
+table ROW_Measures
+	lineageTag: c187b4be-593e-4925-9dd0-168f37158e3f
+
+	measure 'ROW_Targets Value' = CALCULATE(SUM(Targets_ROW[Targets (PKR)]),USERELATIONSHIP(Targets_ROW[Combine],Stores[Combine]))
+		dataType: variant
+		displayFolder: Targets
+		lineageTag: 700baaad-4f68-453f-92de-e553b326b0b2
+
+	measure ROW_fulfilled(Rs) = SUM(Shopify_ROW_OT[SaleV])
+		dataType: variant
+		displayFolder: Sales
+		lineageTag: 4ca48fa5-9821-4240-8063-9fff9d104c80
+
+	measure ROW_Online_Sales(USD) = SUM(Shopify_ROW_OT[SaleV(USD)])
+		dataType: variant
+		displayFolder: Sales
+		lineageTag: a9e92385-fdd3-4db5-8751-c96dfdb23939
+
+	measure 'ROW_Budget (Rs)' = SUM('Budget_ROW'[Targets (PKR)])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: e0e2b688-00a0-4590-afca-bf2be620da7c
+
+	measure ROW_Targets(USD) = CALCULATE(SUM(Targets_ROW[Target]),USERELATIONSHIP(Targets_ROW[Code],WarehouseDB[Warehouse]))
+		dataType: variant
+		displayFolder: Targets
+		lineageTag: 252146b1-0efd-41c6-893c-45344869303c
+
+	measure ROW_Sale(Rs) = [ROW_fulfilled(Rs)]
+		dataType: variant
+		displayFolder: Sales
+		lineageTag: 8960dee6-88b7-41e6-8c53-ced57897eb29
+
+	measure ROW_Sales(USD) = [ROW_Online_Sales(USD)]
+		dataType: variant
+		displayFolder: Sales
+		lineageTag: 49fb302d-93b5-4f4f-a70c-c3341b7e4742
+
+	measure 'ROW_MTD Targets' = TOTALMTD([ROW_Targets Value],'Calendar'[Date])
+		dataType: variant
+		displayFolder: Targets\MTD
+		lineageTag: d0226e2e-5950-494a-ad74-8bbadaaedd31
+
+	measure 'ROW_MTD Budget' = TOTALMTD([ROW_Budget (Rs)],'Calendar'[Date])
+		dataType: variant
+		displayFolder: Budget\Variance
+		lineageTag: d7fce841-ea8c-443d-9b69-c664bc3bc478
+
+	measure 'ROW_YTD Targets (USD)' = TOTALYTD([ROW_Targets(USD)],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		displayFolder: Targets\YTD
+		lineageTag: 8575b1cc-ad76-4088-a343-2a272703070f
+
+	measure ROW_Budget_YTD = TOTALYTD([ROW_Budget (Rs)],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		displayFolder: Budget
+		lineageTag: b6d0bda9-89e5-4f62-b331-52ed78516017
+
+	measure 'ROW_MTD Targets (USD)' = TOTALMTD([ROW_Targets(USD)],'Calendar'[Date])
+		dataType: variant
+		displayFolder: Targets\MTD
+		lineageTag: 1226021f-e014-483a-9274-4e3180b4f15b
+
+	measure 'ROW_MTD Sales' = TOTALMTD([ROW_Sale(Rs)],'Calendar'[Date])
+		dataType: variant
+		displayFolder: Targets\MTD
+		lineageTag: 1f980f82-9651-46dc-9d21-380526fc74ae
+
+	measure 'ROW_MTD Sales(USD)' = TOTALMTD([ROW_Sales(USD)],'Calendar'[Date])
+		dataType: variant
+		displayFolder: Targets\MTD
+		lineageTag: b6394c3c-66d3-4ea0-a700-7fd324ba98eb
+
+	measure 'ROW_YTD Sales (USD)' = TOTALYTD([ROW_Sales(USD)],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		displayFolder: Targets\YTD
+		lineageTag: 59709861-d50b-4990-8e64-bf9a1ea801d9
+
+	measure 'ROW_MTD Target Var%' = DIVIDE([ROW_MTD Sales]-[ROW_MTD Targets],[ROW_MTD Targets])
+		dataType: variant
+		displayFolder: Targets\MTD
+		lineageTag: 64e969ea-5b78-4aca-b34f-69395017dc55
+
+	measure 'ROW_YTD Sales (Rs)' = TOTALYTD([ROW_Sale(Rs)],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets\YTD
+		lineageTag: 37a04918-deb1-44ee-8a8c-4f73f8fbe40e
+
+	measure 'ROW_Budget Var' = [ROW_Sale(Rs)]-[ROW_Budget (Rs)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: cc99c7c8-d20b-48b6-af69-3b00f2b164d2
+
+	measure 'ROW_Budget Var%' = DIVIDE([ROW_Sale(Rs)]-[ROW_Budget (Rs)],[ROW_Budget (Rs)])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: 0f5786b8-81c3-40f8-9605-c688cbc81fec
+
+	measure 'ROW_MTD Budget Var' = [ROW_MTD Sales]-[ROW_MTD Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: 8d6aabd4-4b16-4abd-9a62-b2228ecdf80e
+
+	measure 'ROW_MTD Budget Var%' = DIVIDE([ROW_MTD Sales]-[ROW_MTD Budget],[ROW_MTD Budget])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: 46d8fde0-471d-42eb-961e-b72e3b1bb443
+
+	measure 'ROW_YTD Budget Var' = [ROW_YTD Sales (Rs)]-[ROW_Budget_YTD]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: 9e1ea54c-ad9f-4014-b127-e25fba1dbfa0
+
+	measure 'ROW_YTD Budget Var%' = DIVIDE([ROW_YTD Sales (Rs)]-[ROW_Budget_YTD],[ROW_Budget_YTD])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: a5169334-5dfc-411e-91ed-dbd1f642ced3
+
+	measure 'ROW_LY Sales (Rs)' = CALCULATE([ROW_Sale(Rs)],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 80e70b59-869e-4291-a4a0-62c3ac27e9c5
+
+	measure 'ROW_MTD LY Sales (Rs)' = CALCULATE([ROW_MTD Sales],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: ff91d9d6-b589-41c9-8000-4698d0b82a4d
+
+	measure 'ROW_YTD LY Sales (Rs)' = CALCULATE([ROW_YTD Sales (Rs)],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: b38614b9-6273-4c87-a169-fcca03269959
+
+	partition ROW_Measures
+		mode: import
+

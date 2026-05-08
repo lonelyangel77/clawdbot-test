@@ -1,0 +1,440 @@
+table Promo_Measures
+	lineageTag: f00c6e45-571d-49b0-bb37-c7c65d239bb1
+
+	measure 'ETH TGT Var%' = IFERROR(DIVIDE([ETH_Promo_Sale]-[ETH_Promo_TGT],[ETH_Promo_TGT]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: b7093157-bd78-4102-b3d9-1220243f400f
+
+		changedProperty = FormatString
+
+	measure ETH_Promo_Sale = CALCULATE([Sale-Value],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[Ethnic]="ETH")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 4ac73589-257e-4466-a53e-be6416cfc585
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure ETH_Promo_TGT = CALCULATE([TGT],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[Ethnic]="ETH")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 92d21d7c-a0c0-4700-b9e1-528b187c4bf7
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure ETH_Promo_Units = CALCULATE([Sale-Units],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[Ethnic]="ETH")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 15d1523a-95f6-480c-84b3-3db792f7d2e0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY_ETH Var%' = IFERROR(DIVIDE([ETH_Promo_Sale]-[LY_ETH_Promo_Sale],[LY_ETH_Promo_Sale]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 08b95344-67c5-4ce1-b634-5d69099a9e09
+
+		changedProperty = FormatString
+
+	measure LY_ETH_Promo_Sale = CALCULATE([Sale-Value],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)]="Apr-25",'Calendar'[Ethnic]="ETH")
+		dataType: variant
+		formatString: #,0
+		lineageTag: ccb91ebd-da22-46a7-97d6-2312320f61ac
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY_OFT Var%' = IFERROR(DIVIDE([OFT_Promo_Sale]-[LY_OFT_Promo_Sale],[LY_OFT_Promo_Sale]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 65e2f592-0d34-4b5e-b5db-520225706a42
+
+		changedProperty = FormatString
+
+	measure LY_OFT_Promo_Sale = CALCULATE([Sale-Value],'Calendar'[Ramzan]="Mother Day",'Calendar'[Date (Month)]="May-25",'Calendar'[Outfitters]="OFT")
+		dataType: variant
+		formatString: #,0
+		lineageTag: f0fbbcf6-3469-4a10-8648-acc4c68e4f93
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY_OL_ETH Var%' = IFERROR(DIVIDE([OL_ETH_Promo_Sale]-[LY_OL_ETH_Promo_Sale],[LY_OL_ETH_Promo_Sale]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 1ad762ab-b91d-4b1f-a0c3-c193cdf32d56
+
+		changedProperty = FormatString
+
+	measure LY_OL_ETH_Promo_Sale = CALCULATE([Sale-Value],'Calendar'[Online]="ESS-Summer",'Calendar'[Date (Month)]="Apr-25",'Calendar'[OL-ETH]="ETH")
+		dataType: variant
+		formatString: #,0
+		lineageTag: e287efd6-cade-46fe-9dab-1cdcff525591
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY_OL_OFT Var%' = IFERROR(DIVIDE([OL_OFT_Promo_Sale]-[LY_OL_OFT_Promo_Sale],[LY_OL_OFT_Promo_Sale]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 5b45a385-4969-4029-8f9d-02156a446f1b
+
+		changedProperty = FormatString
+
+	measure LY_OL_OFT_Promo_Sale = CALCULATE([Sale-Value],'Calendar'[Online]="ESS-Summer",'Calendar'[Date (Month)]="May-25",'Calendar'[OL-OFT]="OFT")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 8f93a4e2-9ca5-4b91-ac68-3f7711e185af
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'OFT TGT Var%' = IFERROR(DIVIDE([OFT_Promo_Sale]-[OFT_Promo_TGT],[OFT_Promo_TGT]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 1432a126-896a-4ecf-80a5-ecb95e897e12
+
+		changedProperty = FormatString
+
+	measure OFT_Promo_Sale = CALCULATE([Sale-Value],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[Outfitters]="OFT")
+		dataType: variant
+		formatString: #,0
+		lineageTag: af60d819-a75f-4dc1-a0a4-3a0e4d5a2484
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure OFT_Promo_TGT = CALCULATE([TGT],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[Outfitters]="OFT")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 2cbb5d22-7ce6-4343-a7be-48e9b8e7d7f8
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure OFT_Promo_Units = CALCULATE([Sale-Units],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[Outfitters]="OFT")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 2e482088-e9b6-4f5d-acc3-f93a35da9133
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'OL_ETH TGT Var%' = IFERROR(DIVIDE([OL_ETH_Promo_Sale]-[OL_ETH_Promo_TGT],[OL_ETH_Promo_TGT]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 6e8eef82-7e57-43ec-8c04-c6b61135a42a
+
+		changedProperty = FormatString
+
+	measure OL_ETH_Promo_Sale = CALCULATE([Sale-Value],'Calendar'[Online]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[OL-ETH]="ETH")
+		dataType: variant
+		formatString: #,0
+		lineageTag: d27d2ffc-6d4b-4868-bb7d-9a106c78fa37
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure OL_ETH_Promo_TGT = CALCULATE([TGT],'Calendar'[Online]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[OL-ETH]="ETH")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 6f01e097-fa52-4be7-b860-68f45da1e610
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure OL_ETH_Promo_Units = CALCULATE([Sale-Units],'Calendar'[Online]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[OL-ETH]="ETH")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 90fc3a4f-301e-42d1-a0c9-ee288bbf1467
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'OL_OFT TGT Var%' = IFERROR(DIVIDE([OL_OFT_Promo_Sale]-[OL_OFT_Promo_TGT],[OL_OFT_Promo_TGT]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 75912457-47f0-43f3-bc5d-75c138c8e147
+
+		changedProperty = FormatString
+
+	measure OL_OFT_Promo_Sale = CALCULATE([Sale-Value],'Calendar'[Online]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[OL-OFT]="OFT")
+		dataType: variant
+		formatString: #,0
+		lineageTag: b7cf0694-83a8-4b08-9eb6-fce4aaabeffa
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure OL_OFT_Promo_TGT = CALCULATE([TGT],'Calendar'[Online]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[OL-OFT]="OFT")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 3cf1f07c-3d65-42b7-a16c-3e7acf3fdbfd
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure OL_OFT_Promo_Units = CALCULATE([Sale-Units],'Calendar'[Online]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[OL-OFT]="OFT")
+		dataType: variant
+		formatString: #,0
+		lineageTag: dc00e4c5-588d-4005-a5f3-0bce4708c35f
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Opening_Inv_Qty = SUM(Promo_Invventory[Soild Qty])
+		dataType: variant
+		formatString: #,0
+		lineageTag: 508b89c9-e32d-4897-8455-18fe905c8062
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Promo_Sale (V)' = CALCULATE([Sale-Value],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"})
+		dataType: variant
+		formatString: #,0
+		lineageTag: bd05af53-cdd5-4f1a-b28a-d746bba33b30
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Promo_Sale (U)' = CALCULATE([Sale-Units],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"})
+		dataType: variant
+		formatString: #,0
+		lineageTag: ca2e4e1b-f89a-4477-bfa6-cb834a62e691
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Promo_LYLiq% = [LY_Promo_Sale (U)]/[LY_Promo_Inv]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: e9acb65c-7fc7-4c5f-95fc-2b0ff88e1f0f
+
+	measure Promo_Liq% = [Promo_Sale (U)]/[Opening_Inv_Qty]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: d5e36830-0066-43be-8aa5-8779571335d9
+
+	measure 'LY_Promo_Sale (V)' = CALCULATE([Sale-Value],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)]="Apr-25")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 8fc2e80b-fd88-470a-b858-bd832790aabb
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY_Promo_Sale (U)' = CALCULATE([Sale-Units],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)]="Apr-25")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 05aadf35-9c67-43b9-9ba2-29d5d71edf4c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure LY_Promo_Inv = SUM('Promo_LY_Inventory'[Soild Qty])
+		dataType: variant
+		formatString: #,0
+		lineageTag: 0502b97a-2b76-421f-80f6-a3e309cb7d8a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY_Promo_Sale (U)-ETH' = CALCULATE([Sale-Units],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)]="Apr-25",'Calendar'[Ethnic]="ETH")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 8cb5d907-458f-4800-ba5c-1aab56141c19
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Promo_LYLiq%-ETH = [LY_Promo_Sale (U)-ETH]/[LY_Promo_Inv]
+		dataType: variant
+		lineageTag: ed49ba7f-3a78-43ed-8019-0141df718362
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Opening_Inv_Qty-ETH = CALCULATE(SUM(Promo_Invventory[Soild Qty]),Product_Inv[Brand]="ETHNIC")
+		dataType: variant
+		lineageTag: ed94e8ca-1610-4f27-b709-3cde57923e9f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure LY_Promo_Inv-ETH = CALCULATE(SUM('Promo_LY_Inventory'[Soild Qty]),Product_Inv[Brand]="ETHNIC")
+		dataType: variant
+		lineageTag: b6ca97bf-b70e-41e8-8472-7f96dfe22240
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Opening_Inv_Cost = SUM(Promo_Invventory[Cost Value])
+		dataType: variant
+		formatString: #,0
+		lineageTag: c3b83f04-953e-4b02-9b6e-6b56aaec924b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Promo_Sale (CGS)' = CALCULATE([CGS],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"})
+		dataType: variant
+		formatString: #,0
+		lineageTag: 125065ef-934c-42d8-8ab9-941c14b79283
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Promo_Sale (Cost Recovered)' = DIVIDE([Promo_Sale (CGS)],[Opening_Inv_Cost])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: e9bdc0a1-8d52-4834-92cd-58949f0bc36a
+
+	measure LY_OFT_Promo_Units = CALCULATE([Sale-Units],'Calendar'[Ramzan]="Mother Day",'Calendar'[Date (Month)]="May-25",'Calendar'[Outfitters]="OFT")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 2d1da29e-943f-4160-8f00-6974a8b8bd38
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY_OFT_Units Var%' = IFERROR(DIVIDE([OFT_Promo_Units]-[LY_OFT_Promo_Units],[LY_OFT_Promo_Units]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: ebd58022-57fa-4333-8e48-933a1f973546
+
+	measure OFT_Promo_Dilution% = CALCULATE([Dilution%],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[Outfitters]="OFT")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 8160a36a-20a4-4a01-90fb-e9c908a4eac9
+
+	measure LY_OFT_Promo_Dilution% = CALCULATE([Dilution%],'Calendar'[Ramzan]="Mother Day",'Calendar'[Date (Month)]="May-25",'Calendar'[Outfitters]="OFT")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 8f12cbc3-c779-4f12-b2fe-8c23c7ea3fb1
+
+	measure 'LY_OFT_Dilution Var%' = IFERROR([OFT_Promo_Dilution%]-[LY_OFT_Promo_Dilution%],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 0bbfa4bc-8d27-4611-9aa2-884417dc8e6f
+
+	measure OFT_Promo_GP% = CALCULATE([GP%],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[Outfitters]="OFT")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 05a9a391-fcc8-48ee-8f2e-931820c22ffc
+
+	measure LY_OFT_Promo_GP% = CALCULATE([GP%],'Calendar'[Ramzan]="Mother Day",'Calendar'[Date (Month)]="May-25",'Calendar'[Outfitters]="OFT")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 98f90fa6-a4d5-4480-b837-065d545a4506
+
+	measure 'LY_OFT_GP% Var' = IFERROR([OFT_Promo_GP%]-[LY_OFT_Promo_GP%],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: b6f4d2b2-938e-430f-b31e-2e411045349f
+
+	measure ETH_Promo_Dilution% = CALCULATE([Dilution%],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[Ethnic]="ETH")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: cefd0124-e459-471c-992c-1a6a8d5bfafc
+
+	measure ETH_Promo_GP% = CALCULATE([GP%],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"},'Calendar'[Ethnic]="ETH")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: a79c33be-f16d-45c7-87ac-6587c3b9a658
+
+	measure LY_ETH_Promo_Units = CALCULATE([Sale-Units],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)]="Apr-25",'Calendar'[Ethnic]="ETH")
+		dataType: variant
+		formatString: #,0
+		lineageTag: a44e86ea-890a-461b-be7d-5ce86dcfb39c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure LY_ETH_Promo_Dilution% = CALCULATE([Dilution%],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)]="Apr-25",'Calendar'[Ethnic]="ETH")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 915a3fa9-5944-4e5f-baff-d27ca3939400
+
+	measure LY_ETH_Promo_GP% = CALCULATE([GP%],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)]="Apr-25",'Calendar'[Ethnic]="ETH")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 29f34d65-f156-4636-b480-373c70e67189
+
+	measure 'LY_ETH_Units Var%' = IFERROR(DIVIDE([ETH_Promo_Units]-[LY_ETH_Promo_Units],[LY_ETH_Promo_Units]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: c22cb627-52dc-4abd-af79-84450f1283fc
+
+	measure 'LY_ETH_Dilution% Var' = IFERROR([ETH_Promo_Dilution%]-[LY_ETH_Promo_Dilution%],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: f526dd22-d1cd-437f-b7b3-2a0fc81b87fe
+
+	measure 'LY_ETH_GP% Var' = IFERROR([ETH_Promo_GP%]-[LY_ETH_Promo_GP%],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: cb3bd00e-bae9-4e40-afe7-0d7969c9cc62
+
+	measure Promo_Dilution% = CALCULATE([Dilution%],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)] IN {"Apr-26","May-26"})
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 89247b20-0ea4-4e8e-8c0f-a740263a5220
+
+	measure LY_Promo_Dilution% = CALCULATE([Dilution%],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)]="Apr-25")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: fb13cbe5-2666-469f-b8af-6c42c7922527
+
+	measure LY_Opening_Inv_Cost = SUM(Promo_LY_Inventory[Cost Value])
+		dataType: variant
+		formatString: #,0
+		lineageTag: c44f3a83-c9d3-4220-b140-199a755fa9b4
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY_Promo_Sale (CGS)' = CALCULATE([CGS],'Calendar'[Ramzan]="ESS-Summer",'Calendar'[Date (Month)]="Apr-25")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 69b2fdbe-3431-4086-a050-7c3628c3213e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY_Promo_Sale (Cost Recovered)' = DIVIDE([LY_Promo_Sale (CGS)],[LY_Opening_Inv_Cost])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 1e5a29b1-dcda-43f4-910b-4fb0a36599c7
+
+	measure OL_Opening_Inv_Cost = CALCULATE(SUM(Promo_Invventory[Cost Value]),WarehouseDB[Brick & Morter]="Online")
+		dataType: variant
+		lineageTag: dadea49b-1ea6-485d-bf44-2c88fc1123e0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: e212d0a7-27a6-41f8-8d8e-189aa322e9dd
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Promo_Measures-f82a0423-4e0f-45ec-952f-9141142ce793 = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

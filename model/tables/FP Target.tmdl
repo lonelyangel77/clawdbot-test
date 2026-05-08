@@ -1,0 +1,66 @@
+table 'FP Target'
+	lineageTag: a1a7ddf9-f60b-4ee8-a86a-5e977e4ed70b
+
+	column Store
+		dataType: string
+		lineageTag: 87f7ee65-a592-4a3a-bcd7-d551b630ceca
+		summarizeBy: none
+		sourceColumn: Store
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 13547b51-3aea-47d6-8588-fc3be92bac21
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2067f8cd-a303-4245-9890-0dea76139b80
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Qty
+		dataType: double
+		lineageTag: cb1180cd-7076-456f-bc73-ec71137309e7
+		summarizeBy: sum
+		sourceColumn: Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Combine
+		dataType: string
+		lineageTag: cfc480e1-bcd7-4f08-9c94-a9c042285822
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FP Target' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Day wise FullPrice Targets.xlsx"), null, true),
+				    #"FP Target_Sheet" = Source{[Item="FP Target",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"FP Target_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Store", type text}, {"Brand", type text}, {"Date", type date}, {"Qty", type number}, {"Column5", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column5"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns", "Combine", each [Store]&[Brand]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Combine", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

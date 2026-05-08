@@ -1,0 +1,350 @@
+table Forecast
+	isHidden
+
+	measure 'ME Forecast' = [Current Daily Avg]*[Total No. of Days]
+		dataType: variant
+		displayFolder: Run Rate
+		lineageTag: 5e0ff757-3fef-43fc-88a3-868eb22eadc1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'EoM Sales' = SUM(Targets[Target])*(1 + [MTD TGT Var% %])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Run Rate
+		lineageTag: aa89087e-2141-4104-8ab7-bffa3ed71a71
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Current Daily Avg' = [Sale-Value]/[Days Passed]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Run Rate
+		lineageTag: e27b9f3c-7357-4ca7-bc8b-e4ec03f2594e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Req Avg' = ([TGT]-[Sale-Value])/[DaysLeft]
+		dataType: variant
+		displayFolder: Run Rate
+		lineageTag: 9d3462bc-d81b-4d14-9937-f23d7c05ddb6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Remaining Sales' = [Current Daily Avg]*[DaysLeft]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Run Rate
+		lineageTag: de6d0405-04a2-41fa-91cf-cdf4b02b8aaf
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Remaining Tget' =
+			var lastdatewithSales = CALCULATE(MAX(SALES[Date]),REMOVEFILTERS())
+			var Remainingforcast = CALCULATE([TGT],KEEPFILTERS('Calendar'[Date]>lastdatewithSales))
+			var ActualSales = [Sale-Value]
+			Return
+			Remainingforcast
+		dataType: variant
+		displayFolder: Run Rate
+		lineageTag: 03464aab-77ea-450a-a281-3e4508aa77b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Days Passed' = DISTINCTCOUNT(SALES[Date])
+		dataType: variant
+		formatString: 0
+		displayFolder: Run Rate
+		lineageTag: da1b87d3-6d1a-4415-927e-86f94fa819b3
+
+	measure DaysLeft = DATEDIFF ( NOW (), EOMONTH ( NOW (), 0 ), DAY )+1
+		dataType: variant
+		formatString: 0
+		displayFolder: Run Rate
+		lineageTag: efc9bdfe-60c4-4776-bf20-db2d9685543e
+
+	measure 'Forecast Targ Ach' = [ME Forecast]-[TGT]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Run Rate
+		lineageTag: 60350105-c4f2-4409-807a-a3eca2f16508
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Forecast Targ Ach%' = [ME Forecast]/[TGT]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Run Rate
+		lineageTag: 43747783-bf9a-49ed-89b9-0d0334292d84
+
+	measure 'Forcast Sales' = SUM('Budget Target'[Qty])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Forecast
+		lineageTag: 7b6db11a-4d43-45c4-8c17-af91263ce35c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Forecast Sales Cost' = SUM('Budget Target'[Cost Value])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Forecast
+		lineageTag: a4a225ce-c039-42d1-8673-095e15333d7b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Forecast Sales Tax' = SUM('Budget Target'[Sales Tax])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Forecast
+		lineageTag: cb319d94-38d5-4057-9563-b22590c765e7
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Forecast Sales G.P' = SUM('Budgeted GP'[Value])
+		dataType: variant
+		displayFolder: Budget Forecast
+		lineageTag: 1245b47e-0d48-40cd-9024-85956e848d9f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Forecast Sales G.P%' = [TGT-GP]/([Forcast Sales]-[Forecast Sales Tax])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget Forecast
+		lineageTag: 521662ad-8eaf-43fc-b9f1-14f5dea67828
+
+	measure 'MTD Forecast Sales' = TOTALMTD([Forcast Sales],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Forecast\MTD
+		lineageTag: 8b26a42e-cbfe-4533-9308-f4e091ec874f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD Forecast Var' = [MTD Sales]-[MTD Forecast Sales]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Forecast\MTD
+		lineageTag: 805db2b6-e842-4abc-97cb-d8e44ab26653
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD ForeCast Var%' = IFERROR(([MTD Sales]-[MTD Forecast Sales])/[MTD Forecast Sales],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget Forecast\MTD
+		lineageTag: 51ebeb03-6b68-4a02-ada1-6d4f8aea2679
+
+	measure 'MTD ForeCast GP Var%' = IFERROR([MTD GP]/[MTD TGT GP]-1,"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget Forecast\MTD
+		lineageTag: 98de6a80-e486-4ffc-bfaf-9024a4fafd04
+
+	measure 'MTD Forecast GP Var' = [MTD GP]-[MTD TGT GP]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Forecast\MTD
+		lineageTag: 00fca964-a83e-4f11-bc64-ff08bc4e91b4
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD Forecast' = TOTALYTD([Forcast Sales],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Forecast\YTD
+		lineageTag: 29416876-1ce7-409f-82e0-0c461f6eb344
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD Forecast Var' = [YTD Sales]-[YTD Forecast]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Forecast\YTD
+		lineageTag: 6e366413-4981-44e3-96d6-620b4c956e1f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD ForeCast Var%' = IFERROR(DIVIDE([YTD Sales]-[YTD Forecast],[YTD Forecast]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget Forecast\YTD
+		lineageTag: c8f29385-075d-475d-a245-c92698267062
+
+	measure 'YTD Forecast GP Var' = [YTD GP]-[YTD TGT GP]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Forecast\YTD
+		lineageTag: 7ace0dd9-10c0-4e52-bc5e-0bc6e3a7f246
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Forecast Var' = [YTD Sales]-[YTD Forecast]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Forecast\YTD
+		lineageTag: 4e8e54b9-b996-4703-8160-d836f90cf011
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Bud.FullPriceSale' = SUM('FP Target'[Qty])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Dilution\MTD
+		lineageTag: f9fc3b02-7eb3-461a-877b-a73aec75fa27
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD Bud.FP Sales' = TOTALMTD([Bud.FullPriceSale],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Dilution\MTD
+		lineageTag: b5b21087-aaec-414a-b350-ec12b58e2d35
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD Bud. Dilution%' = IFERROR(([MTD Bud.FP Sales]-[MTD Forecast Sales])/[MTD Bud.FP Sales],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget Dilution\MTD
+		lineageTag: 14a2544b-758c-439a-8cd3-8c71bef270ae
+
+	measure 'MTD Bud. DILUTION% VAR' = [MTD Dilution%]-[MTD Bud. Dilution%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget Dilution\MTD
+		lineageTag: f359d576-1fa1-4a5e-9c25-e5000448b0f4
+
+	measure 'MTD Bud. DILUTION% SHORT' = DIVIDE([MTD Bud. DILUTION% VAR],[MTD Bud. Dilution%])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget Dilution\MTD
+		lineageTag: c274befd-1bf5-4ea4-a1ca-f31d9712b0bb
+
+	measure 'YTD Bud. FP Sale' = TOTALYTD([Bud.FullPriceSale],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget Dilution\YTD
+		lineageTag: 43604214-3630-41d8-a84b-c1e744f05716
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD Bud. Dilution%' = DIVIDE([YTD Bud. FP Sale]-[YTD Forecast],[YTD Bud. FP Sale])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget Dilution\YTD
+		lineageTag: 6c170d32-f84b-4333-a817-41777eb6eb30
+
+	measure 'YTD Bud. Dilution Var%' = [YTD Dilution%]-[YTD Bud. Dilution%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget Dilution\YTD
+		lineageTag: c09ab7ff-2189-4c60-b010-dad3a51a08fc
+
+	measure 'YTD Bud. Dilution Short%' = [YTD Bud. Dilution Var%]/[YTD Bud. Dilution%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Budget Dilution\YTD
+		lineageTag: d44d9cd2-f156-40ef-82eb-2166ec48675f
+
+	measure BudgetVSLY = DIVIDE([YTD Forecast]-[LYTD Sales],[LYTD Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Growth vs Plan
+		lineageTag: 79507a18-b59f-4c53-a4ef-8a0f8cb19ac5
+
+	measure MTDBudgetVSLY = DIVIDE([MTD Forecast Sales]-[LY MTD Sales],[LY MTD Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Growth vs Plan
+		lineageTag: b56c0bf9-6f4b-48af-a68e-ecb845226cf6
+
+	measure 'YTD SALE GROWTH VAR%' = [YTD Var%]-[BudgetVSLY]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Growth vs Plan
+		lineageTag: 798783c0-51c9-4bd7-9c98-e1fa950a992d
+
+	measure 'MTD SALE GROWTH VAR%' = [LY MTD Var%]-[MTDBudgetVSLY]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Growth vs Plan
+		lineageTag: be6c4282-4b75-4394-9f07-b0c5948247f8
+
+	measure 'YTD GP GROWTH' = DIVIDE([YTD TGT GP]-[LYTD GP],[LYTD GP])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Growth vs Plan
+		lineageTag: 6e7ff500-fb83-438e-9f08-986a818ecc5c
+
+	measure 'YTD GP GROWTH VAR%' = [YTD GP Var%]-[YTD GP GROWTH]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Growth vs Plan
+		lineageTag: f5bce5c5-e293-40a7-962b-7367ce67ab3f
+
+	measure 'MTD GP GROWTH' = DIVIDE([MTD TGT GP]-[LY MTD GP],[LY MTD GP])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Growth vs Plan
+		lineageTag: e87dbe63-536d-4f2a-beaf-f5b6593d18f6
+
+	measure 'MTD GP GROWTH VAR' = [MTD GP Var%]-[MTD GP GROWTH]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Growth vs Plan
+		lineageTag: c21b82ab-026e-4e98-8c6b-50b811ce1a09
+
+	measure 'Sales Indicator PP KPI' =
+			var positive_icon = "🔺"
+			
+			    var negative_icon = "🔻"
+			
+			    var result = IF([YTD ForeCast Var%]>0, positive_icon, negative_icon)
+			
+			    return result
+		dataType: variant
+		displayFolder: Indicators
+		lineageTag: c8dca216-c780-4b5a-8328-f701ca24cd38
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Indicator MTD KPI' =
+			var positive_icon = "🔺"
+			
+			    var negative_icon = "🔻"
+			
+			    var result = IF([MTD ForeCast Var%]>0, positive_icon, negative_icon)
+			
+			    return result
+		dataType: variant
+		displayFolder: Indicators
+		lineageTag: 6d1a6591-a732-42cd-9b49-2812c1a76e55
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Green Max' = IF([YTD Forecast]-[YTD Sales]<0,MAX('Budget Target'[Qty]))
+		dataType: variant
+		displayFolder: Indicators
+		lineageTag: a11d3e03-068c-4d55-8147-1ce671be5e33
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Red Max' = IF([YTD Forecast]-[YTD Sales]>0,MAX('Budget Target'[Qty]))
+		dataType: variant
+		displayFolder: Indicators
+		lineageTag: bf53604a-bdb9-467e-8dda-540adc198412
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Bud.Dilution%' = DIVIDE(([Bud.FullPriceSale]-[Budgeted Sales]),[Bud.FullPriceSale])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Dilution
+		lineageTag: c3d10da6-15e6-4d09-932c-9afac9e02219
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

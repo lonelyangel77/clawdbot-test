@@ -1,0 +1,55 @@
+table Para_Calendar
+	lineageTag: 1fb907ed-6c65-47b3-8514-141328b28584
+
+	column Para_Calendar
+		dataType: string
+		lineageTag: 68210916-9127-4f7f-a455-2065375688a5
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Para_Calendar Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Para_Calendar Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_Calendar Fields'
+		dataType: string
+		isHidden
+		lineageTag: cef3953d-b25b-47ee-bec4-0a6a68b417c8
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Para_Calendar Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_Calendar Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f4801ac6-241c-4a0a-a630-fdcf54c8bc89
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Para_Calendar = calculated
+		mode: import
+		source =
+				{
+				    ("Fiscal Year", NAMEOF('Calendar'[Fiscal Year]), 0),
+				    ("Fiscal QTR", NAMEOF('Calendar'[Fiscal QTR]), 1),
+				    ("Month Name", NAMEOF('Calendar'[Month Name]), 2),
+				    ("YearMonth", NAMEOF('Calendar'[YearMonth]), 3),
+				    ("WeekNum", NAMEOF('Calendar'[WeekNum]), 4),
+				    ("Week Start Date", NAMEOF('Calendar'[Week Start Date]), 5),
+				    ("Week End Date", NAMEOF('Calendar'[Week End Date]), 6)
+				}
+
+	annotation PBI_Id = 64009da69a9e4555b3257c089f1cbd5a
+

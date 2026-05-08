@@ -1,0 +1,81 @@
+table FF_Targets
+	lineageTag: 12b24ba9-d375-4721-bdf7-dcc5bbdb5d67
+
+	column 'Store Name'
+		dataType: string
+		lineageTag: d571ae0a-cefc-4f3d-8f18-59aa6d9e3630
+		summarizeBy: none
+		sourceColumn: Store Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3d841cc7-142c-4a87-bb4b-101dfcc3c95c
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Value
+		dataType: double
+		lineageTag: d18241fa-de43-41df-b2f1-b1136c700188
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Brand
+		dataType: string
+		lineageTag: b4890e2f-b99e-427b-80d9-51384d4ccd22
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 4c52ea8f-d787-44da-82a6-0dda1adeefdf
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combine
+		dataType: string
+		lineageTag: e74d8bd4-a1cf-4a4a-a3c1-d3591d8e165c
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	column Code
+		dataType: string
+		lineageTag: 243f16b5-0829-4be2-992d-e2c2c3b79019
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FF_Targets-ee9a9d6a-6011-441b-a9cb-5c856d4ca7d8 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Day wise FOOTFALL Targets.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Store Name", type text}, {"Date", type date}, {"Value", type number}, {"Brand", type text}, {"Type", type text}, {"Column6", type any}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column6"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns",{{"Combine", type text}, {"Code", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

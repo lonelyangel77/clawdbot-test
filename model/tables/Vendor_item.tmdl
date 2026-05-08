@@ -1,0 +1,51 @@
+table Vendor_item
+	lineageTag: 0ff75a85-13cf-4c2c-8256-f95c0e93bd07
+
+	column ITEMNUMBER
+		dataType: string
+		lineageTag: 51f2bfe4-34b1-405f-b2a4-52c151f94fc6
+		summarizeBy: none
+		sourceColumn: ITEMNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORGROUPID
+		dataType: string
+		lineageTag: a0fe1288-19e9-43cb-91bd-5eeaaad71953
+		summarizeBy: none
+		sourceColumn: VENDORGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORORGANIZATIONNAME
+		dataType: string
+		lineageTag: 3ab01f4f-e969-4c1f-ad56-31f667c46afc
+		summarizeBy: none
+		sourceColumn: VENDORORGANIZATIONNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Vendor_item = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\PO Lines.xlsx"), null, true),
+				    Purchase_order_lines_V2_Sheet = Source{[Item="Purchase_order_lines_V2",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Purchase_order_lines_V2_Sheet, [PromoteAllScalars=true]),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Promoted Headers",{"PURCHASEORDERNUMBER", "ITEMNUMBER", "LINEAMOUNT", "ORDEREDPURCHASEQUANTITY", "PRODUCTCOLORID", "PRODUCTCONFIGURATIONID", "PRODUCTSIZEID", "PURCHASEPRICE", "RECEIVINGWAREHOUSEID", "RECEIVINGWAREHOUSELOCATIONID", "REQUESTEDDELIVERYDATE", "WMSLOCATIONID"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Other Columns",{{"PURCHASEORDERNUMBER", type text}, {"ITEMNUMBER", type text}, {"LINEAMOUNT", type number}, {"ORDEREDPURCHASEQUANTITY", type number}, {"PRODUCTCOLORID", type text}, {"PRODUCTCONFIGURATIONID", type text}, {"PRODUCTSIZEID", type text}, {"PURCHASEPRICE", type number}, {"RECEIVINGWAREHOUSEID", type text}, {"RECEIVINGWAREHOUSELOCATIONID", type text}, {"REQUESTEDDELIVERYDATE", type datetime}, {"WMSLOCATIONID", type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"PURCHASEORDERNUMBER"}, PO_Headers, {"PURCHASEORDERNUMBER"}, "PO_Headers", JoinKind.LeftOuter),
+				    #"Expanded PO_Headers" = Table.ExpandTableColumn(#"Merged Queries", "PO_Headers", {"ACCOUNTINGDATE", "INVOICEVENDORACCOUNTNUMBER", "ORDERVENDORACCOUNTNUMBER"}, {"ACCOUNTINGDATE", "INVOICEVENDORACCOUNTNUMBER", "ORDERVENDORACCOUNTNUMBER"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Expanded PO_Headers", {"ORDERVENDORACCOUNTNUMBER"}, Vendors_V2, {"VENDORACCOUNTNUMBER"}, "Vendors_V2", JoinKind.LeftOuter),
+				    #"Expanded Vendors_V2" = Table.ExpandTableColumn(#"Merged Queries1", "Vendors_V2", {"VENDORGROUPID", "VENDORORGANIZATIONNAME"}, {"VENDORGROUPID", "VENDORORGANIZATIONNAME"}),
+				    #"Sorted Rows" = Table.Sort(#"Expanded Vendors_V2",{{"PURCHASEORDERNUMBER", Order.Descending}}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Sorted Rows",{"ITEMNUMBER", "VENDORGROUPID", "VENDORORGANIZATIONNAME"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns1", {"ITEMNUMBER"}),
+				    #"Sorted Rows1" = Table.Sort(#"Removed Duplicates",{{"ITEMNUMBER", Order.Ascending}})
+				in
+				    #"Sorted Rows1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,75 @@
+table OL_Promo-OFT
+	lineageTag: b6c8d988-8c48-4c33-b2f7-983de3835d66
+
+	column 'Day No.'
+		dataType: string
+		lineageTag: d174315b-b20b-4d0b-83f5-3c080ade624b
+		summarizeBy: none
+		sourceColumn: Day No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4334d53e-1a2f-40d0-b0e6-84e15069af7f
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Promo
+		dataType: string
+		lineageTag: 3f5c039d-49ca-419b-bb70-88f1223b1694
+		summarizeBy: none
+		sourceColumn: Promo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 91f210df-7f1e-4b81-930c-3f677e0a0993
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: 4cc4c07d-e938-4945-834c-45747dc0e8ba
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Extra
+		dataType: string
+		lineageTag: c3a12caf-a52b-4035-b63b-422a7e41b5ba
+		summarizeBy: none
+		sourceColumn: Extra
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 9990c69d-4519-4d43-b0a6-b3ee14af1e57
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OL_Promo-OFT-d16d989c-62d2-4329-83cc-a03cab38f01a = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Online_promo - OFT.xlsx"), null, true),
+				    OL_Promo_Sheet = Source{[Item="OL_Promo",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(OL_Promo_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Day No.", type text}, {"Date", type datetime}, {"Promo", type text}, {"Name", type text}, {"Year", type text}, {"Extra", type text}, {"Brand", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

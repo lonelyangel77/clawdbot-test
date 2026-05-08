@@ -1,0 +1,133 @@
+table 'SALES-TAX DATA'
+	lineageTag: 5f5cf6e8-daf9-49eb-bdf7-245dc75567ec
+
+	column Warehouse
+		dataType: string
+		lineageTag: f3bd7583-c25e-49a9-8369-b2d52bb400ac
+		summarizeBy: none
+		sourceColumn: Warehouse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 875816b0-34bd-4c65-9ec1-92062a6f9b56
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: df8a8937-4d3e-419c-b2dc-4911335ca66e
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collectiom
+		dataType: string
+		lineageTag: e7095174-f7cc-4d90-b8ee-f8cfecae3ee5
+		summarizeBy: none
+		sourceColumn: Collectiom
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item ID'
+		dataType: string
+		lineageTag: 7f977f7d-7379-4963-935a-ba2ac251ff17
+		summarizeBy: none
+		sourceColumn: Item ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b086b79e-cd54-40b9-b971-49a2a5e9f4d9
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Units Sold'
+		dataType: double
+		lineageTag: d41357aa-0484-4ce4-bcc7-252238904544
+		summarizeBy: sum
+		sourceColumn: Units Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Sales'
+		dataType: double
+		lineageTag: 073dd121-492e-4ceb-9fb0-3eaf608b6a83
+		summarizeBy: sum
+		sourceColumn: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales Tax'
+		dataType: double
+		lineageTag: d24b00f0-9bdc-49fd-bd91-81f1af4ab2f1
+		summarizeBy: sum
+		sourceColumn: Sales Tax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Combine
+		dataType: string
+		lineageTag: d41b1b89-0ea4-4822-8d98-46774761dbe0
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: a2a24644-90ec-49cb-8eb2-c52ae15391cf
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALES-TAX
+		dataType: string
+		lineageTag: 0cdce903-69ea-4a3f-989a-e1a0642287af
+		summarizeBy: none
+		sourceColumn: SALES-TAX
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SALES-TAX DATA' = m
+		mode: import
+		source =
+				let
+				    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\SALES-TAX DATA"),
+				    #"Filtered Hidden Files1" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (15)", each #"Transform File (15)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (15)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (15)", Table.ColumnNames(#"Transform File (15)"(#"Sample File (15)"))),
+				    #"Filtered Rows1" = Table.SelectRows(#"Expanded Table Column1", each true),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows1",{{"Warehouse", type text}, {"Name", type text}, {"Brand", type text}, {"Collectiom", type text}, {"Item ID", type text}, {"Date", type date}, {"Units Sold", type number}, {"Gross Sales", type number}, {"Sales Tax", type number}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Warehouse] <> null and [Warehouse] <> "DMG-WH-01" and [Warehouse] <> "FGM-WH-01" and [Warehouse] <> "FGM-WH-04" and [Warehouse] <> "GW-001")),
+				    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Combine", each [Warehouse]&[Brand]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Combine", type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type1", {"Item ID"}, Released_Product, {"ITEMNUMBER"}, "Released_Product", JoinKind.LeftOuter),
+				    #"Expanded Released_Product" = Table.ExpandTableColumn(#"Merged Queries", "Released_Product", {"SALES-TAX"}, {"SALES-TAX"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Expanded Released_Product",{{"SALES-TAX", type text}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

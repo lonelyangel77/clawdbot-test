@@ -1,0 +1,399 @@
+table Sales_US
+	lineageTag: 596971ea-5dfa-4973-ac56-77ce6b8d0855
+
+	column 'Store number'
+		dataType: string
+		lineageTag: 07aab1ae-bd6d-4452-9b47-edac08924bc3
+		summarizeBy: none
+		sourceColumn: Store number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reference
+		dataType: string
+		lineageTag: 1979b2a4-25d3-4a7a-820b-0317d4286657
+		summarizeBy: none
+		sourceColumn: Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9fae76ac-6cd6-4ff7-aeef-cd83702b00c7
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Transaction time'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5cd97616-0c0c-4ba6-a7dd-6ac951f5c214
+		summarizeBy: none
+		sourceColumn: Transaction time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shift ID'
+		dataType: string
+		lineageTag: b6541859-4778-4766-8dfa-858e01fc1c8c
+		summarizeBy: none
+		sourceColumn: Shift ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shift register ID'
+		dataType: string
+		lineageTag: 4f2fc611-b0f7-4943-a3f8-3f679d5627e9
+		summarizeBy: none
+		sourceColumn: Shift register ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Register number'
+		dataType: string
+		lineageTag: 4d0e5e2c-db5a-4107-9018-6db37e611602
+		summarizeBy: none
+		sourceColumn: Register number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales staff'
+		dataType: string
+		lineageTag: c81c0e7a-5de5-4478-a3ba-838f8954f036
+		summarizeBy: none
+		sourceColumn: Sales staff
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item sales tax group'
+		dataType: string
+		lineageTag: 598e275a-d794-4d3f-ad31-203c93c0771b
+		summarizeBy: none
+		sourceColumn: Item sales tax group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost amount'
+		dataType: double
+		lineageTag: 4319b2aa-5a4d-4fb0-8f19-1080464d5d9e
+		summarizeBy: sum
+		sourceColumn: Cost amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Item number'
+		dataType: string
+		lineageTag: eb3ece9e-7170-42e7-8bae-a7c9efae3c67
+		summarizeBy: none
+		sourceColumn: Item number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: cbb121f7-1a1b-4f71-8b23-2d1001b349e6
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column Size
+		dataType: string
+		lineageTag: a47b7123-caf4-4717-b17c-9601a10fe03e
+		summarizeBy: none
+		sourceColumn: Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product name'
+		dataType: string
+		lineageTag: ca9cf3a4-0ccf-47ed-a461-0c0a15a79623
+		summarizeBy: none
+		sourceColumn: Product name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales group'
+		dataType: string
+		lineageTag: 0fecb2e9-126b-43ca-9f47-c06bddac0736
+		summarizeBy: none
+		sourceColumn: Sales group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bar code'
+		dataType: string
+		lineageTag: ec5bbc21-d308-4bd5-b16e-885430188e81
+		summarizeBy: none
+		sourceColumn: Bar code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: double
+		lineageTag: 1708046e-235e-41d3-9264-98d36f07e48c
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net amount exclusive of tax'
+		dataType: double
+		lineageTag: 9b6bf2ec-66f2-481c-b9ef-3e13b60d927d
+		summarizeBy: sum
+		sourceColumn: Net amount exclusive of tax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Amount before tax'
+		dataType: double
+		lineageTag: c10227c2-6d25-47df-b38e-f0d3613d046d
+		summarizeBy: sum
+		sourceColumn: Amount before tax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales tax amount'
+		dataType: double
+		lineageTag: 7bccb8c8-3cdc-4d33-9e59-8a462a40e529
+		summarizeBy: sum
+		sourceColumn: Sales tax amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Transaction number'
+		dataType: string
+		lineageTag: 7741f85b-3bc7-477e-9cb2-716936a89a3a
+		summarizeBy: none
+		sourceColumn: Transaction number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FBR invoice number'
+		dataType: string
+		lineageTag: 57f8efb2-6a4a-4060-9a96-33e900b367f6
+		summarizeBy: none
+		sourceColumn: FBR invoice number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Configuration
+		dataType: string
+		lineageTag: 4c28e591-84bf-49fe-aca6-456e39a8a634
+		summarizeBy: none
+		sourceColumn: Configuration
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Batch number'
+		dataType: string
+		lineageTag: a97c6e1d-ab58-47c9-8eda-10d93b2be240
+		summarizeBy: none
+		sourceColumn: Batch number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serial number'
+		dataType: string
+		lineageTag: fbeb0b85-d31b-4ce7-b412-87c4e2197159
+		summarizeBy: none
+		sourceColumn: Serial number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 5a8387e8-3ddf-4091-811b-dee410f71084
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comment
+		dataType: string
+		lineageTag: ca314492-5870-4f05-bd47-25be8ef749fc
+		summarizeBy: none
+		sourceColumn: Comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Discount amount'
+		dataType: double
+		lineageTag: 27318d91-5811-4e0f-ae79-dd67965a4087
+		summarizeBy: sum
+		sourceColumn: Discount amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Discount percentage'
+		dataType: double
+		lineageTag: 5d0fbd19-2d28-4415-9006-9ad5876d1443
+		summarizeBy: sum
+		sourceColumn: Discount percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Entry status'
+		dataType: string
+		lineageTag: a84ec649-0293-4d26-ab55-594e5d51d998
+		summarizeBy: none
+		sourceColumn: Entry status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory status'
+		dataType: string
+		lineageTag: 54b793f6-f11d-447b-893a-a2d8c7d25070
+		summarizeBy: none
+		sourceColumn: Inventory status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Receipt number'
+		dataType: string
+		lineageTag: 2d02f9ad-d060-4d53-9984-dea246cffb12
+		summarizeBy: none
+		sourceColumn: Receipt number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Return no sale'
+		dataType: string
+		lineageTag: fddcc6fb-c6bb-414f-ac50-960ba55f9c81
+		summarizeBy: none
+		sourceColumn: Return no sale
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Return tracking status'
+		dataType: string
+		lineageTag: c5e54364-254d-4f6e-99fd-bbfd04172579
+		summarizeBy: none
+		sourceColumn: Return tracking status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Return transaction number'
+		dataType: string
+		lineageTag: 0c1f3b4b-f328-4e2b-944f-829af6a54166
+		summarizeBy: none
+		sourceColumn: Return transaction number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales tax group'
+		dataType: string
+		lineageTag: 86477f28-a44b-40fd-b3ee-81afaed40f43
+		summarizeBy: none
+		sourceColumn: Sales tax group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Statement number'
+		dataType: string
+		lineageTag: ad4ebf14-94fb-4ab7-8b47-c097e7ca26c3
+		summarizeBy: none
+		sourceColumn: Statement number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales order'
+		dataType: string
+		lineageTag: 49f76b56-cd25-4fce-9d18-c74a108490f0
+		summarizeBy: none
+		sourceColumn: Sales order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category hierarchy'
+		dataType: string
+		lineageTag: a114fe53-0069-4b93-aa6b-50d5dd78bd35
+		summarizeBy: none
+		sourceColumn: Category hierarchy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent category ID'
+		dataType: string
+		lineageTag: afd5c321-9984-4cb9-a0f4-d41816ac3c0b
+		summarizeBy: none
+		sourceColumn: Parent category ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		lineageTag: 742844e9-d4a9-40b2-a891-5c8ad5657a85
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value(PKR)
+		dataType: double
+		lineageTag: 074c36df-d438-4034-bb5b-a27a29e5c177
+		summarizeBy: sum
+		sourceColumn: Value(PKR)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Brand
+		dataType: string
+		lineageTag: a548f0b1-d0eb-4269-945f-64eda28af63f
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combine
+		dataType: string
+		lineageTag: 4de5ef02-7b85-4c03-bdac-be2bdd6ec9cd
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales_US = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\BI Sale\Sales trans_US.xlsx"), null, true),
+				    AxTable1_Table = Source{[Item="AxTable1",Kind="Table"]}[Data],
+				    #"Replaced Value" = Table.ReplaceValue(AxTable1_Table,"2003","17032003",Replacer.ReplaceText,{"Store number"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Replaced Value", {"Date"}, USD_PKR, {"Date"}, "USD_PKR", JoinKind.LeftOuter),
+				    #"Expanded GBP_PKR" = Table.ExpandTableColumn(#"Merged Queries", "USD_PKR", {"Price"}, {"Price"}),
+				    #"Added Custom" = Table.AddColumn(#"Expanded GBP_PKR", "Value(PKR)", each ([Amount before tax]*[Price])*-1),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Store number", type text}, {"Reference", type text}, {"Date", type date}, {"Transaction time", type datetime}, {"Shift ID", type text}, {"Shift register ID", type text}, {"Register number", type text}, {"Sales staff", type text}, {"Item sales tax group", type text}, {"Cost amount", type number}, {"Item number", type text}, {"Color", type text}, {"Size", type text}, {"Product name", type text}, {"Sales group", type text}, {"Bar code", type text}, {"Quantity", type number}, {"Net amount exclusive of tax", type number}, {"Amount before tax", type number}, {"Sales tax amount", type number}, {"Transaction number", type text}, {"FBR invoice number", type text}, {"Configuration", type text}, {"Batch number", type text}, {"Serial number", type text}, {"Category", type text}, {"Comment", type text}, {"Discount amount", type number}, {"Discount percentage", type number}, {"Entry status", type text}, {"Inventory status", type text}, {"Receipt number", type text}, {"Return no sale", type text}, {"Return tracking status", type text}, {"Return transaction number", type text}, {"Sales tax group", type text}, {"Statement number", type text}, {"Sales order", type text}, {"Category hierarchy", type text}, {"Parent category ID", type text}, {"Value(PKR)", type number}}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Changed Type", {"Store number"}, WarehouseDB, {"Warehouse"}, "WarehouseDB", JoinKind.LeftOuter),
+				    #"Expanded WarehouseDB" = Table.ExpandTableColumn(#"Merged Queries1", "WarehouseDB", {"Brand"}, {"Brand"}),
+				    #"Added Custom1" = Table.AddColumn(#"Expanded WarehouseDB", "Combine", each [Reference]&[Brand]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom1",{{"Combine", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

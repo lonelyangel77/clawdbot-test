@@ -1,0 +1,26 @@
+table WIF_ETH_FOL
+	lineageTag: 28731cd7-62fe-4efd-842c-ef6e35a5c7d4
+
+	measure 'WIF_ETH_FOL Value' = SELECTEDVALUE('WIF_ETH_FOL'[WIF_ETH_FOL], 0)
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2805a6ef-446a-4bcf-bb30-a26616183a17
+
+	column WIF_ETH_FOL
+		dataType: double
+		formatString: 0%;-0%;0%
+		lineageTag: 337b5ef0-e1f2-48ff-874c-73b370336fd5
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata = {"version":0}
+
+		annotation SummarizationSetBy = User
+
+	partition WIF_ETH_FOL = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 50f2cb4f164243dc9e7bbbba05b6c2d3
+

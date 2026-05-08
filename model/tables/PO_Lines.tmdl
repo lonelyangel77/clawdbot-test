@@ -1,0 +1,167 @@
+table PO_Lines
+	lineageTag: 06231bb3-041e-4620-90c1-c1aef45b1fc0
+
+	column PURCHASEORDERNUMBER
+		dataType: string
+		lineageTag: 43ab57b5-a058-4652-bf56-2f2c2587f5b2
+		summarizeBy: none
+		sourceColumn: PURCHASEORDERNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ITEMNUMBER
+		dataType: string
+		lineageTag: 8878f5e8-487b-434f-8add-9e3b1e8d2fa0
+		summarizeBy: none
+		sourceColumn: ITEMNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINEAMOUNT
+		dataType: double
+		lineageTag: 150226a3-78c4-4be1-9a73-5bd92d616850
+		summarizeBy: sum
+		sourceColumn: LINEAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORDEREDPURCHASEQUANTITY
+		dataType: double
+		lineageTag: e8da72f4-cf34-4037-b5fa-50db879e419a
+		summarizeBy: sum
+		sourceColumn: ORDEREDPURCHASEQUANTITY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PRODUCTCOLORID
+		dataType: string
+		lineageTag: e654e59f-55f3-4a2f-b20a-b7d462caadef
+		summarizeBy: none
+		sourceColumn: PRODUCTCOLORID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTCONFIGURATIONID
+		dataType: string
+		lineageTag: 167ce05c-d352-496c-9aa9-fd8baa987443
+		summarizeBy: none
+		sourceColumn: PRODUCTCONFIGURATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTSIZEID
+		dataType: string
+		lineageTag: 6d3d2bd2-a7c1-4944-9e93-5feaa2d644ff
+		summarizeBy: none
+		sourceColumn: PRODUCTSIZEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PURCHASEPRICE
+		dataType: double
+		lineageTag: 930c86b7-d79c-4de7-a056-96c5d9d747b1
+		summarizeBy: sum
+		sourceColumn: PURCHASEPRICE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RECEIVINGWAREHOUSEID
+		dataType: string
+		lineageTag: b1111b89-1643-425d-8703-262fcf573fc3
+		summarizeBy: none
+		sourceColumn: RECEIVINGWAREHOUSEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RECEIVINGWAREHOUSELOCATIONID
+		dataType: string
+		lineageTag: 3194735d-c9d3-433c-b9e2-706a9987a46d
+		summarizeBy: none
+		sourceColumn: RECEIVINGWAREHOUSELOCATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column REQUESTEDDELIVERYDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cc684fef-b444-46c6-8c4c-615808b311b2
+		summarizeBy: none
+		sourceColumn: REQUESTEDDELIVERYDATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column WMSLOCATIONID
+		dataType: string
+		lineageTag: ec2b8a85-9a04-43d9-b505-8b5a532210d1
+		summarizeBy: none
+		sourceColumn: WMSLOCATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ACCOUNTINGDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ce75bb44-1959-4de3-8716-2ada499cddc9
+		summarizeBy: none
+		sourceColumn: ACCOUNTINGDATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEVENDORACCOUNTNUMBER
+		dataType: string
+		lineageTag: 30aa6221-8859-4e85-98f6-0153db83804f
+		summarizeBy: none
+		sourceColumn: INVOICEVENDORACCOUNTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDERVENDORACCOUNTNUMBER
+		dataType: string
+		lineageTag: c85f658c-18cd-487b-9cba-d7ae7c54f36f
+		summarizeBy: none
+		sourceColumn: ORDERVENDORACCOUNTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORGROUPID
+		dataType: string
+		lineageTag: 0da87666-f3d7-4dae-979b-c6c61ca7f87e
+		summarizeBy: none
+		sourceColumn: VENDORGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORORGANIZATIONNAME
+		dataType: string
+		lineageTag: 983da648-091d-49fc-a41b-8d1102f22ef6
+		summarizeBy: none
+		sourceColumn: VENDORORGANIZATIONNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PO_Lines = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\PO Lines.xlsx"), null, true),
+				    Purchase_order_lines_V2_Sheet = Source{[Item="Purchase_order_lines_V2",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Purchase_order_lines_V2_Sheet, [PromoteAllScalars=true]),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Promoted Headers",{"PURCHASEORDERNUMBER", "ITEMNUMBER", "LINEAMOUNT", "ORDEREDPURCHASEQUANTITY", "PRODUCTCOLORID", "PRODUCTCONFIGURATIONID", "PRODUCTSIZEID", "PURCHASEPRICE", "RECEIVINGWAREHOUSEID", "RECEIVINGWAREHOUSELOCATIONID", "REQUESTEDDELIVERYDATE", "WMSLOCATIONID"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Other Columns",{{"PURCHASEORDERNUMBER", type text}, {"ITEMNUMBER", type text}, {"LINEAMOUNT", type number}, {"ORDEREDPURCHASEQUANTITY", type number}, {"PRODUCTCOLORID", type text}, {"PRODUCTCONFIGURATIONID", type text}, {"PRODUCTSIZEID", type text}, {"PURCHASEPRICE", type number}, {"RECEIVINGWAREHOUSEID", type text}, {"RECEIVINGWAREHOUSELOCATIONID", type text}, {"REQUESTEDDELIVERYDATE", type datetime}, {"WMSLOCATIONID", type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"PURCHASEORDERNUMBER"}, PO_Headers, {"PURCHASEORDERNUMBER"}, "PO_Headers", JoinKind.LeftOuter),
+				    #"Expanded PO_Headers" = Table.ExpandTableColumn(#"Merged Queries", "PO_Headers", {"ACCOUNTINGDATE", "INVOICEVENDORACCOUNTNUMBER", "ORDERVENDORACCOUNTNUMBER"}, {"ACCOUNTINGDATE", "INVOICEVENDORACCOUNTNUMBER", "ORDERVENDORACCOUNTNUMBER"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Expanded PO_Headers", {"ORDERVENDORACCOUNTNUMBER"}, Vendors_V2, {"VENDORACCOUNTNUMBER"}, "Vendors_V2", JoinKind.LeftOuter),
+				    #"Expanded Vendors_V2" = Table.ExpandTableColumn(#"Merged Queries1", "Vendors_V2", {"VENDORGROUPID", "VENDORORGANIZATIONNAME"}, {"VENDORGROUPID", "VENDORORGANIZATIONNAME"})
+				in
+				    #"Expanded Vendors_V2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,182 @@
+table UK_Retail
+	excludeFromModelRefresh
+	lineageTag: a6b814a0-bce7-4798-bbbb-41b923b4c14b
+
+	column Relation
+		dataType: string
+		lineageTag: 39a9098c-e096-4987-8b1f-0590e3fd633e
+		summarizeBy: none
+		sourceColumn: Relation
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: b2d26b6e-ec8b-428c-a758-5e7ea5a74a20
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Party code type'
+		dataType: string
+		lineageTag: 0bbdc97f-7e08-4c9f-b290-fb32cb2ceed6
+		summarizeBy: none
+		sourceColumn: Party code type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account selection'
+		dataType: string
+		lineageTag: 591150c4-4ef1-4807-8bd3-402bc4245f04
+		summarizeBy: none
+		sourceColumn: Account selection
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product code type'
+		dataType: string
+		lineageTag: 51f24ebe-2cfd-42cc-920c-7c1c61d15287
+		summarizeBy: none
+		sourceColumn: Product code type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: c3746f14-662b-45c0-897b-13c95a8b4d99
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Size
+		dataType: string
+		lineageTag: d946dd48-cbf2-4cd0-8fc3-8c705b75facf
+		summarizeBy: none
+		sourceColumn: Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site
+		dataType: string
+		lineageTag: 5a784433-1cae-4f72-9727-a50818737c80
+		summarizeBy: none
+		sourceColumn: Site
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unit
+		dataType: string
+		lineageTag: 9a99d4ec-7ea4-4440-bcc8-ec7054560401
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'From date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 63efc0e0-b0cb-4e5b-b0bc-1a641f66e6b3
+		summarizeBy: none
+		sourceColumn: From date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'To date'
+		dataType: string
+		lineageTag: f3c95032-b72d-4654-9cac-8bcc990a1c91
+		summarizeBy: none
+		sourceColumn: To date
+
+		annotation SummarizationSetBy = Automatic
+
+	column From
+		dataType: int64
+		formatString: 0
+		lineageTag: 27ed6987-c78d-49fa-8c26-204e4ecc822a
+		summarizeBy: sum
+		sourceColumn: From
+
+		annotation SummarizationSetBy = Automatic
+
+	column To
+		dataType: int64
+		formatString: 0
+		lineageTag: 955260e1-e9ee-4ede-a9bd-1d64e0cd304f
+		summarizeBy: sum
+		sourceColumn: To
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amount in transaction currency'
+		dataType: double
+		lineageTag: 9bf229c6-b1a9-49e7-b470-201a4244b3fd
+		summarizeBy: sum
+		sourceColumn: Amount in transaction currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Price unit'
+		dataType: int64
+		formatString: 0
+		lineageTag: 03893741-a6c8-4c2d-a945-ed9ecff6c128
+		summarizeBy: sum
+		sourceColumn: Price unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Discount percentage 1'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f6eb4b9-6fd7-4696-bd7d-dbb38be23f30
+		summarizeBy: sum
+		sourceColumn: Discount percentage 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Attribute-based pricing ID'
+		dataType: string
+		lineageTag: e477c74c-7678-4c27-90fd-721fef22befc
+		summarizeBy: none
+		sourceColumn: Attribute-based pricing ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fixed amount'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d834e6d-71bc-43bb-987a-4edc98274b22
+		summarizeBy: sum
+		sourceColumn: Fixed amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Find next'
+		dataType: string
+		lineageTag: 0b5e891a-9cc7-48cf-85f5-3723c5231af3
+		summarizeBy: none
+		sourceColumn: Find next
+
+		annotation SummarizationSetBy = Automatic
+
+	partition UK_Retail = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Price agreements_UK.xlsx"), null, true),
+				    AxTable1_Table = Source{[Item="AxTable1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(AxTable1_Table,{{"Relation", type text}, {"Currency", type text}, {"Party code type", type text}, {"Account selection", type any}, {"Product code type", type text}, {"Item", type text}, {"Size", type any}, {"Site", type text}, {"Unit", type text}, {"From date", type date}, {"To date", type any}, {"From", Int64.Type}, {"To", Int64.Type}, {"Amount in transaction currency", type number}, {"Price unit", Int64.Type}, {"Discount percentage 1", Int64.Type}, {"Attribute-based pricing ID", type any}, {"Fixed amount", Int64.Type}, {"Find next", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Currency] = "GBP") and ([Relation] = "Price (sales)")),
+				    #"Removed Duplicates" = Table.Distinct(#"Filtered Rows", {"Item"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

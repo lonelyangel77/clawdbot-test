@@ -1,0 +1,45 @@
+table Brand_Headers
+	lineageTag: 60991cce-a59d-49fc-a5b8-caa2968bea98
+
+	column HeaderID
+		dataType: string
+		lineageTag: e3fdfa3c-75c4-44a9-b17b-d62f060dacb4
+		summarizeBy: none
+		sourceColumn: HeaderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Header Account'
+		dataType: string
+		lineageTag: 00de6523-e0ca-478d-a8ac-a7ec2a0592e2
+		summarizeBy: none
+		sourceColumn: Header Account
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subtotal
+		dataType: double
+		formatString: #,0
+		lineageTag: 8a1ee88d-cfb3-47a1-a015-e11225d2d977
+		summarizeBy: none
+		sourceColumn: Subtotal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	partition Brand_Headers = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Accounts.xlsx"), null, true),
+				    Class_Sheet = Source{[Item="Class",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Class_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"HeaderID", type text}, {"Header Account", type text}, {"Subtotal", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

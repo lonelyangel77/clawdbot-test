@@ -1,0 +1,192 @@
+table 'Retail KPIs'
+	lineageTag: 69563949-02e4-4086-ba91-a569ad0618ae
+
+	measure FF_TGT = CALCULATE(SUM(FF_Targets[Value]),FF_Targets[Type]="Footfall")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Traffic
+		lineageTag: ee6985be-17fc-43fc-8793-9c643221b67b
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Trans_TGT = CALCULATE(SUM(FF_Targets[Value]),FF_Targets[Type]="Trans")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets
+		lineageTag: 580d9044-2937-4b83-88c6-d3d7b3760eaa
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure ASP_TGT = [TGT]/[TGT-U]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets
+		lineageTag: 5c2e3d7f-13d9-45be-9fc8-b602b2debaca
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure ATV_TGT = [TGT]/[Trans_TGT]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets
+		lineageTag: 512c396e-d862-468e-9b23-11100b1d7cef
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Conv%_TGT = [Trans_TGT]/[FF_TGT]
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Targets
+		lineageTag: 4592f2a5-52f7-4128-a224-22e3c5eafa5b
+
+		changedProperty = FormatString
+
+	measure 'Conv% Var' = [CY Conversion%]-[Conv%_TGT]
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Conversion & Basket
+		lineageTag: 99c62018-6514-4585-ab88-764ef6468376
+
+		changedProperty = FormatString
+
+	measure 'CY Conversion%' =
+			var vtrans = CALCULATE(SUM(Footfall_Data[No of Transactions]),Footfall_Data[Footfall]>0)
+			var vfootfall = CALCULATE(SUM(Footfall_Data[Footfall]),Footfall_Data[Footfall]>0)
+			var vcon = DIVIDE(vtrans,vfootfall)
+			var vlytrans = CALCULATE(SUM(Footfall_Data[No of Transactions]),SAMEPERIODLASTYEAR('Calendar'[Date]),WarehouseDB[Brick & Morter]="B&M")
+			var vlyfoot = CALCULATE(SUM(Footfall_Data[Footfall]),SAMEPERIODLASTYEAR('Calendar'[Date]),WarehouseDB[Brick & Morter]="B&M")
+			var vlycon = DIVIDE(vlytrans,vlyfoot)
+			return
+			vcon
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Conversion & Basket
+		lineageTag: 900ae138-2981-4db9-b1f5-fc341e6e22a8
+
+		changedProperty = FormatString
+
+	measure LYConversion% =
+			var vtrans = CALCULATE(SUM(Footfall_Data[No of Transactions]),WarehouseDB[Brick & Morter]="B&M")
+			var vfootfall = CALCULATE(SUM(Footfall_Data[Footfall]),WarehouseDB[Brick & Morter]="B&M")
+			var vcon = DIVIDE(vtrans,vfootfall)
+			var vlytrans = CALCULATE(SUM(Footfall_Data[No of Transactions]),SAMEPERIODLASTYEAR('Calendar'[Date]),Footfall_Data[Footfall]>0)
+			var vlyfoot = CALCULATE(SUM(Footfall_Data[Footfall]),SAMEPERIODLASTYEAR('Calendar'[Date]),Footfall_Data[Footfall]>0)
+			var vlycon = DIVIDE(vlytrans,vlyfoot)
+			return
+			vlycon
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Conversion & Basket
+		lineageTag: b5dca4d8-514b-4f01-820d-8b85283f74ee
+
+		changedProperty = FormatString
+
+	measure 'TGT-ASP Var%' = DIVIDE([ASP]-[ASP_TGT],[ASP_TGT])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: ASP
+		lineageTag: ac84ecfe-e9cf-473a-bc37-6a2b14070eee
+
+		changedProperty = FormatString
+
+	measure 'TGT-ATV Var%' = DIVIDE([ATV]-[ATV_TGT],[ATV_TGT])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Conversion & Basket
+		lineageTag: fb183611-da3d-490b-a1d5-70e8cf126df9
+
+		changedProperty = FormatString
+
+	measure 'TGT-FF Var%' = DIVIDE([Footfall]-[FF_TGT],[FF_TGT])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Traffic
+		lineageTag: 5769e89e-e9e4-481d-a576-8ba0c4beb9fe
+
+		changedProperty = FormatString
+
+	measure 'UPT Var' = [UPT]-[UPT_TGT]
+		dataType: variant
+		displayFolder: Conversion & Basket
+		lineageTag: df35c598-897d-43c7-8154-16994af54b2f
+
+	measure UPT_TGT = [TGT-U]/[Trans_TGT]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets
+		lineageTag: 213167bb-21fb-49fc-9421-442a546fe774
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'CY Season Sale' = CALCULATE([Sale-Value],'Product_Inv'[Curt Season]="CY Season")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season Mix
+		lineageTag: e157d196-b3f9-440d-9ffd-01092067c318
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sale Season (V) Var%' = IFERROR(DIVIDE([CY Season Sale]-[LY_Season Sale],[LY_Season Sale]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Season Mix
+		lineageTag: d3fb5e14-6026-435b-8f35-20bbb2a44fa9
+
+	measure 'LY_Season Sale' = CALCULATE([LY Sales],'Product_Inv'[Curt Season]="LY Season")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season Mix
+		lineageTag: 298b7eac-1c1f-454e-81e0-c976128e15f9
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'CY Old Sale' = CALCULATE([Sale-Value],'Product_Inv'[Curt Season]<>"CY Season")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season Mix
+		lineageTag: 39e217c3-a400-4c47-9fea-e593a429ef49
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Old Sale' = CALCULATE([LY Sales],'Product_Inv'[Curt Season]<>"LY Season")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season Mix
+		lineageTag: 6a416ddd-f549-4dba-865b-5025bc72a6e9
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: 4904363e-20ee-477f-ad76-ae708014ee62
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Retail KPIs-251d1e7d-1a74-4c57-ae8e-da28446ee8c6' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

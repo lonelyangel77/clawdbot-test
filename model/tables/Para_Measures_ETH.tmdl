@@ -1,0 +1,60 @@
+table Para_Measures_ETH
+	lineageTag: 0e8123c1-6074-4771-8a7b-a62d4e057177
+
+	column Para_Measures_ETH
+		dataType: string
+		lineageTag: 58f4d59e-90b3-42c4-a09f-974323884818
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Para_Measures_ETH Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Para_Measures_ETH Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_Measures_ETH Fields'
+		dataType: string
+		isHidden
+		lineageTag: 29736ec7-d10c-49dc-a578-29187467c995
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Para_Measures_ETH Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_Measures_ETH Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 36cf0faf-6792-4368-a84b-67a917d59662
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Para_Measures_ETH = calculated
+		mode: import
+		source =
+				{
+				    ("CY_Sale", NAMEOF('Promo_Measures'[ETH_Promo_Sale]), 0),
+				    ("CY_Units", NAMEOF('Promo_Measures'[ETH_Promo_Units]), 1),
+				    ("CY_Dilution%", NAMEOF('Promo_Measures'[ETH_Promo_Dilution%]), 2),
+				    ("CY_GP%", NAMEOF('Promo_Measures'[ETH_Promo_GP%]), 3),
+				    ("LY_Sale", NAMEOF('Promo_Measures'[LY_ETH_Promo_Sale]), 4),
+				    ("LY_Units", NAMEOF('Promo_Measures'[LY_ETH_Promo_Units]), 5),
+				    ("LY_Dilution%", NAMEOF('Promo_Measures'[LY_ETH_Promo_Dilution%]), 6),
+				    ("LY_GP%", NAMEOF('Promo_Measures'[LY_ETH_Promo_GP%]), 7),
+				    ("Sale Var%", NAMEOF('Promo_Measures'[LY_ETH Var%]), 8),
+				    ("Units Var%", NAMEOF('Promo_Measures'[LY_ETH_Units Var%]), 9),
+				    ("Dilution% Var", NAMEOF('Promo_Measures'[LY_ETH_Dilution% Var]), 10),
+				    ("GP% Var", NAMEOF('Promo_Measures'[LY_ETH_GP% Var]), 11)
+				}
+
+	annotation PBI_Id = 645c925792954a2294db77ea4532d23d
+

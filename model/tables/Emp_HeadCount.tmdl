@@ -1,0 +1,71 @@
+table Emp_HeadCount
+	lineageTag: dc4f35a4-2464-4bc5-b693-37c1ccaee484
+
+	column 'Shop Codes'
+		dataType: string
+		lineageTag: da42b440-a9f5-4804-8516-136c9d4cd8ab
+		summarizeBy: none
+		sourceColumn: Shop Codes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attribute
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b349524c-d05d-4e2a-bc8c-a5bf20550488
+		summarizeBy: none
+		sourceColumn: Attribute
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Value
+		dataType: double
+		lineageTag: f5b7a225-73a1-4511-84ce-ed26d245547f
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Warehouse
+		dataType: string
+		lineageTag: 6481adca-25e4-49f2-93ea-0320a59d475c
+		summarizeBy: none
+		sourceColumn: Warehouse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: b21875f3-7c7c-4dba-a3fe-f21619ddd8aa
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Emp_HeadCount = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Emp_Head_Count.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Shop Codes", type any}, {"7/1/2024", Int64.Type}, {"8/1/2024", Int64.Type}, {"9/1/2024", Int64.Type}, {"10/1/2024", Int64.Type}, {"11/1/2024", Int64.Type}, {"12/1/2024", Int64.Type}, {"1/1/2025", Int64.Type}, {"2/1/2025", Int64.Type}, {"3/1/2025", Int64.Type}, {"4/1/2025", Int64.Type}}),
+				    #"Unpivoted Other Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Shop Codes"}, "Attribute", "Value"),
+				    #"Filtered Rows" = Table.SelectRows(#"Unpivoted Other Columns", each ([Shop Codes] <> "ASM" and [Shop Codes] <> "Grand Total")),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Filtered Rows",{{"Shop Codes", type text}, {"Attribute", type date}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type1", {"Shop Codes"}, WarehouseDB, {"Store Code"}, "WarehouseDB", JoinKind.LeftOuter),
+				    #"Expanded WarehouseDB" = Table.ExpandTableColumn(#"Merged Queries", "WarehouseDB", {"Warehouse", "Name"}, {"Warehouse", "Name"}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Expanded WarehouseDB", each not Text.Contains([Warehouse], "T")),
+				    #"Filtered Rows1" = Table.SelectRows(#"Filtered Rows2", each ([Warehouse] <> "92402048" and [Warehouse] <> "92412047" and [Warehouse] <> "92422046")),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Filtered Rows1",{{"Value", type number}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

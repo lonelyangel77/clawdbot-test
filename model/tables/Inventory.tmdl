@@ -1,0 +1,595 @@
+table Inventory
+	lineageTag: ce7d84cd-73bc-4a3c-8710-cdf4ecb5c868
+
+	measure Inv_Units = CALCULATE(SUM(Inventory[Solid Qty]),ALL('Calendar'['Date]))
+		formatString: #,0
+		displayFolder: On Hand
+		lineageTag: 3f823d82-bbed-4cec-8acb-34ebcfef7c5b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Inv_Cost = SUMX(Inventory,Inventory[Inventory: Quantity]*RELATED(Cost_Inv[PURCHASEPRICE]))
+		formatString: #,0
+		displayFolder: On Hand
+		lineageTag: abbbf47d-5330-41b1-81b5-468e798b7831
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Inv_Retail = SUMX(Inventory,Inventory[Solid Qty]*RELATED('Active_Price'[Net Price]))
+		formatString: #,0
+		displayFolder: On Hand
+		lineageTag: 44874302-86ab-4b1a-bf5c-e4494921c93a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Receivied Units' = SUM(Receiving[Solid Qty])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Receiving
+		lineageTag: acb0faf2-0aaf-4f94-a30f-6f5b38ddf827
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Receivied Cost' = CALCULATE(SUMX(Receiving,Receiving[Solid Qty]*RELATED(Cost_Inv[PURCHASEPRICE])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Receiving
+		lineageTag: 0b74fc1f-7005-4356-aa5b-5005db1b6a48
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Liq% = [Sale Units RT]/[Received Units RT]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sell-Thru & Turns
+		lineageTag: 096c8c97-859c-493c-bf70-100ecfbe8dd1
+
+	measure 'Balance Cost' = [Received Cost RT]-[CGS RT]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Stock Movement
+		lineageTag: 5fc1b6a7-9cec-420d-b59a-69180739f8c6
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Balance Units' = [Received Units RT]-[Sale Units RT]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Stock Movement
+		lineageTag: 1931a502-537a-4612-a284-f880cdff9c83
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Received Units ALL' = CALCULATE([Receivied Units],ALL('Calendar'[Date (Month)]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Receiving
+		lineageTag: e350fbf6-c363-480a-a461-778a1bf8c736
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Received Units RT' = CALCULATE(SUM(Receiving[Solid Qty]),FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Receiving
+		lineageTag: dfff13b4-a6dd-4e5f-84c2-5ec758ce1827
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sale Units RT' = CALCULATE(SUM(SALES[QtySold]),FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Receiving
+		lineageTag: faf26ffc-9e25-4f42-b6ac-41caf9a64f7c
+
+	measure 'Received Cost RT' = CALCULATE([Receivied Cost],FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Receiving
+		lineageTag: 89900cda-928d-440a-9f31-efd5de0546d0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'CGS RT' = CALCULATE([CGS],FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Receiving
+		lineageTag: 1f7894eb-7e42-4e91-9eda-9a4f10194438
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Discount% = DIVIDE([Discount (V)],[Inv_FP (V)])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: GP & Profitability
+		lineageTag: d03a3335-4463-465e-9909-cfa4ffdbb666
+
+	measure 'Inv_FP (V)' = SUMX(Inventory,Inventory[Solid Qty]*RELATED(Active_Price[Active price]))
+		formatString: #,0
+		displayFolder: On Hand
+		lineageTag: 786e062d-f73d-486b-9d0e-571f01875dc8
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Discount (V)' = [Inv_FP (V)]-[Inv_Retail]
+		dataType: variant
+		formatString: #,0
+		displayFolder: GP & Profitability
+		lineageTag: 47bcf17b-afed-43ad-a22f-85679dead48e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Inv_GP% = ((([Inv_Retail]-[Sales Tax_Inv])-[Inv_Cost])/([Inv_Retail]-[Sales Tax_Inv]))
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: GP & Profitability
+		lineageTag: d1c92fdb-ee88-454e-b6de-46053eba4724
+
+	measure 'Sales Tax_Inv' = SUM(Inventory[Sales Tax (V)])
+		formatString: #,0
+		displayFolder: GP & Profitability
+		lineageTag: 78e4a7ee-0a8d-4513-882e-8532842a1bf1
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Stock Adjustment' = [Inv_Units]-[Balance Units]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Stock Movement
+		lineageTag: 91b9fa22-ba9d-4a16-aafc-001aec89259f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Closing Difference' = [Inv_Units]-[Balance Units]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Stock Movement
+		lineageTag: d9bda733-c653-4aba-9561-2bec2ae92cc0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Inv_Net Sales' = [Inv_Retail]-[Sales Tax_Inv]
+		dataType: variant
+		formatString: #,0
+		displayFolder: GP & Profitability
+		lineageTag: 8f38971b-90db-472a-b13a-6d66852b6353
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Inv_GP = [Inv_Net Sales]-[Inv_Cost]
+		dataType: variant
+		displayFolder: GP & Profitability
+		lineageTag: eb6dc17c-c477-4d05-a43a-2b35e5a7ea43
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Inven_GP% = [Inv_GP]/[Inv_Net Sales]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: GP & Profitability
+		lineageTag: e35c62e6-bcb9-47fe-a40d-f213a3aa5073
+
+	measure 'Net Sales RT' = CALCULATE([Net Sales],FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		formatString: #,0
+		displayFolder: GP & Profitability
+		lineageTag: ba1e90fa-5312-4cfa-8e0b-74eec7e8511e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Cost Rec' = [Net Sales RT]-[Received Cost RT]
+		dataType: variant
+		formatString: #,0
+		displayFolder: GP & Profitability
+		lineageTag: c0bf442f-2716-4ca9-8eee-8d404ec54d7d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Cost Liq%' = [CGS RT]/[Received Cost RT]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sell-Thru & Turns
+		lineageTag: 0bb07c67-d031-4529-98da-6f59020341b2
+
+	measure 'Receiving Date' = FIRSTDATE(Receiving[PRODUCTRECEIPTDATE])
+		dataType: variant
+		formatString: General Date
+		displayFolder: Receiving
+		lineageTag: 0bec158a-8a2f-412f-977e-c7d0c5800ba9
+
+	measure 'Last Date' = LASTDATE('Calendar'[Date])
+		dataType: variant
+		formatString: General Date
+		displayFolder: On Hand
+		lineageTag: e7ca8dcb-9bc1-462a-ab1c-ae6786e83187
+
+	measure Age = IFERROR(INT( [Last Date]-[Receiving Date]),0)
+		dataType: variant
+		formatString: #,0
+		displayFolder: Receiving
+		lineageTag: 49e45b38-b07a-4344-9e9c-de41dc306cdd
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'No of Inv Items' = DISTINCTCOUNT(Inventory[Solid Item])
+		formatString: 0
+		displayFolder: On Hand
+		lineageTag: 1ae5f6f9-e425-49c8-97bb-f73691307c1b
+
+	measure 'No of Rec Items' = DISTINCTCOUNT(Receiving[Solid Item])
+		dataType: variant
+		formatString: 0
+		displayFolder: On Hand
+		lineageTag: cf6e96ea-1890-4ff8-825e-f81577ea7b94
+
+	measure Promo-Liq% = [Mother Day Units]/[Opening_Inv_Qty]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sell-Thru & Turns
+		lineageTag: 023c9568-1328-456f-b3b4-c07d4e0eb374
+
+	measure 'Gen Inv Cost' = SUM(Inventory[Inventory: Amount])
+		formatString: #,0
+		displayFolder: On Hand
+		lineageTag: 2587bb00-3ccf-479e-9aae-45c798c2c9bd
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'PO Order Qty' = SUM(Product_receipt_line[Solid Order Qty])
+		formatString: #,0
+		displayFolder: Purchase Orders
+		lineageTag: 5333c241-67b3-4e58-a28c-5990b1781215
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'PO Receive Qty' = SUM(Product_receipt_line[Solid Receive Qty])
+		formatString: #,0
+		displayFolder: Purchase Orders
+		lineageTag: c8832186-eea7-42b3-a76e-3bf31d079f35
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'PO Balance Qty' = [PO Order Qty]-[PO Receive Qty]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Purchase Orders
+		lineageTag: f06effbc-3a94-4569-9ff6-073a4866dabf
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'No of PO' = DISTINCTCOUNT(Receiving[PURCHASEORDERNUMBER])
+		dataType: variant
+		displayFolder: Purchase Orders
+		lineageTag: bfca9f81-03c8-4ac7-ba78-e58f5c09662c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'No of PO Items' = DISTINCTCOUNT(Receiving[Solid Item])
+		dataType: variant
+		displayFolder: Purchase Orders
+		lineageTag: 2d189e58-756b-4481-8182-3731fa6d0d33
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PO Received%' = [PO Receive Qty]/[PO Order Qty]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Purchase Orders
+		lineageTag: 0091c15d-7722-4845-807c-84798542dc38
+
+	measure SalesRetun% = [Sale Return (U)]/[Units Sold]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Diagnostics
+		lineageTag: 12175638-65db-4165-b111-749dfc72c6da
+
+	measure 'SQ Ft Area' = CALCULATE(SUM(WarehouseDB[Sq.FT]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: On Hand
+		lineageTag: c6154691-f03a-45a9-b981-c29f585ed2c2
+
+	measure Closing = [Receivied Units]-[Sale-Units]+[Inv_Adj]+[Inv_Mov]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Stock Movement
+		lineageTag: 0aa35b87-f542-4529-8aa6-cc6ee0917a60
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Closing (C)' = [Receivied Cost]-[CGS]
+		dataType: variant
+		displayFolder: Stock Movement
+		lineageTag: eeed5821-0391-4c4f-b263-92bae87dcdb0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Inv_Adj = SUM(Inv_adj_journal[INVENTORYQUANTITY])
+		formatString: #,0
+		displayFolder: Stock Movement
+		lineageTag: d447ef8f-c5a1-4d06-8b6c-1c8a05258965
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Inv_Mov = SUM(Inv_mov_journal[INVENTORYQUANTITY])
+		formatString: 0
+		displayFolder: Stock Movement
+		lineageTag: b771946d-f350-4c51-9381-b342f331f641
+
+	measure 'Sales Tax (Retail)' = SUM(Product_Inv[Tax Val])
+		dataType: variant
+		formatString: #,0
+		displayFolder: GP & Profitability
+		lineageTag: 73393fda-f9a0-49c2-88c2-06092c2c994e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sales (V) Var%' = DIVIDE([Sale-Value]-[LY Sales],[LY Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Diagnostics
+		lineageTag: 34fa7b76-7537-4247-bda5-5a1f481ba92d
+
+		changedProperty = FormatString
+
+	measure Inv_Liq% = DIVIDE([Sale-Units],[Inv_Units])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sell-Thru & Turns
+		lineageTag: 5c057ac6-1406-423c-8e53-9415da830d2e
+
+	measure Inv_Transit_U = CALCULATE([Inv_Units],WarehouseDB[Genere]="Transit")
+		dataType: variant
+		formatString: #,0
+		displayFolder: On Hand
+		lineageTag: 272b38bc-c7c6-42d1-85de-213148d3892b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Inv_OnHand_U = [Inv_Units]-[Inv_Transit_U]
+		dataType: variant
+		formatString: #,0
+		displayFolder: On Hand
+		lineageTag: cc9132d1-eb4b-4993-b30a-993641491a3d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Inv_RetailValue = SUM(Inventory[RetailValue])
+		formatString: #,0
+		displayFolder: On Hand
+		lineageTag: a35c40a3-96c0-4e41-b568-7e3a29c449bf
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Inv_Units(K) = CALCULATE(SUM(Inventory[Inventory: Quantity]),ALL('Calendar'['Date]))
+		formatString: #,0
+		displayFolder: On Hand
+		lineageTag: eb77e05f-19e8-406c-9658-2ffdc31352e8
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Receivied Cost-1' = SUM(Receiving[Cost.V])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Receiving
+		lineageTag: 6d8f85f7-7f94-45b5-abcb-309749d9d91d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Inv_Cost1 = CALCULATE(SUM(Inventory[Cost.V]),ALL('Calendar'['Date]))
+		displayFolder: On Hand
+		lineageTag: 2cfb96ca-615b-487d-ae05-b92b40223aa4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ReceivedDate = FIRSTDATE(Receiving[PRODUCTRECEIPTDATE])
+		dataType: variant
+		displayFolder: Receiving
+		lineageTag: 2a9eebfd-6690-48ec-972e-5e100967a52d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ReceivedAge = INT(TODAY()-1-[ReceivedDate])
+		dataType: variant
+		displayFolder: Receiving
+		lineageTag: 29e54f0a-25df-4617-ae7e-26dc81c54dd9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Inv_Rec% = DIVIDE([Inv_Units],[Receivied Units])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sell-Thru & Turns
+		lineageTag: 1c66ffe0-cc40-40c1-86a7-f2f79a34663b
+
+	measure Inv_Days = [Inv_RetailValue]/[Current Daily Avg]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sell-Thru & Turns
+		lineageTag: 178c31c3-8522-4fd8-a185-aa090b7822cb
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure ROI = [GP-1]/[Receivied Cost]
+		dataType: variant
+		formatString: #,0%;-#,0%;#,0%
+		displayFolder: GP & Profitability
+		lineageTag: 8e45cdaa-0e73-4440-b6a6-5fad20288ce9
+
+	measure Inv_Retail_FP = CALCULATE([Inv_RetailValue],Inventory[Value Type]="Full Price")
+		formatString: #,0
+		displayFolder: GP & Profitability
+		lineageTag: c1535f3f-6c95-498d-9494-e39efd80adfb
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Inv_Retail_Disc = CALCULATE([Inv_RetailValue],Inventory[Value Type]="Discounted")
+		formatString: #,0
+		displayFolder: GP & Profitability
+		lineageTag: a569273f-4f06-49d3-b027-5d1386f8ecec
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_Units = SUM(Inv_Aging[Solid Qty])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: afe54484-92b9-4498-a203-e7d6f31ed0fb
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_30_U = SUM(Inv_Aging[30 Days-U])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: e405585b-a75e-4fc6-82f4-0c237d07b368
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_60_U = SUM(Inv_Aging[60 Days-U])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: ddf6e81a-0c15-4083-a68d-ae57060663a7
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_90_U = SUM(Inv_Aging[90 Days-U])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: 470c47ba-1182-4b9d-99b0-ba6fdfdfaa06
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_120_U = SUM(Inv_Aging[120 Days-U])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: 05382d7a-0825-4e4e-b9c5-cc6f6713ae79
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_120+_U = SUM(Inv_Aging[120+ Days-U])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: f47a8312-4899-46ea-93c5-5245c0151e9b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_Cost = SUM(Inv_Aging[Cost Value])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: 766fc732-e838-4bde-aa8f-1a9ae67a7a23
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_30_C = SUM(Inv_Aging[30 Days-C])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: 841470c7-92fc-4137-b603-1efab866a917
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_60_C = SUM(Inv_Aging[60 Days-C])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: 704527bd-7f22-4cf3-b5eb-c1b4676837f8
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_90_C = SUM(Inv_Aging[90 Days-C])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: 8bc2d8df-87b1-4b90-baf5-d2c9a72f7790
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_120_C = SUM(Inv_Aging[120 Days-C])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: 3e16c2e7-a657-445d-b8c0-dff36adbc1d3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Aging_120+_C = SUM(Inv_Aging[120+ Days-C])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Aging
+		lineageTag: 8a5564e3-90c3-4691-8af1-3214a6028059
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Dispatch Qty' = [Receivied Units]-[Inv_Units]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Purchase Orders
+		lineageTag: d71b2539-d428-48dc-a0cf-564553de9f9b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Dispatch Qty%' = DIVIDE([Receivied Units]-[Inv_Units],[Receivied Units])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Purchase Orders
+		lineageTag: c3baf5f6-a449-4fb6-a645-665b0f34f928
+
+	measure SellThru% = DIVIDE([Sale-Units],[Sale-Units]+[Inv_Units])
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Sell-Thru & Turns
+		lineageTag: 1b00b477-9802-499d-8c2b-3593169ffb3a
+
+	measure SellThru%_MTD = DIVIDE([MTD Sales (U)],[MTD Sales (U)]+[Inv_Units])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sell-Thru & Turns
+		lineageTag: f44cd8b6-fa9b-4c94-8253-c45a24c7cc68
+
+	measure NDI = DIVIDE([Inv_Units],[Per Day Units Sold])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sell-Thru & Turns
+		lineageTag: 62ee37b5-9b3b-4d2e-95ee-0bf38b851b9f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure SellThru%_YTD = DIVIDE([YTD Sales (U)],[YTD Sales (U)]+[Inv_Units])
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Sell-Thru & Turns
+		lineageTag: 366bc2e3-88cb-4275-a2b1-c29b1f73c45e
+
+	measure NDI_YTD = DIVIDE([Inv_Units],[Per Day Units Sold YTD])
+		dataType: variant
+		displayFolder: Sell-Thru & Turns
+		lineageTag: 8075c606-0467-4d88-8ab6-a67e7b6a8895
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 244032c2-a133-4a4b-8cb6-535db41f3dfa
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Key Measures_Inv-e9ad679e-3408-4d53-bbbe-75c8423c2cd7' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = ae2828dee4344c7791958549bb2b6ca1
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

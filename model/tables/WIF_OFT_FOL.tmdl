@@ -1,0 +1,26 @@
+table WIF_OFT_FOL
+	lineageTag: 3a8d038b-49ab-4e15-bb02-7764c9de8379
+
+	measure 'WIF_OFT_FOL Value' = SELECTEDVALUE('WIF_OFT_FOL'[WIF_OFT_FOL], 0)
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 0747c295-85fc-4089-afa7-47c16054540d
+
+	column WIF_OFT_FOL
+		dataType: double
+		formatString: 0%;-0%;0%
+		lineageTag: d6990e96-8360-4c96-a0d0-d1f556917a94
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata = {"version":0}
+
+		annotation SummarizationSetBy = User
+
+	partition WIF_OFT_FOL = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 10243284e24e45f084ca37523e65c55b
+

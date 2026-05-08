@@ -1,0 +1,35 @@
+table images
+	lineageTag: ace63fdf-7210-483f-9cf2-3e6d555fad2b
+
+	column 'Icon Name'
+		dataType: string
+		lineageTag: 246a390f-fcc4-47d2-abc4-73c95d2c3215
+		summarizeBy: none
+		sourceColumn: Icon Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Image Urls'
+		dataType: string
+		lineageTag: 02990c73-ebac-4928-b64e-2c3727f2660d
+		summarizeBy: none
+		sourceColumn: Image Urls
+
+		annotation SummarizationSetBy = Automatic
+
+	partition images-e9f32e64-7e28-48b2-a87d-ba24dc565851 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\images_Url.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Sheet1_Sheet,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Icon Name", type text}, {"Image Urls", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

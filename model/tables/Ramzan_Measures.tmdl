@@ -1,0 +1,267 @@
+table Ramzan_Measures
+	lineageTag: d82a83b9-7f78-474e-8108-943bef11d976
+
+	measure 'LY Ramzan Available Inventory' = [LY Ramzan Opening Invrntory]+[LY Ramzan Receiving]
+		dataType: variant
+		formatString: #,0
+		lineageTag: c40c05a0-a8c6-4146-a695-68a3bf53a021
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan GP' =
+			
+			CALCULATE([GP-1],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2025")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 68424190-9270-4644-8ba4-c9daa9a5e73a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan GP%' = CALCULATE([GP%],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2025")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 967ca861-8b27-4e12-8c2f-32781ff5af59
+
+	measure 'LY Ramzan Liq%' = DIVIDE([LY Ramzan Units],[LY Ramzan Available Inventory])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 450120bd-592d-498c-a004-422453c865ba
+
+	measure 'LY Ramzan Opening Invrntory' = SUM(Ramzan_LY_Inv[Solid Qty])
+		dataType: variant
+		formatString: #,0
+		lineageTag: 0b341de1-c220-4a33-8a2c-ecb193e7a7b8
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan Receiving' = CALCULATE([Receivied Units],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2025")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 61ddf7e1-fa76-461b-919a-81a8d5822176
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan Sale' = CALCULATE([Sale-Value],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2025")
+		dataType: variant
+		formatString: #,0
+		lineageTag: d9fd8c69-d90b-4603-89e2-573ee7b07515
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan Sale RT' = CALCULATE([Sale-Value],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2025",FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		formatString: #,0
+		lineageTag: 62306e70-bf13-4d5b-a0bd-1242b5b88e8a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan Units' = CALCULATE([Sale-Units],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2025")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 9d333f5e-b762-4860-ba05-e66b6696759d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan Var%' = ([Ramzan Sale]-[LY Ramzan Sale])/[LY Ramzan Sale]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 046e116f-3ed7-45a4-85fc-b92c0c0c8c7e
+
+	measure 'Ramzan Available Inventory' = [Ramzan Opening Invrntory]+[Ramzan Receiving]
+		dataType: variant
+		formatString: #,0
+		lineageTag: cf94f277-e6ea-42e4-aad8-14484e30242d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan GP' = CALCULATE([GP-1],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2026")
+		dataType: variant
+		formatString: #,0
+		lineageTag: a93abd91-7c80-4b13-a9d1-b54e56988316
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan GP%' = CALCULATE([GP%],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2026")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: bdd365f5-198c-46ac-89fe-92205b5d4497
+
+	measure 'Ramzan Liq%' = DIVIDE([Ramzan Units],[Ramzan Available Inventory])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 9ebffc57-6500-4f1e-8060-e690262c147b
+
+	measure 'Ramzan Opening Invrntory' = SUM(Ramzan_CY_Inv[Solid Qty])
+		dataType: variant
+		formatString: #,0
+		lineageTag: 6cfc2db9-d4a7-4f20-912a-9c221302f413
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan Receiving' = CALCULATE([Receivied Units],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2026")
+		dataType: variant
+		formatString: #,0
+		lineageTag: f4bc0e0d-1e0f-41dc-b995-ea517a6d1e6a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan Sale' = CALCULATE([Sale-Value],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2026")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 1c972a79-745d-4460-b9ed-544006c13819
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan Sale RT' = CALCULATE([Sale-Value],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2025",FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		formatString: #,0
+		lineageTag: b206b86f-eba3-437e-b2c8-abaa16df3cce
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan Target' = CALCULATE([TGT],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2026")
+		dataType: variant
+		formatString: #,0
+		lineageTag: c967782e-9021-444e-abf9-63539d67d78f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan Target RT' = CALCULATE([TGT],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2026",FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		formatString: #,0
+		lineageTag: fe400a9d-f493-40d1-ad55-e73564a79de0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan Target%' = IFERROR(DIVIDE([Ramzan Sale]-[Ramzan Target],[Ramzan Target]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 08e2c6f5-0e09-4631-9eb3-0649eebc38ef
+
+		changedProperty = FormatString
+
+	measure 'Ramzan Target% RT' = IFERROR(DIVIDE([Ramzan Sale RT]-[Ramzan Target RT],[Ramzan Target RT]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: e93a9cca-92a7-4a90-88d4-b35a723e9ccd
+
+	measure 'Ramzan Units' = CALCULATE([Sale-Units],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2026")
+		dataType: variant
+		formatString: #,0
+		lineageTag: ae691ee8-afb0-4cea-872c-708f7d777d04
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan Open Invent Cost' = SUM(Ramzan_CY_Inv[Cost.V])
+		dataType: variant
+		formatString: #,0
+		lineageTag: a66c5030-d9ee-4d1d-bf9a-65ab003e932d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan Received Cost' = CALCULATE([Receivied Cost-1],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2026")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 38ddde39-fb0e-428e-b9f7-31e3b969f42d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan Total Cost' = [Ramzan Open Invent Cost]+[Ramzan Received Cost]
+		dataType: variant
+		formatString: #,0
+		lineageTag: 9ee5fae7-5930-42be-97fe-46d621f32e2b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan CGS' = CALCULATE([CGS],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2026")
+		dataType: variant
+		formatString: #,0
+		lineageTag: ed360632-c53c-4023-8890-e4c45b74028c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Ramzan Cost Recovery%' = [Ramzan CGS]/[Ramzan Total Cost]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: a830d304-f1ff-43a0-995a-e5d1c218c77e
+
+	measure 'LY Ramzan Open Invent Cost' = SUM(Ramzan_LY_Inv[Cost.V])
+		dataType: variant
+		formatString: #,0
+		lineageTag: e15d2dad-f06c-4ec6-843d-7e3845f67e78
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan Received Cost' = CALCULATE([Receivied Cost-1],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2025")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 2bf67e69-8d4e-442d-9ab3-1979e84b8fbe
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan Total Cost' = [LY Ramzan Open Invent Cost]+[LY Ramzan Received Cost]
+		dataType: variant
+		formatString: #,0
+		lineageTag: 508cedf6-8a61-4c5e-b1b8-734e5f2fc290
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan CGS' = CALCULATE([CGS],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2025")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 77b9b194-a60f-4682-b431-2c8f74984d21
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan Cost Recovery%' = [LY Ramzan CGS]/[LY Ramzan Total Cost]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 15e7077e-4a36-472e-968c-68ca15990411
+
+	measure 'Ramzan FP Sale' = CALCULATE([Full Price Sale Vaule],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2026")
+		dataType: variant
+		lineageTag: c813310a-c4db-4844-a0c4-7e5b3796480f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ramzan Dilution%' = DIVIDE([Ramzan FP Sale]-[Ramzan Sale],[Ramzan FP Sale])
+		dataType: variant
+		formatString: #,0%;-#,0%;#,0%
+		lineageTag: d6444078-4f5f-4dad-a670-a9dc90df2a2b
+
+	measure 'LY Ramzan FP Sale' = CALCULATE([Full Price Sale Vaule],'Calendar'[Ramzan]="Ramzan",'Calendar'[Year]="2025")
+		dataType: variant
+		formatString: #,0
+		lineageTag: 26db1b68-08f3-4dfe-a11a-95b2817dc66e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Ramzan Dilution%' = DIVIDE([LY Ramzan FP Sale]-[LY Ramzan Sale],[LY Ramzan FP Sale])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: 82fed60d-49e1-437b-a3e6-404753be053b
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: b80a8b8e-8850-4763-bf5e-44f450c78951
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Ramzan_Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

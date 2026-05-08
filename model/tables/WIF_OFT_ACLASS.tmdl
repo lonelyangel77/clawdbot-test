@@ -1,0 +1,26 @@
+table WIF_OFT_ACLASS
+	lineageTag: bf66d012-ea71-4266-8333-8dc005612c75
+
+	measure 'WIF_OFT_ACLASS Value' = SELECTEDVALUE('WIF_OFT_ACLASS'[WIF_OFT_ACLASS], 0)
+		dataType: variant
+		formatString: 0%;-0%;0%
+		lineageTag: edfcde24-279a-4499-82bc-c4f72d97f359
+
+	column WIF_OFT_ACLASS
+		dataType: double
+		formatString: 0%;-0%;0%
+		lineageTag: 48c1a421-c95b-45ba-9420-1f946f772640
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata = {"version":0}
+
+		annotation SummarizationSetBy = User
+
+	partition WIF_OFT_ACLASS = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = a3f4ae296d4b41a2b76955208d356c2f
+

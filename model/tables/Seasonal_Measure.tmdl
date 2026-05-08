@@ -1,0 +1,73 @@
+table Seasonal_Measure
+	lineageTag: 105f776a-2ffa-4d5d-a085-16e61f72f089
+
+	measure 'CY Seasonal Sale' = CALCULATE([Sale Value RT],'Product_Inv'[Curt Season]="CY Season")
+		dataType: variant
+		lineageTag: 515338d3-0572-4b95-ab62-0534823dc03b
+
+	measure 'Sale Value RT' = CALCULATE(SUM(SALES[NetAmount]),FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		lineageTag: 42ea600e-3e84-4c46-8531-0cc8a8dd7d72
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'LY Seasonal Sale' = CALCULATE([LY Sales Value RT],'Product_Inv'[Curt Season]="LY Season")
+		dataType: variant
+		lineageTag: f2b7330d-22eb-4fa9-b15a-df22db0d7ff9
+
+	measure 'LY Sales Value RT' = CALCULATE([LY Sales],FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		lineageTag: 1c1f7e0c-0717-4da9-9fe4-8afc73612cba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sale Seasonal (V) Var%' = IFERROR(DIVIDE([CY Seasonal Sale]-[LY Season Sale],[LY Seasonal Sale]),"")
+		dataType: variant
+		lineageTag: 60763787-58b9-498e-bc22-afc479bb0c6e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'CY Season Units' = CALCULATE([Sale Units RT],'Product_Inv'[Curt Season]="CY Season")
+		dataType: variant
+		lineageTag: 14645299-147b-4bbd-87b9-70ba76f023e2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'LY Season Units' = CALCULATE([LY Sale Units RT],'Product_Inv'[Curt Season]="LY Season")
+		dataType: variant
+		lineageTag: 63963e83-5131-455f-835b-d5c4a39ef997
+
+	measure 'LY Sale Units RT' = CALCULATE([LY Units],FILTER(ALL('Calendar'[Date]),'Calendar'[Date]<=MAX('Calendar'[Date])))
+		dataType: variant
+		lineageTag: f311fdc4-c1f6-4d29-b409-38de5809ef93
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sale Season (U) Var%' = IFERROR(DIVIDE([CY Season Units]-[LY Season Units],[LY Season Units]),"")
+		dataType: variant
+		lineageTag: 034d5975-ad0e-445f-a3af-b0970768b558
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: 2ed0a249-ada8-48ff-ac44-72cfd6814251
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Seasonal_Measure = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

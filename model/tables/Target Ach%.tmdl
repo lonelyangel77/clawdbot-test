@@ -1,0 +1,31 @@
+table 'Target Ach%'
+	lineageTag: 49ec77a8-6122-4941-9cd8-ae4cc909e6b5
+
+	measure 'Target Ach% Value' = SELECTEDVALUE('Target Ach%'[Target Ach%], 0)
+		dataType: variant
+		lineageTag: 3b82da8e-5ebe-4b6a-9139-90b1d1d6551c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Target Ach%'
+		dataType: double
+		lineageTag: 120754b0-150f-450e-9af2-01e626fb008c
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Target Ach%-a5271d9f-c6ce-4612-9b37-c4c4858ea5ce' = calculated
+		mode: import
+		source = GENERATESERIES(0, 1, 0.05)
+
+	annotation PBI_Id = 4b5b5837c4ac49c89d4f38a8dc8d3a22
+

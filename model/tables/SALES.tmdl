@@ -1,0 +1,299 @@
+table SALES
+	lineageTag: 1320f198-353b-4334-b38f-cee0426a85d0
+
+	column Store
+		dataType: string
+		lineageTag: 7d654cbf-83c5-46ce-8f3c-8122e6e2e4a1
+		summarizeBy: none
+		sourceColumn: Store
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 76612e0d-03b2-481f-972c-d855ce71ec5b
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 6186a57d-97f9-431c-a4d5-2e4e37de9cb3
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column StyleCode
+		dataType: string
+		lineageTag: 86eb1400-003f-444e-910c-3aea5885d0fd
+		summarizeBy: none
+		sourceColumn: StyleCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cdf7ad5b-e655-4c05-bdc0-e12a14bf83b7
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column QtySold
+		dataType: int64
+		formatString: 0
+		lineageTag: 24149573-5522-43e1-a97e-daa8e3f6cbe7
+		summarizeBy: sum
+		sourceColumn: QtySold
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: ac03febe-082e-4c13-8b1b-6db04c78ebbb
+		summarizeBy: sum
+		sourceColumn: NetAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brands = IF([Brand]="Outfitters Junior","Outfitters",[Brand])
+		dataType: string
+		lineageTag: 8ba1472b-f769-4797-a854-1a646881ad7c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combine = [Store]&[Brands]
+		dataType: string
+		lineageTag: 1fb9567a-d96d-462e-96a2-f6184852ade8
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Base Price' = LOOKUPVALUE('Product'[RetailPrice1],'Product'[ItemID],[StyleCode])
+		dataType: int64
+		formatString: 0
+		lineageTag: f3d6f135-9fda-4a9b-9ad2-e2ce67bea881
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Price' = LOOKUPVALUE(Cost[COST PRICE],Cost[OFTR. STYLE],[StyleCode])
+		dataType: double
+		lineageTag: 9e2dd3ac-7de5-4c66-b878-89305078d4b1
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CostSale = [QtySold]*[Cost Price]
+		dataType: double
+		formatString: 0.00
+		lineageTag: b683d767-39b0-4314-9eaa-8f1ef9e061b3
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sold Price' = IFERROR([NetAmount]/[QtySold],0)
+		dataType: double
+		lineageTag: cdfe543a-d152-4ddf-af47-a4bd1de0690f
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'S.Tax' =
+			IF([Store]="Dubai",0,
+			IF(AND([Vendor]="LOCAL",[Date]<=DATE(2017,06,30)),0.05,
+			IF(AND([Vendor]="LOCAL",[Date]<=DATE(2019,06,30)),0.06,
+			IF(AND([Vendor]="LOCAL",[Date]<=DATE(2020,06,30)),0.14,
+			IF(AND([Vendor]="LOCAL",[Date]<=DATE(2021,06,30)),0.12,
+			IF(AND([Vendor]="LOCAL",[Date]<=DATE(2022,01,15)),0.10,
+			IF(AND([Vendor]="LOCAL",[Date]<=DATE(2023,06,30)),0.12,
+			IF(AND([Vendor]="LOCAL",[Date]<=DATE(2024,06,30)),0.15,
+			IF(AND([Vendor]="LOCAL",[Date]>=DATE(2024,07,01)),0.18,
+			IF(AND([Vendor]="LOCAL2",[Date]<=DATE(2019,08,31)),0.17,
+			IF(AND([Vendor]="LOCAL2",[Date]<=DATE(2020,06,30)),0.14,
+			IF(AND([Vendor]="LOCAL2",[Date]<=DATE(2021,06,30)),0.12,
+			IF(AND([Vendor]="LOCAL2",[Date]>=DATE(2021,07,01)),0.10,
+			IF(AND([Vendor]="IMPORT",[Date]<=DATE(2017,10,23)),0.17,
+			IF(AND([Vendor]="IMPORT",[Date]<=DATE(2018,06,30)),0.06,
+			IF(AND([Vendor]="IMPORT",[Date]<=DATE(2019,06,30)),0.09,
+			IF(AND([Vendor]="IMPORT",[Date]<=DATE(2023,02,15)),0.17,
+			IF(AND([Vendor]="IMPORT",[Date]>=DATE(2023,02,16)),0.18,
+			IF(AND([Vendor]="IMPORT25",[Date]<=DATE(2023,03,09)),0.18,
+			IF(AND([Vendor]="IMPORT25",[Date]>=DATE(2023,03,10)),0.25,
+			IF(AND([Vendor]="IMPORT 17%",[Date]<=DATE(2017,10,23)),0.17,
+			IF(AND([Vendor]="IMPORT 17%",[Date]<=DATE(2018,06,30)),0.06,
+			IF(AND([Vendor]="IMPORT 17%",[Date]>=DATE(2018,07,01)),0.17
+			)))))))))))))))))))))))
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9f82356a-58c1-4c91-82e8-7455e5dc9e95
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Vendor = IFERROR(LOOKUPVALUE('Product'[Vendor1],'Product'[ItemID],[StyleCode]),"LOCAL")
+		dataType: string
+		lineageTag: e1c1879e-1cd6-4418-8394-3bbe7e437ba1
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Disc %' = ([Base Price]-[Sold Price])/[Base Price]
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e055dc2b-f538-4dfc-9c28-e34808aee004
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Disc Val' = (SALES[Base Price]-SALES[Sold Price])*[QtySold]
+		dataType: double
+		lineageTag: 8ec789bd-0ace-452d-a3e8-31085d8ebb0b
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Discounted = IF([Disc %]>0,"Yes","No")
+		dataType: string
+		lineageTag: 36b45a26-c9d4-4dee-ac5f-2e499cc6837f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sale Type' = IF([Sold Price]=[Base Price],"Full Price","Discounted")
+		dataType: string
+		lineageTag: dec01560-0888-4b0d-9a03-d8dc86c06446
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FP Sale' = [Base Price]*[QtySold]
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b2dbf71-a41b-4ba4-b0fc-6522e07c4d08
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sal Tax' = ([NetAmount]*[S.Tax])/(1+[S.Tax])
+		dataType: double
+		formatString: 0
+		lineageTag: 0e12e522-78d6-4dee-889f-797fb660be29
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column 'Retail Code' = LOOKUPVALUE(Stores[Retail Code],Stores[Combine],[Combine])
+		dataType: string
+		lineageTag: 278ce717-9ba2-4e94-b856-267e0b2654cc
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = FORMAT([Date], "MMM-YY")
+		dataType: string
+		lineageTag: 3fcb0a3d-d87c-4331-81e8-3b5793514dcf
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesID
+		dataType: string
+		lineageTag: c166b45b-f4d2-41d4-aff1-a847e6778fc5
+		summarizeBy: none
+		sourceColumn: SalesID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTaxID
+		dataType: string
+		lineageTag: 800e6c78-d132-4964-b1a0-a0ac2e76ff65
+		summarizeBy: none
+		sourceColumn: SalesTaxID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CoGSID
+		dataType: string
+		lineageTag: f3e4ce18-ad2a-4a54-9ede-7d4fa89127d7
+		summarizeBy: none
+		sourceColumn: CoGSID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sq.Ft' = LOOKUPVALUE(WarehouseSQFT[Sq.FT],WarehouseSQFT[Combine],[Combine])
+		dataType: int64
+		lineageTag: 4e0b21bb-ce7c-4c46-af78-f5f879801a10
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FP SalTax' = ([FP Sale]*[S.Tax])/(1+[S.Tax])
+		dataType: double
+		formatString: 0
+		lineageTag: eaa90629-5bd6-4ca9-b70a-f5a72afeed22
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SALES-133aa3e1-759e-4d4a-9030-954fc1a9e4eb = m
+		mode: import
+		source =
+				let
+				    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Sales Data-Early"),
+				    #"Filtered Hidden Files1" = Table.SelectRows(Source, each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File", each #"Transform File"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File", Table.ColumnNames(#"Transform File"(#"Sample File"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Store", type text}, {"Brand", type text}, {"Category", type text}, {"StyleCode", type text}, {"Date", type date}, {"QtySold", Int64.Type}, {"NetAmount", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each true),
+				    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows",{"Source.Name"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns", "SalesID", each "1.01.01"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"SalesID", type text}}),
+				    #"Added Custom1" = Table.AddColumn(#"Changed Type1", "SalesTaxID", each "2.01.01"),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom1",{{"SalesTaxID", type text}}),
+				    #"Added Custom2" = Table.AddColumn(#"Changed Type2", "CoGSID", each "2.02.01"),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Added Custom2",{{"CoGSID", type text}})
+				in
+				    #"Changed Type3"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,95 @@
+table Budget-UAE
+	lineageTag: 92c45b1e-a131-40a3-b37a-c189b629fb3f
+
+	column Code
+		dataType: string
+		lineageTag: 756ee886-fc55-420b-b0b7-4ae68f548fef
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shop
+		dataType: string
+		lineageTag: 4c32d5ac-f6b1-4f97-bc98-74560fb76a92
+		summarizeBy: none
+		sourceColumn: Shop
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 586eb8a2-a3a3-4ac8-8116-b06865d9e810
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ea440653-f112-4a4e-ae67-92d911baf5d5
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Target
+		dataType: int64
+		formatString: 0
+		lineageTag: 14cd3aae-e9e2-48c2-aff3-0e6c230065ca
+		summarizeBy: sum
+		sourceColumn: Target
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		lineageTag: f8f9221e-4ff7-402e-9904-a87bd6cd84bc
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Targets (PKR)'
+		dataType: double
+		lineageTag: 2de8e829-f9fb-441e-9f05-cfd174a0f1f8
+		summarizeBy: sum
+		sourceColumn: Targets (PKR)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Combine
+		dataType: string
+		lineageTag: dd07d12d-bd4a-45c6-bd9c-90116dbe7ad0
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Budget-UAE = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Day wise Budget_UAE.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Code", type text}, {"Shop", type text}, {"Brand", type text}, {"Date", type date}, {"Target", Int64.Type}}),
+				#"Merged Queries" = Table.NestedJoin(#"Changed Type", {"Date"}, AED_PKR, {"Date"}, "AED_PKR", JoinKind.LeftOuter),
+				    #"Expanded AED_PKR" = Table.ExpandTableColumn(#"Merged Queries", "AED_PKR", {"Price"}, {"Price"}),
+				    #"Added Custom" = Table.AddColumn(#"Expanded AED_PKR", "Targets (PKR)", each [Target]*[Price]),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Combine", each [Shop]&[Brand]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom1",{{"Combine", type text}, {"Targets (PKR)", type number}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

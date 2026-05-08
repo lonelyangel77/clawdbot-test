@@ -1,0 +1,123 @@
+table Season
+	lineageTag: 8a479c5b-5f1f-436c-ba17-cc6038a2a10f
+
+	column Season
+		dataType: string
+		lineageTag: ef89d41b-25b0-4da1-8a5b-f0045ff0afaa
+		summarizeBy: none
+		sourceColumn: Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Category'
+		dataType: string
+		lineageTag: ab577011-7d3f-4b18-b40b-252a89b86539
+		summarizeBy: none
+		sourceColumn: Season Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Class'
+		dataType: string
+		lineageTag: 579ccb77-6b4e-4cc1-ba7d-c1710519603c
+		summarizeBy: none
+		sourceColumn: Season Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LY Season Class'
+		dataType: string
+		lineageTag: 8b87fe86-1ac8-4235-9a8a-d502df8bbbe0
+		summarizeBy: none
+		sourceColumn: LY Season Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Old Season'
+		dataType: string
+		lineageTag: f0b0d8d1-bd97-48ac-8bff-9547ab64e428
+		summarizeBy: none
+		sourceColumn: Old Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weather
+		dataType: string
+		lineageTag: f9295a69-e381-48f6-84a9-c5b65b979f35
+		summarizeBy: none
+		sourceColumn: Weather
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Name'
+		dataType: string
+		lineageTag: 9255e04f-7563-4701-9d4f-3422cec10b76
+		summarizeBy: none
+		sourceColumn: Season Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 8db539dc-5c34-4c82-a3a9-f775ae2e4525
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Class-2018-19'
+		dataType: string
+		lineageTag: e3ca83cf-fe63-424a-bef4-75986e61f1fa
+		summarizeBy: none
+		sourceColumn: Season Class-2018-19
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Tax 2019-20'
+		dataType: string
+		lineageTag: 45781494-30b5-4500-8347-c74e414f851a
+		summarizeBy: none
+		sourceColumn: Season Tax 2019-20
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season-Short
+		dataType: string
+		lineageTag: ab0246f5-76f9-4cef-9bfd-3b9e7be2f7f7
+		summarizeBy: none
+		sourceColumn: Season-Short
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LY Season'
+		dataType: string
+		lineageTag: 87abba57-ca65-44b6-aabe-88025a0c0afb
+		summarizeBy: none
+		sourceColumn: LY Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Class-New'
+		dataType: string
+		lineageTag: 65eebb0e-c2bc-4693-af1e-0e7519a06a0a
+		summarizeBy: none
+		sourceColumn: Season Class-New
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Season-53aaeebf-31ce-4d6a-8815-7b79bf922474 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\season.xlsx"), null, true),
+				    Season_Sheet = Source{[Item="Season",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Season_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Season", type text}, {"Season Category", type text}, {"Season Class", type text}, {"LY Season Class", type text}, {"Old Season", type text}, {"Weather", type text}, {"Season Name", type text}, {"Year", Int64.Type}, {"Season Class-2018-19", type text}, {"Season Tax 2019-20", type text}, {"Season-Short", type text}, {"LY Season", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

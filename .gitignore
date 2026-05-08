@@ -1,0 +1,6 @@
+tmdl-backup/
+tmdl-work/
+tmdl-final/
+tmdl-fix/
+__pycache__/
+*.pyc

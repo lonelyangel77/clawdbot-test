@@ -1,0 +1,43 @@
+table Items
+	lineageTag: 64a4bbfe-9d56-48ab-aaca-c8e6c0aeeaa7
+
+	column 'Variant SKU'
+		dataType: string
+		lineageTag: 3620d0d9-f48d-473e-9720-23a6f56e8662
+		summarizeBy: none
+		sourceColumn: Variant SKU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Image Src'
+		dataType: string
+		lineageTag: 99cf3b5b-b26f-4235-b01a-b58274ab3e34
+		summarizeBy: none
+		sourceColumn: Image Src
+
+		annotation SummarizationSetBy = Automatic
+
+	column brand
+		dataType: string
+		lineageTag: 551b8a05-992a-49c7-b77d-e13e5890e247
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Items-2e8d128c-105d-4084-a8a3-ce3614739142 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Items_URLs.xlsx"), null, true),
+				    Items_Sheet = Source{[Item="Items",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Items_Sheet,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Variant SKU", type text}, {"Image Src", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

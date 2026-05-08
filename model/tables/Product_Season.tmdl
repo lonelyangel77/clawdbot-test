@@ -1,0 +1,45 @@
+table Product_Season
+	lineageTag: 7824a138-247c-4cdd-b277-049e828f9dda
+
+	column PRODUCTNUMBER
+		dataType: string
+		lineageTag: 9ab451bd-baf1-4d2e-88f4-b8c35e659668
+		summarizeBy: none
+		sourceColumn: PRODUCTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ATTRIBUTETYPENAME
+		dataType: string
+		lineageTag: ff7fa928-465d-4436-b3db-b027c9ec91c5
+		summarizeBy: none
+		sourceColumn: ATTRIBUTETYPENAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season
+		dataType: string
+		lineageTag: bdf5e8dd-07c4-4e78-bb62-98acfb31a817
+		summarizeBy: none
+		sourceColumn: Season
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product_Season = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Product Attributes.xlsx"), null, true),
+				    Product_attribute_values_Sheet = Source{[Item="Product_attribute_values_V2",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Product_attribute_values_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PRODUCTNUMBER", type text}, {"ATTRIBUTETYPENAME", type text}, {"ATTRIBUTENAME", type text}, {"BOOLEANVALUE", type text}, {"CURRENCYCODE", type any}, {"CURRENCYVALUE", Int64.Type}, {"DATETIMEVALUE", type datetime}, {"DECIMALVALUE", Int64.Type}, {"INTEGERVALUE", Int64.Type}, {"TEXTVALUE", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([ATTRIBUTETYPENAME] = "ETH-Season" or [ATTRIBUTETYPENAME] = "OFT-Season")),
+				    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows",{"ATTRIBUTENAME", "BOOLEANVALUE", "CURRENCYCODE", "CURRENCYVALUE", "DATETIMEVALUE", "DECIMALVALUE", "INTEGERVALUE", "UNITOFMEASURE"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"TEXTVALUE", "Season"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

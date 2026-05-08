@@ -1,0 +1,208 @@
+table SVG_Measures
+	lineageTag: 2878338e-6701-4fab-a769-79c20cc73f7d
+
+	measure 'Grey Color' = "#ededed"
+		dataType: variant
+		lineageTag: 783c5c63-503b-4afa-a5f1-383879755646
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Color = ```
+			
+			    IF ( [Sales (V) Var%] > 0, "#008100", "#ff0000" )
+			```
+		dataType: variant
+		lineageTag: 00b0c585-dc68-4da8-9d0f-5dfb0ee05e7f
+		dataCategory: Uncategorized
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Overall Max Revenue' = ```
+			
+			    
+			    MAXX(
+			        {
+			            MAXX( ALLSELECTED( 'product_Inv'[brand] ), [Sale-Value] ),
+			            MAXX( ALLSELECTED( 'product_Inv'[brand] ), [LY Sales] )
+			        },
+			        [Value]
+			    )
+			```
+		dataType: variant
+		lineageTag: bf205bda-4ed4-485f-b1f4-8aa0e0715f4c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rest = ```
+			
+			    
+			    VAR _max = [Overall Max Revenue]
+			    VAR _color = [Color]
+			    VAR _color_60 = _color & "60"
+			    VAR _grey_color = [Grey Color]
+			    VAR _x = 10
+			    VAR _header = "data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg'>"
+			    VAR _footer = "</svg>"
+			    VAR _core =
+			        "   <rect id='bar' x='" & _x & "' y='10' width='" & 150 & "' height='25' fill='" & _grey_color
+			            & "'/>
+			            <rect id='fill' x='"
+			            & _x
+			            & "' y='15' width="
+			            & "'"
+			            & DIVIDE( [Sale-Value], _max ) * 100
+			            & "' height='15' fill='"
+			            & _color_60
+			            & "'></rect>
+			            <rect id='marker' x='"
+			            & _x + DIVIDE( [LY Sales], _max ) * 100
+			            & "' y='10' width='2' height='25' fill='black'></rect>
+			            <text x='"
+			            & _x
+			            & "' y='65' fill='"
+			            & _color
+			            & "' font-family = 'Segoe UI Semibold' font-size = '14'>"
+			            & "Revenue   : "
+			            & FORMAT( [Sale-Value], "#,##0,,.0 M" )
+			            & "</text>
+			    "
+			    VAR _result = _header & _core & _footer
+			    RETURN
+			        _result
+			```
+		dataType: variant
+		lineageTag: 2d30a8cc-810a-4eb1-80c3-5009b4f447dd
+		dataCategory: ImageUrl
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Selected = ```
+			
+			    
+			    VAR _max = [Overall Max Revenue]
+			    VAR _color = [Color]
+			    VAR _color_60 = _color & "60"
+			    VAR _grey_color = [Grey Color]
+			    VAR _x = 10
+			    VAR _header = "data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg'>"
+			    VAR _footer = "</svg>"
+			    VAR _core =
+			        "   <rect id='bar' x='" & _x & "' y='10' width='150' height='20' fill='" & _grey_color
+			            & "'/>
+			            <rect id='fill' x='"
+			            & _x
+			            & "' y='15' width="
+			            & "'"
+			            & DIVIDE( [Sale-Value], _max ) * 100
+			            & "' height='10' fill='"
+			            & _color_60
+			            & "'></rect>
+			            <rect id='marker' x='"
+			            & _x + DIVIDE( [LY Sales], _max ) * 100
+			            & "' y='10' width='2' height='20' fill='black'></rect>
+			            <text x='"
+			            & _x
+			            & "' y='45' fill='"
+			            & _color
+			            & "' font-family = 'Segoe UI Semibold' font-size = '10'>"
+			            & "Revenue   : "
+			            & FORMAT( [Sale-Value], "#,##0,,.0 M" )
+			            & "</text>
+			            <text x='"
+			            & _x
+			            & "' y='60' fill='black' font-family = 'Segoe UI Semibold' font-size = '10'>"
+			            & "Revenue YA: "
+			            & FORMAT( [LY Sales], "#,##0,,.0 M" )
+			            & "</text>
+			            <text x='"
+			            & _x
+			            & "' y='75' fill='grey' font-family = 'Segoe UI Semibold' font-size = '10'>"
+			            & "Revenue YoY: "
+			            & FORMAT( [Sales (V) Var%], "#,##0.0 %" )
+			            & "</text>
+			    "
+			    VAR _result = _header & _core & _footer
+			    RETURN
+			        _result
+			```
+		dataType: variant
+		lineageTag: 24c4f4aa-239b-40f6-9ac8-ea2b2418db0f
+		dataCategory: ImageUrl
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Hover = ```
+			
+			    
+			    VAR _best_selling_month =
+			        MAXX (
+			            SELECTCOLUMNS (
+			                TOPN ( 1, ADDCOLUMNS ( DISTINCT ( 'calendar'[YearMonth] ), "@rev", [Sale-Value] ), [@rev] ),
+			                "description", 'calendar'[YearMonth] & " (" & FORMAT ( [@rev], "#,##0,,.0 M" ) & ")"
+			            ),
+			            [description]
+			        )
+			    VAR _best_selling_customer =
+			        MAXX (
+			            SELECTCOLUMNS (
+			                TOPN ( 1, ADDCOLUMNS ( DISTINCT ( 'Product_Inv'[Class] ), "@rev", [Sale-Value] ), [@rev] ),
+			                "description", 'Product_inv'[Class] & " (" & FORMAT ( [@rev], "#,##0,,.0 M" ) & ")"
+			            ),
+			            [description]
+			        )
+			    VAR _x = 5
+			    VAR _header = "data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg'>"
+			    VAR _footer = "</svg>"
+			    VAR _core =
+			        "       <text x='" & _x
+			            & "' y='15' fill='grey' font-family = 'Segoe UI Semibold' font-size = '10'>top month</text>
+			            <text x='"
+			            & _x
+			            & "' y='30' fill='black' font-family = 'Segoe UI Semibold' font-size = '10'>"
+			            & _best_selling_month
+			            & "</text>
+			            <rect id='bar' x='"
+			            & _x
+			            & "' y='40' width='"
+			            & 150
+			            & "' height='1' fill='#e6e6e6'/>
+			            <text x='"
+			            & _x
+			            & "' y='55' fill='grey' font-family = 'Segoe UI Semibold' font-size = '10'>top customer</text>
+			            <text x='"
+			            & _x
+			            & "' y='70' fill='black' font-family = 'Segoe UI Semibold' font-size = '10'>"
+			            & _best_selling_customer
+			            & "</text>
+			    "
+			    VAR _result = _header & _core & _footer
+			    RETURN
+			        _result
+			```
+		dataType: variant
+		lineageTag: 6b14de16-18d2-4f8c-a23a-8912bd54936c
+		dataCategory: ImageUrl
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column1
+		dataType: string
+		lineageTag: eaac4c38-db08-449a-9510-7743a89ea9e2
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SVG_Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,36 @@
+table Cost_Inv
+	lineageTag: 74a48e4a-1a2a-47fd-b0c7-fac65e13f368
+
+	column ITEMNUMBER
+		dataType: string
+		lineageTag: 8e6b08f2-1a08-431b-b758-602d956cd945
+		summarizeBy: none
+		sourceColumn: ITEMNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PURCHASEPRICE
+		dataType: double
+		lineageTag: 76e017ae-86ea-4243-b9af-169a34dc23e0
+		summarizeBy: sum
+		sourceColumn: PURCHASEPRICE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Cost_Inv-ac2e7897-d3e8-45be-bf5b-58efe821dfaa = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Cost Price.xlsx"), null, true),
+				    Cost_Sheet = Source{[Item="Cost",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Cost_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ITEMNUMBER", type text}, {"PURCHASEPRICE", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

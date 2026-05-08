@@ -1,0 +1,63 @@
+table Store_Budget_Measures
+	lineageTag: 6479392d-2ebf-4874-bd9c-b3f397928eff
+
+	measure StoreBudgetSales = SUM('Store-Budget'[Gross Sales])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 5c31a38c-7988-4f78-ba89-46eaf0203d1c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure StoreBudVar = [Sale-Value]-[StoreBudgetSales]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Variance
+		lineageTag: 3dc06291-f7d3-4240-a09e-b0fc7309d974
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure StoreBudVar% = DIVIDE([Sale-Value]-[StoreBudgetSales],[StoreBudgetSales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Variance
+		lineageTag: 2b9e0273-88df-4f7b-aa2c-ed5d4b6ae40b
+
+	measure BudLYVar = [StoreBudgetSales]-[LY Sales]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Variance
+		lineageTag: dfc99e37-e59e-4301-ab25-64805332147b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure BudLYVar% = DIVIDE([StoreBudgetSales]-[LY Sales],[LY Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Variance
+		lineageTag: a67914c3-f97e-441d-9e0c-a9494fa5ec1b
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: 9f0a1342-0884-4cda-89d7-2c74bfb36568
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Store_Budget_Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

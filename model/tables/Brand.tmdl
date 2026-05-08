@@ -1,0 +1,28 @@
+table Brand
+	lineageTag: ae198266-0eae-4e6d-a1b2-9a64d507fc7e
+
+	column Brand
+		dataType: string
+		lineageTag: 276096d7-96e2-45bd-a5a8-66fe46cacef7
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Brand = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\warehouse.xlsx"), null, true),
+				    WarehouseDB_Sheet = Source{[Item="WarehouseDB",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(WarehouseDB_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Warehouse", type text}, {"Name", type text}, {"Brand", type text}, {"Store Code", type any}, {"City", type text}, {"Store Class", type text}, {"Brick & Morter", type text}, {"Store Location", type text}, {"Shop Code", type text}, {"Genere", type text}, {"Location", type text}, {"Sq.FT", Int64.Type}, {"Date of Opening", type date}, {"Date of Closing", type date}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"Brand"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

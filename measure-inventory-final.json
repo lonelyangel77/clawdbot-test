@@ -1,0 +1,4037 @@
+﻿[
+    {
+        "tableName":  "Calendar",
+        "name":  "Month Selected",
+        "displayFolder":  "Labels"
+    },
+    {
+        "tableName":  "Calendar",
+        "name":  "MTD Selected",
+        "displayFolder":  "Labels"
+    },
+    {
+        "tableName":  "Calendar",
+        "name":  "Ramzan No",
+        "displayFolder":  "Labels"
+    },
+    {
+        "tableName":  "Calendar",
+        "name":  "Selected Month",
+        "displayFolder":  "Labels"
+    },
+    {
+        "tableName":  "Calendar",
+        "name":  "Yesterday Date",
+        "displayFolder":  "Labels"
+    },
+    {
+        "tableName":  "Calendar",
+        "name":  "YTD Selected",
+        "displayFolder":  "Labels"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Footfall",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Return Units",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Return Value",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Sales(V)",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Transactions",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Units Sold",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "ASP",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "ASP Var%",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "ATV",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "ATV Var%",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Conversion%",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Conversion% Var",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Conversion% Var%",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Footfall Var%",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "Units Sold Var%",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "UPT",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "UPT Var%",
+        "displayFolder":  "KPIs \u0026 Variance"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "LY ASP",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "LY ATV",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "LY Conversion%",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "LY Footfall",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "LY Sales (V)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "LY Transactions",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "LY Units Sold",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "FootFall Measures",
+        "name":  "LY UPT",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Bud.FullPriceSale",
+        "displayFolder":  "Budget Dilution\\MTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD Bud. Dilution%",
+        "displayFolder":  "Budget Dilution\\MTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD Bud. DILUTION% SHORT",
+        "displayFolder":  "Budget Dilution\\MTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD Bud. DILUTION% VAR",
+        "displayFolder":  "Budget Dilution\\MTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD Bud.FP Sales",
+        "displayFolder":  "Budget Dilution\\MTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD Bud. Dilution Short%",
+        "displayFolder":  "Budget Dilution\\YTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD Bud. Dilution Var%",
+        "displayFolder":  "Budget Dilution\\YTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD Bud. Dilution%",
+        "displayFolder":  "Budget Dilution\\YTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD Bud. FP Sale",
+        "displayFolder":  "Budget Dilution\\YTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Forcast Sales",
+        "displayFolder":  "Budget Forecast"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Forecast Sales Cost",
+        "displayFolder":  "Budget Forecast"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Forecast Sales G.P",
+        "displayFolder":  "Budget Forecast"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Forecast Sales G.P%",
+        "displayFolder":  "Budget Forecast"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Forecast Sales Tax",
+        "displayFolder":  "Budget Forecast"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD Forecast GP Var",
+        "displayFolder":  "Budget Forecast\\MTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD ForeCast GP Var%",
+        "displayFolder":  "Budget Forecast\\MTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD Forecast Sales",
+        "displayFolder":  "Budget Forecast\\MTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD Forecast Var",
+        "displayFolder":  "Budget Forecast\\MTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD ForeCast Var%",
+        "displayFolder":  "Budget Forecast\\MTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Forecast Var",
+        "displayFolder":  "Budget Forecast\\YTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD Forecast",
+        "displayFolder":  "Budget Forecast\\YTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD Forecast GP Var",
+        "displayFolder":  "Budget Forecast\\YTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD Forecast Var",
+        "displayFolder":  "Budget Forecast\\YTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD ForeCast Var%",
+        "displayFolder":  "Budget Forecast\\YTD"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Bud.Dilution%",
+        "displayFolder":  "Dilution"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "BudgetVSLY",
+        "displayFolder":  "Growth vs Plan"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD GP GROWTH",
+        "displayFolder":  "Growth vs Plan"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD GP GROWTH VAR",
+        "displayFolder":  "Growth vs Plan"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTD SALE GROWTH VAR%",
+        "displayFolder":  "Growth vs Plan"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "MTDBudgetVSLY",
+        "displayFolder":  "Growth vs Plan"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD GP GROWTH",
+        "displayFolder":  "Growth vs Plan"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD GP GROWTH VAR%",
+        "displayFolder":  "Growth vs Plan"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "YTD SALE GROWTH VAR%",
+        "displayFolder":  "Growth vs Plan"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Green Max",
+        "displayFolder":  "Indicators"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Red Max",
+        "displayFolder":  "Indicators"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Sales Indicator MTD KPI",
+        "displayFolder":  "Indicators"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Sales Indicator PP KPI",
+        "displayFolder":  "Indicators"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Current Daily Avg",
+        "displayFolder":  "Run Rate"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Days Passed",
+        "displayFolder":  "Run Rate"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "DaysLeft",
+        "displayFolder":  "Run Rate"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "EoM Sales",
+        "displayFolder":  "Run Rate"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Forecast Targ Ach",
+        "displayFolder":  "Run Rate"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Forecast Targ Ach%",
+        "displayFolder":  "Run Rate"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "ME Forecast",
+        "displayFolder":  "Run Rate"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Remaining Sales",
+        "displayFolder":  "Run Rate"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Remaining Tget",
+        "displayFolder":  "Run Rate"
+    },
+    {
+        "tableName":  "Forecast",
+        "name":  "Req Avg",
+        "displayFolder":  "Run Rate"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_120_C",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_120_U",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_120+_C",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_120+_U",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_30_C",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_30_U",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_60_C",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_60_U",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_90_C",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_90_U",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_Cost",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Aging_Units",
+        "displayFolder":  "Aging"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Sales (V) Var%",
+        "displayFolder":  "Diagnostics"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "SalesRetun%",
+        "displayFolder":  "Diagnostics"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Cost Rec",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Discount (V)",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Discount%",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_GP",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_GP%",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Net Sales",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Retail_Disc",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Retail_FP",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inven_GP%",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Net Sales RT",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "ROI",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Sales Tax (Retail)",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Sales Tax_Inv",
+        "displayFolder":  "GP \u0026 Profitability"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Gen Inv Cost",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Cost",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Cost1",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_FP (V)",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_OnHand_U",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Retail",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_RetailValue",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Transit_U",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Units",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Units(K)",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Last Date",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "No of Inv Items",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "No of Rec Items",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "SQ Ft Area",
+        "displayFolder":  "On Hand"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Dispatch Qty",
+        "displayFolder":  "Purchase Orders"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Dispatch Qty%",
+        "displayFolder":  "Purchase Orders"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "No of PO",
+        "displayFolder":  "Purchase Orders"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "No of PO Items",
+        "displayFolder":  "Purchase Orders"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "PO Balance Qty",
+        "displayFolder":  "Purchase Orders"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "PO Order Qty",
+        "displayFolder":  "Purchase Orders"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "PO Receive Qty",
+        "displayFolder":  "Purchase Orders"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "PO Received%",
+        "displayFolder":  "Purchase Orders"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Age",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "CGS RT",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Received Cost RT",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Received Units ALL",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Received Units RT",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "ReceivedAge",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "ReceivedDate",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Receivied Cost",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Receivied Cost-1",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Receivied Units",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Receiving Date",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Sale Units RT",
+        "displayFolder":  "Receiving"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Cost Liq%",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Days",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Liq%",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Rec%",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Liq%",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "NDI",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "NDI_YTD",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Promo-Liq%",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "SellThru%",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "SellThru%_MTD",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "SellThru%_YTD",
+        "displayFolder":  "Sell-Thru \u0026 Turns"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Balance Cost",
+        "displayFolder":  "Stock Movement"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Balance Units",
+        "displayFolder":  "Stock Movement"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Closing",
+        "displayFolder":  "Stock Movement"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Closing (C)",
+        "displayFolder":  "Stock Movement"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Closing Difference",
+        "displayFolder":  "Stock Movement"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Adj",
+        "displayFolder":  "Stock Movement"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Inv_Mov",
+        "displayFolder":  "Stock Movement"
+    },
+    {
+        "tableName":  "Inventory",
+        "name":  "Stock Adjustment",
+        "displayFolder":  "Stock Movement"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Dilution (V)",
+        "displayFolder":  "Dilution"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Dilution%",
+        "displayFolder":  "Dilution"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Dilution% Var",
+        "displayFolder":  "Dilution"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LY Dilution",
+        "displayFolder":  "Dilution"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LY MTD DILUTION%",
+        "displayFolder":  "Dilution\\MTD"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "MTD Dilution%",
+        "displayFolder":  "Dilution\\MTD"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "MTD DILUTION% SHORT",
+        "displayFolder":  "Dilution\\MTD"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "MTD DILUTION% VAR",
+        "displayFolder":  "Dilution\\MTD"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LYTD Dilution%",
+        "displayFolder":  "Dilution\\YTD"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "YTD Dilution Short%",
+        "displayFolder":  "Dilution\\YTD"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "YTD Dilution Var%",
+        "displayFolder":  "Dilution\\YTD"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "YTD Dilution%",
+        "displayFolder":  "Dilution\\YTD"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Discount (V) Sale",
+        "displayFolder":  "Discount"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Disct%",
+        "displayFolder":  "Discount"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Full Price Sale Vaule",
+        "displayFolder":  "Full Price"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LY Full Price Sale",
+        "displayFolder":  "Full Price"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LY MTD Full Sales",
+        "displayFolder":  "Full Price"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LYTD Full Sales",
+        "displayFolder":  "Full Price"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "MTD Full Price Sales",
+        "displayFolder":  "Full Price"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "YTD Full Sales",
+        "displayFolder":  "Full Price"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Current Season Sale",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LY Mother Day",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LY Promo GP%",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LY Promo Inv",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LY WF",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LY WF (U)",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "LY_Promo_Liq%",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "MD TGT Var%",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Mother Day Sale",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Mother Day Targets",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Mother Day Units",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Promo (U) Var%",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Promo (V) Var%",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Promo GP%",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Season Sale",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Season Sale (U)",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Season Sale (U) Var%",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Season Sale Var",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "Season Sale Var%",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Pricing \u0026 Dilution",
+        "name":  "WF Var%",
+        "displayFolder":  "Season \u0026 Events"
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "ETH TGT Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "ETH_Promo_Dilution%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "ETH_Promo_GP%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "ETH_Promo_Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "ETH_Promo_TGT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "ETH_Promo_Units",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_ETH Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_ETH_Dilution% Var",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_ETH_GP% Var",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_ETH_Promo_Dilution%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_ETH_Promo_GP%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_ETH_Promo_Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_ETH_Promo_Units",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_ETH_Units Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OFT Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OFT_Dilution Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OFT_GP% Var",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OFT_Promo_Dilution%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OFT_Promo_GP%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OFT_Promo_Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OFT_Promo_Units",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OFT_Units Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OL_ETH Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OL_ETH_Promo_Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OL_OFT Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_OL_OFT_Promo_Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_Opening_Inv_Cost",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_Promo_Dilution%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_Promo_Inv",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_Promo_Inv-ETH",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_Promo_Sale (CGS)",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_Promo_Sale (Cost Recovered)",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_Promo_Sale (U)",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_Promo_Sale (U)-ETH",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "LY_Promo_Sale (V)",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OFT TGT Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OFT_Promo_Dilution%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OFT_Promo_GP%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OFT_Promo_Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OFT_Promo_TGT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OFT_Promo_Units",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OL_ETH TGT Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OL_ETH_Promo_Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OL_ETH_Promo_TGT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OL_ETH_Promo_Units",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OL_OFT TGT Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OL_OFT_Promo_Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OL_OFT_Promo_TGT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OL_OFT_Promo_Units",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "OL_Opening_Inv_Cost",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Opening_Inv_Cost",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Opening_Inv_Qty",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Opening_Inv_Qty-ETH",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Promo_Dilution%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Promo_Liq%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Promo_LYLiq%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Promo_LYLiq%-ETH",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Promo_Sale (CGS)",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Promo_Sale (Cost Recovered)",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Promo_Sale (U)",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Promo_Measures",
+        "name":  "Promo_Sale (V)",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Available Inventory",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan CGS",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Cost Recovery%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Dilution%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan FP Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan GP",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan GP%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Liq%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Open Invent Cost",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Opening Invrntory",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Received Cost",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Receiving",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Sale RT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Total Cost",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Units",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "LY Ramzan Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Available Inventory",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan CGS",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Cost Recovery%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Dilution%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan FP Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan GP",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan GP%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Liq%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Open Invent Cost",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Opening Invrntory",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Received Cost",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Receiving",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Sale RT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Target",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Target RT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Target%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Target% RT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Total Cost",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Ramzan_Measures",
+        "name":  "Ramzan Units",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "TGT-ASP Var%",
+        "displayFolder":  "ASP"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "Conv% Var",
+        "displayFolder":  "Conversion \u0026 Basket"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "CY Conversion%",
+        "displayFolder":  "Conversion \u0026 Basket"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "LYConversion%",
+        "displayFolder":  "Conversion \u0026 Basket"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "TGT-ATV Var%",
+        "displayFolder":  "Conversion \u0026 Basket"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "UPT Var",
+        "displayFolder":  "Conversion \u0026 Basket"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "CY Old Sale",
+        "displayFolder":  "Season Mix"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "CY Season Sale",
+        "displayFolder":  "Season Mix"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "LY Old Sale",
+        "displayFolder":  "Season Mix"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "LY_Season Sale",
+        "displayFolder":  "Season Mix"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "Sale Season (V) Var%",
+        "displayFolder":  "Season Mix"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "ASP_TGT",
+        "displayFolder":  "Targets"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "ATV_TGT",
+        "displayFolder":  "Targets"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "Conv%_TGT",
+        "displayFolder":  "Targets"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "Trans_TGT",
+        "displayFolder":  "Targets"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "UPT_TGT",
+        "displayFolder":  "Targets"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "FF_TGT",
+        "displayFolder":  "Traffic"
+    },
+    {
+        "tableName":  "Retail KPIs",
+        "name":  "TGT-FF Var%",
+        "displayFolder":  "Traffic"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_Budget (Rs)",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_Budget_YTD",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_MTD Budget",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_MTD Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_MTD Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_YTD Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_YTD Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_MTD LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_YTD LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_fulfilled(Rs)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_Online_Sales(USD)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_Sale(Rs)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_Sales(USD)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_Targets Value",
+        "displayFolder":  "Targets"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_Targets(USD)",
+        "displayFolder":  "Targets"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_MTD Sales",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_MTD Sales(USD)",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_MTD Target Var%",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_MTD Targets",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_MTD Targets (USD)",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_YTD Sales (Rs)",
+        "displayFolder":  "Targets\\YTD"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_YTD Sales (USD)",
+        "displayFolder":  "Targets\\YTD"
+    },
+    {
+        "tableName":  "ROW_Measures",
+        "name":  "ROW_YTD Targets (USD)",
+        "displayFolder":  "Targets\\YTD"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Per Day Sale Var%",
+        "displayFolder":  "\"Productivity\""
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "CGS Diff",
+        "displayFolder":  "_Dev"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "LY G.P",
+        "displayFolder":  "_Dev"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Test",
+        "displayFolder":  "_Dev"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "zaro CGS Items Without Cost",
+        "displayFolder":  "_Dev"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Brand Name",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "CGS",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "CGS-1",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "GP",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "GP%",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "GP%-1",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "GP-1",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Net Sales",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Net Sales-1",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "NetSales Var%",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale Share %",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sales Tax",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sales Tax-1",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale-Units",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale-Value",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Total MTD Sale",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Transaction Var%",
+        "displayFolder":  "Base"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "ETH-Sale var%",
+        "displayFolder":  "Brand Split"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "OFT-Sale Var%",
+        "displayFolder":  "Brand Split"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale-ETH",
+        "displayFolder":  "Brand Split"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale-OFT",
+        "displayFolder":  "Brand Split"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "TGT-ETH",
+        "displayFolder":  "Brand Split"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "TGT-OFT",
+        "displayFolder":  "Brand Split"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Disc Sale Share",
+        "displayFolder":  "Discounting"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Discount (Val)",
+        "displayFolder":  "Discounting"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "FP Sale Share",
+        "displayFolder":  "Discounting"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Full Price Sale",
+        "displayFolder":  "Discounting"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale-Discount",
+        "displayFolder":  "Discounting"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale-Full Price",
+        "displayFolder":  "Discounting"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "A.S.P",
+        "displayFolder":  "Pricing"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "A.S.P Var%",
+        "displayFolder":  "Pricing"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Avg Sale Price",
+        "displayFolder":  "Pricing"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "LY A.S.P",
+        "displayFolder":  "Pricing"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "LY Avg Sale Price",
+        "displayFolder":  "Pricing"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Emp_Store_Count",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "LY Sale per Sq. FT per Month",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "LYSQFTArea",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "No of Days",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "No of Month",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Per Day Sale",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Per Day Sell Thru%",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Per Day SellThru% YTD",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Per Day Units Sold",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Per Day Units Sold YTD",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Per Day-Per Emp Sale",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale per Month",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale per Sq. FT per Month",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale per Sq. FT per Month Var%",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "SQFTAREA",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Total No. of Days",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "WA No of Days",
+        "displayFolder":  "Productivity"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Bottom5Stores",
+        "displayFolder":  "Rankings"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Rank Item",
+        "displayFolder":  "Rankings"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Rank Visb",
+        "displayFolder":  "Rankings"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "AVG Cost (Retail)",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "AVG Price (Retail)",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Cost Factor",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Cost Factor (Retail)",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Cost Value (Retail)",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "GP (Retail)",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "GP% (Retail)",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "No of Items (Retail)",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Retail Cost Price",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Retail GP",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Retail GP%",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Retail Price",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Retail Sales Tax",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Retail Value (Retail)",
+        "displayFolder":  "Retail Catalog"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale Return %",
+        "displayFolder":  "Returns"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale Return (U)",
+        "displayFolder":  "Returns"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Sale Return (V)",
+        "displayFolder":  "Returns"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Active Days",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "First_Date",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Last Sale",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "last Sale Age",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Last_Date",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Ly Active Days",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "No Sale Days",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Opening Date",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "Sales Measures",
+        "name":  "Store New Status",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "Seasonal_Measure",
+        "name":  "CY Season Units",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Seasonal_Measure",
+        "name":  "CY Seasonal Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Seasonal_Measure",
+        "name":  "LY Sale Units RT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Seasonal_Measure",
+        "name":  "LY Sales Value RT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Seasonal_Measure",
+        "name":  "LY Season Units",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Seasonal_Measure",
+        "name":  "LY Seasonal Sale",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Seasonal_Measure",
+        "name":  "Sale Season (U) Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Seasonal_Measure",
+        "name":  "Sale Seasonal (V) Var%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Seasonal_Measure",
+        "name":  "Sale Value RT",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Store_Budget_Measures",
+        "name":  "StoreBudgetSales",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "Store_Budget_Measures",
+        "name":  "BudLYVar",
+        "displayFolder":  "Variance"
+    },
+    {
+        "tableName":  "Store_Budget_Measures",
+        "name":  "BudLYVar%",
+        "displayFolder":  "Variance"
+    },
+    {
+        "tableName":  "Store_Budget_Measures",
+        "name":  "StoreBudVar",
+        "displayFolder":  "Variance"
+    },
+    {
+        "tableName":  "Store_Budget_Measures",
+        "name":  "StoreBudVar%",
+        "displayFolder":  "Variance"
+    },
+    {
+        "tableName":  "Stores",
+        "name":  "BrandN",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "Stores",
+        "name":  "M.SQFT",
+        "displayFolder":  "Store Info"
+    },
+    {
+        "tableName":  "SVG_Measures",
+        "name":  "Color",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "SVG_Measures",
+        "name":  "Grey Color",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "SVG_Measures",
+        "name":  "Hover",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "SVG_Measures",
+        "name":  "Overall Max Revenue",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "SVG_Measures",
+        "name":  "Rest",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "SVG_Measures",
+        "name":  "Selected",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Target Ach%",
+        "name":  "Target Ach% Value",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Bud NetSales",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Bud. Sale Var%",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Budgeted Sales",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Remaining Bud. Sales",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Target vs Budget (Value)",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Bud GP%",
+        "displayFolder":  "Budget\\GP"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Bud GP% Var",
+        "displayFolder":  "Budget\\GP"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD Bud GP%",
+        "displayFolder":  "Budget\\GP"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD Bud GP% Var",
+        "displayFolder":  "Budget\\GP"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD Bud GP%",
+        "displayFolder":  "Budget\\GP"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD Bud GP% var",
+        "displayFolder":  "Budget\\GP"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "TGT GP Var%",
+        "displayFolder":  "GP"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD TGT GP",
+        "displayFolder":  "GP Target"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "TGT-GP",
+        "displayFolder":  "GP Target"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD TGT GP",
+        "displayFolder":  "GP Target"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "GP TGT Var%",
+        "displayFolder":  "GP Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD TGT GP VAR",
+        "displayFolder":  "GP Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD TGT GP Var%",
+        "displayFolder":  "GP Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD TGT Var% %",
+        "displayFolder":  "GP Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "TGT GP Var %",
+        "displayFolder":  "GP Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD TGT GP Var",
+        "displayFolder":  "GP Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD TGT GP Var%",
+        "displayFolder":  "GP Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "LY MTD Targets",
+        "displayFolder":  "LY Targets"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "LY Tar Bal %",
+        "displayFolder":  "LY Targets"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "LY Tar Var%",
+        "displayFolder":  "LY Targets"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "LY Target",
+        "displayFolder":  "LY Targets"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Tar% Var",
+        "displayFolder":  "LY Targets"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Target Var",
+        "displayFolder":  "LY Targets"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD Target",
+        "displayFolder":  "Sales Target"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "TGT",
+        "displayFolder":  "Sales Target"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD Target",
+        "displayFolder":  "Sales Target"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD Tar Var",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD Tar Var%",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD Target Ach %",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Remaining Target",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Remaining YTD Target",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Target Ach %",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "Target Balance %",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "TGT Var",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD Tar Var",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD Tar Var%",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD Target Ach %",
+        "displayFolder":  "Sales Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD TGT-U",
+        "displayFolder":  "Units Target"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "TGT-U",
+        "displayFolder":  "Units Target"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD TGT-U",
+        "displayFolder":  "Units Target"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "MTD Tar-U Var%",
+        "displayFolder":  "Units Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "TGT-U Var",
+        "displayFolder":  "Units Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "TGT-U Var%",
+        "displayFolder":  "Units Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "TGT-Units Var%",
+        "displayFolder":  "Units Target\\Variance"
+    },
+    {
+        "tableName":  "Targets \u0026 Budget",
+        "name":  "YTD TGT-U Var%",
+        "displayFolder":  "Units Target\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY GP",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY GP%",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY NetSales",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY No of Days",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY Per Day Sale",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY Sales",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY Season Sale",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY Season Sale-(U)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY Season Sale-0",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY Units",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "GP Growth",
+        "displayFolder":  "LY\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "GP var",
+        "displayFolder":  "LY\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "GP Var%",
+        "displayFolder":  "LY\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "GP%Var",
+        "displayFolder":  "LY\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY Ach %",
+        "displayFolder":  "LY\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Sales Var",
+        "displayFolder":  "LY\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Sales Var %",
+        "displayFolder":  "LY\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Units Var",
+        "displayFolder":  "LY\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Units Var %",
+        "displayFolder":  "LY\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "MTD GP",
+        "displayFolder":  "MTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "MTD GP%",
+        "displayFolder":  "MTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "MTD Sales",
+        "displayFolder":  "MTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "MTD Sales (U)",
+        "displayFolder":  "MTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "MTD Sales LY Var %",
+        "displayFolder":  "MTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY MTD GP",
+        "displayFolder":  "MTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY MTD GP%",
+        "displayFolder":  "MTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY MTD Sales",
+        "displayFolder":  "MTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY MTD Sales (U)",
+        "displayFolder":  "MTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY MTD (U) Var%",
+        "displayFolder":  "MTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY MTD Var%",
+        "displayFolder":  "MTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "MTD GP Var",
+        "displayFolder":  "MTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "MTD GP Var%",
+        "displayFolder":  "MTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "MTD GP% Var%",
+        "displayFolder":  "MTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "MTD Var",
+        "displayFolder":  "MTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "MTD Var (U)",
+        "displayFolder":  "MTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "HA",
+        "displayFolder":  "Previous Period"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "HA-week",
+        "displayFolder":  "Previous Period"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Previous Day %",
+        "displayFolder":  "Previous Period"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Previous Day Sales",
+        "displayFolder":  "Previous Period"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Previous Month Sales",
+        "displayFolder":  "Previous Period"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Previous Year Sales",
+        "displayFolder":  "Previous Period"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "PW SALES",
+        "displayFolder":  "Previous Period"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Last Week",
+        "displayFolder":  "Weekly"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Last Week Day Sale",
+        "displayFolder":  "Weekly"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Previous Week Var%",
+        "displayFolder":  "Weekly"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "This Week",
+        "displayFolder":  "Weekly"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Week Day Sale",
+        "displayFolder":  "Weekly"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Week Day Var%",
+        "displayFolder":  "Weekly"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "This Week-All",
+        "displayFolder":  "Weekly\\Combined"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "This Week-Targets-PK",
+        "displayFolder":  "Weekly\\Combined"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "This Week-UK",
+        "displayFolder":  "Weekly\\UK"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "This Week-US",
+        "displayFolder":  "Weekly\\US"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD GP",
+        "displayFolder":  "WTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD GP%",
+        "displayFolder":  "WTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD Sales Var",
+        "displayFolder":  "WTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD Sales Var%",
+        "displayFolder":  "WTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD Target",
+        "displayFolder":  "WTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD TGT Ach%",
+        "displayFolder":  "WTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD TGT Var",
+        "displayFolder":  "WTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD Units",
+        "displayFolder":  "WTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD Units Var%",
+        "displayFolder":  "WTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD_Value",
+        "displayFolder":  "WTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD targets All",
+        "displayFolder":  "WTD\\Combined"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD Value All",
+        "displayFolder":  "WTD\\Combined"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD Var% All",
+        "displayFolder":  "WTD\\Combined"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY WTD CGS",
+        "displayFolder":  "WTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY WTD GP",
+        "displayFolder":  "WTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY WTD GP%",
+        "displayFolder":  "WTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY WTD Sales Tax",
+        "displayFolder":  "WTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY WTD Target",
+        "displayFolder":  "WTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY WTD Units",
+        "displayFolder":  "WTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY WTD Value",
+        "displayFolder":  "WTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD Target-UK",
+        "displayFolder":  "WTD\\UK"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD_Value-UK",
+        "displayFolder":  "WTD\\UK"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD_Value-UK_BM",
+        "displayFolder":  "WTD\\UK"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD Target-US",
+        "displayFolder":  "WTD\\US"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "WTD_Value-US",
+        "displayFolder":  "WTD\\US"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "Sales LY Var %",
+        "displayFolder":  "YoY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD GP",
+        "displayFolder":  "YTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD GP%",
+        "displayFolder":  "YTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD Sales",
+        "displayFolder":  "YTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD Sales (U)",
+        "displayFolder":  "YTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD Sales LY Var %",
+        "displayFolder":  "YTD"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LYTD GP",
+        "displayFolder":  "YTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LYTD GP%",
+        "displayFolder":  "YTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LYTD Sales",
+        "displayFolder":  "YTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LYTD Sales (U)",
+        "displayFolder":  "YTD\\LY"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "LY Units Var%",
+        "displayFolder":  "YTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD (U) Var",
+        "displayFolder":  "YTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD (U) Var%",
+        "displayFolder":  "YTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD GP Var",
+        "displayFolder":  "YTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD GP Var%",
+        "displayFolder":  "YTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD GP% var",
+        "displayFolder":  "YTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD Var",
+        "displayFolder":  "YTD\\Variance"
+    },
+    {
+        "tableName":  "Time Intelligence",
+        "name":  "YTD Var%",
+        "displayFolder":  "YTD\\Variance"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_Budget (Rs)",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_Budget_YTD",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_MTD Budget",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_MTD Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_MTD Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_YTD Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_YTD Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_MTD LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_YTD LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_Sales (Rs)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_Sales_OL(Rs)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_Targets_RS",
+        "displayFolder":  "Targets"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_MTD_Sales_Rs",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_MTD_Targets_Rs",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "UAE_Measures",
+        "name":  "UAE_YTD Sales (Rs)",
+        "displayFolder":  "Targets\\YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD_UK_Budget",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Budget",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Budget_YTD",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD Sales (Pound)",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sale_Rs",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sales B\u0026M (GBP)",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_YTD Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_YTD Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_INV_Charges",
+        "displayFolder":  "Invoicing"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_INV_Net Sales",
+        "displayFolder":  "Invoicing"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_INV_Orders",
+        "displayFolder":  "Invoicing"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_INV_Tax",
+        "displayFolder":  "Invoicing"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_LY Sale(Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_YTD LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_CGS",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_FullPrice",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_GP",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_GP%",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_LY Sales",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Net Sales",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sales Value",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Tax",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_No of Orders",
+        "displayFolder":  "UK_B\u0026M"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sale_B\u0026M (Rs)",
+        "displayFolder":  "UK_B\u0026M"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sale_B\u0026M_YTD (Rs)",
+        "displayFolder":  "UK_B\u0026M"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sales_B\u0026M (GBP)",
+        "displayFolder":  "UK_B\u0026M"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sales_B\u0026M_MTD",
+        "displayFolder":  "UK_B\u0026M"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sales_B\u0026M_MTD (GBP)",
+        "displayFolder":  "UK_B\u0026M"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sales_B\u0026M_YTD",
+        "displayFolder":  "UK_B\u0026M"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sales_Total",
+        "displayFolder":  "UK_B\u0026M"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Budget All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Budget Var All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Budget Var% All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "CGS All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Dilution% All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Fullprice All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "GP All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "GP% All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "LY Sale Var% All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "LY Sale-Value All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Net Sales All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Previous Day % All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Previous Day Sales All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Sale-Value All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Targets All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Targets Var All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "Targets Var% All",
+        "displayFolder":  "UK_Combine"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Budget All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Budget Var All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Budget Var% All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD CGS All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Dilution% All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Fullprice All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD GP All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD GP% All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD LY Sale Var% All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD LY Sale-Value All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Net Sales All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Previous Day % All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Previous Day Sales All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Sale-Value All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Targets All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Targets Var All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "YTD Targets Var% All",
+        "displayFolder":  "UK_Combine YTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD Budget All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD Budget Sales All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD Budget Sales Var All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD Budget Sales Var% All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD Budget Var All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD Budget Var% All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD LY Sale Var% All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD LY Sales All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD Sales All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD Target Var All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD Target Var% All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "MTD Targets All",
+        "displayFolder":  "UK_Combine\\MTD"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD Sales",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD Sales Var%",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD Targets",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Return_No of Orders",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Return_Sale Units",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Return_Sale Value",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sale Units",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sale Value",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Targets(GBP)",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Targets(PKR)",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Targets(USD)",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_TGT_BM",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_TGT_OL",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_YTD Sales",
+        "displayFolder":  "UK_Sales"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_fulfilled(GBP)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_fulfilled(Rs)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_fulfilled(USD)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD Sales (GBP)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD Sales (USD)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD Targets (GBP)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_MTD Targets (USD)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Pending(GBP)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Pending(Rs)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Return(GBP)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Return(Rs)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sale(GBP)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sale(Rs)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_Sale(USD)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_SalesTax(GBP)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_YTD Sales (GBP)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_YTD Sales (Rs)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_YTD Sales (USD)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_YTD Targets (GBP)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "UK_Measures",
+        "name":  "UK_YTD Targets (USD)",
+        "displayFolder":  "UK_Shopify"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Budget",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Budget_YTD",
+        "displayFolder":  "Budget"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_MTD Budget",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_MTD Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_MTD Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_YTD Budget Var",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_YTD Budget Var%",
+        "displayFolder":  "Budget\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_Budget",
+        "displayFolder":  "International"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_Sales",
+        "displayFolder":  "International"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_Targets",
+        "displayFolder":  "International"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD Budget",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD Budget Var",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD Budget Var%",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD Sales",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD Sales (USD)",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD Targets",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD Targets (USD)",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD TGT (USD) Var",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD TGT (USD) Var%",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD TGT Var",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_MTD TGT Var%",
+        "displayFolder":  "International\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_Budget Var",
+        "displayFolder":  "International\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_Budget Var%",
+        "displayFolder":  "International\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_Sales Var",
+        "displayFolder":  "International\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_Sales Var%",
+        "displayFolder":  "International\\Variance"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_YTD Budget",
+        "displayFolder":  "International\\YTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_YTD Budget Var",
+        "displayFolder":  "International\\YTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_YTD Budget Var%",
+        "displayFolder":  "International\\YTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_YTD Sales",
+        "displayFolder":  "International\\YTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_YTD Targets",
+        "displayFolder":  "International\\YTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_YTD_TGT_Var",
+        "displayFolder":  "International\\YTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "Int_YTD_TGT_Var%",
+        "displayFolder":  "International\\YTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_MTD LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_YTD LY Sales (Rs)",
+        "displayFolder":  "LY"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_fulfilled(Rs)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Online_Sales(USD)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Pending(Rs)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Return(Rs)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Sale(Rs)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Sales(USD)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Sales_BM (Rs)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Sales_BM (USD)",
+        "displayFolder":  "Sales"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Targets Value",
+        "displayFolder":  "Targets"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_Targets(USD)",
+        "displayFolder":  "Targets"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_MTD Sales",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_MTD Sales(USD)",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_MTD Target Var%",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_MTD Targets",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_MTD Targets (USD)",
+        "displayFolder":  "Targets\\MTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_YTD Sales (Rs)",
+        "displayFolder":  "Targets\\YTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_YTD Sales (USD)",
+        "displayFolder":  "Targets\\YTD"
+    },
+    {
+        "tableName":  "US_Measures",
+        "name":  "US_YTD Targets (USD)",
+        "displayFolder":  "Targets\\YTD"
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF ETHACLASS",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF ETHFOL",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF ETHONLINE",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF OFTACLASS",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF OFTFOL",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF OFTONLINE",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF Sale Total",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF_Total",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF_Total%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF_Total_E",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIF_Total_O",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIFEoM%",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIFEoMETHACLASS",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIFEoMETHFOL",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIFEoMETHONLINE",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIFEoMOFTACLASS",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIFEoMOFTFOL",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIFEoMOFTONLINE",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIFEoMTotal",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF Measures",
+        "name":  "WIFSaleTotal",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF_ETH_ACLASS",
+        "name":  "WIF_ETH_ACLASS Value",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF_ETH_FOL",
+        "name":  "WIF_ETH_FOL Value",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF_ETH_ONLINE",
+        "name":  "WIF_ETH_ONLINE Value",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF_OFT_ACLASS",
+        "name":  "WIF_OFT_ACLASS Value",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF_OFT_FOL",
+        "name":  "WIF_OFT_FOL Value",
+        "displayFolder":  ""
+    },
+    {
+        "tableName":  "WIF_OFT_ONLINE",
+        "name":  "WIF_OFT_ONLINE Value",
+        "displayFolder":  ""
+    }
+]

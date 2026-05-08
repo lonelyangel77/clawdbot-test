@@ -1,0 +1,414 @@
+table Product
+	lineageTag: 32993ba0-acab-4a65-85c5-14e30970eacc
+
+	column Brand
+		dataType: string
+		lineageTag: 46712264-9d01-4c94-8e55-86824ae20413
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 3f66442b-4af5-48a9-af6f-6718f1945cd1
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: d9295e40-e14f-4658-8ae5-5fba37eb0b2e
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubCategory
+		dataType: string
+		lineageTag: a2b6051b-c052-400c-ad3f-4f2c58fcf0e0
+		summarizeBy: none
+		sourceColumn: SubCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemID
+		dataType: string
+		lineageTag: b3fe13c9-0590-49ae-967b-230b1fcf9ee1
+		summarizeBy: none
+		sourceColumn: ItemID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: 1701d5e5-3029-48ed-bd7a-d066c1d97077
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season
+		dataType: string
+		lineageTag: 40778205-07d1-401d-b620-cb75ecccaaa3
+		summarizeBy: none
+		sourceColumn: Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxGroup
+		dataType: string
+		lineageTag: 869e18a6-b661-40bb-80ff-7de98283398c
+		summarizeBy: none
+		sourceColumn: TaxGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column VendorName
+		dataType: string
+		lineageTag: 9187d3ef-9140-4e88-901c-f07b3a257b21
+		summarizeBy: none
+		sourceColumn: VendorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column RetailPrice1
+		dataType: int64
+		formatString: 0
+		lineageTag: d0efba02-9b96-4f6e-aa95-7c16ee020c82
+		summarizeBy: sum
+		sourceColumn: RetailPrice1
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountPCT1
+		dataType: int64
+		formatString: 0
+		lineageTag: fbb34929-de34-4003-9b89-0d9b2cd241e8
+		summarizeBy: sum
+		sourceColumn: DiscountPCT1
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountValue
+		dataType: int64
+		formatString: 0
+		lineageTag: 83a73b3f-9345-4b57-92b5-e247b2d2354b
+		summarizeBy: sum
+		sourceColumn: DiscountValue
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscAmount
+		dataType: int64
+		formatString: 0
+		lineageTag: 10c1907d-1b28-4285-ac80-7dfdbf16a2e1
+		summarizeBy: sum
+		sourceColumn: DiscAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetPrice
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a7704c2-b7a3-49ac-a3bc-3ecf59e10b42
+		summarizeBy: sum
+		sourceColumn: NetPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column Disc_Val
+		dataType: int64
+		formatString: 0
+		lineageTag: af840cf4-3d39-48ff-9aad-0394cbf81479
+		summarizeBy: sum
+		sourceColumn: Disc_Val
+
+		annotation SummarizationSetBy = Automatic
+
+	column Disc_%
+		dataType: double
+		lineageTag: 54a2656d-fb7a-455d-8350-499686b2f5f9
+		summarizeBy: sum
+		sourceColumn: Disc_%
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Gender1
+		dataType: string
+		lineageTag: 20d3b4fb-8930-4f9b-9b37-8a2891cd72a2
+		summarizeBy: none
+		sourceColumn: Gender1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collection
+		dataType: string
+		lineageTag: edcd9be8-eb65-44a0-a235-53cdd6e7c319
+		summarizeBy: none
+		sourceColumn: Collection
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Name'
+		dataType: string
+		lineageTag: e8e7305d-cb0a-46b2-9ba0-4d9b6ca043c2
+		summarizeBy: none
+		sourceColumn: Category Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category ID'
+		dataType: string
+		lineageTag: 13911452-b5b6-435c-b6c9-d79f2a1d33f1
+		summarizeBy: none
+		sourceColumn: Category ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season-SS
+		dataType: string
+		lineageTag: b24b4285-5aa4-4347-9fc4-b873c65f2b2a
+		summarizeBy: none
+		sourceColumn: Season-SS
+
+		annotation SummarizationSetBy = Automatic
+
+	column Class
+		dataType: string
+		lineageTag: b1359281-9b30-465d-b9e3-10e5c6fd8440
+		summarizeBy: none
+		sourceColumn: Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division
+		dataType: string
+		lineageTag: 176fc519-e354-46f3-964d-4e92a50ddae5
+		summarizeBy: none
+		sourceColumn: Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brands = IF([Brand]="Outfitters Junior","Outfitters",[Brand])
+		dataType: string
+		lineageTag: e97c459e-a6e4-4c9b-a0af-cd3d190248ca
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Primary Season'
+		dataType: string
+		lineageTag: 25d7d21b-02ac-4e02-9a89-523c1d06f62c
+		summarizeBy: none
+		sourceColumn: Primary Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Pric' = LOOKUPVALUE(Cost[COST PRICE],Cost[OFTR. STYLE],[ItemID])
+		dataType: double
+		lineageTag: b20a2fd0-3e43-4309-ba8c-126f3a69cbf2
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Avg Cost' = [RetailPrice1]/[Cost Pric]
+		dataType: double
+		lineageTag: db240d92-a61a-4b53-963d-3e415777263c
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tax Val' = [RetailPrice1]*[Tax Rate]
+		dataType: double
+		lineageTag: cbc28a3a-4020-4f9e-93b1-187e726b1522
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Tax' = LOOKUPVALUE(Season[Season Tax 2019-20],Season[Season],[Season])
+		dataType: string
+		lineageTag: b1981fb8-0e7c-412f-ade1-3d4252331ae7
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tax rate' =
+			IF(AND([TaxGroup]="LOCAL",[Season Tax]="Autumn-19"),0.14,
+			IF(AND([TaxGroup]="LOCAL2",[Season Tax]="Autumn-19"),0.14,
+			IF(AND([TaxGroup]="Import",[Season Tax]="Autumn-19"),0.17,
+			IF(AND([TaxGroup]="Import 17%",[Season Tax]="Autumn-19"),0.17,
+			IF(AND([TaxGroup]="LOCAL",[Season Tax]="Winter-19"),0.14,
+			IF(AND([TaxGroup]="LOCAL2",[Season Tax]="Winter-19"),0.14,
+			IF(AND([TaxGroup]="Import",[Season Tax]="Winter-19"),0.17,
+			IF(AND([TaxGroup]="Import 17%",[Season Tax]="Winter-19"),0.17,
+			IF(AND([TaxGroup]="LOCAL",[Season Tax]="Summer-20"),0.14,
+			IF(AND([TaxGroup]="LOCAL2",[Season Tax]="Summer-20"),0.14,
+			IF(AND([TaxGroup]="Import",[Season Tax]="Summer-20"),0.17,
+			IF(AND([TaxGroup]="Import 17%",[Season Tax]="Summer-20"),0.17,
+			IF(AND([TaxGroup]="LOCAL",[Season Tax]="Old"),0.06,
+			IF(AND([TaxGroup]="LOCAL2",[Season Tax]="Old"),0.09,
+			IF(AND([TaxGroup]="Import",[Season Tax]="Old"),0.09,
+			IF(AND([TaxGroup]="Import 17%",[Season Tax]="Old"),0.17,
+			IF(AND([TaxGroup]="LOCAL",[Season Tax]="H-Sum-20"),0.14,
+			IF(AND([TaxGroup]="LOCAL2",[Season Tax]="H-Sum-20"),0.14,
+			IF(AND([TaxGroup]="IMPORT",[Season Tax]="H-Sum-20"),0.17,
+			IF(AND([TaxGroup]="Import 17%",[Season Tax]="H-Sum-20"),0.17,
+			IF(AND([TaxGroup]="LOCAL",[Season Tax]="Winter-20"),0.14,
+			IF(AND([TaxGroup]="LOCAL2",[Season Tax]="Winter-20"),0.14,
+			IF(AND([TaxGroup]="IMPORT",[Season Tax]="Winter-20"),0.17,
+			IF(AND([TaxGroup]="LOCAL",[Season Tax]="Summer-21"),0.14,
+			IF(AND([TaxGroup]="LOCAL2",[Season Tax]="Summer-21"),0.14,
+			IF(AND([TaxGroup]="IMPORT",[Season Tax]="Summer-21"),0.17,
+			IF(AND([TaxGroup]="LOCAL",[Season Tax]="H-Summer-21"),0.14,
+			IF(AND([TaxGroup]="IMPORT",[Season Tax]="H-Summer-21"),0.17
+			))))))))))))))))))))))))))))
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0de8d095-cee6-428d-89a7-81323a0009eb
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FP GP%' = ([RetailPrice1]/(1+[Tax Rate])-[Cost Pric])/([RetailPrice1]/(1+[Tax Rate]))
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6f9840f4-7c26-4ae9-a424-28e74dfc33d8
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Category'
+		dataType: string
+		lineageTag: 201955ee-fb0e-4e26-9c50-1af42650a194
+		summarizeBy: none
+		sourceColumn: Season Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LY-Season Category'
+		dataType: string
+		lineageTag: e5b92726-0b9e-4722-9818-7ee58c973d8a
+		summarizeBy: none
+		sourceColumn: LY-Season Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LY Season'
+		dataType: string
+		lineageTag: d1ad520e-a319-4c14-a932-ef6ddea64b3e
+		summarizeBy: none
+		sourceColumn: LY Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column ClassPhotos
+		dataType: string
+		lineageTag: 5772bc36-13ef-47f6-9589-bb517d2914ad
+		summarizeBy: none
+		sourceColumn: ClassPhotos
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemsPhotos
+		dataType: string
+		lineageTag: d4fb1fe7-5191-43fc-a300-65edb06df8fc
+		dataCategory: ImageUrl
+		summarizeBy: none
+		sourceColumn: ItemsPhotos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Season
+		dataType: string
+		lineageTag: 989843e9-0fe2-4f1a-a575-01e16f1a1038
+		summarizeBy: none
+		sourceColumn: Product_Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALES-TAX
+		dataType: double
+		lineageTag: 31bc2f95-89cc-4d26-abb2-f603138a1b2e
+		summarizeBy: sum
+		sourceColumn: SALES-TAX
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Vendor1 = IF([SALES-TAX]=18,"LOCAL",IF([SALES-TAX]=25,"IMPORT25","LOCAL"))
+		dataType: string
+		lineageTag: dd9527b7-e064-4aa2-b24f-a9c106eb0e37
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cluster
+		dataType: string
+		lineageTag: d70dd034-07a0-47d5-9007-9b40a4559b15
+		summarizeBy: none
+		sourceColumn: Cluster
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product-cfde9092-8532-437d-870c-6929c3e30d9f = m
+		mode: import
+		source = ```
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\PRICE.xlsx"), null, true),
+				    PRICE_Sheet = Source{[Item="PRICE",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(PRICE_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Brand", type text}, {"Gender", type text}, {"Category", type text}, {"SubCategory", type text}, {"ItemID", type text}, {"ItemName", type text}, {"Season", type text}, {"TaxGroup", type text}, {"VendorName", type text}, {"RetailPrice1", Int64.Type}, {"DiscountPCT1", Int64.Type}, {"DiscountValue", Int64.Type}, {"DiscAmount", Int64.Type}, {"NetPrice", Int64.Type}, {"Disc_Val", Int64.Type}, {"Disc_%", Percentage.Type}, {"ETH CATE", type any}, {"Gender1", type text}, {"Collection", type text}, {"Category Name", type text}, {"Category ID", type text}, {"Season-SS", type text}, {"Class", type text}, {"Division", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"ETH CATE"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns",{{"Primary Season", type text}, {"Season Category", type text}, {"LY-Season Category", type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type1", {"Class"}, Class, {"Class"}, "Class.1", JoinKind.LeftOuter),
+				    #"Expanded Class.1" = Table.ExpandTableColumn(#"Merged Queries", "Class.1", {"Image Src"}, {"Class.1.Image Src"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded Class.1",{{"Class.1.Image Src", "ClassPhotos"}}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Renamed Columns", {"ItemID"}, Items, {"Variant SKU"}, "Items", JoinKind.LeftOuter),
+				    #"Expanded Items" = Table.ExpandTableColumn(#"Merged Queries1", "Items", {"Image Src"}, {"Items.Image Src"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded Items",{{"Items.Image Src", "ItemsPhotos"}}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Renamed Columns1", {"ItemID"}, Product_Season, {"PRODUCTNUMBER"}, "Product_Season", JoinKind.LeftOuter),
+				    #"Expanded Product_Season" = Table.ExpandTableColumn(#"Merged Queries2", "Product_Season", {"Season"}, {"Product_Season.Season"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Expanded Product_Season",{{"Product_Season.Season", "Product_Season"}}),
+				    #"Merged Queries3" = Table.NestedJoin(#"Renamed Columns2", {"ItemID"}, Released_Product, {"ITEMNUMBER"}, "Released_Product", JoinKind.LeftOuter),
+				    #"Expanded Released_Product" = Table.ExpandTableColumn(#"Merged Queries3", "Released_Product", {"SALES-TAX"}, {"Released_Product.SALES-TAX"}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Expanded Released_Product",{{"Released_Product.SALES-TAX", "SALES-TAX"}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns3", {"ItemID"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Duplicates","AUTUMN-25","WINTER-25",Replacer.ReplaceText,{"Season"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","FRAGRANCES","FRAGRANCE",Replacer.ReplaceText,{"Category"}),
+				    
+				    // NEW STEP ADDED: Change Season to "Gen-Season" when Collection = "Fragrance"
+				    #"Updated Season by Collection" = Table.ReplaceValue(
+				        #"Replaced Value1",
+				        each [Season],
+				        each if [Category] = "FRAGRANCE" then "GEN-SEASON" else [Season],
+				        Replacer.ReplaceValue,
+				        {"Season"}
+				    ),
+				    #"Merged Queries4" = Table.NestedJoin(#"Updated Season by Collection", {"ItemID"}, Product_Cluster, {"PRODUCTNUMBER"}, "Product_Cluster", JoinKind.LeftOuter),
+				    #"Expanded Product_Cluster" = Table.ExpandTableColumn(#"Merged Queries4", "Product_Cluster", {"Cluster"}, {"Cluster"}),
+				    #"Removed Duplicates1" = Table.Distinct(#"Expanded Product_Cluster", {"ItemID"})
+				in
+				    #"Removed Duplicates1"
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

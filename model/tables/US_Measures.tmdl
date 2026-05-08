@@ -1,0 +1,427 @@
+table US_Measures
+	lineageTag: 061d2486-2aff-45b3-87f7-a48be44edcef
+
+	measure 'US_Targets Value' = CALCULATE(SUM(US_Targets[Targets (PKR)]),USERELATIONSHIP(US_Targets[Combine],Stores[Combine]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets
+		lineageTag: cc3b25c1-d76e-4293-a9af-694d168e74cf
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'US_MTD Targets' = TOTALMTD([US_Targets Value],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets\MTD
+		lineageTag: 9840a1fb-3dce-4184-86cb-f4cbed52203b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure US_fulfilled(Rs) = SUM(Shopify_US_OT[SaleV])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: d4c686f7-5e81-4e3b-bb08-deaf4635ca89
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'US_MTD Sales' = TOTALMTD([US_Sale(Rs)],'Calendar'[Date])
+		dataType: variant
+		displayFolder: Targets\MTD
+		lineageTag: db2789f0-8eed-4829-b380-87f7fe5960ca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'US_MTD Target Var%' = DIVIDE([US_MTD Sales]-[US_MTD Targets],[US_MTD Targets])
+		dataType: variant
+		displayFolder: Targets\MTD
+		lineageTag: d0c3da7a-7de3-40dd-8a22-78db5fb5861e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure US_Pending(Rs) = CALCULATE(SUM(Shopify_US[SaleV]),Shopify_US[Lineitem fulfillment status]="pending")
+		displayFolder: Sales
+		lineageTag: bd41fdd8-edf0-40bb-afff-f17d63d9c26b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure US_Sale(Rs) = [US_fulfilled(Rs)]+[US_Sales_BM (Rs)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 74633ba1-513f-4ee0-a800-c15ff5a908f3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure US_Return(Rs) = CALCULATE(SUM(Shopify_US[SaleV]),Shopify_US[Lineitem fulfillment status]="restocked")
+		displayFolder: Sales
+		lineageTag: d7fef24d-4e04-422e-9778-7a1dac29ef7a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure US_Sales(USD) = [US_Sales_BM (USD)]+[US_Online_Sales(USD)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 08fee9fa-7c4f-407d-bbd0-e2e3db108261
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'US_YTD Sales (USD)' = TOTALYTD([US_Sales(USD)],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets\YTD
+		lineageTag: d42a36ec-dc24-4e81-bd8f-281f35f9491c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_YTD Sales' = [UK_YTD Sales (GBP)]+[US_YTD Sales (USD)]+[UK_Sales_B&M_YTD]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\YTD
+		lineageTag: 8943422d-6b27-401d-9cc7-90899cc93a76
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure US_Targets(USD) = CALCULATE(SUM(US_Targets[Target]),USERELATIONSHIP(US_Targets[Code],WarehouseDB[Warehouse]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets
+		lineageTag: 77187f77-3b9d-4b5e-8fe5-cbe04efb0da9
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'US_YTD Targets (USD)' = TOTALYTD([US_Targets(USD)],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets\YTD
+		lineageTag: 186f57ef-dd3c-4364-90ce-4ccb2ab9b574
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_YTD Targets' = [UK_YTD Targets (GBP)]+[US_YTD Targets (USD)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\YTD
+		lineageTag: 87fd7b60-8807-4530-bcdf-181a38660e51
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Int_YTD_TGT_Var = [Int_YTD Sales]-[Int_YTD Targets]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\YTD
+		lineageTag: 9a523880-3139-4b89-9a02-82615e538139
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Int_YTD_TGT_Var% = DIVIDE([Int_YTD Sales]-[Int_YTD Targets],[Int_YTD Targets])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: International\YTD
+		lineageTag: 129e9f1c-f4b1-4650-a805-f4b40727535d
+
+	measure 'US_MTD Sales(USD)' = TOTALMTD([US_Sales(USD)],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets\MTD
+		lineageTag: dac7b6b1-2b15-4047-b184-a4b457279ef7
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_MTD Sales' = [UK_MTD Sales (GBP)]+[US_MTD Sales(USD)]+[UK_Sales_B&M_MTD (GBP)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\MTD
+		lineageTag: 424e2d11-68b2-4060-a253-f48fbeae0fde
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'US_MTD Targets (USD)' = TOTALMTD([US_Targets(USD)],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets\MTD
+		lineageTag: 72cee9b3-ab8c-40bd-b4f7-e647608fd8bb
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_MTD Targets' = [UK_MTD Targets (GBP)]+[US_MTD Targets (USD)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\MTD
+		lineageTag: e12a150d-6c75-4b45-98e3-329597a8b966
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_MTD TGT Var' = [Int_MTD Sales]-[Int_MTD Targets]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\MTD
+		lineageTag: 7d7a60d6-5f1c-47b4-a693-2a3baadc91b0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_MTD TGT Var%' = DIVIDE([Int_MTD Sales]-[Int_MTD Targets],[Int_MTD Targets])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: International\MTD
+		lineageTag: 97efc811-1c70-4f6f-8963-e35d0d006e2f
+
+	measure 'Int_MTD Sales (USD)' = [UK_MTD Sales (USD)]+[US_MTD Sales(USD)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\MTD
+		lineageTag: 7db26814-351c-46cb-8285-c6c521138778
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_MTD Targets (USD)' = [UK_MTD Targets (USD)]+[US_MTD Targets (USD)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\MTD
+		lineageTag: e57c2a28-4722-4551-baa9-660af391d274
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_MTD TGT (USD) Var' = [Int_MTD Sales (USD)]-[Int_MTD Targets (USD)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\MTD
+		lineageTag: ff718f68-bf5d-4186-ae82-0b41559238d3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_MTD TGT (USD) Var%' = DIVIDE([Int_MTD Sales (USD)]-[Int_MTD Targets (USD)],[Int_MTD Targets (USD)])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: International\MTD
+		lineageTag: 4c8addea-f576-4799-895f-1898b052f626
+
+	measure US_Budget = SUM('Budget-US'[Targets (PKR)])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 6e254c4c-8b5c-4cb7-8d5a-1523c8d78e24
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'US_MTD Budget' = TOTALMTD([US_Budget],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: 26f9cb22-4ff1-4841-90d7-6df77a48bf23
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_MTD Budget' = [MTD_UK_Budget]+[US_MTD Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\MTD
+		lineageTag: 261c1bcd-3125-4ab2-9496-17bd519de45b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_MTD Budget Var' = [Int_MTD Sales]-[Int_MTD Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\MTD
+		lineageTag: e7be13c1-5f2b-4682-b530-bcba5c83e0ec
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_MTD Budget Var%' = [Int_MTD Budget Var]/[Int_MTD Budget]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: International\MTD
+		lineageTag: eee8b948-1c87-403e-a230-53c807672c76
+
+	measure US_Budget_YTD = TOTALYTD([US_Budget],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 0e4c421f-b909-488e-9bec-742a8a2c3db0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_YTD Budget' = [UK_Budget_YTD]+[US_Budget_YTD]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\YTD
+		lineageTag: 739cad1b-6031-463e-a652-d1de338def94
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_YTD Budget Var' = [Int_YTD Sales]-[Int_YTD Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\YTD
+		lineageTag: c944e84b-c196-45c4-8a76-d977b429f472
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_YTD Budget Var%' = [Int_YTD Budget Var]/[Int_YTD Budget]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: International\YTD
+		lineageTag: 3d5abb87-cfdf-4dc8-8532-2d8cf35691c6
+
+	measure Int_Sales = [UK_Sale(GBP)]+[UK_Sales_B&M (GBP)]+[US_Sales(USD)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International
+		lineageTag: d55cb768-3ca7-4bca-9da7-b1dcd528eb67
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Int_Targets = [UK_Targets(GBP)]+[US_Targets(USD)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International
+		lineageTag: 8fc428d7-5e8e-4c13-82f8-cc7aefac0ab4
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_Sales Var' = [Int_Sales]-[Int_Targets]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\Variance
+		lineageTag: 956e52cf-211c-4d04-8e39-e7ee77ab8c59
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_Sales Var%' = [Int_Sales Var]/[Int_Targets]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: International\Variance
+		lineageTag: 82fb9958-fde5-49a2-81ac-3daf65e8e3ba
+
+	measure Int_Budget = [UK_Budget]+[US_Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International
+		lineageTag: d223c7df-7a6a-473a-a1eb-ce7c0d751cb8
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_Budget Var' = [Int_Sales]-[Int_Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: International\Variance
+		lineageTag: 5e6ab683-4abe-4e34-bafa-5dc6e4d72941
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Int_Budget Var%' = [Int_Budget Var]/[Int_Budget]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: International\Variance
+		lineageTag: d037a2b7-f6e5-4430-a92e-d3a826cc7dab
+
+	measure US_Online_Sales(USD) = SUM(Shopify_US_OT[SaleV(USD)])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 7bed7728-0c90-4027-98f9-cfafc457ecf2
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'US_Sales_BM (USD)' = SUM(Sales_US[Amount before tax])*-1
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 5931d54b-1aa8-457e-a53d-e6b63ab8e6b5
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'US_Sales_BM (Rs)' = SUM(Sales_US[Value(PKR)])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: b2a41b8c-e9d9-4ab2-be63-bd1a2a3f3c14
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'US_YTD Sales (Rs)' = TOTALYTD([US_Sale(Rs)],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets\YTD
+		lineageTag: 1480451d-11ff-4500-8ed1-bb31b65671cd
+
+	measure 'US_Budget Var' = [US_Sale(Rs)]-[US_Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: e75144f0-8844-46d5-a3f0-14fc1f5e8177
+
+	measure 'US_Budget Var%' = DIVIDE([US_Sale(Rs)]-[US_Budget],[US_Budget])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: 0e63c042-5370-4885-9f03-3dfa4a3b3633
+
+	measure 'US_MTD Budget Var' = [US_MTD Sales]-[US_MTD Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: 45a25fe8-c7df-49f9-95cf-9d45da39908e
+
+	measure 'US_MTD Budget Var%' = DIVIDE([US_MTD Sales]-[US_MTD Budget],[US_MTD Budget])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: 9834f90e-dd1f-4a08-8e92-766af69fbe9a
+
+	measure 'US_YTD Budget Var' = [US_YTD Sales (Rs)]-[US_Budget_YTD]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: 0b919a8e-b36d-413c-9f90-5a9cd3a5c9ba
+
+	measure 'US_YTD Budget Var%' = DIVIDE([US_YTD Sales (Rs)]-[US_Budget_YTD],[US_Budget_YTD])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: f011e4b1-319a-4853-b9db-7cb0cf61fc65
+
+	measure 'US_LY Sales (Rs)' = CALCULATE([US_Sale(Rs)],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: f6942be7-9c9a-4591-afaa-22cf5efcf589
+
+	measure 'US_MTD LY Sales (Rs)' = CALCULATE([US_MTD Sales],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 54b6f7c6-2d36-4355-9ee2-d8a4bde9fdfe
+
+	measure 'US_YTD LY Sales (Rs)' = CALCULATE([US_YTD Sales (Rs)],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: cb45614b-3ca9-4994-b7ee-970a3602cb44
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: ea2d6158-1963-4bab-913f-6b1f006fcf44
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition US_Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,79 @@
+table Parameter-ALL-Sale
+	lineageTag: 52a0d63c-cde2-40ac-bb21-14662502695d
+
+	column Parameter-ALL
+		dataType: string
+		lineageTag: ed65c4fe-db2f-4518-a4d2-70baf24bb705
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter-ALL Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter-ALL Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter-ALL Fields'
+		dataType: string
+		isHidden
+		lineageTag: 94308546-8898-44b8-9eb5-312b07d495e9
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter-ALL Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter-ALL Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 79b31af3-d8ce-4f65-9c62-41959690a6d0
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter-ALL-Sale = calculated
+		mode: import
+		source = ```
+				{
+				    ("Fiscal Year", NAMEOF('Calendar'[Fiscal Year]), 0),
+				    ("Fiscal QTR", NAMEOF('Calendar'[Fiscal QTR]), 1),
+				    ("Month Name", NAMEOF('Calendar'[Month Name]), 2),
+				    ("YearMonth", NAMEOF('Calendar'[YearMonth]), 3),
+				    ("WeekNum", NAMEOF('Calendar'[WeekNum]), 4),
+				    ("Week Start Date", NAMEOF('Calendar'[Week Start Date]), 5),
+				    ("Week End Date", NAMEOF('Calendar'[Week End Date]), 6),
+				 	
+					("Brand-WH", NAMEOF('Stores'[Brand]), 8),
+				    ("Brick & Morter", NAMEOF('Stores'[Brick & Morter]), 9),
+				    ("Region", NAMEOF('Stores'[Region-1]), 10),
+				    ("City", NAMEOF('Stores'[City]), 11),
+				    ("Store Class", NAMEOF('Stores'[Store Class-O]), 12),
+				    ("Name", NAMEOF('Stores'[StoreName-1]), 13),
+				    ("MTD Status", NAMEOF('Stores'[MTD Status]), 14),
+				    ("YTD Status", NAMEOF('Stores'[YTD Status]), 15),
+				 	
+					("Brand-Product", NAMEOF('Product_Inv'[Brand]), 17),
+				    ("Collection", NAMEOF('Product_Inv'[Collection]), 18),
+				    ("Class", NAMEOF('Product_Inv'[Class]), 19),
+				    ("Sub Class", NAMEOF('Product_Inv'[Sub Class]), 20),
+				    ("Gender", NAMEOF('Product_Inv'[Gender-1]), 21),
+				    ("Season-SS", NAMEOF('Product_Inv'[Season-SS]), 22),
+				    ("Season", NAMEOF('Product_Inv'[Season D365]), 23),
+				    ("Item", NAMEOF('Product_Inv'[Solid Item]), 24),
+				     ("Cluster", NAMEOF('Product_Inv'[Cluster]), 25),
+				    ("Division", NAMEOF('Division'[TEXTVALUE]), 28),
+				    ("Month", NAMEOF('Calendar'[Date (Month)]), 26),
+				    ("Date", NAMEOF('Calendar'[Date]), 27),
+				    ("Sale Type", NAMEOF('SALES'[Sale Type]), 29)
+				}
+				```
+
+	annotation PBI_Id = f970d1ca49524617a1d6981ba0a6256b
+

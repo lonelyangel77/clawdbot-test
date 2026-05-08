@@ -1,0 +1,785 @@
+relationship 88726794-ce22-49dc-bcf0-3a4f4c701784
+	fromColumn: SALES.StyleCode
+	toColumn: Cost.'OFTR. STYLE'
+
+relationship b7100763-6630-445f-bee4-b59c245a44ea
+	fromColumn: SALES.Date
+	toColumn: Calendar.Date
+
+relationship 3b3c5dd0-da75-4e69-8587-a7f5cc77c8e5
+	fromColumn: SALES.StyleCode
+	toColumn: Product.ItemID
+
+relationship 1d3f61a5-a928-413c-9699-6e65f115280c
+	fromColumn: SALES.Combine
+	toColumn: Stores.Combine
+
+relationship 96cbd9e1-3a6e-4b7d-b29d-a8d8ad86e5b7
+	fromColumn: Targets.Combine
+	toColumn: Stores.Combine
+
+relationship 2008f4ff-a386-4514-8977-3f75769f4cb2
+	fromColumn: Targets.Date
+	toColumn: Calendar.Date
+
+relationship 46e3569f-c5ca-4c66-bca0-7352fec0ab01
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Promo.Date
+	toColumn: Calendar.Date
+
+relationship e943ba01-371f-4649-b33b-4a215893cf12
+	fromColumn: SALES.StyleCode
+	toColumn: Product_Inv.ItemNumber
+
+relationship 7572cdd3-6c6f-445e-a554-34b991ac14bd
+	crossFilteringBehavior: bothDirections
+	fromColumn: Stores.Brand
+	toColumn: images.'Icon Name'
+
+relationship ba20f64b-8e24-4b40-9b96-773af0e536b2
+	crossFilteringBehavior: bothDirections
+	fromColumn: Product.Brands
+	toColumn: Images_1.'Icon Name'
+
+relationship 1fbef208-f96c-4b17-af6c-650b946b6748
+	fromColumn: SALES.StyleCode
+	toColumn: Active_Price.'Product number'
+
+relationship 75dd9575-88e3-49fc-b228-02858717facd
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Ramzan.Date
+	toColumn: Calendar.Date
+
+relationship 670a0217-8a58-4387-ad16-81fae4409128
+	fromColumn: SALES.'Retail Code'
+	toColumn: WarehouseDB.Warehouse
+
+relationship e35e024a-0b3e-46bf-b71a-da6eb83b2f71
+	isActive: false
+	fromColumn: Targets.Date
+	toColumn: Ramzan.Date
+
+relationship 7f450c5e-106f-4616-9deb-7231c85c1f27
+	fromColumn: Product.Season
+	toColumn: Season.Season
+
+relationship 55df7775-0dd6-4090-b0fb-6c53bcc9c1b6
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Product.ItemID
+	toColumn: Cost.'OFTR. STYLE'
+
+relationship 7e3c816d-9fcb-46a0-8f4d-c6a07f7d3d2d
+	fromColumn: Footfall_Data.Date
+	toColumn: Calendar.Date
+
+relationship deced3a8-3d0d-4292-b75d-59fa164ca750
+	fromColumn: Footfall_Data.LocationID
+	toColumn: WarehouseDB.Warehouse
+
+relationship 8a523566-fa6f-4c91-bd93-6297e37eda78
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Footfall_Data.LocationID
+	toColumn: Stores.'Retail Code'
+
+relationship a0679cbb-f577-4603-98cd-079707f1e771
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Active_Price.'Product number'
+	toColumn: Product_Inv.ItemNumber
+
+relationship 526f610d-d154-4f3a-89cf-5892c0172119
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Active_Price.'Product number'
+	toColumn: Product_Attribute.PRODUCTNUMBER
+
+relationship 9ab93c7f-120c-445f-b8bd-6eeb9bd7a9bb
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Product.ItemID
+	toColumn: Product_Attribute.PRODUCTNUMBER
+
+relationship 0a6e1e55-a301-4a57-9295-64fe476da9ee
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Product_Inv.ItemNumber
+	toColumn: Product_Attribute.PRODUCTNUMBER
+
+relationship e59b7ea4-d6bd-4cb4-a785-6aa37bdc86be
+	fromColumn: Targets-Units.Date
+	toColumn: Calendar.Date
+
+relationship daf83bfd-c937-4d20-aa0b-157a907529a2
+	fromColumn: Targets-Units.Combine
+	toColumn: Stores.Combine
+
+relationship 0fd1d308-81b6-4c24-bf63-2516f717029d
+	toCardinality: many
+	fromColumn: Targets-Units.Combine
+	toColumn: WarehouseDB.Combine
+
+relationship 17db14e4-fbb9-415f-8aac-6877ca00ee3a
+	fromColumn: FF_Targets.Date
+	toColumn: Calendar.Date
+
+relationship 17a26320-bc1b-4356-9268-ca436140cad1
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Budget Target'.Combine
+	toColumn: WarehouseDB.Combine
+
+relationship 8bf151e2-f3d0-43a0-b5b4-5eae8c6dcff2
+	fromColumn: 'Budget Target'.Date
+	toColumn: Calendar.Date
+
+relationship 42343ff4-f780-4f23-90fe-cf9d25d375d8
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Budgeted GP'.Combine
+	toColumn: WarehouseDB.Combine
+
+relationship 38a664d4-4427-4db3-9fd1-844beebf6940
+	fromColumn: 'Budgeted GP'.Date
+	toColumn: Calendar.Date
+
+relationship bf93d415-6b12-4942-a213-442cb5cc5c2b
+	fromColumn: 'Budgeted GP'.Combine
+	toColumn: Stores.Combine
+
+relationship 618200cf-a3d5-4e19-aef6-798dba36b8cd
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: OL_Promo.Date
+	toColumn: Calendar.Date
+
+relationship 24344032-68f1-438d-91e0-90a2b184ddf8
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: OL_Promo-ETH.Date
+	toColumn: Calendar.Date
+
+relationship 4ae4c3d0-b58e-429b-97d3-d5deaecd9c6f
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: OL_Promo-OFT.Date
+	toColumn: Calendar.Date
+
+relationship 135e850f-e188-4b52-983a-2f84aee1efac
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Promo-ETH.Date
+	toColumn: Calendar.Date
+
+relationship 9ab6ed01-7078-4dcb-a287-a63e8bf637a6
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Promo-OFT.Date
+	toColumn: Calendar.Date
+
+relationship 2c108740-86d0-4c08-98d9-0e9718736466
+	fromColumn: Product.Class
+	toColumn: Class.Class
+
+relationship ca01022f-914f-4cc9-a0b8-34e45552594e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Cost_Inv.ITEMNUMBER
+	toColumn: Product_Inv.ItemNumber
+
+relationship 5ba07bfb-3c3f-4635-8193-4eec80345481
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Active_Price.'Product number'
+	toColumn: Released_Product.PRODUCTNUMBER
+
+relationship bc57c67b-5d01-4f3f-91f9-74cb421f6e2a
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Product_Attribute.PRODUCTNUMBER
+	toColumn: Released_Product.PRODUCTNUMBER
+
+relationship 55cc2c1e-d9ba-4de9-8005-08a8ae627dd8
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Product_Inv.ItemNumber
+	toColumn: Released_Product.ITEMNUMBER
+
+relationship 9ddcb0ba-436e-40cd-a284-cbeced7ff3f5
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Cost_Inv.ITEMNUMBER
+	toColumn: Released_Product.ITEMNUMBER
+
+relationship c13adc17-ff4f-4131-b9d8-b1c787b1f8d4
+	fromColumn: 'NetSales Target'.Date
+	toColumn: Calendar.Date
+
+relationship acc6f5fa-83c7-43a9-8f72-cfeeb595939e
+	fromColumn: 'NetSales Target'.Combine
+	toColumn: Stores.Combine
+
+relationship 7328b40b-8f56-4a27-bfa2-11385820ff27
+	fromColumn: Promo_Invventory.Warehouse
+	toColumn: WarehouseDB.Warehouse
+
+relationship d15bacf0-1697-4b58-ac25-a8b273e03034
+	fromColumn: Promo_LY_Inventory.Warehouse
+	toColumn: WarehouseDB.Warehouse
+
+relationship 28e11ece-d14a-4094-95c0-0bbdbf4835bc
+	fromColumn: Promo_Invventory.Resource
+	toColumn: Product_Inv.ItemNumber
+
+relationship ed57da02-7801-43fd-b4c4-0e2531706c71
+	fromColumn: Promo_LY_Inventory.Resource
+	toColumn: Product_Inv.ItemNumber
+
+relationship 3782df20-dee8-4a84-9be2-72c9853b6db6
+	fromColumn: 'Budget Target'.Combine
+	toColumn: Stores.Combine
+
+relationship b8c78a6e-b155-418e-ba7f-a288dcbc333a
+	fromColumn: SALES.Brand
+	toColumn: Brand.Brand
+
+relationship 3b2e42c1-6268-4a87-9aaf-2344a772345d
+	fromColumn: Targets.Brand
+	toColumn: Brand.Brand
+
+relationship 085b11b8-4bc2-43f8-9fb6-7b1507523182
+	isActive: false
+	fromColumn: Stores.Brand
+	toColumn: Brand.Brand
+
+relationship 7904606f-d8b6-495c-87af-b5d0b8a76a6e
+	isActive: false
+	fromColumn: Product.Brand
+	toColumn: Brand.Brand
+
+relationship 95cf0752-f2df-4f4b-9c37-f21f8c0d0163
+	isActive: false
+	fromColumn: Product_Inv.Brand
+	toColumn: Brand.Brand
+
+relationship 09199a41-6cdc-4c8d-bd9e-dea4ea67afb5
+	isActive: false
+	fromColumn: WarehouseDB.Brand
+	toColumn: Brand.Brand
+
+relationship e177b0be-dbcb-4a4e-afd0-85b08a6ac30a
+	fromColumn: Targets-Units.Brand
+	toColumn: Brand.Brand
+
+relationship 7b0d4951-5f24-4be6-98a4-6f602aae041d
+	fromColumn: FF_Targets.Brand
+	toColumn: Brand.Brand
+
+relationship 29da9a68-d88b-454c-90ce-3d6e0e5205a3
+	fromColumn: 'Budget Target'.Brand
+	toColumn: Brand.Brand
+
+relationship 8326a33b-186b-4a58-80ea-a4ad53c04bc9
+	fromColumn: 'Budgeted GP'.Brand
+	toColumn: Brand.Brand
+
+relationship 7cc3cfe3-2c3c-4cea-ba30-1302e20134a5
+	fromColumn: Items.brand
+	toColumn: Brand.Brand
+
+relationship c173a9e6-18bf-4e22-bd83-e5246f6e6d52
+	fromColumn: 'NetSales Target'.Brand
+	toColumn: Brand.Brand
+
+relationship 94078a90-0287-4a2b-8581-1ac00e6f4c82
+	fromColumn: WarehouseDB.Region
+	toColumn: Region.Region
+
+relationship 8146d668-7c8d-49bf-9629-a4eb207cc0dc
+	isActive: false
+	fromColumn: Stores.Region-1
+	toColumn: Region.Region
+
+relationship ec81dee6-a6a1-4c22-bfa0-2f9683f0cf1c
+	fromColumn: UK_Lines.ITEMNUMBER
+	toColumn: Released_Product.ITEMNUMBER
+
+relationship 6ed708e9-5aba-4032-8ffa-b58cfa0cd2ae
+	fromColumn: UK_Lines.SALESORDERNUMBER
+	toColumn: UK_Headers.SALESORDERNUMBER
+
+relationship 5a791d96-4ede-47ff-8551-e84abf5499dd
+	fromColumn: UK_Lines.ITEMNUMBER
+	toColumn: Product_Inv.ItemNumber
+
+relationship 694be38e-71cc-4dae-b3b8-734982fdb99f
+	fromColumn: Targets.CODE
+	toColumn: WarehouseDB.Warehouse
+
+relationship 2cb22e35-ed23-4973-98ef-4eb2c725cc8f
+	fromColumn: UK_Lines.REQUESTEDRECEIPTDATE
+	toColumn: Calendar.Date
+
+relationship a128057c-0daa-4e4f-8e66-4df21ba4c678
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: UK_Inv-Head.SALESORDERNUMBER
+	toColumn: UK_Headers.SALESORDERNUMBER
+
+relationship a030ed6d-a9aa-407d-afdc-1137b12c4a74
+	isActive: false
+	fromColumn: UK_Inv-Head.INVOICEDATE
+	toColumn: Calendar.Date
+
+relationship c7ce93ae-584e-4b15-8448-a40ead788d86
+	fromColumn: Receiving.ITEMNUMBER
+	toColumn: Product_Inv.ItemNumber
+
+relationship 52ea53c7-84ee-478f-bd80-e77e63e0f5c5
+	fromColumn: Receiving.RECEIVINGWAREHOUSEID
+	toColumn: WarehouseDB.Warehouse
+
+relationship 9178e174-0640-4eee-a229-9b28f703fe86
+	fromColumn: Receiving.PRODUCTRECEIPTDATE
+	toColumn: Calendar.Date
+
+relationship b982c754-7d4b-4f3c-b81a-861010d4d5b3
+	fromColumn: Receiving.'Solid Item'
+	toColumn: Active_Price.'Product number'
+
+relationship 30a6d965-406f-4b0b-946e-3695749edcdc
+	isActive: false
+	fromColumn: Receiving.'Solid Item'
+	toColumn: Cost_Inv.ITEMNUMBER
+
+relationship c1d39f51-c4d3-1bc8-3173-dffd4ba34058
+	fromColumn: Stores.GroupCode
+	toColumn: Brand_Headers.Subtotal
+
+relationship 745822cb-818c-f74b-56c1-06171a7d26a7
+	fromColumn: UK_Lines.SHIPPINGWAREHOUSEID
+	toColumn: WarehouseDB.Warehouse
+
+relationship AutoDetected_d82d92d6-caba-4c8b-8e6d-b0b952098b96
+	fromColumn: 'FP Target'.Brand
+	toColumn: Brand.Brand
+
+relationship 7ad45fa7-f8cb-bbc6-13c7-50afb77c4f52
+	fromColumn: 'FP Target'.Date
+	toColumn: Calendar.Date
+
+relationship 62c0b078-d666-7976-878c-ba667f19449e
+	fromColumn: 'FP Target'.Combine
+	toColumn: Stores.Combine
+
+relationship 98babd5f-f661-54b9-0d55-d63b9c0916ab
+	fromColumn: Targets-Units.Code
+	toColumn: WarehouseDB.Warehouse
+
+relationship AutoDetected_45247f74-6b7c-4b62-ac4a-b99359b2120a
+	fromColumn: Receiving.PURCHASEORDERNUMBER
+	toColumn: PO_Headers.PURCHASEORDERNUMBER
+
+relationship AutoDetected_3353d7d8-9d69-4ef0-81d9-dbb9e095dbad
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Price Aggreement'.Item
+	toColumn: Product_Attribute.PRODUCTNUMBER
+
+relationship AutoDetected_3b7036cb-5d1b-4cdc-b929-2ea68a5c09cb
+	fromColumn: WarehouseSQFT.Brand
+	toColumn: Brand.Brand
+
+relationship AutoDetected_57234e6a-b026-484e-8118-2fa1d62af230
+	isActive: false
+	fromColumn: WarehouseDB.'Shop Code'
+	toColumn: WarehouseSQFT.'Shop Code'
+
+relationship AutoDetected_cd9ce3c2-3fb7-443e-83f8-65f10667cdee
+	fromColumn: WarehouseSQFT.Region
+	toColumn: Region.Region
+
+relationship AutoDetected_d69f0a20-45e1-4637-a2e2-f77bc156a2f7
+	isActive: false
+	fromColumn: Promo_Invventory.Warehouse
+	toColumn: WarehouseSQFT.Warehouse
+
+relationship AutoDetected_23a2d560-cec7-4e1c-8481-a808195650d4
+	isActive: false
+	fromColumn: Promo_LY_Inventory.Warehouse
+	toColumn: WarehouseSQFT.Warehouse
+
+relationship AutoDetected_bc9c138e-acad-4448-bca2-03dd1a6ef515
+	isActive: false
+	fromColumn: FF_Targets.Combine
+	toColumn: WarehouseSQFT.Combine
+
+relationship AutoDetected_4af98eb5-f03b-43bd-a42c-9bad25dcfaf2
+	isActive: false
+	fromColumn: 'Budget Target'.Combine
+	toColumn: WarehouseSQFT.Combine
+
+relationship AutoDetected_5e7c0afd-fd55-4167-9e24-350962db6eaa
+	isActive: false
+	fromColumn: 'Budgeted GP'.Combine
+	toColumn: WarehouseSQFT.Combine
+
+relationship AutoDetected_a9cae750-dead-4c82-9444-0076d997c315
+	isActive: false
+	fromColumn: 'NetSales Target'.Combine
+	toColumn: WarehouseSQFT.Combine
+
+relationship AutoDetected_5977bc40-7442-48fa-8591-2c209909bc43
+	isActive: false
+	fromColumn: 'FP Target'.Combine
+	toColumn: WarehouseSQFT.Combine
+
+relationship c93f2f2b-3933-04e3-2923-e81ead724371
+	isActive: false
+	fromColumn: FF_Targets.Code
+	toColumn: WarehouseDB.Warehouse
+
+relationship AutoDetected_d40cd3a2-a341-4d7f-91c4-e78668c4e172
+	fromColumn: Store-Budget.Brand
+	toColumn: Brand.Brand
+
+relationship 8482123d-c668-c244-385a-172d596f11f0
+	fromColumn: Store-Budget.'Retail Code'
+	toColumn: WarehouseDB.Warehouse
+
+relationship 21dc0f03-b983-f561-6216-dbf302734029
+	fromColumn: Store-Budget.Month
+	toColumn: Calendar.Date
+
+relationship AutoDetected_a90de2b5-a774-497b-9bdb-c731bdf81929
+	fromColumn: Ramzan_CY_Inv.Warehouse
+	toColumn: WarehouseDB.Warehouse
+
+relationship AutoDetected_e5ec90c8-2d51-4ee5-9b92-aecb3d7ff890
+	fromColumn: Ramzan_LY_Inv.Warehouse
+	toColumn: WarehouseDB.Warehouse
+
+relationship AutoDetected_758f2556-0f8b-4f71-a14e-0b98fd7b08c2
+	isActive: false
+	fromColumn: Ramzan_CY_Inv.Warehouse
+	toColumn: WarehouseSQFT.Warehouse
+
+relationship AutoDetected_15b434c5-2aab-456d-bc42-a95ac69b523c
+	isActive: false
+	fromColumn: Ramzan_LY_Inv.Warehouse
+	toColumn: WarehouseSQFT.Warehouse
+
+relationship 9b057778-b294-c751-42d0-4d457ce8cf65
+	fromColumn: Ramzan_CY_Inv.Resource
+	toColumn: Product_Inv.ItemNumber
+
+relationship 6dffeb40-e58a-1ecd-35a3-27d56be553fc
+	fromColumn: Ramzan_LY_Inv.Resource
+	toColumn: Product_Inv.ItemNumber
+
+relationship AutoDetected_89c2edbd-326f-406c-84b9-f42779cc60fd
+	fromColumn: Inv_Aging.Warehouse
+	toColumn: WarehouseDB.Warehouse
+
+relationship 7a772041-9579-4d92-7c95-996630030075
+	fromColumn: Inv_Aging.'Item number'
+	toColumn: Product_Inv.ItemNumber
+
+relationship AutoDetected_f218f1f7-78ee-4fd0-8bde-710fd7a590d1
+	fromColumn: UK_Targets.Brand
+	toColumn: Brand.Brand
+
+relationship AutoDetected_8f09851a-99ff-48ba-86e0-54c8804a8073
+	fromColumn: UK_Retail.Item
+	toColumn: Product_Attribute.PRODUCTNUMBER
+
+relationship AutoDetected_b650a2c0-6ca0-4c42-ab31-109a7763baff
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: UK_Cost.Item
+	toColumn: Product_Attribute.PRODUCTNUMBER
+
+relationship e7cc0807-0c3b-1390-4514-748196716c2e
+	fromColumn: UK_Targets.Date
+	toColumn: Calendar.Date
+
+relationship edebb5f9-c1cc-4926-5852-a07fcdd0574f
+	fromColumn: UK_Targets.Code
+	toColumn: WarehouseDB.Warehouse
+
+relationship 4d5a25f0-a50e-628b-0b66-4ce5295bf5a4
+	fromColumn: UK_Lines.Combine
+	toColumn: Stores.Combine
+
+relationship 878e90b2-abaa-16d6-6825-71608fd436b8
+	fromColumn: UK_Targets.Combine
+	toColumn: Stores.Combine
+
+relationship 7580c292-5560-4ccf-9adc-b7fb34434b7f
+	fromColumn: UK_Lines1.'Item ID'
+	toColumn: UK_Cost.Item
+
+	annotation PBI_IsFromSource = FS
+
+relationship 9a3577a8-02f1-bb79-2742-f5eba61d260f
+	fromColumn: UK_Lines1.Combine
+	toColumn: Stores.Combine
+
+relationship a5e8f5c3-2d06-0654-5386-9af9426595d2
+	fromColumn: UK_Lines1.'Item ID'
+	toColumn: Product.ItemID
+
+relationship a8878b03-5aec-ddb2-2201-7e0594449208
+	fromColumn: UK_Lines1.'Item ID'
+	toColumn: Product_Inv.ItemNumber
+
+relationship fd5823ff-42ad-c163-4df8-431e6645eb29
+	fromColumn: UK_Lines1.INVENTORYWAREHOUSEID
+	toColumn: WarehouseDB.Warehouse
+
+relationship bc107864-2a75-cfb4-c0bf-d5c07549bf44
+	fromColumn: UK_Lines1.Date
+	toColumn: Calendar.Date
+
+relationship 30c807a1-e49a-efcd-f86a-341fbda27967
+	fromColumn: US_Targets.Date
+	toColumn: Calendar.Date
+
+relationship 93ee8895-05a5-64a9-c217-e070b0cb3766
+	isActive: false
+	fromColumn: US_Targets.Combine
+	toColumn: Stores.Combine
+
+relationship 7e37677d-99fa-4a70-9e46-e572c4c67848
+	fromColumn: Product_Season.PRODUCTNUMBER
+	toColumn: Product.ItemID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 899be51d-34d3-aa1d-326a-bb7258adab58
+	fromColumn: Emp_HeadCount.Attribute
+	toColumn: Calendar.Date
+
+relationship 4db08de9-c3db-1bf3-1081-ed85e8e4c2c0
+	fromColumn: Emp_HeadCount.Warehouse
+	toColumn: WarehouseDB.Warehouse
+
+relationship 91f7332d-f23e-160d-f501-759b53067cc9
+	fromColumn: Shopify_US_OT.Day
+	toColumn: Calendar.Date
+
+relationship 4213c78a-46de-2018-d062-2d10441f4fc4
+	fromColumn: Shopify_US_OT.'Warehouse ID'
+	toColumn: WarehouseDB.Warehouse
+
+relationship 26da4b75-3aee-baee-c077-8d6674767846
+	fromColumn: Shopify_UK_OT.Day
+	toColumn: Calendar.Date
+
+relationship 8bbf6763-dd97-9c18-6943-bb90c938397f
+	fromColumn: Shopify_UK_OT.'Warehouse ID'
+	toColumn: WarehouseDB.Warehouse
+
+relationship 814af9f5-17d8-4f2c-ba90-aafcb84deac3
+	fromColumn: Shopify_UK_OT.Combine
+	toColumn: Stores.Combine
+
+relationship e3d61524-c4ae-ace6-f12b-8f72b8a8a1e4
+	fromColumn: Shopify_US_OT.Combine
+	toColumn: Stores.Combine
+
+relationship a8d0dbfe-c188-9f3d-52d0-528a802b4018
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Product_Inv.ItemNumber
+	toColumn: Division.PRODUCTNUMBER
+
+relationship b106ad14-dab7-5456-6dbb-93cab983d789
+	fromColumn: SALES.StyleCode
+	toColumn: Division.PRODUCTNUMBER
+
+relationship b0df6d51-3fb5-db56-dad7-da86a2b518c2
+	fromColumn: 'SALES-TAX DATA'.Brand
+	toColumn: Brand.Brand
+
+relationship 3cd245f7-93bb-081f-ad44-b4107387ead7
+	fromColumn: 'SALES-TAX DATA'.Date
+	toColumn: Calendar.Date
+
+relationship 4693296a-158a-9ac6-3c05-779166c0a474
+	fromColumn: 'SALES-TAX DATA'.'Item ID'
+	toColumn: Cost.'OFTR. STYLE'
+
+relationship 7f657ea7-e153-6679-4de8-320cfb3a6965
+	fromColumn: 'SALES-TAX DATA'.'Item ID'
+	toColumn: Product.ItemID
+
+relationship dd85ee88-05e9-3c8c-cb07-c67ed45fcb4d
+	fromColumn: 'SALES-TAX DATA'.'Item ID'
+	toColumn: Product_Inv.ItemNumber
+
+relationship f2b5783b-521f-8053-6892-1eaac727f080
+	fromColumn: 'SALES-TAX DATA'.Warehouse
+	toColumn: WarehouseDB.Warehouse
+
+relationship 7306be15-4a9f-9f7a-bae1-8133fabb14f8
+	fromColumn: 'SALES-TAX DATA'.Combine
+	toColumn: Stores.Comb
+
+relationship d03bfb2e-991b-4125-1658-4b3eaebe4d7a
+	isActive: false
+	fromColumn: US_Targets.Code
+	toColumn: WarehouseDB.Warehouse
+
+relationship 3cf5371e-1103-05b1-99ba-7958285022c0
+	fromColumn: Sales_UK.Date
+	toColumn: Calendar.Date
+
+relationship a92e40e8-5df6-35aa-f2a1-d795a1625ea5
+	fromColumn: Sales_UK.'Store number'
+	toColumn: WarehouseDB.Warehouse
+
+relationship 49b063e1-e4d0-50c4-b547-c16cf59a25eb
+	fromColumn: Sales_UK.Combine
+	toColumn: Stores.Combine
+
+relationship f4307b23-e0ef-3407-1c09-59847c37e3fc
+	fromColumn: Sales_UK.'Item number'
+	toColumn: Product.ItemID
+
+relationship 95461ebd-0edc-f54a-e444-c647f2f7fea7
+	fromColumn: SALES.StyleCode
+	toColumn: DimCost.'Solid Item'
+
+relationship 78ed6f79-d338-ba9b-555a-ffbb25cc6f4c
+	fromColumn: Budget-UK.Date
+	toColumn: Calendar.Date
+
+relationship ac37eb36-2265-2f01-5310-525b2e83ffaa
+	fromColumn: Budget-UK.Code
+	toColumn: WarehouseDB.Warehouse
+
+relationship ba412e16-1679-8908-4c8e-16c0b6523d0f
+	fromColumn: Budget-US.Date
+	toColumn: Calendar.Date
+
+relationship 3329bba1-b7d1-debf-e032-5d48506260e0
+	fromColumn: Budget-US.Code
+	toColumn: WarehouseDB.Warehouse
+
+relationship 24c71939-08e3-e813-0735-7c40bc5947d7
+	fromColumn: PO_Lines.ITEMNUMBER
+	toColumn: Product_Inv.ItemNumber
+
+relationship 7c38c8df-aea2-5fc0-81ab-0fc5df11e9b1
+	fromColumn: Sales_US.Date
+	toColumn: Calendar.Date
+
+relationship 637e17a8-8fd9-7770-dd5a-75a01757c104
+	fromColumn: Sales_US.'Store number'
+	toColumn: WarehouseDB.Warehouse
+
+relationship 57fc3660-70af-f64e-3af9-f4763b610310
+	fromColumn: Sales_US.'Item number'
+	toColumn: Product.ItemID
+
+relationship a61b109d-a3e0-658c-1d74-8f4c1b72f74c
+	fromColumn: Sales_US.Combine
+	toColumn: Stores.Combine
+
+relationship 697e367b-dcdc-5e03-27b4-b06e4455566c
+	fromColumn: Shopify_UAE_OT.Day
+	toColumn: Calendar.Date
+
+relationship f49e0076-7035-ac18-bc57-5b972b34e324
+	fromColumn: Shopify_UAE_OT.Combine
+	toColumn: Stores.Combine
+
+relationship 99bd5d3f-ff87-4cf6-5955-623586cafab7
+	fromColumn: Shopify_UAE_OT.'Warehouse ID'
+	toColumn: WarehouseDB.Warehouse
+
+relationship 50d594b4-8702-c753-b3fd-50cb8ae020ff
+	fromColumn: UAE_Targets.Date
+	toColumn: Calendar.Date
+
+relationship 7b23fffd-d0b7-2ddd-5d27-6c45ce8c69e7
+	fromColumn: UAE_Targets.Combine
+	toColumn: Stores.Combine
+
+relationship 8a535b90-96e6-550b-728a-1b3cdef6599e
+	fromColumn: UAE_Targets.Code
+	toColumn: WarehouseDB.Warehouse
+
+relationship Relationship
+	fromColumn: Shopify_ROW_OT.Day
+	toColumn: Calendar.Date
+
+relationship 'Relationship 1'
+	fromColumn: Shopify_ROW_OT.'Warehouse ID'
+	toColumn: WarehouseDB.Warehouse
+
+relationship 'Relationship 2'
+	fromColumn: Shopify_ROW_OT.Combine
+	toColumn: Stores.Combine
+
+relationship 'Relationship 3'
+	fromColumn: Targets_ROW.Date
+	toColumn: Calendar.Date
+
+relationship 'Relationship 4'
+	isActive: false
+	fromColumn: Targets_ROW.Combine
+	toColumn: Stores.Combine
+
+relationship 'Relationship 5'
+	isActive: false
+	fromColumn: Targets_ROW.Code
+	toColumn: WarehouseDB.Warehouse
+
+relationship 'Relationship 6'
+	fromColumn: Budget_ROW.Date
+	toColumn: Calendar.Date
+
+relationship 'Relationship 7'
+	fromColumn: Budget_ROW.Code
+	toColumn: WarehouseDB.Warehouse
+
+relationship 'Relationship 8'
+	fromColumn: Budget-UAE.Date
+	toColumn: Calendar.Date
+
+relationship 'Relationship 9'
+	fromColumn: Budget-UAE.Code
+	toColumn: WarehouseDB.Warehouse
+
+relationship b21dba8b-76c8-d7b0-ba24-24d1b255c57b
+	fromColumn: Budget_ROW.Combine
+	toColumn: Stores.Combine
+
+relationship 1485972c-c7a5-8e21-3134-2c20efbf2102
+	fromColumn: Budget-UAE.Combine
+	toColumn: Stores.Combine
+
+relationship bc1c6f67-83f7-a941-37ca-9dd76f4259f2
+	fromColumn: Budget-UK.Combine
+	toColumn: Stores.Combine
+
+relationship 38ba99a0-81a8-2988-cd21-fc4b0825507f
+	fromColumn: Budget-US.Combine
+	toColumn: Stores.Combine
+

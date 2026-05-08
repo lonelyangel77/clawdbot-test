@@ -1,0 +1,35 @@
+table Class
+	lineageTag: 8cd75826-dc0a-433a-bc28-7b7a4baeff66
+
+	column Class
+		dataType: string
+		lineageTag: 06cb8466-92e7-4730-bb06-42d038e95270
+		summarizeBy: none
+		sourceColumn: Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Image Src'
+		dataType: string
+		lineageTag: a8157d07-a652-4db5-8f18-fdf8b8b56bcf
+		summarizeBy: none
+		sourceColumn: Image Src
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Class-4f564b53-16d5-42a4-811e-579e7266b956 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Items_URLs.xlsx"), null, true),
+				    Class_Sheet = Source{[Item="Class",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Class_Sheet,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Class", type text}, {"Image Src", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

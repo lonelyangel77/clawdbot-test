@@ -1,0 +1,55 @@
+table Para-WHDB
+	lineageTag: 6ba76aaf-fe8c-402b-b226-09c011f7681b
+
+	column Parameter
+		dataType: string
+		lineageTag: 34e0198f-0252-45af-b9e7-1d486d2dab70
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		dataType: string
+		isHidden
+		lineageTag: b675cbde-dad3-4c5f-a21d-a8d3bf3fa2a5
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 55b4d5b3-c49b-418d-9164-114c4f232df3
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Para-WHDB-2e73dd0d-07c5-43f1-b47d-a8d7d9647b81 = calculated
+		mode: import
+		source =
+				{
+				    ("Brand", NAMEOF('WarehouseDB'[Brand]), 0),
+				    ("Brick & Morter", NAMEOF('WarehouseDB'[Brick & Morter]), 1),
+				    ("Region", NAMEOF('WarehouseDB'[Region]), 2),
+				    ("City", NAMEOF('WarehouseDB'[City]), 3),
+				    ("Store Class", NAMEOF('WarehouseDB'[Store Class]), 4),
+				    ("Name", NAMEOF('WarehouseDB'[Name]), 5),
+				    ("Store Code", NAMEOF('WarehouseDB'[Warehouse]), 6)
+				}
+
+	annotation PBI_Id = 653829ee9dbc4eafbc0beb9ac2ac27bb
+

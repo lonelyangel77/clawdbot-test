@@ -1,0 +1,66 @@
+table Para_KPIs
+	lineageTag: 78b98e26-ac9b-4aaa-995b-16abfeaad362
+
+	column Para_KPIs
+		dataType: string
+		lineageTag: 0326bc7f-bc1f-4eae-b088-bfa4c750b4fb
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Para_KPIs Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Para_KPIs Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_KPIs Fields'
+		dataType: string
+		isHidden
+		lineageTag: aac90783-06d5-422a-8b22-f9f4ef744b70
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Para_KPIs Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_KPIs Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: eee6d401-c9a1-416a-9f07-2e7fbe62b9cf
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Para_KPIs = calculated
+		mode: import
+		source =
+				{
+				    ("Footfall", NAMEOF('FootFall Measures'[Footfall]), 0),
+				    ("LY Footfall", NAMEOF('FootFall Measures'[LY Footfall]), 1),
+				    ("FF var%", NAMEOF('FootFall Measures'[Footfall Var%]), 2),
+				    ("ASP", NAMEOF('Key Measures'[A.S.P]), 3),
+				    ("LY ASP", NAMEOF('Key Measures'[LY A.S.P]), 4),
+				    ("ASP var%", NAMEOF('Key Measures'[A.S.P Var%]), 5),
+				    ("ATV", NAMEOF('FootFall Measures'[ATV]), 6),
+				    ("LY ATV", NAMEOF('FootFall Measures'[LY ATV]), 7),
+				    ("ATV Var%", NAMEOF('FootFall Measures'[ATV Var%]), 8),
+				    ("UPT", NAMEOF('FootFall Measures'[UPT]), 9),
+				    ("LY UPT", NAMEOF('FootFall Measures'[LY UPT]), 10),
+				    ("UPT Var%", NAMEOF('FootFall Measures'[UPT Var%]), 11),
+				    ("Conv%", NAMEOF('FootFall Measures'[Conversion%]), 12),
+				    ("LY Conv%", NAMEOF('FootFall Measures'[LY Conversion%]), 13),
+				    ("Conv% Var", NAMEOF('FootFall Measures'[Conversion% Var]), 14),
+				    ("Dilution%", NAMEOF('Key Measures'[Dilution%]), 15),
+				    ("LY Dilution", NAMEOF('Key Measures'[LY Dilution]), 16),
+				    ("Dilution Var%", NAMEOF('Key Measures'[Dilution% Var]), 17)
+				}
+
+	annotation PBI_Id = 9762541b95d44de0bed5f2392c9e892e
+

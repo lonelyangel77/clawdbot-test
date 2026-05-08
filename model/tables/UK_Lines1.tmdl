@@ -1,0 +1,277 @@
+table UK_Lines1
+	excludeFromModelRefresh
+	lineageTag: 044dc9fa-c3d8-4f88-80e7-0334accd99c2
+
+	column INVOICEDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f2354587-2c92-47b4-9951-13d038ee89a5
+		summarizeBy: none
+		sourceColumn: INVOICEDATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVENTORYWAREHOUSEID
+		dataType: string
+		lineageTag: c3648e4d-94eb-4287-971c-8c940c3ef854
+		summarizeBy: none
+		sourceColumn: INVENTORYWAREHOUSEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEDQUANTITY
+		dataType: int64
+		formatString: 0
+		lineageTag: ea5ed302-cef7-48a7-be6a-550e3638cbcf
+		summarizeBy: sum
+		sourceColumn: INVOICEDQUANTITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINEAMOUNT
+		dataType: double
+		lineageTag: 9fc38c88-255e-4887-9809-1ecf6727b48d
+		summarizeBy: sum
+		sourceColumn: LINEAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LINETOTALCHARGEAMOUNT
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f2c2bae-da55-4e2c-80bd-01a36d564cc1
+		summarizeBy: sum
+		sourceColumn: LINETOTALCHARGEAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINETOTALDISCOUNTAMOUNT
+		dataType: double
+		lineageTag: d8d7fbff-104b-402a-8b01-8e5700a7df78
+		summarizeBy: sum
+		sourceColumn: LINETOTALDISCOUNTAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LINETOTALTAXAMOUNT
+		dataType: double
+		lineageTag: 9d487240-c187-4e89-8cdf-9d1148de94e2
+		summarizeBy: sum
+		sourceColumn: LINETOTALTAXAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PRODUCTCOLORID
+		dataType: int64
+		formatString: 0
+		lineageTag: dc5c5524-0dc1-4f04-b85f-61ac7c280e50
+		summarizeBy: count
+		sourceColumn: PRODUCTCOLORID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTNAME
+		dataType: string
+		lineageTag: 70827c81-7e43-46db-86c6-5421d6f31093
+		summarizeBy: none
+		sourceColumn: PRODUCTNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTNUMBER
+		dataType: string
+		lineageTag: fedb7e0e-c3a3-4f72-b8f4-23ff97ff002c
+		summarizeBy: none
+		sourceColumn: PRODUCTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTSIZEID
+		dataType: string
+		lineageTag: 8cf6c3b9-412d-424c-b95d-b89ec8a0bcdc
+		summarizeBy: none
+		sourceColumn: PRODUCTSIZEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESPRICE
+		dataType: double
+		lineageTag: cdb8b07f-92bd-44de-90e8-1604640fc6ed
+		summarizeBy: sum
+		sourceColumn: SALESPRICE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Item ID'
+		dataType: string
+		lineageTag: e3c69e6e-7a64-4845-8ba9-67f614172312
+		summarizeBy: none
+		sourceColumn: Item ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: eb3fdeb8-32d4-4162-926c-d57120320499
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combine
+		dataType: string
+		lineageTag: c63ecc63-d79e-4ed5-b2a9-0157a43c2332
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6214669e-9671-4156-9f5f-0e49b567752e
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Rate
+		dataType: double
+		lineageTag: 7ab7b022-773a-4d03-9074-40f88bec4024
+		summarizeBy: sum
+		sourceColumn: Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CostPrice
+		dataType: double
+		lineageTag: 8e453f84-438b-46d7-b0e7-b13db46aa9a0
+		summarizeBy: sum
+		sourceColumn: CostPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Net-PKR
+		dataType: double
+		lineageTag: 05b37196-dfce-4bb5-8bd6-83c33c646334
+		summarizeBy: sum
+		sourceColumn: Net-PKR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Tax-PKR
+		dataType: double
+		lineageTag: 8979f4aa-f538-49bc-b159-0fa3966ac53e
+		summarizeBy: sum
+		sourceColumn: Tax-PKR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Value'
+		dataType: double
+		lineageTag: 69d8bb2a-3331-4a5d-a47b-874163da10e9
+		summarizeBy: sum
+		sourceColumn: Cost Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cost-PKR
+		dataType: double
+		lineageTag: 20b92701-9467-4a21-acf0-7d908dc1c305
+		summarizeBy: sum
+		sourceColumn: Cost-PKR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'FP Value'
+		dataType: double
+		lineageTag: 9fa46462-7718-450b-816f-4ee1b4916f15
+		summarizeBy: sum
+		sourceColumn: FP Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FP-PKR
+		dataType: double
+		lineageTag: ab99c5ff-4c6f-4dc9-ada8-977e0c77677d
+		summarizeBy: sum
+		sourceColumn: FP-PKR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Disc-PKR
+		dataType: double
+		lineageTag: ae2a81e3-a7ec-4a24-8f5b-008f5655d909
+		summarizeBy: sum
+		sourceColumn: Disc-PKR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition UK_Lines1 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\BI Sale\Sales invoice lines_UK.xlsx"), null, true),
+				    Sales_invoice_lines_V4_Sheet = Source{[Item="Sales_invoice_lines_V4",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sales_invoice_lines_V4_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"INVOICENUMBER", type text}, {"LINECREATIONSEQUENCENUMBER", Int64.Type}, {"INVOICEDATE", type datetime}, {"LEDGERVOUCHER", type text}, {"CONFIRMEDSHIPPINGDATE", type datetime}, {"CURRENCYCODE", type text}, {"DIMENSIONNUMBER", type text}, {"INVENTORYSITEID", type text}, {"INVENTORYWAREHOUSEID", type text}, {"INVOICEDQUANTITY", Int64.Type}, {"ITEMBATCHNUMBER", type any}, {"LINEAMOUNT", type number}, {"LINETOTALCHARGEAMOUNT", Int64.Type}, {"LINETOTALDISCOUNTAMOUNT", type number}, {"LINETOTALTAXAMOUNT", type number}, {"ORDEREDINVENTORYSTATUSID", type text}, {"PRODUCTCOLORID", Int64.Type}, {"PRODUCTCONFIGURATIONID", type any}, {"PRODUCTDESCRIPTION", type text}, {"PRODUCTNAME", type text}, {"PRODUCTNUMBER", type text}, {"PRODUCTSIZEID", type text}, {"PRODUCTSTYLEID", type any}, {"PRODUCTVARIANTNAME", type text}, {"SALESPRICE", type number}, {"SALESPRODUCTCATEGORYHIERARCHYNAME", type any}, {"SALESPRODUCTCATEGORYNAME", type any}, {"SALESUNITSYMBOL", type text}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"INVOICEDATE", "INVENTORYWAREHOUSEID", "INVOICEDQUANTITY", "LINEAMOUNT", "LINETOTALCHARGEAMOUNT", "LINETOTALDISCOUNTAMOUNT", "LINETOTALTAXAMOUNT", "PRODUCTCOLORID", "PRODUCTNAME", "PRODUCTNUMBER", "PRODUCTSIZEID", "SALESPRICE"}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Removed Other Columns", "PRODUCTNUMBER", "PRODUCTNUMBER - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "PRODUCTNUMBER - Copy", Splitter.SplitTextByEachDelimiter({" "}, QuoteStyle.Csv, false), {"PRODUCTNUMBER - Copy.1", "PRODUCTNUMBER - Copy.2"}),
+				    #"Merged Queries" = Table.NestedJoin(#"Split Column by Delimiter", {"INVENTORYWAREHOUSEID"}, WarehouseDB, {"Warehouse"}, "WarehouseDB", JoinKind.LeftOuter),
+				    #"Expanded WarehouseDB" = Table.ExpandTableColumn(#"Merged Queries", "WarehouseDB", {"Name"}, {"Name"}),
+				    #"Added Custom" = Table.AddColumn(#"Expanded WarehouseDB", "Combine", each [Name]&"Ethnic-UK"),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Custom", each true),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Filtered Rows", "INVOICEDATE", "INVOICEDATE - Copy"),
+				    #"Split Column by Delimiter1" = Table.SplitColumn(Table.TransformColumnTypes(#"Duplicated Column1", {{"INVOICEDATE - Copy", type text}}, "en-PK"), "INVOICEDATE - Copy", Splitter.SplitTextByEachDelimiter({" "}, QuoteStyle.Csv, false), {"INVOICEDATE - Copy.1", "INVOICEDATE - Copy.2"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Split Column by Delimiter1",{"INVOICEDATE - Copy.2", "PRODUCTNUMBER - Copy.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"INVOICEDATE - Copy.1", "Date"}}),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Renamed Columns", {{"Date", type date}}, "en-PK"),
+				    #"Merged Queries1" = Table.NestedJoin(#"Changed Type with Locale", {"Date"}, GBP_PKR, {"Date"}, "GBP_PKR", JoinKind.LeftOuter),
+				    #"Expanded GBP_PKR" = Table.ExpandTableColumn(#"Merged Queries1", "GBP_PKR", {"Price"}, {"Price"}),
+				    #"Merged Queries2" = Table.NestedJoin(#"Expanded GBP_PKR", {"PRODUCTNUMBER - Copy.1"}, UK_Cost, {"Item"}, "UK_Cost", JoinKind.LeftOuter),
+				    #"Expanded UK_Cost" = Table.ExpandTableColumn(#"Merged Queries2", "UK_Cost", {"Amount in transaction currency"}, {"Amount in transaction currency"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded UK_Cost",{{"PRODUCTNUMBER - Copy.1", "Item ID"}, {"Amount in transaction currency", "CostPrice"}, {"Price", "Rate"}}),
+				    #"Added Custom1" = Table.AddColumn(#"Renamed Columns1", "Net-PKR", each [LINEAMOUNT]*[Rate]),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Tax-PKR", each [LINETOTALTAXAMOUNT]*[Rate]),
+				    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "Cost Value", each [INVOICEDQUANTITY]*[CostPrice]),
+				    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "Cost-PKR", each [Cost Value]*[Rate]),
+				    #"Added Custom5" = Table.AddColumn(#"Added Custom4", "FP Value", each [SALESPRICE]*[INVOICEDQUANTITY]),
+				    #"Added Custom6" = Table.AddColumn(#"Added Custom5", "FP-PKR", each [FP Value]*[Rate]),
+				    #"Added Custom7" = Table.AddColumn(#"Added Custom6", "Disc-PKR", each [LINETOTALDISCOUNTAMOUNT]*[Rate]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom7",{{"FP-PKR", type number}, {"FP Value", type number}, {"Cost-PKR", type number}, {"Cost Value", type number}, {"Tax-PKR", type number}, {"Net-PKR", type number}, {"Disc-PKR", type number}, {"Combine", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

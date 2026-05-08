@@ -1,0 +1,187 @@
+table Promo_Invventory
+	excludeFromModelRefresh
+	lineageTag: 2f80b527-405c-4fea-9d12-ab8bacfb296b
+
+	column 'Resource type'
+		dataType: string
+		lineageTag: 9ac688d7-c3d7-44b5-a506-d1ec65dd6652
+		summarizeBy: none
+		sourceColumn: Resource type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resource
+		dataType: string
+		lineageTag: 752d1ef1-040b-41a7-8d01-5b3d2ca19ca5
+		summarizeBy: none
+		sourceColumn: Resource
+
+		annotation SummarizationSetBy = Automatic
+
+	column Style
+		dataType: string
+		lineageTag: 661247e6-f10f-43cd-b855-4685ca4719b6
+		summarizeBy: none
+		sourceColumn: Style
+
+		annotation SummarizationSetBy = Automatic
+
+	column Warehouse
+		dataType: string
+		lineageTag: ed3a4b9f-300b-41d5-86ae-8ea74fe93c32
+		summarizeBy: none
+		sourceColumn: Warehouse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reference
+		dataType: string
+		lineageTag: 4b290cb9-fe04-4a52-abc7-9627b253291f
+		summarizeBy: none
+		sourceColumn: Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Financial quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: c2681cda-7567-4a77-86b3-577d39c1d464
+		summarizeBy: sum
+		sourceColumn: Inventory: Financial quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Financial amount'
+		dataType: double
+		lineageTag: 694edda6-05f9-4c02-9f12-950eaf33d6e7
+		summarizeBy: sum
+		sourceColumn: Inventory: Financial amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inventory: Physical quantity posted'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f4338a2-e9c6-4e92-bde5-664a19df90e6
+		summarizeBy: sum
+		sourceColumn: Inventory: Physical quantity posted
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Physical amount posted'
+		dataType: int64
+		formatString: 0
+		lineageTag: a0df4d29-ebc5-4a46-95b4-655b1f8daad6
+		summarizeBy: sum
+		sourceColumn: Inventory: Physical amount posted
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: 67a2809f-ca04-40bd-b7e6-3ec5a7b852ce
+		summarizeBy: sum
+		sourceColumn: Inventory: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Amount'
+		dataType: double
+		lineageTag: 58e0ee8d-9642-4298-9977-56166869c693
+		summarizeBy: sum
+		sourceColumn: Inventory: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Average unit cost'
+		dataType: double
+		lineageTag: 9816acf9-4fe7-448a-8e0c-652342653874
+		summarizeBy: sum
+		sourceColumn: Average unit cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Solid Item'
+		dataType: string
+		lineageTag: 6843f58f-27e5-484a-b302-1c5d06808ecd
+		summarizeBy: none
+		sourceColumn: Solid Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Soild Qty' =
+			var vKit = IF(LOOKUPVALUE(Kit[Quantity],Kit[Style],[Resource])=BLANK(),1,LOOKUPVALUE(Kit[Quantity],Kit[Style],[Resource]))
+			var qty = [Inventory: Quantity]
+			Return
+			vKit*qty
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c480c56-23ed-4d35-ba36-cad637511e63
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Value' =
+			var vKit = LOOKUPVALUE(Cost_Inv[PURCHASEPRICE],Cost_Inv[ITEMNUMBER],[Resource])
+			var qty = [Inventory: Quantity]
+			Return
+			vKit*qty
+		dataType: double
+		lineageTag: 2b79e9bc-6bdc-4d18-aa11-4622ef36553f
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inventory: Physical quantity not posted'
+		dataType: string
+		lineageTag: f0a19975-3a73-4c06-8c8f-2025fcb5e8d2
+		summarizeBy: none
+		sourceColumn: Inventory: Physical quantity not posted
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Physical amount not posted'
+		dataType: string
+		lineageTag: 5835ec1e-a05d-4ea0-adbe-ef00734e9cf2
+		summarizeBy: none
+		sourceColumn: Inventory: Physical amount not posted
+
+		annotation SummarizationSetBy = Automatic
+
+	column WH = LOOKUPVALUE(WarehouseDB[Brick & Morter],WarehouseDB[Warehouse],[Warehouse])
+		dataType: string
+		lineageTag: 2075de8e-bc57-44bd-9226-e7a9008fbf0a
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Promo_Invventory = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Online Promo inventory\Inventory value_30-08-2021.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Resource type", type text}, {"Resource", type text}, {"Style", type any}, {"Warehouse", type text}, {"Reference", type text}, {"Inventory: Financial quantity", Int64.Type}, {"Inventory: Financial amount", type number}, {"Inventory: Physical quantity posted", Int64.Type}, {"Inventory: Physical amount posted", Int64.Type}, {"Inventory: Quantity", Int64.Type}, {"Inventory: Amount", type number}, {"Average unit cost", type number}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "Resource", "Resource - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "Resource - Copy", Splitter.SplitTextByDelimiter(":", QuoteStyle.Csv), {"Resource - Copy.1", "Resource - Copy.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Resource - Copy.1", type text}, {"Resource - Copy.2", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"Resource - Copy.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Resource - Copy.1", "Solid Item"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

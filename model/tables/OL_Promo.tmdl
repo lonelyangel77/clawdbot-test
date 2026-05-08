@@ -1,0 +1,83 @@
+table OL_Promo
+	lineageTag: dbf8b053-735e-4a33-bdeb-a8fb8012d3d2
+
+	column 'Day No.'
+		dataType: string
+		lineageTag: e2525c43-3870-4f63-b1aa-bd88fff4b70c
+		summarizeBy: none
+		sourceColumn: Day No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7fc446c0-a983-43c6-b763-83aa24cc6b1b
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Promo
+		dataType: string
+		lineageTag: 30670da8-3c7b-4fb0-8a00-662d280ee38e
+		summarizeBy: none
+		sourceColumn: Promo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: cbc3f072-6cae-40b1-a88c-f2776730097f
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: 6f55bbca-1bf4-4d06-bdf3-e8b8585d99b2
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Extra
+		dataType: string
+		lineageTag: 48e2ae60-3daf-479e-a568-d1da507143bf
+		summarizeBy: none
+		sourceColumn: Extra
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 0ec0ad1e-d317-4ada-ad33-52849b925801
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Column8
+		dataType: string
+		lineageTag: 98312e0b-e059-4bdd-ac8f-29ed21eba4e4
+		summarizeBy: none
+		sourceColumn: Column8
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OL_Promo-9c2e22de-3d9b-4521-b852-9088fb696f31 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Online_promo.xlsx"), null, true),
+				    OL_Promo_Sheet = Source{[Item="OL_Promo",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(OL_Promo_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Day No.", type text}, {"Date", type datetime}, {"Promo", type text}, {"Name", type text}, {"Year", type text}, {"Extra", type text}, {"Brand", type text}, {"Column8", type any}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

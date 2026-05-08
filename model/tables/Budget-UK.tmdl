@@ -1,0 +1,122 @@
+table Budget-UK
+	lineageTag: f3f693c7-e04c-4574-88b9-f5fa6c98c319
+
+	column Code
+		dataType: string
+		lineageTag: f60f3708-e52e-4841-950d-f1e0b16a9342
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shop
+		dataType: string
+		lineageTag: 7be9b79a-8bcb-4038-8083-126129440731
+		summarizeBy: none
+		sourceColumn: Shop
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: db1844f0-9281-4fd0-89a9-9bfb7a0bac31
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 577f2f00-a35c-44c3-aff2-d6c6d56049bc
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Target
+		dataType: double
+		lineageTag: 09084e19-a228-45da-a8b8-6ce6a264b305
+		summarizeBy: sum
+		sourceColumn: Target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price
+		dataType: double
+		lineageTag: 4b789e30-194a-4e45-9209-1d7298b17aff
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TGT(PKR)
+		dataType: double
+		lineageTag: 06f53fb7-9f86-4b39-b5e6-95330cd52fe0
+		summarizeBy: sum
+		sourceColumn: TGT(PKR)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Combine
+		dataType: string
+		lineageTag: fa83024c-75c1-4601-9b00-87e965fe4eb0
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rate-USD
+		dataType: double
+		lineageTag: 181e8ccc-b5b3-46f4-9d95-45d156353245
+		summarizeBy: sum
+		sourceColumn: Rate-USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TGT(USD)
+		dataType: double
+		lineageTag: a8edd0c7-a8d0-459c-9bc4-196bd43aa044
+		summarizeBy: sum
+		sourceColumn: TGT(USD)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Budget-UK = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Day wise Budget_UK.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Code", type text}, {"Shop", type text}, {"Brand", type text}, {"Date", type date}, {"Target", type number}, {"Column6", type any}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column6"}),
+				 #"Merged Queries" = Table.NestedJoin(#"Removed Columns", {"Date"}, GBP_PKR, {"Date"}, "GBP_PKR", JoinKind.LeftOuter),
+				    #"Expanded GBP_PKR" = Table.ExpandTableColumn(#"Merged Queries", "GBP_PKR", {"Price"}, {"Price"}),
+				    #"Added Custom" = Table.AddColumn(#"Expanded GBP_PKR", "TGT(PKR)", each [Target]*[Price]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"TGT(PKR)", type number}}),
+				    #"Added Custom1" = Table.AddColumn(#"Changed Type1", "Combine", each [Shop]&"Ethnic-UK"),
+				    #"Merged Queries1" = Table.NestedJoin(#"Added Custom1", {"Date"}, GBP_USD, {"Date"}, "GBP_USD", JoinKind.LeftOuter),
+				    #"Expanded GBP_USD" = Table.ExpandTableColumn(#"Merged Queries1", "GBP_USD", {"Price"}, {"Price.1"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded GBP_USD",{{"Price.1", "Rate-USD"}}),
+				    #"Added Custom2" = Table.AddColumn(#"Renamed Columns", "TGT(USD)", each [Target]*[#"Rate-USD"]),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom2",{{"TGT(USD)", type number}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

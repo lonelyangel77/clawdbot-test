@@ -1,0 +1,57 @@
+table 'Time Period'
+	lineageTag: 145cbdb2-7f06-445a-8035-7a0c6c41718b
+
+	calculationGroup
+		precedence: 3
+
+		calculationItem 'vs LY%' =
+				VAR _CY =
+				     SELECTEDMEASURE ()
+				VAR _LY =
+				     CALCULATE (
+				          SELECTEDMEASURE (),
+				          SAMEPERIODLASTYEAR ('Calendar'[Date])
+				     )
+				VAR Result =(_CY - _LY)/_LY
+				RETURN
+				     Result
+
+		calculationItem MTD =
+				CALCULATE (
+				     SELECTEDMEASURE (),
+				     DATESMTD ('Calendar'[Date]))
+
+		calculationItem YTD =
+				CALCULATE (
+				     SELECTEDMEASURE (),
+				     DATESYTD ('Calendar'[Date]))
+
+		calculationItem CY = SELECTEDMEASURE()
+
+		calculationItem LY = CALCULATE (SELECTEDMEASURE (),SAMEPERIODLASTYEAR ( 'Calendar'[Date] ))
+
+		calculationItem 'vs LY' =
+				VAR _CY =SELECTEDMEASURE ()
+				VAR _LY =CALCULATE (SELECTEDMEASURE (),SAMEPERIODLASTYEAR ('Calendar'[Date]))
+				VAR Result = _CY-_LY
+				RETURN
+				Result
+
+	column Name
+		dataType: string
+		lineageTag: cca4fa6e-107d-4e69-9a17-d048b19a1658
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: bbe7bf7c-5bae-4b04-be5a-a72102daa689
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

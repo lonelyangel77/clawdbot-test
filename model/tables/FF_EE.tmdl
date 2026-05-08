@@ -1,0 +1,112 @@
+table FF_EE
+	lineageTag: 2f164f27-ff7d-4849-a4bc-954aae9eda32
+
+	column LocationID
+		dataType: string
+		lineageTag: 0e61a3ac-2870-4bcf-bb8b-f8f102a9ae8e
+		summarizeBy: none
+		sourceColumn: LocationID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Name'
+		dataType: string
+		lineageTag: 803d5434-2914-4317-bb95-82d2a49f9c5a
+		summarizeBy: none
+		sourceColumn: Store Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1153084c-3d4e-435e-853e-cb97b86673f0
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'No of Transactions'
+		dataType: int64
+		formatString: 0
+		lineageTag: cfa8f7bd-1363-4b77-991c-14787f3007c4
+		summarizeBy: sum
+		sourceColumn: No of Transactions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Footfall
+		dataType: int64
+		formatString: 0
+		lineageTag: 2072a06e-5907-4519-82b0-95312db16184
+		summarizeBy: sum
+		sourceColumn: Footfall
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TY Net Sls U'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a6dcef9-39fd-43c3-ac43-e11b0b2543f8
+		summarizeBy: sum
+		sourceColumn: TY Net Sls U
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetSalesIncTax
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e6d785e-ce98-4175-a798-b49c720a9e1e
+		summarizeBy: sum
+		sourceColumn: NetSalesIncTax
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tax Amount'
+		dataType: double
+		lineageTag: 650b13c7-c936-4fdc-948d-2862e153197a
+		summarizeBy: sum
+		sourceColumn: Tax Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TY Rtn U'
+		dataType: int64
+		formatString: 0
+		lineageTag: ab3acd59-5217-4d76-97f5-f12ea0366512
+		summarizeBy: sum
+		sourceColumn: TY Rtn U
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TY Rtn'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4afb0b52-24b5-429c-bee4-5edb14369606
+		summarizeBy: sum
+		sourceColumn: TY Rtn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FF_EE-c559fbbc-f9d7-44a7-a793-e87126ee53c8 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Footfall_Data\Ethnic.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Applied filters:#(lf)Year is 2022", type text}, {"Column2", type text}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+				    #"Promoted Headers1" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"LocationID", type text}, {"Store Name", type text}, {"Date", type date}, {"No of Transactions", Int64.Type}, {"Footfall", Int64.Type}, {"TY Net Sls U", Int64.Type}, {"NetSalesIncTax", Int64.Type}, {"Tax Amount", type number}, {"TY Rtn U", Int64.Type}, {"TY Rtn", Int64.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

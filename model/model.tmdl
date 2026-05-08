@@ -1,0 +1,263 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Transform File from SALES DATA - BI'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from SALES DATA - BI\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+/// Errors in queries that were loaded on 12/28/2020 1:37:28 PM.
+queryGroup 'Query Errors - 12/28/2020 1:37:28 PM'
+
+	annotation PBI_QueryGroupOrder = 2
+
+/// Errors in queries that were loaded on 02/16/2021 9:15:18 AM.
+queryGroup 'Query Errors - 02/16/2021 9:15:18 AM'
+
+	annotation PBI_QueryGroupOrder = 5
+
+queryGroup 'Transform File from Transactional Sales Data'
+
+	annotation PBI_QueryGroupOrder = 6
+
+queryGroup 'Transform File from Transactional Sales Data\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Footfall_Data'
+
+	annotation PBI_QueryGroupOrder = 8
+
+queryGroup 'Transform File from Footfall_Data\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Inventory Movement'
+
+	annotation PBI_QueryGroupOrder = 10
+
+queryGroup 'Transform File from Inventory Movement\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Shopify_Data'
+
+	annotation PBI_QueryGroupOrder = 12
+
+queryGroup 'Transform File from Shopify_Data\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from TO lines'
+
+	annotation PBI_QueryGroupOrder = 14
+
+queryGroup 'Transform File from TO lines\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Transactions'
+
+	annotation PBI_QueryGroupOrder = 16
+
+queryGroup 'Transform File from Transactions\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Sales_Order'
+
+	annotation PBI_QueryGroupOrder = 18
+
+queryGroup 'Transform File from Sales_Order\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Data (2)'
+
+	annotation PBI_QueryGroupOrder = 20
+
+queryGroup 'Transform File from Data (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from FOOTFALL_DB'
+
+	annotation PBI_QueryGroupOrder = 22
+
+queryGroup 'Transform File from FOOTFALL_DB\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Headers'
+
+	annotation PBI_QueryGroupOrder = 24
+
+queryGroup 'Transform File from Headers\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Lines'
+
+	annotation PBI_QueryGroupOrder = 26
+
+queryGroup 'Transform File from Lines\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Lines (2)'
+
+	annotation PBI_QueryGroupOrder = 28
+
+queryGroup 'Transform File from Lines (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from SALES-TAX DATA'
+
+	annotation PBI_QueryGroupOrder = 30
+
+queryGroup 'Transform File from SALES-TAX DATA\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["SALES","Parameter1","Transform Sample File","Sample File","Transform File","Calendar","Targets","Stores","Product","Errors in Product","Promo","Cost","Key Measures","RangeStart","RangeEnd","Active_Price","Product_Inv","WarehouseDB","images","Images_1","Errors in Product (2)","Parameter3","Transform Sample File (3)","Sample File (3)","Transform File (3)","Ramzan","Season","Parameter4","Transform Sample File (4)","Sample File (4)","Transform File (4)","Footfall_Data","Grouping","FF_2020","Parameter5","Transform Sample File (5)","Sample File (5)","Transform File (5)","Parameter6","Transform Sample File (6)","Sample File (6)","Transform File (6)","Parameter7","Transform Sample File (7)","Sample File (7)","Transform File (7)","Parameter8","Transform Sample File (8)","Sample File (8)","Transform File (8)","Parameter9","Transform Sample File (9)","Sample File (9)","Transform File (9)","Parameter10","Transform Sample File (10)","Sample File (10)","Transform File (10)","FF_2022","Product_Attribute","Parameter11","Transform Sample File (11)","Sample File (11)","Transform File (11)","Targets-Units","Retail KPIs","FF_Targets","Budget Target","Budgeted GP","FF_OE","FF_EE","Class","Items","Promo_Measures","Promo-OFT","Promo-ETH","OL_Promo","OL_Promo-OFT","OL_Promo-ETH","FF_2023","Inventory","Kit","Cost_Inv","Released_Product","NetSales Target","Promo_Invventory","Promo_LY_Inventory","Region","Brand","UK_Headers","Parameter12","Transform Sample File (12)","Sample File (12)","Transform File (12)","UK_Lines","Parameter13","Transform Sample File (13)","Sample File (13)","Transform File (13)","UK_Inv-Head","FF_2024","Receiving","WIF Measures","Brand_Headers","GBP_PKR","FP Target","PO_Headers","Vendors_V2","Division","Price Aggreement","WarehouseSQFT","FootFall Measures","FF_2025","Store-Budget","Store_Budget_Measures","Ramzan_CY_Inv","Ramzan_LY_Inv","Ramzan_Measures","Inv_Aging","UK_Targets","UK_Retail","UK_Cost","UK_Measures","Parameter14","Transform Sample File (14)","Sample File (14)","Transform File (14)","UK_Lines1","Shopify_US_OT","USD_PKR","US_Measures","US_Targets","Shopify_UK_OT","Product_Season","Emp_HeadCount","Product_category","Product_attri","DimProduct","QP Cost","Purchase_order_lines_V2","Agreement","DimCost","GBP_USD","SVG_Measures","SALES-TAX DATA","Parameter15","Transform Sample File (15)","Sample File (15)","Transform File (15)","Combine Measures","Sales_UK","Budget-UK","Budget-US","Seasonal_Measure","stg_ShopifyProductImages","OFT_Images","ETH_Imagess","Images_DB","ETH_Cluster","Product_Cluster","FF_2026","PO_Lines","Vendor_item","Sales_US","Shopify_UAE_OT","AED_PKR","UAE_Measures","UAE_Targets","Budget-UAE","Shopify_ROW_OT","Budget_ROW","Targets_ROW"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["CalcGroup","MCP-PBIModeling","DevMode"]
+
+ref table SALES
+ref table Calendar
+ref table Targets
+ref table Stores
+ref table Product
+ref table Promo
+ref table Cost
+ref table 'Key Measures'
+ref table Active_Price
+ref table Product_Inv
+ref table WarehouseDB
+ref table Inventory
+ref table images
+ref table Images_1
+ref table 'Target Ach%'
+ref table 'Pick Measure'
+ref table Ramzan
+ref table Season
+ref table Footfall_Data
+ref table Grouping
+ref table Product_Attribute
+ref table Targets-Units
+ref table Para-WHDB
+ref table Para-Stores
+ref table Para-Product-Inv
+ref table 'Retail KPIs'
+ref table FF_Targets
+ref table 'Budget Target'
+ref table 'Budgeted GP'
+ref table FF_OE
+ref table FF_EE
+ref table Promo_Measures
+ref table Promo-OFT
+ref table Promo-ETH
+ref table OL_Promo
+ref table OL_Promo-OFT
+ref table OL_Promo-ETH
+ref table Class
+ref table Items
+ref table Kit
+ref table Cost_Inv
+ref table Released_Product
+ref table 'NetSales Target'
+ref table Promo_Invventory
+ref table Promo_LY_Inventory
+ref table Region
+ref table Brand
+ref table Para_Measures_OFT
+ref table Para_Measures_ETH
+ref table UK_Headers
+ref table UK_Lines
+ref table UK_Inv-Head
+ref table Receiving
+ref table 'WIF Measures'
+ref table WIF_OFT_ACLASS
+ref table WIF_OFT_FOL
+ref table WIF_OFT_ONLINE
+ref table Brand_Headers
+ref table WIF_ETH_ACLASS
+ref table WIF_ETH_FOL
+ref table WIF_ETH_ONLINE
+ref table GBP_PKR
+ref table 'FP Target'
+ref table PO_Headers
+ref table Vendors_V2
+ref table Division
+ref table 'Price Aggreement'
+ref table WarehouseSQFT
+ref table 'FootFall Measures'
+ref table Para_Sales
+ref table Para_KPIs
+ref table Store-Budget
+ref table Store_Budget_Measures
+ref table Ramzan_CY_Inv
+ref table Ramzan_LY_Inv
+ref table Ramzan_Measures
+ref table Inv_Aging
+ref table UK_Targets
+ref table UK_Retail
+ref table UK_Cost
+ref table UK_Measures
+ref table UK_Lines1
+ref table USD_PKR
+ref table US_Measures
+ref table US_Targets
+ref table Product_Season
+ref table Emp_HeadCount
+ref table Shopify_US_OT
+ref table Shopify_UK_OT
+ref table DimProduct
+ref table DimCost
+ref table GBP_USD
+ref table Para_Calendar
+ref table 'Time Period'
+ref table Parameter-ALL-Sale
+ref table Parameter-ALL-Inventory
+ref table Para_Inv_Measures
+ref table SVG_Measures
+ref table 'SALES-TAX DATA'
+ref table 'Combine Measures'
+ref table Sales_UK
+ref table Budget-UK
+ref table Budget-US
+ref table Seasonal_Measure
+ref table PO_Lines
+ref table Vendor_item
+ref table Sales_US
+ref table Shopify_UAE_OT
+ref table AED_PKR
+ref table UAE_Measures
+ref table UAE_Targets
+ref table Budget-UAE
+ref table Shopify_ROW_OT
+ref table Budget_ROW
+ref table Targets_ROW
+ref table ROW_Measures
+ref table Forecast
+ref table 'Pricing & Dilution'
+ref table 'Sales Measures'
+ref table 'Targets & Budget'
+ref table 'Time Intelligence'
+
+ref cultureInfo en-US
+

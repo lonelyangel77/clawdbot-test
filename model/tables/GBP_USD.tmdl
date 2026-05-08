@@ -1,0 +1,87 @@
+table GBP_USD
+	lineageTag: 2ccf34b4-b407-4f35-b82f-77143fdd6e50
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3fa3855c-bbaf-40a5-ada0-013893cff98e
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Price
+		dataType: double
+		lineageTag: 373a5115-be06-448d-8d4c-2d2e1d8a2f71
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Open
+		dataType: double
+		lineageTag: 9535d0fd-d664-4cac-a07a-932f010a1b72
+		summarizeBy: sum
+		sourceColumn: Open
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column High
+		dataType: double
+		lineageTag: 89fc3e51-0b74-469b-b0b4-d1335545f087
+		summarizeBy: sum
+		sourceColumn: High
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Low
+		dataType: double
+		lineageTag: 2ecc0923-678d-46f9-a6f8-3b356f9cd6fb
+		summarizeBy: sum
+		sourceColumn: Low
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Vol.'
+		dataType: string
+		lineageTag: 1129cfb0-3b1b-4b21-96c1-a610565a2e6d
+		summarizeBy: none
+		sourceColumn: Vol.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Change %'
+		dataType: double
+		lineageTag: 6c1ad588-81dd-4ff0-975d-904e452602d7
+		summarizeBy: sum
+		sourceColumn: Change %
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition GBP_USD = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\GBP_USD Historical Data.xlsx"), null, true),
+				    #"GBP_USD Historical Data_Sheet" = Source{[Item="GBP_USD Historical Data",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"GBP_USD Historical Data_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Price", type number}, {"Open", type number}, {"High", type number}, {"Low", type number}, {"Vol.", type any}, {"Change %", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

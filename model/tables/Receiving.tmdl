@@ -1,0 +1,190 @@
+table Receiving
+	lineageTag: 63709ccc-ef1d-4e50-82dc-7496c7a08d55
+
+	column ITEMNUMBER
+		dataType: string
+		lineageTag: 0a82d6fd-62b1-49c2-a1e5-fff1ebfe9c0e
+		summarizeBy: none
+		sourceColumn: ITEMNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINEDESCRIPTION
+		dataType: string
+		lineageTag: 43f0cb0a-8154-4f18-80b4-5d2af5e449e0
+		summarizeBy: none
+		sourceColumn: LINEDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDEREDPURCHASEQUANTITY
+		dataType: double
+		lineageTag: 96d15341-d240-4e9b-b3c5-5d7b9454d4ff
+		summarizeBy: sum
+		sourceColumn: ORDEREDPURCHASEQUANTITY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PRODUCTCOLORID
+		dataType: string
+		lineageTag: 4e578da1-08fc-4dc3-a1b3-59b9012a54f9
+		summarizeBy: none
+		sourceColumn: PRODUCTCOLORID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTCONFIGURATIONID
+		dataType: string
+		lineageTag: 6ab6808a-c0c9-46c7-89be-96c4f69c614b
+		summarizeBy: none
+		sourceColumn: PRODUCTCONFIGURATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTNUMBER
+		dataType: string
+		lineageTag: c4881f9c-420d-4ca5-9270-b805f7e48e94
+		summarizeBy: none
+		sourceColumn: PRODUCTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTRECEIPTDATE
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 58aacacc-18ab-4478-a69a-9c79792b2021
+		summarizeBy: none
+		sourceColumn: PRODUCTRECEIPTDATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column PRODUCTSIZEID
+		dataType: string
+		lineageTag: e8472893-99f4-42a4-a6ba-1aedc0bf9738
+		summarizeBy: none
+		sourceColumn: PRODUCTSIZEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PURCHASEORDERNUMBER
+		dataType: string
+		lineageTag: fb4b5f52-c293-4898-b26e-ed28e8e4964c
+		summarizeBy: none
+		sourceColumn: PURCHASEORDERNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column RECEIVEDPURCHASEQUANTITY
+		dataType: double
+		lineageTag: b0b0d2d3-1784-4571-8526-404b69bc0801
+		summarizeBy: sum
+		sourceColumn: RECEIVEDPURCHASEQUANTITY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RECEIVINGWAREHOUSEID
+		dataType: string
+		lineageTag: 08b3462a-54c0-4eb9-9a56-b5b55b5a4174
+		summarizeBy: none
+		sourceColumn: RECEIVINGWAREHOUSEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column REMAININGPURCHASEQUANTITY
+		dataType: double
+		lineageTag: 7967f514-39d9-4a52-9c14-0c5395194f49
+		summarizeBy: sum
+		sourceColumn: REMAININGPURCHASEQUANTITY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Solid Item'
+		dataType: string
+		lineageTag: 1718b5b4-c616-441b-9ea6-129139a4ae00
+		summarizeBy: none
+		sourceColumn: Solid Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Kit Component' = IF(LOOKUPVALUE(Kit[Quantity],Kit[Style],[ITEMNUMBER])=BLANK(),1,LOOKUPVALUE(Kit[Quantity],Kit[Style],[ITEMNUMBER]))
+		dataType: int64
+		formatString: 0
+		lineageTag: 23bc6cbd-6120-4cc4-bd9b-4a8ea3236ccb
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Solid Qty' = [RECEIVEDPURCHASEQUANTITY]*[Kit Component]
+		dataType: double
+		lineageTag: 24906ccd-0a37-4252-a136-384042075c65
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost Price'
+		dataType: double
+		lineageTag: 573e8750-d33b-4839-8833-035341126d10
+		summarizeBy: sum
+		sourceColumn: Cost Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cost.V' = [Solid Qty]*[CostP1]
+		dataType: double
+		lineageTag: 854cd946-843e-4346-a480-1c41b8b5525c
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CostP1 = LOOKUPVALUE(Cost_Inv[PURCHASEPRICE],Cost_Inv[ITEMNUMBER],[Solid Item])
+		dataType: double
+		lineageTag: cbeecf53-47f1-466f-bb0b-c8bbeeb8db5a
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Receiving = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\FORTNIGHTLY REPORTS\PO Detail.xlsx"), null, true),
+				    Product_receipt_line_Sheet = Source{[Item="Product_receipt_line",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Product_receipt_line_Sheet, [PromoteAllScalars=true]),
+				    #"Removed Columns" = Table.RemoveColumns(#"Promoted Headers",{"RECORDID", "DELIVERYADDRESSCOUNTRYREGIONID", "DELIVERYADDRESSCOUNTYID", "DELIVERYADDRESSSTATEID", "EXPECTEDDELIVERYDATE", "EXTERNALITEMNUMBER", "ITEMBATCHNUMBER", "ITEMSERIALNUMBER", "LINENUMBER", "PROCUREMENTPRODUCTCATEGORYHIERARCHYNAME", "PROCUREMENTPRODUCTCATEGORYNAME", "PRODUCTRECEIPTHEADERRECORDID", "PRODUCTRECEIPTNUMBER", "PRODUCTSTYLEID", "PURCHASEORDERLINENUMBER", "PURCHASERPERSONNELNUMBER", "PURCHASEUNITSYMBOL", "RECEIVEDINVENTORYQUANTITY", "RECEIVEDINVENTORYSTATUSID", "RECEIVINGSITEID", "RECEIVINGWAREHOUSELOCATIONID", "REMAININGINVENTORYQUANTITY"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Removed Columns",{{"REMAININGPURCHASEQUANTITY", type number}, {"RECEIVEDPURCHASEQUANTITY", type number}, {"RECEIVINGWAREHOUSEID", type text}, {"PURCHASEORDERNUMBER", type text}, {"PRODUCTSIZEID", type text}, {"PRODUCTRECEIPTDATE", type datetime}, {"PRODUCTNUMBER", type text}, {"PRODUCTCONFIGURATIONID", type text}, {"PRODUCTCOLORID", type text}, {"ORDEREDPURCHASEQUANTITY", type number}, {"LINEDESCRIPTION", type text}, {"ITEMNUMBER", type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "ITEMNUMBER", "ITEMNUMBER - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "ITEMNUMBER - Copy", Splitter.SplitTextByEachDelimiter({":"}, QuoteStyle.Csv, false), {"ITEMNUMBER - Copy.1", "ITEMNUMBER - Copy.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"ITEMNUMBER - Copy.1", type text}, {"ITEMNUMBER - Copy.2", type text}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Changed Type1",{"ITEMNUMBER - Copy.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns1",{{"ITEMNUMBER - Copy.1", "Solid Item"}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Renamed Columns", {"Solid Item"}, Cost_Inv, {"ITEMNUMBER"}, "Cost_Inv", JoinKind.LeftOuter),
+				    #"Expanded Cost_Inv" = Table.ExpandTableColumn(#"Merged Queries", "Cost_Inv", {"PURCHASEPRICE"}, {"PURCHASEPRICE"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded Cost_Inv",{{"PURCHASEPRICE", "Cost Price"}}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Renamed Columns1",{{"PRODUCTRECEIPTDATE", type date}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

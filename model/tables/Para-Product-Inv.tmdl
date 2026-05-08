@@ -1,0 +1,58 @@
+table Para-Product-Inv
+	lineageTag: 57af1431-88f3-491c-a06b-d54278c76e88
+
+	column Para-Product-Inv
+		dataType: string
+		lineageTag: 992c3d69-7e65-4602-a714-2cea1a33eb88
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Para-Product-Inv Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Para-Product-Inv Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para-Product-Inv Fields'
+		dataType: string
+		isHidden
+		lineageTag: 06e6fbd5-044a-485e-8a18-e124ac90b97c
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Para-Product-Inv Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para-Product-Inv Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: aa893954-51f5-4280-8e76-dfca26b9ff24
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Para-Product-Inv-e6250ba5-2e07-4267-b7c5-8bb2866071a8 = calculated
+		mode: import
+		source =
+				{
+				    ("Brand", NAMEOF('Product_Inv'[Brand]), 0),
+				    ("Collection", NAMEOF('Product_Inv'[Collection]), 5),
+				    ("Class", NAMEOF('Product_Inv'[Class]), 2),
+				    ("Sub Class", NAMEOF('Product_Inv'[Sub Class]), 3),
+				    ("Gender", NAMEOF('Product_Inv'[Gender-1]), 4),
+				    ("Season-SS", NAMEOF('Product_Inv'[Season-SS]), 8),
+				    ("Season", NAMEOF('Product_Inv'[Season D365]), 1),
+				    ("Item", NAMEOF('Product_Inv'[Solid Item]), 6),
+				    ("Cluster", NAMEOF('Product_Inv'[Cluster]), 9),
+				    ("Month", NAMEOF('Calendar'[Date (Month)]), 7)
+				}
+
+	annotation PBI_Id = fe82618a7b384a6eaa8a16f26e6f1f79
+

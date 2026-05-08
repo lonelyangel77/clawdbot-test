@@ -1,0 +1,87 @@
+table AED_PKR
+	lineageTag: fbeb0d7c-3278-4baa-a413-5530ed39cf61
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 56378a5c-86c3-4995-ba0c-cb5e52a1c863
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Price
+		dataType: double
+		lineageTag: 57df587c-8d68-4ce4-be35-31314598392f
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Open
+		dataType: double
+		lineageTag: 9ce7cdab-df4c-460e-89f0-823166b01eca
+		summarizeBy: sum
+		sourceColumn: Open
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column High
+		dataType: double
+		lineageTag: e2a84737-a02b-4a65-9ee7-d164d8908014
+		summarizeBy: sum
+		sourceColumn: High
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Low
+		dataType: double
+		lineageTag: 5436d9da-008d-4062-852d-05bce026376b
+		summarizeBy: sum
+		sourceColumn: Low
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Vol.'
+		dataType: string
+		lineageTag: 3306a042-2205-4399-87e8-ee1fb58142aa
+		summarizeBy: none
+		sourceColumn: Vol.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Change %'
+		dataType: double
+		lineageTag: 339853ee-df15-49ca-aadb-1959939e5891
+		summarizeBy: sum
+		sourceColumn: Change %
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition AED_PKR = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\AED_PKR Historical Data.xlsx"), null, true),
+				    #"AED_PKR Historical Data_Sheet" = Source{[Item="AED_PKR Historical Data",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"AED_PKR Historical Data_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Price", type number}, {"Open", type number}, {"High", type number}, {"Low", type number}, {"Vol.", type text}, {"Change %", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

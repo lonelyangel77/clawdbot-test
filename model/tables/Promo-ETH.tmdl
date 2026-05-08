@@ -1,0 +1,75 @@
+table Promo-ETH
+	lineageTag: 4c650a38-ca51-448e-9bf2-5a8f5ece77a2
+
+	column 'Day No.'
+		dataType: string
+		lineageTag: a6e14239-81e0-4f65-be96-a10562c5ce19
+		summarizeBy: none
+		sourceColumn: Day No.
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f7129736-6310-4082-869d-f447ed5355d9
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Promo
+		dataType: string
+		lineageTag: b69e1954-5ae9-4deb-b8c4-10f3d5f86cd4
+		summarizeBy: none
+		sourceColumn: Promo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: a22d0a5e-2a15-46e8-be9f-d4d7b1247b3c
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: 1728f018-7095-422f-8196-03619a30b224
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Extra
+		dataType: string
+		lineageTag: c2eca8ec-6c2a-4c2d-ac24-052020e790b4
+		summarizeBy: none
+		sourceColumn: Extra
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 80ee4eff-944c-40e2-b8e5-dbed9317c1e4
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Promo-ETH-9240b8ea-8e41-41be-8a6f-18d7f9869745 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\promo - ETH.xlsx"), null, true),
+				    Promo_Sheet = Source{[Item="Promo",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Promo_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Day No.", type text}, {"Date", type datetime}, {"Promo", type text}, {"Name", type text}, {"Year", type text}, {"Extra", type text}, {"Brand", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

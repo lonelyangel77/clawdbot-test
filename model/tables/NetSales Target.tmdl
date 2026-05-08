@@ -1,0 +1,67 @@
+table 'NetSales Target'
+	lineageTag: d4bc5102-b132-42ef-ae48-640f901d44a1
+
+	column Store
+		dataType: string
+		lineageTag: 0442f576-25d5-45d8-b648-fc77a8e3ea65
+		summarizeBy: none
+		sourceColumn: Store
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 2eee8f4e-5138-437b-b8cf-bdd0b97856db
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7d97a8c6-66a5-4480-ac0b-a78b4a4ab822
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Qty
+		dataType: double
+		lineageTag: 62c92447-93a0-4910-8b0a-a4cc4e8c8975
+		summarizeBy: sum
+		sourceColumn: Qty
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Combine
+		dataType: string
+		lineageTag: 0d59380b-8a3a-4cc0-9bdd-9def512dd7f4
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'NetSales Target' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Day wise NetSales Targets.xlsx"), null, true),
+				    #"NetSales Target_Sheet" = Source{[Item="NetSales Target",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"NetSales Target_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Store", type text}, {"Brand", type text}, {"Date", type date}, {"Qty", type number}, {"Column5", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column5"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns",{{"Qty", type number}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type1", "Combine", each [Store]&[Brand]),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"Combine", type text}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

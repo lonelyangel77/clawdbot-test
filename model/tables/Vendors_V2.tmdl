@@ -1,0 +1,1567 @@
+table Vendors_V2
+	lineageTag: 13cda6c4-7554-4f86-8bfb-7a2319805f0b
+
+	column VENDORACCOUNTNUMBER
+		dataType: string
+		lineageTag: 4da13523-d19a-4d58-a6c5-b61a1349c1a5
+		summarizeBy: none
+		sourceColumn: VENDORACCOUNTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSBOOKS
+		dataType: string
+		lineageTag: 3ae241ae-e862-41cd-8c95-109e08e96ca5
+		summarizeBy: none
+		sourceColumn: ADDRESSBOOKS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSBUILDINGCOMPLIMENT
+		dataType: string
+		lineageTag: e4ab2c72-25fb-4e08-80f4-323730cd7fb4
+		summarizeBy: none
+		sourceColumn: ADDRESSBUILDINGCOMPLIMENT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSCITY
+		dataType: string
+		lineageTag: 31841c1b-d1f8-4fcc-96f1-2c25a526e75b
+		summarizeBy: none
+		sourceColumn: ADDRESSCITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSCOUNTRYREGIONID
+		dataType: string
+		lineageTag: 9cb6f9a6-b43f-4c0a-9cc3-36a0aa08f01e
+		summarizeBy: none
+		sourceColumn: ADDRESSCOUNTRYREGIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSCOUNTRYREGIONISOCODE
+		dataType: string
+		lineageTag: 3b1773d1-3feb-49c6-926b-0bca0e08d879
+		summarizeBy: none
+		sourceColumn: ADDRESSCOUNTRYREGIONISOCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSCOUNTYID
+		dataType: string
+		lineageTag: e39fd494-b339-4fb6-9dd6-4ee45734395d
+		summarizeBy: none
+		sourceColumn: ADDRESSCOUNTYID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSDESCRIPTION
+		dataType: string
+		lineageTag: 50885247-f3a9-4528-a2fd-360b8a2603d9
+		summarizeBy: none
+		sourceColumn: ADDRESSDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSDISTRICTNAME
+		dataType: string
+		lineageTag: df4b439a-38f6-464e-8ce6-6144ad4bf84a
+		summarizeBy: none
+		sourceColumn: ADDRESSDISTRICTNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSLATITUDE
+		dataType: int64
+		formatString: 0
+		lineageTag: 13de218d-55d7-4558-b996-8afda3901ed5
+		summarizeBy: sum
+		sourceColumn: ADDRESSLATITUDE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSLOCATIONID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3390a684-1a88-4a81-bb69-5a3cef214e6e
+		summarizeBy: count
+		sourceColumn: ADDRESSLOCATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSLOCATIONROLES
+		dataType: string
+		lineageTag: 11678faf-dded-4722-9376-3027379f535b
+		summarizeBy: none
+		sourceColumn: ADDRESSLOCATIONROLES
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSLONGITUDE
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f8ad488-463c-498f-8e40-990b0a8e4f57
+		summarizeBy: sum
+		sourceColumn: ADDRESSLONGITUDE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSPOSTBOX
+		dataType: string
+		lineageTag: eb5cbdf1-6cca-4572-9e29-08d0bc277816
+		summarizeBy: none
+		sourceColumn: ADDRESSPOSTBOX
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSRECORDID
+		dataType: int64
+		formatString: 0
+		lineageTag: 483ad2de-9bba-43a1-86a1-9108d332a114
+		summarizeBy: count
+		sourceColumn: ADDRESSRECORDID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSSTATEID
+		dataType: string
+		lineageTag: acaecdec-bd85-4aeb-baf2-1c18946e35ce
+		summarizeBy: none
+		sourceColumn: ADDRESSSTATEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSSTREET
+		dataType: string
+		lineageTag: a7789602-5b1a-4174-aa7b-1f891a8d1736
+		summarizeBy: none
+		sourceColumn: ADDRESSSTREET
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSSTREETNUMBER
+		dataType: string
+		lineageTag: b1f744de-6bfd-431e-93fd-29124799ac9f
+		summarizeBy: none
+		sourceColumn: ADDRESSSTREETNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSTIMEZONE
+		dataType: string
+		lineageTag: 94fb49a5-9b14-4363-977a-9179313d71e1
+		summarizeBy: none
+		sourceColumn: ADDRESSTIMEZONE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSVALIDFROM
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3d51f2c4-da7e-4397-ba11-bccdf95a2063
+		summarizeBy: none
+		sourceColumn: ADDRESSVALIDFROM
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSVALIDTO
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 87a9769a-1aef-460a-b930-6c852b42261a
+		summarizeBy: none
+		sourceColumn: ADDRESSVALIDTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESSZIPCODE
+		dataType: string
+		lineageTag: caf50551-057f-4270-9b67-975815656bb3
+		summarizeBy: none
+		sourceColumn: ADDRESSZIPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column AREPRICESINCLUDINGSALESTAX
+		dataType: string
+		lineageTag: 633d3a6b-af0b-43d1-b44f-cd51a8c061a7
+		summarizeBy: none
+		sourceColumn: AREPRICESINCLUDINGSALESTAX
+
+		annotation SummarizationSetBy = Automatic
+
+	column BANKACCOUNTID
+		dataType: string
+		lineageTag: ee6d747d-0ebd-42fb-9206-8b166fd899b3
+		summarizeBy: none
+		sourceColumn: BANKACCOUNTID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BARCODENUMBERSEQUENCE
+		dataType: string
+		lineageTag: 6f6e56c0-9eb3-4ebb-9828-da599f45f59a
+		summarizeBy: none
+		sourceColumn: BARCODENUMBERSEQUENCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column BUSINESSSEGMENTCODE
+		dataType: string
+		lineageTag: 4baea0ad-cc53-4c96-9e51-5a1476a3b201
+		summarizeBy: none
+		sourceColumn: BUSINESSSEGMENTCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column BUSINESSSUBSEGMENTCODE
+		dataType: string
+		lineageTag: be9c5f6d-70d5-47c5-a080-775c4b0a0e67
+		summarizeBy: none
+		sourceColumn: BUSINESSSUBSEGMENTCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column BUYERGROUPID
+		dataType: string
+		lineageTag: 9b2e635b-e748-4cb7-8083-3d09d4101f88
+		summarizeBy: none
+		sourceColumn: BUYERGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CASHDISCOUNTCODE
+		dataType: string
+		lineageTag: 99aac7d8-0d0f-4471-9289-24387712fd21
+		summarizeBy: none
+		sourceColumn: CASHDISCOUNTCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CENTRALBANKPURPOSECODE
+		dataType: string
+		lineageTag: 5e6846c2-2b8e-4980-94ec-1264d21a1611
+		summarizeBy: none
+		sourceColumn: CENTRALBANKPURPOSECODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CENTRALBANKPURPOSETEXT
+		dataType: string
+		lineageTag: 99afccdf-4cdf-43b9-9408-861afed27b19
+		summarizeBy: none
+		sourceColumn: CENTRALBANKPURPOSETEXT
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHARGEVENDORGROUPID
+		dataType: string
+		lineageTag: f7a4ad53-841a-4e84-9eb0-113182d8c8cd
+		summarizeBy: none
+		sourceColumn: CHARGEVENDORGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLEARINGPERIODPAYMENTTERMSID
+		dataType: string
+		lineageTag: c4e75d2e-95c3-46c7-9135-4bba28d74151
+		summarizeBy: none
+		sourceColumn: CLEARINGPERIODPAYMENTTERMSID
+
+		annotation SummarizationSetBy = Automatic
+
+	column COLORIDPREFIX
+		dataType: string
+		lineageTag: ca016e74-99d3-4235-805a-2011b3afd946
+		summarizeBy: none
+		sourceColumn: COLORIDPREFIX
+
+		annotation SummarizationSetBy = Automatic
+
+	column COMPANYCHAINNAME
+		dataType: string
+		lineageTag: eda6b6d3-09f0-439a-a40a-5ea9efbfafff
+		summarizeBy: none
+		sourceColumn: COMPANYCHAINNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATEBARCODEIFNEEDED
+		dataType: string
+		lineageTag: 0cfddeac-9ef6-4a80-893f-a00e7d05bb29
+		summarizeBy: none
+		sourceColumn: CREATEBARCODEIFNEEDED
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREDITLIMIT
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f4f4cc5-422f-4c56-b0f2-fe662fe8f6c9
+		summarizeBy: sum
+		sourceColumn: CREDITLIMIT
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREDITRATING
+		dataType: string
+		lineageTag: 084e50ee-e154-4d21-b50f-59cd844d5d36
+		summarizeBy: none
+		sourceColumn: CREDITRATING
+
+		annotation SummarizationSetBy = Automatic
+
+	column CURRENCYCODE
+		dataType: string
+		lineageTag: fa956e99-8fcc-42ee-972d-cdecfebf0a6d
+		summarizeBy: none
+		sourceColumn: CURRENCYCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTAGENTVENDORACCOUNTNUMBER
+		dataType: string
+		lineageTag: 35c7b219-4d0b-4fad-bf15-efdac3c411d7
+		summarizeBy: none
+		sourceColumn: DEFAULTAGENTVENDORACCOUNTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTCASHDISCOUNTUSAGE
+		dataType: string
+		lineageTag: 9a4835f3-ba2e-40f3-9856-196cfe3bd162
+		summarizeBy: none
+		sourceColumn: DEFAULTCASHDISCOUNTUSAGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTDELIVERYMODEID
+		dataType: string
+		lineageTag: 3b539c15-4ada-42f8-926f-50886a131826
+		summarizeBy: none
+		sourceColumn: DEFAULTDELIVERYMODEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTDELIVERYTERMSCODE
+		dataType: string
+		lineageTag: 31ff9305-66ad-4398-81d5-607cb17f9573
+		summarizeBy: none
+		sourceColumn: DEFAULTDELIVERYTERMSCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTFROMSHIPPINGPORTID
+		dataType: string
+		lineageTag: 27880e08-92bc-47e5-897b-66ba1c03dc64
+		summarizeBy: none
+		sourceColumn: DEFAULTFROMSHIPPINGPORTID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTINVENTORYSTATUSID
+		dataType: string
+		lineageTag: 9b691e18-5234-4193-a6ac-4ee12aaf4ea6
+		summarizeBy: none
+		sourceColumn: DEFAULTINVENTORYSTATUSID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTLEDGERDIMENSIONDISPLAYVALUE
+		dataType: string
+		lineageTag: 9f61e4ff-5143-4d73-bcd0-482d11f3c122
+		summarizeBy: none
+		sourceColumn: DEFAULTLEDGERDIMENSIONDISPLAYVALUE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTOFFSETACCOUNTTYPE
+		dataType: string
+		lineageTag: 4e3685b3-a6d1-466c-9100-8ca97de61297
+		summarizeBy: none
+		sourceColumn: DEFAULTOFFSETACCOUNTTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTOFFSETLEDGERACCOUNTDISPLAYVALUE
+		dataType: string
+		lineageTag: 144e1e0a-64c9-4f69-8f5e-8c9c41892bdd
+		summarizeBy: none
+		sourceColumn: DEFAULTOFFSETLEDGERACCOUNTDISPLAYVALUE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTPAYMENTDAYNAME
+		dataType: string
+		lineageTag: 475210b0-94f2-493d-a284-adb514dc6c84
+		summarizeBy: none
+		sourceColumn: DEFAULTPAYMENTDAYNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTPAYMENTSCHEDULENAME
+		dataType: string
+		lineageTag: eb5181fa-387c-416d-a8ad-19c0481109f9
+		summarizeBy: none
+		sourceColumn: DEFAULTPAYMENTSCHEDULENAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTPAYMENTTERMSNAME
+		dataType: string
+		lineageTag: f4368356-8708-44eb-b98f-9f3a01b2f802
+		summarizeBy: none
+		sourceColumn: DEFAULTPAYMENTTERMSNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTPROCUMENTWAREHOUSEID
+		dataType: string
+		lineageTag: 8c8f285a-f2c6-48ac-a520-3bdd9377a14c
+		summarizeBy: none
+		sourceColumn: DEFAULTPROCUMENTWAREHOUSEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTPURCHASEORDERPOOLID
+		dataType: string
+		lineageTag: 3ebcae8f-1668-45f9-bd5f-509778ac617d
+		summarizeBy: none
+		sourceColumn: DEFAULTPURCHASEORDERPOOLID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTPURCHASESITEID
+		dataType: string
+		lineageTag: f90fe073-cf36-40f9-9605-07b8156aafa9
+		summarizeBy: none
+		sourceColumn: DEFAULTPURCHASESITEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTSUPPLEMENTARYPRODUCTVENDORGROUPID
+		dataType: string
+		lineageTag: 288ae27f-892a-4194-abf5-53b0f17f5c32
+		summarizeBy: none
+		sourceColumn: DEFAULTSUPPLEMENTARYPRODUCTVENDORGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTTOTALDISCOUNTVENDORGROUPCODE
+		dataType: string
+		lineageTag: 576f0d91-2de5-456f-ab64-de2f7a70af17
+		summarizeBy: none
+		sourceColumn: DEFAULTTOTALDISCOUNTVENDORGROUPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEFAULTVENDORPAYMENTMETHODNAME
+		dataType: string
+		lineageTag: acff49c0-e35f-4bd1-8f81-77adda84326c
+		summarizeBy: none
+		sourceColumn: DEFAULTVENDORPAYMENTMETHODNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DESTINATIONCODE
+		dataType: string
+		lineageTag: d5e0a24a-14bc-4282-b645-f339b7189622
+		summarizeBy: none
+		sourceColumn: DESTINATIONCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DUNSNUMBER
+		dataType: string
+		lineageTag: 7172681b-9451-4bec-9e30-efa84da483e6
+		summarizeBy: none
+		sourceColumn: DUNSNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELECTRONICLOCATIONID
+		dataType: int64
+		formatString: 0
+		lineageTag: 88f264ac-4e37-4a97-afe7-471c9b4f32d7
+		summarizeBy: count
+		sourceColumn: ELECTRONICLOCATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETHNICORIGINID
+		dataType: string
+		lineageTag: 240d75f5-cc88-43f7-8364-96c52d1a2603
+		summarizeBy: none
+		sourceColumn: ETHNICORIGINID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EXCHANGERATE
+		dataType: int64
+		formatString: 0
+		lineageTag: 78df0e82-8e0a-4437-b31d-27184d95c0d9
+		summarizeBy: sum
+		sourceColumn: EXCHANGERATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column FIXEDEXCHANGERATE
+		dataType: string
+		lineageTag: 1dcf5073-a25b-4e5e-9471-010d0f3691c9
+		summarizeBy: none
+		sourceColumn: FIXEDEXCHANGERATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column FORMATTEDPRIMARYADDRESS
+		dataType: string
+		lineageTag: 533b228d-f562-42cc-8b2b-0ce95da096f5
+		summarizeBy: none
+		sourceColumn: FORMATTEDPRIMARYADDRESS
+
+		annotation SummarizationSetBy = Automatic
+
+	column HASONLYTAKENBIDS
+		dataType: string
+		lineageTag: ff4ae7ac-890e-4321-8475-602500d50594
+		summarizeBy: none
+		sourceColumn: HASONLYTAKENBIDS
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVOICEVENDORACCOUNTNUMBER
+		dataType: string
+		lineageTag: 57288237-3cf2-4fa6-942b-ccca5f521b1a
+		summarizeBy: none
+		sourceColumn: INVOICEVENDORACCOUNTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISCHANGEMANAGEMENTACTIVATED
+		dataType: string
+		lineageTag: b78b809d-b08d-45bb-883e-0840d20c5e12
+		summarizeBy: none
+		sourceColumn: ISCHANGEMANAGEMENTACTIVATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISCHANGEMANGEMENTOVERRIDEBYVENDORALLOWED
+		dataType: string
+		lineageTag: 698480c7-dfef-4644-95a5-94e86bf68ea2
+		summarizeBy: none
+		sourceColumn: ISCHANGEMANGEMENTOVERRIDEBYVENDORALLOWED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISCUSIPIDENTIFICATIONNUMBERAPPLICABLE
+		dataType: string
+		lineageTag: 96e6a33a-7665-4143-914a-8d50467b6012
+		summarizeBy: none
+		sourceColumn: ISCUSIPIDENTIFICATIONNUMBERAPPLICABLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISIMPORTCOSTINGVENDOR
+		dataType: string
+		lineageTag: 6765ee6c-c962-41a3-bd62-c12b6269d68d
+		summarizeBy: none
+		sourceColumn: ISIMPORTCOSTINGVENDOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISONETIMEVENDOR
+		dataType: string
+		lineageTag: 91c7467f-8e90-46bc-a9ea-a560c92c3d56
+		summarizeBy: none
+		sourceColumn: ISONETIMEVENDOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISOWNERDISABLED
+		dataType: string
+		lineageTag: cb7fe0b5-37b8-403e-94d0-8a27939433b9
+		summarizeBy: none
+		sourceColumn: ISOWNERDISABLED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISPRIMARYEMAILADDRESSIMENABLED
+		dataType: string
+		lineageTag: 99319483-cb71-4f08-bc28-daca71a91eb5
+		summarizeBy: none
+		sourceColumn: ISPRIMARYEMAILADDRESSIMENABLED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISPRIMARYPHONENUMBERMOBILE
+		dataType: string
+		lineageTag: 821dcb9d-0a04-48b2-8de8-be6c1519f9f0
+		summarizeBy: none
+		sourceColumn: ISPRIMARYPHONENUMBERMOBILE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISPURCHASEORDERCHANGEREQUESTOVERRIDEALLOWED
+		dataType: string
+		lineageTag: 04c5db21-82a4-446f-b2db-aebf2677d534
+		summarizeBy: none
+		sourceColumn: ISPURCHASEORDERCHANGEREQUESTOVERRIDEALLOWED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISSERVICEVETERANOWNED
+		dataType: string
+		lineageTag: d03fcfed-7429-4424-94f4-94b8fdbeeca0
+		summarizeBy: none
+		sourceColumn: ISSERVICEVETERANOWNED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISSMALLBUSINESS
+		dataType: string
+		lineageTag: dc411106-af51-4cac-92f1-7ffd30ef75d1
+		summarizeBy: none
+		sourceColumn: ISSMALLBUSINESS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISSUBCONTRACTOR
+		dataType: string
+		lineageTag: 90b10b9c-e2d5-421b-a79b-b6fd6374dec5
+		summarizeBy: none
+		sourceColumn: ISSUBCONTRACTOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISTRANSPORTATIONSERVICESPROVIDER
+		dataType: string
+		lineageTag: afb5475b-069f-47dd-b78a-3388da2818fa
+		summarizeBy: none
+		sourceColumn: ISTRANSPORTATIONSERVICESPROVIDER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISVENDORLOCALLYOWNED
+		dataType: string
+		lineageTag: 72cf59d1-9d85-4958-b97b-246cbbf2320d
+		summarizeBy: none
+		sourceColumn: ISVENDORLOCALLYOWNED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISWITHHOLDINGTAXCALCULATED
+		dataType: string
+		lineageTag: bd5999e9-00ca-4377-bf4b-dcff7eb7e72d
+		summarizeBy: none
+		sourceColumn: ISWITHHOLDINGTAXCALCULATED
+
+		annotation SummarizationSetBy = Automatic
+
+	column LANGUAGEID
+		dataType: string
+		lineageTag: df8f1942-b83f-4458-994f-705e00e320dc
+		summarizeBy: none
+		sourceColumn: LANGUAGEID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINEDISCOUNTVENDORGROUPCODE
+		dataType: string
+		lineageTag: 9298ecf5-c1a5-4112-8e76-3489f25dc1fd
+		summarizeBy: none
+		sourceColumn: LINEDISCOUNTVENDORGROUPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column LINEOFBUSINESSID
+		dataType: string
+		lineageTag: 3f3a6848-9609-4cb2-b07a-3de24785f4a2
+		summarizeBy: none
+		sourceColumn: LINEOFBUSINESSID
+
+		annotation SummarizationSetBy = Automatic
+
+	column MAINCONTACTPERSONNELNUMBER
+		dataType: string
+		lineageTag: f87c6a1e-e01f-4354-b2df-c62650138a60
+		summarizeBy: none
+		sourceColumn: MAINCONTACTPERSONNELNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column MULTILINEDISCOUNTVENDORGROUPCODE
+		dataType: string
+		lineageTag: 4d2284d4-ece5-4335-bfa6-2cd0a362efed
+		summarizeBy: none
+		sourceColumn: MULTILINEDISCOUNTVENDORGROUPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column NAMECONTROL
+		dataType: string
+		lineageTag: 29561f6b-c83d-4b38-90c9-2b28c2594153
+		summarizeBy: none
+		sourceColumn: NAMECONTROL
+
+		annotation SummarizationSetBy = Automatic
+
+	column NOTES
+		dataType: string
+		lineageTag: 3fd9603e-725d-4678-8f8c-a4dbd00c376d
+		summarizeBy: none
+		sourceColumn: NOTES
+
+		annotation SummarizationSetBy = Automatic
+
+	column NUMBERSEQUENCEGROUPID
+		dataType: string
+		lineageTag: cbf614f1-3ec1-4917-8fa5-c197a5284c95
+		summarizeBy: none
+		sourceColumn: NUMBERSEQUENCEGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ONHOLDSTATUS
+		dataType: string
+		lineageTag: 00747e5c-d018-4027-98a9-f895df9a1a81
+		summarizeBy: none
+		sourceColumn: ONHOLDSTATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORGANIZATIONABCCODE
+		dataType: string
+		lineageTag: 4c411a42-a9b6-40af-924f-302463023270
+		summarizeBy: none
+		sourceColumn: ORGANIZATIONABCCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORGANIZATIONEMPLOYEEAMOUNT
+		dataType: int64
+		formatString: 0
+		lineageTag: e1c3d739-fd56-4f06-a710-810872f10803
+		summarizeBy: sum
+		sourceColumn: ORGANIZATIONEMPLOYEEAMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORGANIZATIONNUMBER
+		dataType: string
+		lineageTag: b3e4f2e2-74d2-4758-ada9-34e7ec58758b
+		summarizeBy: none
+		sourceColumn: ORGANIZATIONNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORGANIZATIONPHONETICNAME
+		dataType: string
+		lineageTag: 52133091-b93e-4c89-80ef-2cad5830c5c9
+		summarizeBy: none
+		sourceColumn: ORGANIZATIONPHONETICNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column OURACCOUNTNUMBER
+		dataType: string
+		lineageTag: fda4cb70-8e28-4807-a053-1c56a3be6b45
+		summarizeBy: none
+		sourceColumn: OURACCOUNTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column OVERRIDESALESTAX
+		dataType: string
+		lineageTag: a7e5476e-ca37-42cf-aa99-65714aaeb7f9
+		summarizeBy: none
+		sourceColumn: OVERRIDESALESTAX
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAYMENTID
+		dataType: string
+		lineageTag: f51e7f74-21c4-4bee-bcfc-c65aad3bd97d
+		summarizeBy: none
+		sourceColumn: PAYMENTID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAYMENTSPECIFICATIONID
+		dataType: string
+		lineageTag: a674cc13-bb8f-4d4c-bc05-82f008ce6449
+		summarizeBy: none
+		sourceColumn: PAYMENTSPECIFICATIONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONANNIVERSARYDAY
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ff36158-59f0-4f32-8876-693340c0fc58
+		summarizeBy: sum
+		sourceColumn: PERSONANNIVERSARYDAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONANNIVERSARYMONTH
+		dataType: string
+		lineageTag: 0531770c-2afc-46ad-99c9-02118bfb3b76
+		summarizeBy: none
+		sourceColumn: PERSONANNIVERSARYMONTH
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONANNIVERSARYYEAR
+		dataType: int64
+		formatString: 0
+		lineageTag: 4fb51a3b-db5b-49ca-824b-483c562fad00
+		summarizeBy: sum
+		sourceColumn: PERSONANNIVERSARYYEAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONBIRTHDAY
+		dataType: int64
+		formatString: 0
+		lineageTag: 8631e976-7683-4289-878c-280e8ab89d1e
+		summarizeBy: sum
+		sourceColumn: PERSONBIRTHDAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONBIRTHMONTH
+		dataType: string
+		lineageTag: 7541f27b-ceb4-49a0-82db-051d023bed03
+		summarizeBy: none
+		sourceColumn: PERSONBIRTHMONTH
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONBIRTHYEAR
+		dataType: int64
+		formatString: 0
+		lineageTag: 90dcaf61-09f9-44a5-aff7-45dea5573a96
+		summarizeBy: sum
+		sourceColumn: PERSONBIRTHYEAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONCHILDRENNAMES
+		dataType: string
+		lineageTag: aa25dc89-2480-4a2d-b0da-5a7d29957309
+		summarizeBy: none
+		sourceColumn: PERSONCHILDRENNAMES
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONFIRSTNAME
+		dataType: string
+		lineageTag: 543c7dfe-80bd-4131-813d-5835ad187773
+		summarizeBy: none
+		sourceColumn: PERSONFIRSTNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONGENDER
+		dataType: string
+		lineageTag: 61d977cf-9fcc-43d9-ab7c-d74f5dc30dce
+		summarizeBy: none
+		sourceColumn: PERSONGENDER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONHOBBIES
+		dataType: string
+		lineageTag: 88759210-41bc-48f8-9ec6-7489c19463c0
+		summarizeBy: none
+		sourceColumn: PERSONHOBBIES
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONINITIALS
+		dataType: string
+		lineageTag: 277f1f50-4758-4b8a-bf2c-b132b1e9c3e9
+		summarizeBy: none
+		sourceColumn: PERSONINITIALS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONLASTNAME
+		dataType: string
+		lineageTag: 87229224-c609-4095-9fc2-0ba4e74be0bf
+		summarizeBy: none
+		sourceColumn: PERSONLASTNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONLASTNAMEPREFIX
+		dataType: string
+		lineageTag: e5169e60-319f-4603-821a-0ce04a626617
+		summarizeBy: none
+		sourceColumn: PERSONLASTNAMEPREFIX
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONMARITALSTATUS
+		dataType: string
+		lineageTag: 5c1c2984-a866-494e-a300-e30c82a6e8bd
+		summarizeBy: none
+		sourceColumn: PERSONMARITALSTATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONMIDDLENAME
+		dataType: string
+		lineageTag: cc513fd1-a7ea-4796-8b9b-d4a2c872136d
+		summarizeBy: none
+		sourceColumn: PERSONMIDDLENAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONPERSONALSUFFIX
+		dataType: string
+		lineageTag: e89d97b0-fff8-4e58-b4da-9b2239eaced7
+		summarizeBy: none
+		sourceColumn: PERSONPERSONALSUFFIX
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONPERSONALTITLE
+		dataType: string
+		lineageTag: 8bc24479-a00b-486d-ac13-b4842e154aff
+		summarizeBy: none
+		sourceColumn: PERSONPERSONALTITLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONPHONETICFIRSTNAME
+		dataType: string
+		lineageTag: 798fbd9c-ef02-4e73-88bb-8509d978f11b
+		summarizeBy: none
+		sourceColumn: PERSONPHONETICFIRSTNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONPHONETICLASTNAME
+		dataType: string
+		lineageTag: dd6b1741-a686-4d0e-9415-1ecdd29db501
+		summarizeBy: none
+		sourceColumn: PERSONPHONETICLASTNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONPHONETICMIDDLENAME
+		dataType: string
+		lineageTag: 13bd9480-1368-4662-9b10-57284e60ab64
+		summarizeBy: none
+		sourceColumn: PERSONPHONETICMIDDLENAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONPROFESSIONALSUFFIX
+		dataType: string
+		lineageTag: b1e0587a-55ac-476b-8059-be4f049ff9c3
+		summarizeBy: none
+		sourceColumn: PERSONPROFESSIONALSUFFIX
+
+		annotation SummarizationSetBy = Automatic
+
+	column PERSONPROFESSIONALTITLE
+		dataType: string
+		lineageTag: f9ba160a-f655-40d2-96e2-ff6f94347b46
+		summarizeBy: none
+		sourceColumn: PERSONPROFESSIONALTITLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRICEPOINTGROUPID
+		dataType: string
+		lineageTag: 343e9006-4272-46b4-b803-f0acd61559c5
+		summarizeBy: none
+		sourceColumn: PRICEPOINTGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRICEPOINTROUNDINGTYPE
+		dataType: string
+		lineageTag: b191e490-45b6-4072-8b03-307641d00465
+		summarizeBy: none
+		sourceColumn: PRICEPOINTROUNDINGTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRICEVENDORGROUPID
+		dataType: string
+		lineageTag: d67e97f1-14d0-4320-987f-6590a2696c3b
+		summarizeBy: none
+		sourceColumn: PRICEVENDORGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYCONTACTEMAILRECORDID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0692c1b9-829f-4955-b1d0-b8edab64f939
+		summarizeBy: count
+		sourceColumn: PRIMARYCONTACTEMAILRECORDID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYCONTACTFAXRECORDID
+		dataType: int64
+		formatString: 0
+		lineageTag: 52d876c7-f5c6-42fb-89c3-c77772aa2904
+		summarizeBy: count
+		sourceColumn: PRIMARYCONTACTFAXRECORDID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYCONTACTPERSONID
+		dataType: string
+		lineageTag: a0e101f7-0a24-4ea7-a573-ee0ea0a45ad6
+		summarizeBy: none
+		sourceColumn: PRIMARYCONTACTPERSONID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYCONTACTPHONERECORDID
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d11dd2f-c95a-4a34-859b-3d9c6f1e7656
+		summarizeBy: count
+		sourceColumn: PRIMARYCONTACTPHONERECORDID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYCONTACTURLRECORDID
+		dataType: int64
+		formatString: 0
+		lineageTag: 42861d34-56f0-4809-96ea-76ae06705f8f
+		summarizeBy: count
+		sourceColumn: PRIMARYCONTACTURLRECORDID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYEMAILADDRESS
+		dataType: string
+		lineageTag: a699d1aa-e476-46c9-8dfe-aeff9f8055c9
+		summarizeBy: none
+		sourceColumn: PRIMARYEMAILADDRESS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYEMAILADDRESSDESCRIPTION
+		dataType: string
+		lineageTag: d71a2d73-ec42-4e7c-a68e-2bf0dec6325c
+		summarizeBy: none
+		sourceColumn: PRIMARYEMAILADDRESSDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYEMAILADDRESSPURPOSE
+		dataType: string
+		lineageTag: 8a427a2b-9bd6-4c5e-b1c1-7c6bcce22043
+		summarizeBy: none
+		sourceColumn: PRIMARYEMAILADDRESSPURPOSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYFACEBOOK
+		dataType: string
+		lineageTag: 9d4b6e22-47e2-40a6-8b67-8dca3ab97806
+		summarizeBy: none
+		sourceColumn: PRIMARYFACEBOOK
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYFACEBOOKDESCRIPTION
+		dataType: string
+		lineageTag: ad3b9e0c-20be-4ead-8ca8-d2972b3c7d20
+		summarizeBy: none
+		sourceColumn: PRIMARYFACEBOOKDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYFACEBOOKPURPOSE
+		dataType: string
+		lineageTag: b78e420b-03b9-45f6-9d5e-f1b186a81c68
+		summarizeBy: none
+		sourceColumn: PRIMARYFACEBOOKPURPOSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYFAXNUMBER
+		dataType: string
+		lineageTag: 8e040488-e1e3-41cd-a8b3-3271fde90820
+		summarizeBy: none
+		sourceColumn: PRIMARYFAXNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYFAXNUMBERDESCRIPTION
+		dataType: string
+		lineageTag: a9709713-1f3a-41fc-ad14-d2e6a66909e2
+		summarizeBy: none
+		sourceColumn: PRIMARYFAXNUMBERDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYFAXNUMBEREXTENSION
+		dataType: string
+		lineageTag: 228ce559-1fb1-4e38-b3e3-7c0dc4996716
+		summarizeBy: none
+		sourceColumn: PRIMARYFAXNUMBEREXTENSION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYFAXNUMBERPURPOSE
+		dataType: string
+		lineageTag: d88f1455-fcb9-4d33-a173-e033a15e4d76
+		summarizeBy: none
+		sourceColumn: PRIMARYFAXNUMBERPURPOSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYLINKEDIN
+		dataType: string
+		lineageTag: fa790909-5782-409e-a544-c1f79a0eba01
+		summarizeBy: none
+		sourceColumn: PRIMARYLINKEDIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYLINKEDINDESCRIPTION
+		dataType: string
+		lineageTag: d64f8030-f852-4f94-a2ff-ca5d57275dd8
+		summarizeBy: none
+		sourceColumn: PRIMARYLINKEDINDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYLINKEDINPURPOSE
+		dataType: string
+		lineageTag: 5e28f3c6-78dd-4311-bbe2-862e56953552
+		summarizeBy: none
+		sourceColumn: PRIMARYLINKEDINPURPOSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYPHONENUMBER
+		dataType: string
+		lineageTag: 356d9872-13ae-4236-a67e-f69f61349c10
+		summarizeBy: none
+		sourceColumn: PRIMARYPHONENUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYPHONENUMBERDESCRIPTION
+		dataType: string
+		lineageTag: 124af85a-fffc-4590-bec0-91e2a247a069
+		summarizeBy: none
+		sourceColumn: PRIMARYPHONENUMBERDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYPHONENUMBEREXTENSION
+		dataType: string
+		lineageTag: 8b5e06ee-716c-4e08-9ebd-40af866a7111
+		summarizeBy: none
+		sourceColumn: PRIMARYPHONENUMBEREXTENSION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYPHONENUMBERPURPOSE
+		dataType: string
+		lineageTag: 45fa8773-9c37-40f9-b341-21a0a8ff6d67
+		summarizeBy: none
+		sourceColumn: PRIMARYPHONENUMBERPURPOSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYTELEX
+		dataType: string
+		lineageTag: 07d61bb0-1edd-4706-a7d5-5a21e0f56b1d
+		summarizeBy: none
+		sourceColumn: PRIMARYTELEX
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYTELEXDESCRIPTION
+		dataType: string
+		lineageTag: 038805e5-1210-4683-813c-4a44a23a9c4f
+		summarizeBy: none
+		sourceColumn: PRIMARYTELEXDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYTELEXPURPOSE
+		dataType: string
+		lineageTag: e727c183-0f7a-46c7-b7ee-1ddf10d4a08c
+		summarizeBy: none
+		sourceColumn: PRIMARYTELEXPURPOSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYTWITTER
+		dataType: string
+		lineageTag: aea20737-a795-4d76-8efe-d064736a6141
+		summarizeBy: none
+		sourceColumn: PRIMARYTWITTER
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYTWITTERDESCRIPTION
+		dataType: string
+		lineageTag: 44cebe3c-2394-4b9f-8723-762dfa7c6b76
+		summarizeBy: none
+		sourceColumn: PRIMARYTWITTERDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYTWITTERPURPOSE
+		dataType: string
+		lineageTag: 96a24e43-d83f-4817-83d3-499eb95e0298
+		summarizeBy: none
+		sourceColumn: PRIMARYTWITTERPURPOSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYURL
+		dataType: string
+		lineageTag: 898d3daf-39e0-4951-b840-e51df8ccc3a2
+		summarizeBy: none
+		sourceColumn: PRIMARYURL
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYURLDESCRIPTION
+		dataType: string
+		lineageTag: 5e48dd47-5c40-4912-9edc-51710ab4ef7d
+		summarizeBy: none
+		sourceColumn: PRIMARYURLDESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRIMARYURLPURPOSE
+		dataType: string
+		lineageTag: 0cf2e9d7-ec6f-4b25-9362-4e731c4ba4a2
+		summarizeBy: none
+		sourceColumn: PRIMARYURLPURPOSE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCTDESCRIPTIONVENDORGROUPID
+		dataType: string
+		lineageTag: b9cb9289-ebb6-4358-9240-d3f70b1e5ee0
+		summarizeBy: none
+		sourceColumn: PRODUCTDESCRIPTIONVENDORGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PURCHASEREBATEVENDORGROUPID
+		dataType: string
+		lineageTag: 7a5bc730-ac63-4ff3-a9a8-ab67072de948
+		summarizeBy: none
+		sourceColumn: PURCHASEREBATEVENDORGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PURCHASEWORKCALENDARID
+		dataType: string
+		lineageTag: 8a5322a0-187e-411f-887b-fd3c14a5333d
+		summarizeBy: none
+		sourceColumn: PURCHASEWORKCALENDARID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ROUNDINGMETHOD
+		dataType: string
+		lineageTag: e6d8a86b-168a-473d-87ce-19adabe8b570
+		summarizeBy: none
+		sourceColumn: ROUNDINGMETHOD
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESPRICEROUNDING
+		dataType: string
+		lineageTag: 1c39c0fd-586a-48ab-9fbf-d95ac691b607
+		summarizeBy: none
+		sourceColumn: SALESPRICEROUNDING
+
+		annotation SummarizationSetBy = Automatic
+
+	column SALESTAXGROUPCODE
+		dataType: string
+		lineageTag: 9a9f9e36-e5a0-453c-adde-7cdb641dbebb
+		summarizeBy: none
+		sourceColumn: SALESTAXGROUPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SERVICECATEGORY
+		dataType: string
+		lineageTag: 2b1e6532-961f-4763-a023-d7f778f9cea6
+		summarizeBy: none
+		sourceColumn: SERVICECATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIPPINGVENDORACCOUNTNUMBER
+		dataType: string
+		lineageTag: a4b0fef0-1d41-4d94-943e-cfceb28038d6
+		summarizeBy: none
+		sourceColumn: SHIPPINGVENDORACCOUNTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIPPINGVENDORTYPE
+		dataType: string
+		lineageTag: 252c48f1-3026-4cf9-8e8f-57e012506c8e
+		summarizeBy: none
+		sourceColumn: SHIPPINGVENDORTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SIZEIDPREFIX
+		dataType: string
+		lineageTag: 2bdd1577-2fa8-4a66-b76e-19a2e587eb95
+		summarizeBy: none
+		sourceColumn: SIZEIDPREFIX
+
+		annotation SummarizationSetBy = Automatic
+
+	column STYLEIDPREFIX
+		dataType: string
+		lineageTag: f0dd71a1-6733-4e77-ba51-6835f42d1db0
+		summarizeBy: none
+		sourceColumn: STYLEIDPREFIX
+
+		annotation SummarizationSetBy = Automatic
+
+	column TAXEXEMPTNUMBER
+		dataType: string
+		lineageTag: 511164c1-07c1-4a7c-a117-ee5780b0b399
+		summarizeBy: none
+		sourceColumn: TAXEXEMPTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPSFREIGHTZONE
+		dataType: string
+		lineageTag: 47449b26-6453-4ed9-8319-0d7562632b1e
+		summarizeBy: none
+		sourceColumn: UPSFREIGHTZONE
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORCOSTTYPEGROUP
+		dataType: string
+		lineageTag: d99d16cf-c925-4143-b843-98f19af244fa
+		summarizeBy: none
+		sourceColumn: VENDORCOSTTYPEGROUP
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORDUNSNUMBER
+		dataType: string
+		lineageTag: d8e9fffb-2d4e-4624-b35b-9a804ba0045c
+		summarizeBy: none
+		sourceColumn: VENDORDUNSNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDOREXCEPTIONGROUPID
+		dataType: string
+		lineageTag: 83af447c-d48a-49e3-ad9a-16e74c63ff3b
+		summarizeBy: none
+		sourceColumn: VENDOREXCEPTIONGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORGROUPID
+		dataType: string
+		lineageTag: 5fa0950f-bf4f-4abc-ba77-18be1dd44588
+		summarizeBy: none
+		sourceColumn: VENDORGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORHOLDRELEASEDATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1d5c5aad-bec4-40c9-bacc-a7de1f1f242b
+		summarizeBy: none
+		sourceColumn: VENDORHOLDRELEASEDATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORINVOICELINEMATCHINGPOLICY
+		dataType: string
+		lineageTag: 3338b4ec-3739-42cd-a96e-8ae9ce5d88fb
+		summarizeBy: none
+		sourceColumn: VENDORINVOICELINEMATCHINGPOLICY
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORKNOWNASNAME
+		dataType: string
+		lineageTag: a9d7d3ba-3a40-4e45-8b7d-3c2289bb1329
+		summarizeBy: none
+		sourceColumn: VENDORKNOWNASNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORORGANIZATIONNAME
+		dataType: string
+		lineageTag: 465946a3-d73a-4374-9c1d-8e7721d69f8b
+		summarizeBy: none
+		sourceColumn: VENDORORGANIZATIONNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDOROVERUNDERDELIVERYTOLERANCEGROUPID
+		dataType: string
+		lineageTag: 7b1b6397-55ed-4652-870b-c5975e867e97
+		summarizeBy: none
+		sourceColumn: VENDOROVERUNDERDELIVERYTOLERANCEGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORPARTYNUMBER
+		dataType: int64
+		formatString: 0
+		lineageTag: 7cfcaa08-179f-4ca6-9260-257dcce5812c
+		summarizeBy: sum
+		sourceColumn: VENDORPARTYNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORPARTYTYPE
+		dataType: string
+		lineageTag: f7e3fe97-18e1-4117-8a3a-ef4549673987
+		summarizeBy: none
+		sourceColumn: VENDORPARTYTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORPORTALCOLLABORATIONMETHOD
+		dataType: string
+		lineageTag: b4b7f3d6-5d46-4b65-8d75-3672699c9d2b
+		summarizeBy: none
+		sourceColumn: VENDORPORTALCOLLABORATIONMETHOD
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORPRICETOLERANCEGROUPID
+		dataType: string
+		lineageTag: d002821b-03fb-4f37-aea9-c69dbba5e6f7
+		summarizeBy: none
+		sourceColumn: VENDORPRICETOLERANCEGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORPRODUCTHIERARCHYID
+		dataType: int64
+		formatString: 0
+		lineageTag: 756ffd52-9154-4868-a7ea-8ab60672e68f
+		summarizeBy: count
+		sourceColumn: VENDORPRODUCTHIERARCHYID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORSEARCHNAME
+		dataType: string
+		lineageTag: 82150cc9-2ff7-4f3c-99f4-026d9baf31ba
+		summarizeBy: none
+		sourceColumn: VENDORSEARCHNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORTYPE
+		dataType: string
+		lineageTag: 3a375ccc-726f-4631-8a18-6e464a1f040d
+		summarizeBy: none
+		sourceColumn: VENDORTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column WILLINVOICEPROCESSINGSUMMARYUPDATEPURCHASEORDER
+		dataType: string
+		lineageTag: bb79bd9e-6cb9-4d72-b8a3-2d5d693cccfb
+		summarizeBy: none
+		sourceColumn: WILLINVOICEPROCESSINGSUMMARYUPDATEPURCHASEORDER
+
+		annotation SummarizationSetBy = Automatic
+
+	column WILLPRODUCTRECEIPTPROCESSINGSUMMARYUPDATEPURCHASEORDER
+		dataType: string
+		lineageTag: 1087be61-56f3-40a2-ac94-d247fcc84bb0
+		summarizeBy: none
+		sourceColumn: WILLPRODUCTRECEIPTPROCESSINGSUMMARYUPDATEPURCHASEORDER
+
+		annotation SummarizationSetBy = Automatic
+
+	column WILLPURCHASEORDERINCLUDEPRICESANDAMOUNTS
+		dataType: string
+		lineageTag: 6f0d1d21-ab44-4224-91a4-468a5661a6ce
+		summarizeBy: none
+		sourceColumn: WILLPURCHASEORDERINCLUDEPRICESANDAMOUNTS
+
+		annotation SummarizationSetBy = Automatic
+
+	column WILLPURCHASEORDERPROCESSINGSUMMARYUPDATEPURCHASEORDER
+		dataType: string
+		lineageTag: e546eb17-3d82-4b91-a613-a7d9a2d56e8c
+		summarizeBy: none
+		sourceColumn: WILLPURCHASEORDERPROCESSINGSUMMARYUPDATEPURCHASEORDER
+
+		annotation SummarizationSetBy = Automatic
+
+	column WILLRECEIPTSLISTPROCESSINGSUMMARYUPDATEPURCHASEORDER
+		dataType: string
+		lineageTag: 4165aa14-ed14-47c6-a36f-c66ac4a2b01c
+		summarizeBy: none
+		sourceColumn: WILLRECEIPTSLISTPROCESSINGSUMMARYUPDATEPURCHASEORDER
+
+		annotation SummarizationSetBy = Automatic
+
+	column WITHHOLDINGTAXGROUPCODE
+		dataType: string
+		lineageTag: 5f4a3372-ae61-4b1f-bb6d-c42a059907c3
+		summarizeBy: none
+		sourceColumn: WITHHOLDINGTAXGROUPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column WITHHOLDINGTAXVENDORTYPE
+		dataType: string
+		lineageTag: cd14134e-e164-496c-9e36-a22a9848fc11
+		summarizeBy: none
+		sourceColumn: WITHHOLDINGTAXVENDORTYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZAKATREGISTRATIONNUMBER
+		dataType: string
+		lineageTag: 7a92e771-0a46-4472-9731-8b8aad40cd29
+		summarizeBy: none
+		sourceColumn: ZAKATREGISTRATIONNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Vendors_V2 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\FORTNIGHTLY REPORTS\Vendor_List.xlsx"), null, true),
+				    Vendors_V2_Sheet = Source{[Item="Vendors_V2",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Vendors_V2_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"VENDORACCOUNTNUMBER", type text}, {"ADDRESSBOOKS", type any}, {"ADDRESSBUILDINGCOMPLIMENT", type any}, {"ADDRESSCITY", type text}, {"ADDRESSCOUNTRYREGIONID", type text}, {"ADDRESSCOUNTRYREGIONISOCODE", type text}, {"ADDRESSCOUNTYID", type any}, {"ADDRESSDESCRIPTION", type text}, {"ADDRESSDISTRICTNAME", type any}, {"ADDRESSLATITUDE", Int64.Type}, {"ADDRESSLOCATIONID", Int64.Type}, {"ADDRESSLOCATIONROLES", type text}, {"ADDRESSLONGITUDE", Int64.Type}, {"ADDRESSPOSTBOX", type any}, {"ADDRESSRECORDID", Int64.Type}, {"ADDRESSSTATEID", type text}, {"ADDRESSSTREET", type text}, {"ADDRESSSTREETNUMBER", type any}, {"ADDRESSTIMEZONE", type any}, {"ADDRESSVALIDFROM", type datetime}, {"ADDRESSVALIDTO", type datetime}, {"ADDRESSZIPCODE", type any}, {"AREPRICESINCLUDINGSALESTAX", type text}, {"BANKACCOUNTID", type text}, {"BARCODENUMBERSEQUENCE", type text}, {"BUSINESSSEGMENTCODE", type any}, {"BUSINESSSUBSEGMENTCODE", type any}, {"BUYERGROUPID", type text}, {"CASHDISCOUNTCODE", type any}, {"CENTRALBANKPURPOSECODE", type any}, {"CENTRALBANKPURPOSETEXT", type any}, {"CHARGEVENDORGROUPID", type any}, {"CLEARINGPERIODPAYMENTTERMSID", type any}, {"COLORIDPREFIX", type any}, {"COMPANYCHAINNAME", type any}, {"CREATEBARCODEIFNEEDED", type text}, {"CREDITLIMIT", Int64.Type}, {"CREDITRATING", type any}, {"CURRENCYCODE", type text}, {"DEFAULTAGENTVENDORACCOUNTNUMBER", type any}, {"DEFAULTCASHDISCOUNTUSAGE", type text}, {"DEFAULTDELIVERYMODEID", type any}, {"DEFAULTDELIVERYTERMSCODE", type any}, {"DEFAULTFROMSHIPPINGPORTID", type any}, {"DEFAULTINVENTORYSTATUSID", type any}, {"DEFAULTLEDGERDIMENSIONDISPLAYVALUE", type any}, {"DEFAULTOFFSETACCOUNTTYPE", type text}, {"DEFAULTOFFSETLEDGERACCOUNTDISPLAYVALUE", type any}, {"DEFAULTPAYMENTDAYNAME", type any}, {"DEFAULTPAYMENTSCHEDULENAME", type any}, {"DEFAULTPAYMENTTERMSNAME", type text}, {"DEFAULTPROCUMENTWAREHOUSEID", type any}, {"DEFAULTPURCHASEORDERPOOLID", type text}, {"DEFAULTPURCHASESITEID", type any}, {"DEFAULTSUPPLEMENTARYPRODUCTVENDORGROUPID", type any}, {"DEFAULTTOTALDISCOUNTVENDORGROUPCODE", type any}, {"DEFAULTVENDORPAYMENTMETHODNAME", type text}, {"DESTINATIONCODE", type any}, {"DUNSNUMBER", type any}, {"ELECTRONICLOCATIONID", Int64.Type}, {"ETHNICORIGINID", type any}, {"EXCHANGERATE", Int64.Type}, {"FIXEDEXCHANGERATE", type text}, {"FORMATTEDPRIMARYADDRESS", type text}, {"HASONLYTAKENBIDS", type text}, {"INVOICEVENDORACCOUNTNUMBER", type text}, {"ISCHANGEMANAGEMENTACTIVATED", type text}, {"ISCHANGEMANGEMENTOVERRIDEBYVENDORALLOWED", type text}, {"ISCUSIPIDENTIFICATIONNUMBERAPPLICABLE", type text}, {"ISIMPORTCOSTINGVENDOR", type text}, {"ISONETIMEVENDOR", type text}, {"ISOWNERDISABLED", type text}, {"ISPRIMARYEMAILADDRESSIMENABLED", type text}, {"ISPRIMARYPHONENUMBERMOBILE", type text}, {"ISPURCHASEORDERCHANGEREQUESTOVERRIDEALLOWED", type text}, {"ISSERVICEVETERANOWNED", type text}, {"ISSMALLBUSINESS", type text}, {"ISSUBCONTRACTOR", type text}, {"ISTRANSPORTATIONSERVICESPROVIDER", type text}, {"ISVENDORLOCALLYOWNED", type text}, {"ISWITHHOLDINGTAXCALCULATED", type text}, {"LANGUAGEID", type text}, {"LINEDISCOUNTVENDORGROUPCODE", type any}, {"LINEOFBUSINESSID", type any}, {"MAINCONTACTPERSONNELNUMBER", type any}, {"MULTILINEDISCOUNTVENDORGROUPCODE", type any}, {"NAMECONTROL", type any}, {"NOTES", type any}, {"NUMBERSEQUENCEGROUPID", type any}, {"ONHOLDSTATUS", type text}, {"ORGANIZATIONABCCODE", type text}, {"ORGANIZATIONEMPLOYEEAMOUNT", Int64.Type}, {"ORGANIZATIONNUMBER", type any}, {"ORGANIZATIONPHONETICNAME", type any}, {"OURACCOUNTNUMBER", type any}, {"OVERRIDESALESTAX", type text}, {"PAYMENTID", type text}, {"PAYMENTSPECIFICATIONID", type any}, {"PERSONANNIVERSARYDAY", Int64.Type}, {"PERSONANNIVERSARYMONTH", type text}, {"PERSONANNIVERSARYYEAR", Int64.Type}, {"PERSONBIRTHDAY", Int64.Type}, {"PERSONBIRTHMONTH", type text}, {"PERSONBIRTHYEAR", Int64.Type}, {"PERSONCHILDRENNAMES", type any}, {"PERSONFIRSTNAME", type text}, {"PERSONGENDER", type text}, {"PERSONHOBBIES", type any}, {"PERSONINITIALS", type any}, {"PERSONLASTNAME", type text}, {"PERSONLASTNAMEPREFIX", type any}, {"PERSONMARITALSTATUS", type text}, {"PERSONMIDDLENAME", type text}, {"PERSONPERSONALSUFFIX", type any}, {"PERSONPERSONALTITLE", type any}, {"PERSONPHONETICFIRSTNAME", type any}, {"PERSONPHONETICLASTNAME", type any}, {"PERSONPHONETICMIDDLENAME", type any}, {"PERSONPROFESSIONALSUFFIX", type any}, {"PERSONPROFESSIONALTITLE", type any}, {"PRICEPOINTGROUPID", type any}, {"PRICEPOINTROUNDINGTYPE", type text}, {"PRICEVENDORGROUPID", type any}, {"PRIMARYCONTACTEMAILRECORDID", Int64.Type}, {"PRIMARYCONTACTFAXRECORDID", Int64.Type}, {"PRIMARYCONTACTPERSONID", type any}, {"PRIMARYCONTACTPHONERECORDID", Int64.Type}, {"PRIMARYCONTACTURLRECORDID", Int64.Type}, {"PRIMARYEMAILADDRESS", type text}, {"PRIMARYEMAILADDRESSDESCRIPTION", type text}, {"PRIMARYEMAILADDRESSPURPOSE", type text}, {"PRIMARYFACEBOOK", type any}, {"PRIMARYFACEBOOKDESCRIPTION", type any}, {"PRIMARYFACEBOOKPURPOSE", type any}, {"PRIMARYFAXNUMBER", type any}, {"PRIMARYFAXNUMBERDESCRIPTION", type any}, {"PRIMARYFAXNUMBEREXTENSION", type any}, {"PRIMARYFAXNUMBERPURPOSE", type any}, {"PRIMARYLINKEDIN", type any}, {"PRIMARYLINKEDINDESCRIPTION", type any}, {"PRIMARYLINKEDINPURPOSE", type any}, {"PRIMARYPHONENUMBER", type text}, {"PRIMARYPHONENUMBERDESCRIPTION", type text}, {"PRIMARYPHONENUMBEREXTENSION", type any}, {"PRIMARYPHONENUMBERPURPOSE", type text}, {"PRIMARYTELEX", type any}, {"PRIMARYTELEXDESCRIPTION", type any}, {"PRIMARYTELEXPURPOSE", type any}, {"PRIMARYTWITTER", type any}, {"PRIMARYTWITTERDESCRIPTION", type any}, {"PRIMARYTWITTERPURPOSE", type any}, {"PRIMARYURL", type any}, {"PRIMARYURLDESCRIPTION", type any}, {"PRIMARYURLPURPOSE", type any}, {"PRODUCTDESCRIPTIONVENDORGROUPID", type any}, {"PURCHASEREBATEVENDORGROUPID", type any}, {"PURCHASEWORKCALENDARID", type any}, {"ROUNDINGMETHOD", type any}, {"SALESPRICEROUNDING", type text}, {"SALESTAXGROUPCODE", type text}, {"SERVICECATEGORY", type any}, {"SHIPPINGVENDORACCOUNTNUMBER", type any}, {"SHIPPINGVENDORTYPE", type text}, {"SIZEIDPREFIX", type any}, {"STYLEIDPREFIX", type any}, {"TAXEXEMPTNUMBER", type any}, {"UPSFREIGHTZONE", type any}, {"VENDORCOSTTYPEGROUP", type any}, {"VENDORDUNSNUMBER", type any}, {"VENDOREXCEPTIONGROUPID", type any}, {"VENDORGROUPID", type text}, {"VENDORHOLDRELEASEDATE", type datetime}, {"VENDORINVOICELINEMATCHINGPOLICY", type text}, {"VENDORKNOWNASNAME", type text}, {"VENDORORGANIZATIONNAME", type text}, {"VENDOROVERUNDERDELIVERYTOLERANCEGROUPID", type any}, {"VENDORPARTYNUMBER", Int64.Type}, {"VENDORPARTYTYPE", type text}, {"VENDORPORTALCOLLABORATIONMETHOD", type text}, {"VENDORPRICETOLERANCEGROUPID", type any}, {"VENDORPRODUCTHIERARCHYID", Int64.Type}, {"VENDORSEARCHNAME", type text}, {"VENDORTYPE", type text}, {"WILLINVOICEPROCESSINGSUMMARYUPDATEPURCHASEORDER", type text}, {"WILLPRODUCTRECEIPTPROCESSINGSUMMARYUPDATEPURCHASEORDER", type text}, {"WILLPURCHASEORDERINCLUDEPRICESANDAMOUNTS", type text}, {"WILLPURCHASEORDERPROCESSINGSUMMARYUPDATEPURCHASEORDER", type text}, {"WILLRECEIPTSLISTPROCESSINGSUMMARYUPDATEPURCHASEORDER", type text}, {"WITHHOLDINGTAXGROUPCODE", type text}, {"WITHHOLDINGTAXVENDORTYPE", type text}, {"ZAKATREGISTRATIONNUMBER", type any}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

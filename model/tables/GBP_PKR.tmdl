@@ -1,0 +1,40 @@
+table GBP_PKR
+	lineageTag: ba459300-6ad3-4e2f-8f58-90ee131fe8b9
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6bf166fd-7d0d-43db-b811-eeaf9608e4ed
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Price
+		dataType: double
+		lineageTag: d48c418b-870f-4157-94ef-d4f8402b8ea5
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition GBP_PKR = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\GBP_PKR Historical Data.xlsx"), null, true),
+				    #"GBP_PKR Historical Data_Sheet" = Source{[Item="GBP_PKR Historical Data",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"GBP_PKR Historical Data_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Price", type number}, {"Open", type number}, {"High", type number}, {"Low", type number}, {"Vol.", type any}, {"Change %", type number}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Open", "High", "Low", "Vol.", "Change %"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

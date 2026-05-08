@@ -1,0 +1,219 @@
+table Shopify_US_OT
+	lineageTag: 67b249bd-cf90-4001-b707-60c481061670
+
+	column Day
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a6b8c269-5feb-4d5d-99a0-faa176744c8d
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Order name'
+		dataType: string
+		lineageTag: d7380d10-2d2d-4ff8-84b4-9192d0668d7b
+		summarizeBy: none
+		sourceColumn: Order name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Orders
+		dataType: int64
+		formatString: 0
+		lineageTag: 6aa1a969-cb7a-4a6a-a50e-c1017ad2fcab
+		summarizeBy: sum
+		sourceColumn: Orders
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross sales'
+		dataType: double
+		lineageTag: bced0ec6-2cb6-4364-bdc0-d5396d247f7a
+		summarizeBy: sum
+		sourceColumn: Gross sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Discounts
+		dataType: int64
+		formatString: 0
+		lineageTag: bfd8e3a8-e404-4e8e-85f8-09a1b6b709ac
+		summarizeBy: sum
+		sourceColumn: Discounts
+
+		annotation SummarizationSetBy = Automatic
+
+	column Returns
+		dataType: int64
+		formatString: 0
+		lineageTag: 022996ba-dec5-4018-b857-d5a65ac12e2d
+		summarizeBy: sum
+		sourceColumn: Returns
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Net sales'
+		dataType: double
+		lineageTag: 70e66d36-999a-4ed0-a9b3-6b5942eec437
+		summarizeBy: sum
+		sourceColumn: Net sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Shipping charges'
+		dataType: int64
+		formatString: 0
+		lineageTag: d249d747-4021-45b6-9e9a-3694bbed99fe
+		summarizeBy: sum
+		sourceColumn: Shipping charges
+
+		annotation SummarizationSetBy = Automatic
+
+	column Duties
+		dataType: int64
+		formatString: 0
+		lineageTag: 32e7c251-0c9a-4ddb-917c-b05ba3aa9acf
+		summarizeBy: sum
+		sourceColumn: Duties
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Additional fees'
+		dataType: int64
+		formatString: 0
+		lineageTag: 254d12e0-764e-418f-9c57-3b0c33b1d374
+		summarizeBy: sum
+		sourceColumn: Additional fees
+
+		annotation SummarizationSetBy = Automatic
+
+	column Taxes
+		dataType: double
+		lineageTag: 680fea12-c71b-4585-96a5-fe393bdfd160
+		summarizeBy: sum
+		sourceColumn: Taxes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total sales'
+		dataType: double
+		lineageTag: 4b7f3dc3-4d7f-48a2-bb32-c530be582514
+		summarizeBy: sum
+		sourceColumn: Total sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Warehouse ID'
+		dataType: string
+		lineageTag: 3370d9b1-acb5-4463-b54c-0d224dc5c427
+		summarizeBy: none
+		sourceColumn: Warehouse ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Warehouse Name'
+		dataType: string
+		lineageTag: 122d4346-efb0-4d2a-a50c-e3b6af2d4d1f
+		summarizeBy: none
+		sourceColumn: Warehouse Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 7b539671-8abc-4a94-bbcc-2ac25b82907a
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rate
+		dataType: double
+		lineageTag: 91c6d0d1-0cb6-4a24-b8d6-b34694c61972
+		summarizeBy: sum
+		sourceColumn: Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Combine
+		dataType: string
+		lineageTag: d9da5003-b8ce-47f9-89d9-81eb5ac43c4a
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleV
+		dataType: double
+		lineageTag: 735fa10c-5335-4504-b9b2-6719c896d618
+		summarizeBy: sum
+		sourceColumn: SaleV
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Shipping charge taxes'
+		dataType: string
+		lineageTag: 5b30f809-21c7-4ece-87b6-5eb21c231309
+		summarizeBy: none
+		sourceColumn: Shipping charge taxes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Return fees'
+		dataType: string
+		lineageTag: 5f862f48-b6bf-4276-bd77-7304bbddf3e1
+		summarizeBy: none
+		sourceColumn: Return fees
+
+		annotation SummarizationSetBy = Automatic
+
+	column SaleV(USD)
+		dataType: double
+		lineageTag: 565548a4-3c6b-4d55-8ec5-fbba4c198644
+		summarizeBy: sum
+		sourceColumn: SaleV(USD)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Shopify_US_OT = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\BI Sale\Shopify_US_Overtime.xlsx"), null, true),
+				    #"Total sales over time-IR-US_Sheet" = Source{[Item="Total sales over time-IR-US - 2",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Total sales over time-IR-US_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Day", type date}, {"Order name", type text}, {"Orders", Int64.Type}, {"Gross sales", type number}, {"Discounts", Int64.Type}, {"Returns", Int64.Type}, {"Net sales", type number}, {"Shipping charges", Int64.Type}, {"Duties", Int64.Type}, {"Additional fees", Int64.Type}, {"Taxes", type number}, {"Total sales", type number}}),
+				    #"Added Custom1" = Table.AddColumn(#"Changed Type", "Warehouse ID", each "WHUS-001"),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "Warehouse Name", each "Warehouse US Ethnic"),
+				    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "Brand", each "Ethnic-US"),
+				    #"Merged Queries" = Table.NestedJoin(#"Added Custom3", {"Day"}, USD_PKR, {"Date"}, "USD_PKR", JoinKind.LeftOuter),
+				    #"Expanded USD_PKR" = Table.ExpandTableColumn(#"Merged Queries", "USD_PKR", {"Price"}, {"Price"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded USD_PKR",{{"Price", "Rate"}}),
+				    #"Added Custom4" = Table.AddColumn(#"Renamed Columns1", "Combine", each [Warehouse Name]&[Brand]),
+				    #"Added Custom5" = Table.AddColumn(#"Added Custom4", "SaleV(USD)", each [Total sales]-[Shipping charges]-[Shipping charge taxes]-[Return fees]),
+				    #"Added Custom" = Table.AddColumn(#"Added Custom5", "SaleV", each [#"SaleV(USD)"]*[Rate]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Warehouse ID", type text}, {"Warehouse Name", type text}, {"Brand", type text}, {"Combine", type text}, {"SaleV", type number}, {"SaleV(USD)", type number}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

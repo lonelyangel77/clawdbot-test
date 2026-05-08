@@ -1,0 +1,53 @@
+table Division
+	lineageTag: 91fa5d9e-f0c2-4384-8410-fd9702dbbd46
+
+	column PRODUCTNUMBER
+		dataType: string
+		lineageTag: d4606b5b-908a-4673-a2e6-2d5b72b91ccd
+		summarizeBy: none
+		sourceColumn: PRODUCTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ATTRIBUTETYPENAME
+		dataType: string
+		lineageTag: 68bd66f9-01c5-443f-bfa5-1ef67243ecbc
+		summarizeBy: none
+		sourceColumn: ATTRIBUTETYPENAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column ATTRIBUTENAME
+		dataType: string
+		lineageTag: 38823c1c-6aee-4195-8a3b-76f9fca3599c
+		summarizeBy: none
+		sourceColumn: ATTRIBUTENAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEXTVALUE
+		dataType: string
+		lineageTag: adbb593e-d285-4912-9104-d54e824478ce
+		summarizeBy: none
+		sourceColumn: TEXTVALUE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Division = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Product Attributes.xlsx"), null, true),
+				    Product_attribute_values_V2_Sheet = Source{[Item="Product_attribute_values_V2",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Product_attribute_values_V2_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PRODUCTNUMBER", type text}, {"ATTRIBUTETYPENAME", type text}, {"ATTRIBUTENAME", type text}, {"BOOLEANVALUE", type text}, {"CURRENCYCODE", type any}, {"CURRENCYVALUE", Int64.Type}, {"DATETIMEVALUE", type datetime}, {"DECIMALVALUE", Int64.Type}, {"INTEGERVALUE", Int64.Type}, {"TEXTVALUE", type text}, {"UNITOFMEASURE", type any}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([ATTRIBUTETYPENAME] = "ETH-Source" or [ATTRIBUTETYPENAME] = "OFT-Fabrication")),
+				    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows",{"BOOLEANVALUE", "CURRENCYCODE", "CURRENCYVALUE", "DATETIMEVALUE", "DECIMALVALUE", "INTEGERVALUE", "UNITOFMEASURE"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns", {"PRODUCTNUMBER"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

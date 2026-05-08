@@ -1,0 +1,44 @@
+table Product_Attribute
+	lineageTag: 45d3ca44-18df-497c-a410-e7425440514a
+
+	column PRODUCTNUMBER
+		dataType: string
+		lineageTag: b187335f-c49e-42e1-b96f-60304e278c38
+		summarizeBy: none
+		sourceColumn: PRODUCTNUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+	column ATTRIBUTETYPENAME
+		dataType: string
+		lineageTag: de39baf5-73a6-4c26-9e30-af54352d2411
+		summarizeBy: none
+		sourceColumn: ATTRIBUTETYPENAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEXTVALUE
+		dataType: string
+		lineageTag: 518f8149-f2fd-4c46-9e86-ed504f77a27a
+		summarizeBy: none
+		sourceColumn: TEXTVALUE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product_Attribute-7819443c-b3c8-474e-b02e-4af708b329ba = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Product Attributes.xlsx"), null, true),
+				    Product_attribute_values_Sheet = Source{[Item="Product_attribute_values_V2",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Product_attribute_values_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PRODUCTNUMBER", type text}, {"ATTRIBUTETYPENAME", type text}, {"ATTRIBUTENAME", type text}, {"BOOLEANVALUE", type text}, {"CURRENCYCODE", type any}, {"CURRENCYVALUE", Int64.Type}, {"DATETIMEVALUE", type datetime}, {"DECIMALVALUE", Int64.Type}, {"INTEGERVALUE", Int64.Type}, {"TEXTVALUE", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([ATTRIBUTETYPENAME] = "ETH-Item Classification" or [ATTRIBUTETYPENAME] = "OFT-Item Classification")),
+				    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows",{"ATTRIBUTENAME", "BOOLEANVALUE", "CURRENCYCODE", "CURRENCYVALUE", "DECIMALVALUE", "INTEGERVALUE", "DATETIMEVALUE", "UNITOFMEASURE"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

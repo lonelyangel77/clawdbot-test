@@ -1,0 +1,209 @@
+table 'FootFall Measures'
+	lineageTag: 95a09bd3-7da5-4ddb-ac3f-333160b06140
+
+	measure ASP = [Sales(V)]/[Units Sold]
+		dataType: variant
+		formatString: #,0
+		displayFolder: KPIs & Variance
+		lineageTag: 3336da65-1548-4dd2-b051-ae9d9be36277
+
+	measure 'ASP Var%' = ([ASP]-[LY ASP])/[LY ASP]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: KPIs & Variance
+		lineageTag: 93e1962e-c225-46ed-b4e8-1f48b5c8a098
+
+	measure ATV = [Sales(V)]/[Transactions]
+		dataType: variant
+		formatString: #,0
+		displayFolder: KPIs & Variance
+		lineageTag: d81b0af8-1803-494f-8a95-a9d525bcd903
+
+	measure Conversion% = DIVIDE([Transactions],[Footfall])
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: KPIs & Variance
+		lineageTag: fb7469dc-5d82-40e9-945d-46c83d26cf19
+
+		changedProperty = FormatString
+
+	measure 'Conversion% Var%' =
+			var vtrans = CALCULATE(SUM(Footfall_Data[No of Transactions]),Footfall_Data[Footfall]>0)
+			var vfootfall = CALCULATE(SUM(Footfall_Data[Footfall]),Footfall_Data[Footfall]>0)
+			var vcon = DIVIDE(vtrans,vfootfall)
+			var vlytrans = CALCULATE(SUM(Footfall_Data[No of Transactions]),Footfall_Data[Footfall]>0,SAMEPERIODLASTYEAR('Calendar'[Date]))
+			var vlyfoot = CALCULATE(SUM(Footfall_Data[Footfall]),Footfall_Data[Footfall]>0,SAMEPERIODLASTYEAR('Calendar'[Date]))
+			var vlycon = DIVIDE(vlytrans,vlyfoot)
+			return
+			vcon-vlycon
+		dataType: variant
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: KPIs & Variance
+		lineageTag: 4d7fc779-3eef-40c7-ae25-39353838aa39
+
+		changedProperty = FormatString
+
+	measure Footfall = SUM(Footfall_Data[Footfall])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: e6330677-192d-4187-8b3a-685275032700
+
+	measure 'LY ASP' = [LY Sales (V)]/[LY Units Sold]
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 121fd3c8-b26b-42d7-ba9b-2c4978cc031c
+
+	measure 'LY ATV' = [LY Sales (V)]/[LY Transactions]
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 2601e442-8837-4ca6-9fc5-96de63f8324c
+
+	measure 'LY Conversion%' =
+			var vtrans = CALCULATE(SUM(Footfall_Data[No of Transactions]),Footfall_Data[Footfall]>0)
+			var vfootfall = CALCULATE(SUM(Footfall_Data[Footfall]),Footfall_Data[Footfall]>0)
+			var vcon = DIVIDE(vtrans,vfootfall)
+			var vlytrans = CALCULATE(SUM(Footfall_Data[No of Transactions]),Footfall_Data[Footfall]>0,SAMEPERIODLASTYEAR('Calendar'[Date]))
+			var vlyfoot = CALCULATE(SUM(Footfall_Data[Footfall]),Footfall_Data[Footfall]>0,SAMEPERIODLASTYEAR('Calendar'[Date]))
+			var vlycon = DIVIDE(vlytrans,vlyfoot)
+			return
+			vlycon
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: LY
+		lineageTag: 3265c549-4ac1-4fec-93ec-7f7540ad1cf3
+
+		changedProperty = FormatString
+
+	measure 'LY Footfall' = CALCULATE([Footfall],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 7efb7ac5-15a8-45b6-bccc-a84416413f6f
+
+	measure 'LY Sales (V)' = CALCULATE([Sales(V)],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: f9b15f70-b084-492b-8ec0-a452fa8195bd
+
+	measure 'LY Transactions' = CALCULATE([Transactions],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 8b425987-3fdf-4bf9-b7aa-3c1b6ef26c86
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Units Sold' = CALCULATE([Units Sold],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 9bb2c339-9ce5-4b83-98dc-7bb33ecbc470
+
+	measure 'LY UPT' = [LY Units Sold]/[LY Transactions]
+		dataType: variant
+		formatString: 0.00
+		displayFolder: LY
+		lineageTag: e9950b8f-7ab0-492a-b990-c5142fdf15d9
+
+	measure 'Return Units' = SUM(Footfall_Data[TY Rtn U])
+		dataType: int64
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 06d7f502-0f2c-4580-ab31-5e833106f411
+
+	measure 'Return Value' = SUM(Footfall_Data[TY Rtn])
+		dataType: int64
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: d4c147f1-281e-4ec6-ae9e-1ccf9a638f2f
+
+	measure Sales(V) = SUM(Footfall_Data[NetSalesIncTax])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 8d45d9c2-0f93-447a-8aa6-b2667eba9940
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Transactions = SUM(Footfall_Data[No of Transactions])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: 6422ac17-7acf-4741-b57a-795694a19a1e
+
+	measure 'Units Sold' = SUM(Footfall_Data[TY Net Sls U])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Base
+		lineageTag: ebb52ae8-7331-4796-bb78-98990a9afe73
+
+	measure 'Units Sold Var%' = DIVIDE([Sale-Units]-[LY Units],[LY Units])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: KPIs & Variance
+		lineageTag: 17f3fae8-9764-4d63-9363-69230dfd93c0
+
+		changedProperty = FormatString
+
+	measure UPT = [Units Sold]/[Transactions]
+		dataType: variant
+		formatString: 0.00
+		displayFolder: KPIs & Variance
+		lineageTag: d17d6b43-f0d9-42a3-97d4-db287b68afcf
+
+	measure 'ATV Var%' = ([ATV]-[LY ATV])/[LY ATV]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: KPIs & Variance
+		lineageTag: 9253a1da-3b3a-4d66-b654-321b4f001785
+
+	measure 'Conversion% Var' = [Conversion%]-[LY Conversion%]
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: KPIs & Variance
+		lineageTag: ca5d71f1-8ed7-44c4-b152-5b79046665cc
+
+		changedProperty = FormatString
+
+	measure 'Footfall Var%' = ([Footfall]-[LY Footfall])/[LY Footfall]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: KPIs & Variance
+		lineageTag: 4d5dc559-9703-4b50-986c-bb296f499c80
+
+	measure 'UPT Var%' = ([UPT]-[LY UPT])/[LY UPT]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: KPIs & Variance
+		lineageTag: 23781bac-e019-4ee5-b87d-5e9d2711ff41
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: e2527010-07b7-462c-bf61-f333581afac1
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FootFall Measures' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

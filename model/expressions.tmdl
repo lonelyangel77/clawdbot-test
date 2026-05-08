@@ -1,0 +1,1058 @@
+expression Parameter1 = #"Sample File" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: d2d00e34-8e57-4936-8434-8b4f5d265da4
+	queryGroup: 'Transform File from SALES DATA - BI\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File' =
+		let
+		    Source = Excel.Workbook(Parameter1, null, true),
+		    sales_Sheet = Source{[Item="sales",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(sales_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: c7f5e0b4-1e62-4792-bea8-282d400c5eb1
+	queryGroup: 'Transform File from SALES DATA - BI'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Sales Data-Early"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: ae48dd0d-2048-4124-af99-7622c8899ab7
+	queryGroup: 'Transform File from SALES DATA - BI\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'Transform File' =
+		let
+		    Source = (Parameter1 as binary) => let
+		    Source = Excel.Workbook(Parameter1, null, true),
+		    sales_Sheet = Source{[Item="sales",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(sales_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File""}" ]
+	lineageTag: b64b3649-0cd8-47f6-acdd-0126fbd06d9e
+	queryGroup: 'Transform File from SALES DATA - BI\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression 'Errors in Product' =
+		let
+		Source = Product,
+		  #"Detected Type Mismatches" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Source, Table.ColumnsOfType(Source, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "The type of the value does not match the type of the column.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Source, pairs),
+		  #"Added Index" = Table.AddIndexColumn(#"Detected Type Mismatches", "Row Number" ,1),
+		  #"Kept Errors" = Table.SelectRowsWithErrors(#"Added Index", {"Brand", "Gender", "Category", "SubCategory", "ItemID", "ItemName", "Season", "TaxGroup", "VendorName", "RetailPrice1", "DiscountPCT1", "DiscountValue", "DiscAmount", "NetPrice", "Disc_Val", "Disc_%", "Gender1", "Collection", "Category Name", "Category ID", "Season-SS", "Class", "Division"}),
+		  #"Reordered Columns" = Table.ReorderColumns(#"Kept Errors", {"Row Number", "Brand", "Gender", "Category", "SubCategory", "ItemID", "ItemName", "Season", "TaxGroup", "VendorName", "RetailPrice1", "DiscountPCT1", "DiscountValue", "DiscAmount", "NetPrice", "Disc_Val", "Disc_%", "Gender1", "Collection", "Category Name", "Category ID", "Season-SS", "Class", "Division"})
+		in
+		  #"Reordered Columns"
+	lineageTag: 845a216e-0944-443c-a1d2-c24e33483009
+	queryGroup: 'Query Errors - 12/28/2020 1:37:28 PM'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression RangeStart = #datetime(2021, 1, 1, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: d50ab36f-e381-4439-964c-e8f28e8fd01f
+
+	annotation PBI_ResultType = DateTime
+
+expression RangeEnd = #datetime(2022, 12, 31, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 91a1edbe-13c3-40c8-abb6-0b4ef613726d
+
+	annotation PBI_ResultType = DateTime
+
+expression 'Errors in Product (2)' =
+		let
+		Source = Product,
+		  #"Detected Type Mismatches" = let
+		    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Source, Table.ColumnsOfType(Source, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),
+		    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),
+		    fieldNames = Record.FieldNames(recordTypeFields),
+		    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),
+		    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = "The type of the value does not match the type of the column.", Detail = v], fieldTypes{i}})
+		in
+		    Table.TransformColumns(Source, pairs),
+		  #"Added Index" = Table.AddIndexColumn(#"Detected Type Mismatches", "Row Number" ,1),
+		  #"Kept Errors" = Table.SelectRowsWithErrors(#"Added Index", {"Brand", "Gender", "Category", "SubCategory", "ItemID", "ItemName", "Season", "TaxGroup", "VendorName", "RetailPrice1", "DiscountPCT1", "DiscountValue", "DiscAmount", "NetPrice", "Disc_Val", "Disc_%", "Gender1", "Collection", "Category Name", "Category ID", "Season-SS", "Class", "Division", "Primary Season"}),
+		  #"Reordered Columns" = Table.ReorderColumns(#"Kept Errors", {"Row Number", "Brand", "Gender", "Category", "SubCategory", "ItemID", "ItemName", "Season", "TaxGroup", "VendorName", "RetailPrice1", "DiscountPCT1", "DiscountValue", "DiscAmount", "NetPrice", "Disc_Val", "Disc_%", "Gender1", "Collection", "Category Name", "Category ID", "Season-SS", "Class", "Division", "Primary Season"}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Reordered Columns",{{"Row Number", type datetime}})
+		in
+		  #"Changed Type"
+	lineageTag: 5b5f02d1-9645-44bc-ae37-2397cf982ca7
+	queryGroup: 'Query Errors - 02/16/2021 9:15:18 AM'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Parameter3 = #"Sample File (3)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (3)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: fb937df4-6bb1-4670-8a67-6eeedd5ed87c
+	queryGroup: 'Transform File from Transactional Sales Data\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (3)' =
+		let
+		    Source = Excel.Workbook(Parameter3, null, true),
+		    AxTable1_Table = Source{[Item="AxTable1",Kind="Table"]}[Data]
+		in
+		    AxTable1_Table
+	lineageTag: b8a683f5-00df-4b18-8686-b70fd9285ae9
+	queryGroup: 'Transform File from Transactional Sales Data'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (3)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Transactional Sales Data"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 0e3058c2-844c-4f7f-962b-b82f2411dd58
+	queryGroup: 'Transform File from Transactional Sales Data\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'Transform File (3)' =
+		let
+		    Source = (Parameter3 as binary) => let
+		    Source = Excel.Workbook(Parameter3, null, true),
+		    AxTable1_Table = Source{[Item="AxTable1",Kind="Table"]}[Data]
+		in
+		    AxTable1_Table
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (3)""}" ]
+	lineageTag: 715d2c40-63d2-465b-874b-0d179473f756
+	queryGroup: 'Transform File from Transactional Sales Data\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter4 = #"Sample File (4)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (4)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: ae33cfec-525a-46fb-b5cf-3f6931e0fcee
+	queryGroup: 'Transform File from Footfall_Data\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (4)' =
+		let
+		    Source = Excel.Workbook(Parameter4, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 6c9719f5-27fc-43ad-ae98-6d0d8d34b3b2
+	queryGroup: 'Transform File from Footfall_Data'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (4)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Footfall_Data"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: cb8fd168-d3fd-4ddd-b5d4-c139377c9fbd
+	queryGroup: 'Transform File from Footfall_Data\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'Transform File (4)' =
+		let
+		    Source = (Parameter4 as binary) => let
+		    Source = Excel.Workbook(Parameter4, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (4)""}" ]
+	lineageTag: 59473c7d-0fbd-48b7-80a6-4c365326ff28
+	queryGroup: 'Transform File from Footfall_Data\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter5 = #"Sample File (5)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (5)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 8f2ee01d-8ac2-4690-bf20-d86c0c2082d3
+	queryGroup: 'Transform File from Inventory Movement\Helper Queries'
+
+	annotation PBI_ResultType = Exception
+
+expression 'Transform Sample File (5)' =
+		let
+		    Source = Excel.Workbook(Parameter5, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 35701393-7edb-4f80-92b9-c0071cce727f
+	queryGroup: 'Transform File from Inventory Movement'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (5)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\Reporting\FORTNIGHTLY REPORTS\Inventory Movement"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 6bd03fa7-7cab-4608-8eef-ef70923359a7
+	queryGroup: 'Transform File from Inventory Movement\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'Transform File (5)' =
+		let
+		    Source = (Parameter5 as binary) => let
+		    Source = Excel.Workbook(Parameter5, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (5)""}" ]
+	lineageTag: abcd3aa5-421e-45ac-85dd-e4a4ba9d7bfd
+	queryGroup: 'Transform File from Inventory Movement\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter6 = #"Sample File (6)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (6)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 21c4f3a2-8f2d-4afc-ac26-3482bbd4f445
+	queryGroup: 'Transform File from Shopify_Data\Helper Queries'
+
+	annotation PBI_ResultType = Exception
+
+expression 'Transform Sample File (6)' =
+		let
+		    Source = Excel.Workbook(Parameter6, null, true),
+		    #"Ethnic_30-08-2021_Sheet" = Source{[Item="Ethnic_30-08-2021",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Ethnic_30-08-2021_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 69b50e5e-aa0a-4b17-bfea-a884f79edce6
+	queryGroup: 'Transform File from Shopify_Data'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (6)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Shopify_Data"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: b33ecc20-f938-4adb-a4fc-92b896d4aa5b
+	queryGroup: 'Transform File from Shopify_Data\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'Transform File (6)' =
+		let
+		    Source = (Parameter6 as binary) => let
+		    Source = Excel.Workbook(Parameter6, null, true),
+		    #"Ethnic_30-08-2021_Sheet" = Source{[Item="Ethnic_30-08-2021",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Ethnic_30-08-2021_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (6)""}" ]
+	lineageTag: 95b4b51a-8765-47c1-ab79-fa53bde72394
+	queryGroup: 'Transform File from Shopify_Data\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter7 = #"Sample File (7)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (7)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: ba1d071b-aa2e-42b2-bb83-29337e416abc
+	queryGroup: 'Transform File from TO lines\Helper Queries'
+
+	annotation PBI_ResultType = Exception
+
+expression 'Transform Sample File (7)' =
+		let
+		    Source = Excel.Workbook(Parameter7, null, true),
+		    Transfer_order_lines_Sheet = Source{[Item="Transfer_order_lines",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Transfer_order_lines_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: ba43ab78-8a84-4cbf-b0bb-ccfd3d5c0d39
+	queryGroup: 'Transform File from TO lines'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (7)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\Reporting\FORTNIGHTLY REPORTS\Transfer Orders\TO lines"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: feb05c5d-8d94-4d9b-9981-38ca05119285
+	queryGroup: 'Transform File from TO lines\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'Transform File (7)' =
+		let
+		    Source = (Parameter7 as binary) => let
+		    Source = Excel.Workbook(Parameter7, null, true),
+		    Transfer_order_lines_Sheet = Source{[Item="Transfer_order_lines",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Transfer_order_lines_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (7)""}" ]
+	lineageTag: ec15887b-9145-48fb-b98e-0bc45ce15cb6
+	queryGroup: 'Transform File from TO lines\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter8 = #"Sample File (8)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (8)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: a016e818-604e-41b2-8499-3981a1216352
+	queryGroup: 'Transform File from Transactions\Helper Queries'
+
+	annotation PBI_ResultType = Exception
+
+expression 'Transform Sample File (8)' =
+		let
+		    Source = Excel.Workbook(Parameter8, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: f59f8be2-2123-494e-8bc7-4ef24a34f500
+	queryGroup: 'Transform File from Transactions'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (8)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Online Transactions\Transactions"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 531dccb1-c313-4d27-8b85-2e2789fe97a3
+	queryGroup: 'Transform File from Transactions\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'Transform File (8)' =
+		let
+		    Source = (Parameter8 as binary) => let
+		    Source = Excel.Workbook(Parameter8, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (8)""}" ]
+	lineageTag: 94949ba3-9168-4b0d-b198-c772f3b61072
+	queryGroup: 'Transform File from Transactions\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter9 = #"Sample File (9)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (9)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: ea77acbc-1a2a-4f1a-999e-fff92c2b2bb6
+	queryGroup: 'Transform File from Sales_Order\Helper Queries'
+
+	annotation PBI_ResultType = Exception
+
+expression 'Transform Sample File (9)' =
+		let
+		    Source = Excel.Workbook(Parameter9, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 4ccd4048-0854-4c22-899d-f1271c629078
+	queryGroup: 'Transform File from Sales_Order'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (9)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Online Transactions\Sales_Order"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 7287b571-632f-477d-b941-b6aecb29b79b
+	queryGroup: 'Transform File from Sales_Order\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'Transform File (9)' =
+		let
+		    Source = (Parameter9 as binary) => let
+		    Source = Excel.Workbook(Parameter9, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (9)""}" ]
+	lineageTag: 9a8900e4-5eff-48a7-85a2-cf04651caaad
+	queryGroup: 'Transform File from Sales_Order\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter10 = #"Sample File (10)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (10)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: a0e99f3d-3e3d-45e5-80fe-cb53ca2a87a7
+	queryGroup: 'Transform File from Data (2)\Helper Queries'
+
+	annotation PBI_ResultType = Exception
+
+expression 'Transform Sample File (10)' =
+		let
+		    Source = Excel.Workbook(Parameter10, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 064a6570-05f3-43e1-afe2-75f247e6f45b
+	queryGroup: 'Transform File from Data (2)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (10)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Day wise Closing Inventory\Data"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: feaf88a5-02e6-434f-bcd2-3f42c41681c8
+	queryGroup: 'Transform File from Data (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression 'Transform File (10)' =
+		let
+		    Source = (Parameter10 as binary) => let
+		    Source = Excel.Workbook(Parameter10, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (10)""}" ]
+	lineageTag: c57ce963-5c73-4285-afab-6b4127e8b7bc
+	queryGroup: 'Transform File from Data (2)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter11 = null meta [IsParameterQuery=true, Type="Binary", IsParameterQueryRequired=false]
+	lineageTag: 8f850d62-dec3-4dbe-ba37-86f3b1823012
+	queryGroup: 'Transform File from FOOTFALL_DB\Helper Queries'
+
+	annotation PBI_ResultType = Null
+
+expression 'Transform Sample File (11)' =
+		let
+		    Source = Excel.Workbook(Parameter11, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 11430a5c-eba8-4ecf-acbb-f54ed540657e
+	queryGroup: 'Transform File from FOOTFALL_DB'
+
+expression 'Sample File (11)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\FOOTFALL_DB"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 9e9fe17d-eb7d-434f-b650-31cc7d0b6d53
+	queryGroup: 'Transform File from FOOTFALL_DB\Helper Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (11)' =
+		let
+		    Source = (Parameter11 as binary) => let
+		    Source = Excel.Workbook(Parameter11, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (11)""}" ]
+	lineageTag: 1d136e13-3fac-4e9e-a8fb-bc96a5c84fd9
+	queryGroup: 'Transform File from FOOTFALL_DB\Helper Queries'
+
+expression Parameter12 = #"Sample File (12)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (12)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 4123f715-e04f-483b-b514-0fd97cc7aa68
+	queryGroup: 'Transform File from Headers\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (12)' =
+		let
+		    Source = Excel.Workbook(Parameter12, null, true),
+		    Sales_order_headers_V2_Sheet = Source{[Item="Sales_order_headers_V2",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sales_order_headers_V2_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 4564989c-1b4b-4521-873b-b8c528af8abe
+	queryGroup: 'Transform File from Headers'
+
+expression 'Sample File (12)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\SALES INVOICE\Sales-UK\Headers"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 4e05fd9e-2a22-48eb-b23a-e8dc84ad82d6
+	queryGroup: 'Transform File from Headers\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (12)' =
+		let
+		    Source = (Parameter12 as binary) => let
+		    Source = Excel.Workbook(Parameter12, null, true),
+		    Sales_order_headers_V2_Sheet = Source{[Item="Sales_order_headers_V2",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sales_order_headers_V2_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (12)""}" ]
+	lineageTag: 027b8868-322d-4f80-a44a-ef739c4e878e
+	queryGroup: 'Transform File from Headers\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter13 = #"Sample File (13)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (13)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 48491f38-41a3-4d51-81e9-5e6f3afde524
+	queryGroup: 'Transform File from Lines\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (13)' =
+		let
+		    Source = Excel.Workbook(Parameter13, null, true),
+		    Sales_order_lines_V2_Sheet = Source{[Item="Sales_order_lines_V2",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sales_order_lines_V2_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: f5efd230-a1b2-4613-a2c1-580df9c773e7
+	queryGroup: 'Transform File from Lines'
+
+expression 'Sample File (13)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\SALES INVOICE\Sales-UK\Lines"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: c9ff9c3e-a08c-45eb-98d0-0909d65e5e87
+	queryGroup: 'Transform File from Lines\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (13)' =
+		let
+		    Source = (Parameter13 as binary) => let
+		    Source = Excel.Workbook(Parameter13, null, true),
+		    Sales_order_lines_V2_Sheet = Source{[Item="Sales_order_lines_V2",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sales_order_lines_V2_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (13)""}" ]
+	lineageTag: b16d8b29-c59b-40fb-a077-3e479bff5077
+	queryGroup: 'Transform File from Lines\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter14 = #"Sample File (14)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (14)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: aa5358be-5035-4f3c-b431-3cc86301bd13
+	queryGroup: 'Transform File from Lines (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (14)' =
+		let
+		    Source = Excel.Workbook(Parameter14, null, true),
+		    Sales_invoice_lines_V3_Sheet = Source{[Item="Sales_invoice_lines_V3",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sales_invoice_lines_V3_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 803de3b2-1eb9-4abc-be96-74d06eb6fab3
+	queryGroup: 'Transform File from Lines (2)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (14)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\SALES INVOICE\Sales-UK\Sales Invoice\Lines"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 0d3ae937-a44b-4730-830b-f6857d60fa32
+	queryGroup: 'Transform File from Lines (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (14)' =
+		let
+		    Source = (Parameter14 as binary) => let
+		    Source = Excel.Workbook(Parameter14, null, true),
+		    Sales_invoice_lines_V3_Sheet = Source{[Item="Sales_invoice_lines_V3",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sales_invoice_lines_V3_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (14)""}" ]
+	lineageTag: 70b0d5ee-5504-45d8-b022-7bf00c342229
+	queryGroup: 'Transform File from Lines (2)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Product_category = ```
+		let
+		    // Load source data
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Product Categories.xlsx"), null, true),
+		    Product_categories_Sheet = Source{[Item="Product_categories",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Product_categories_Sheet, [PromoteAllScalars=true]),
+		    #"Filtered Rows" = Table.SelectRows(#"Promoted Headers", each ([PRODUCTCATEGORYHIERARCHYNAME] = "OUTFITTERS STORES FG CATEGORY")),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"CATEGORYNAME", "PARENTPRODUCTCATEGORYCODE"}),
+		
+		    // Split CATEGORYNAME into Code and Name
+		    #"Split Category" = Table.AddColumn(#"Removed Other Columns", "Code", each 
+		        let hyphenPos = Text.PositionOf([CATEGORYNAME], "-") 
+		        in if hyphenPos >= 0 then Text.Start([CATEGORYNAME], hyphenPos) else [CATEGORYNAME]),
+		    #"Added Name" = Table.AddColumn(#"Split Category", "Name", each 
+		        let hyphenPos = Text.PositionOf([CATEGORYNAME], "-") 
+		        in if hyphenPos >= 0 then Text.Middle([CATEGORYNAME], hyphenPos + 1) else ""),
+		
+		    // Trim columns
+		    #"Trimmed Columns" = Table.TransformColumns(#"Added Name", {
+		        {"Code", Text.Trim, type text},
+		        {"Name", Text.Trim, type text}
+		    }),
+		
+		    // Add Length of Code
+		    #"Added Code Length" = Table.AddColumn(#"Trimmed Columns", "CodeLength", each Text.Length([Code]), Int64.Type),
+		    
+		    // Generate Hierarchy Levels
+		    #"Added Level1" = Table.AddColumn(#"Added Code Length", "Level1", each if Text.Length([Code]) >= 2 then Text.Start([Code], 2) else null),
+		    #"Added Level2" = Table.AddColumn(#"Added Level1", "Level2", each if Text.Length([Code]) >= 4 then Text.Start([Code], 4) else null),
+		    #"Added Level3" = Table.AddColumn(#"Added Level2", "Level3", each if Text.Length([Code]) >= 6 then Text.Start([Code], 6) else null),
+		    #"Added Level4" = Table.AddColumn(#"Added Level3", "Level4", each if Text.Length([Code]) >= 8 then Text.Start([Code], 8) else null),
+		    #"Added Level5" = Table.AddColumn(#"Added Level4", "Level5", each if Text.Length([Code]) >= 10 then Text.Start([Code], 10) else null),
+		    #"Added Level6" = Table.AddColumn(#"Added Level5", "Level6", each if Text.Length([Code]) >= 12 then Text.Start([Code], 12) else null),
+		
+		    // Build name lookup table
+		    #"Code-Name Lookup" = Table.Distinct(Table.SelectColumns(#"Trimmed Columns", {"Code", "Name"})),
+		
+		    // Join Level1
+		    #"Join Level1" = Table.NestedJoin(#"Added Level6", {"Level1"}, #"Code-Name Lookup", {"Code"}, "Level1Name", JoinKind.LeftOuter),
+		    #"Expand Level1" = Table.ExpandTableColumn(#"Join Level1", "Level1Name", {"Name"}, {"Brand"}),
+		
+		    // Join Level2
+		    #"Join Level2" = Table.NestedJoin(#"Expand Level1", {"Level2"}, #"Code-Name Lookup", {"Code"}, "Level2Name", JoinKind.LeftOuter),
+		    #"Expand Level2" = Table.ExpandTableColumn(#"Join Level2", "Level2Name", {"Name"}, {"Gender"}),
+		
+		    // Join Level3
+		    #"Join Level3" = Table.NestedJoin(#"Expand Level2", {"Level3"}, #"Code-Name Lookup", {"Code"}, "Level3Name", JoinKind.LeftOuter),
+		    #"Expand Level3" = Table.ExpandTableColumn(#"Join Level3", "Level3Name", {"Name"}, {"Class"}),
+		
+		    // Join Level4
+		    #"Join Level4" = Table.NestedJoin(#"Expand Level3", {"Level4"}, #"Code-Name Lookup", {"Code"}, "Level4Name", JoinKind.LeftOuter),
+		    #"Expand Level4" = Table.ExpandTableColumn(#"Join Level4", "Level4Name", {"Name"}, {"Subclass"}),
+		
+		    // Combine Code and Name into one column
+		    #"Added Category Full" = Table.AddColumn(#"Expand Level4", "Category Full", each [Code] & "-" & [Name], type text),
+		
+		    // Add static company column
+		    #"Added Company" = Table.AddColumn(#"Added Category Full", "Company", each "OUTFITTERS STORES", type text),
+		
+		    // Final output
+		    #"Final Output" = Table.SelectColumns(#"Added Company", {
+		        "Company", "Brand", "Gender", "Class", "Subclass", "Category Full"
+		    }),
+		
+		    // Rename final column
+		    #"Renamed Final Column" = Table.RenameColumns(#"Final Output", {{"Category Full", "Name"}}),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Final Column",{"Name", "Company", "Brand", "Gender", "Class", "Subclass"})
+		in
+		    #"Reordered Columns"
+		```
+	lineageTag: a93db204-7969-4c18-b616-e3cae5200a7c
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Product_attri =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Product Attributes.xlsx"), null, true),
+		    Product_attribute_values_V2_Sheet = Source{[Item="Product_attribute_values_V2",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Product_attribute_values_V2_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PRODUCTNUMBER", type text}, {"ATTRIBUTETYPENAME", type text}, {"ATTRIBUTENAME", type text}, {"BOOLEANVALUE", type text}, {"CURRENCYCODE", type any}, {"CURRENCYVALUE", Int64.Type}, {"DATETIMEVALUE", type datetime}, {"DECIMALVALUE", Int64.Type}, {"INTEGERVALUE", Int64.Type}, {"TEXTVALUE", type text}, {"UNITOFMEASURE", type any}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([ATTRIBUTETYPENAME] = "ETH-Season" or [ATTRIBUTETYPENAME] = "OFT-Season")),
+		    #"Removed Duplicates" = Table.Distinct(#"Filtered Rows", {"PRODUCTNUMBER"}),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Duplicates",{"PRODUCTNUMBER", "TEXTVALUE"})
+		in
+		    #"Removed Other Columns"
+	lineageTag: 6b9012b2-3edf-4e0a-aaed-892e8d7fec9b
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'QP Cost' =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\OneDrive - Outfitters Stores\Q.P COST-.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SR.NO", type any}, {"Article", type text}, {"Quoted-Cost", Int64.Type}, {"COST", Int64.Type}, {"RETAIL", type any}}),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"Article", "Quoted-Cost"}),
+		    #"Sorted Rows" = Table.Sort(#"Removed Other Columns",{{"Article", Order.Ascending}}),
+		    #"Removed Duplicates" = Table.Distinct(#"Sorted Rows", {"Article"})
+		in
+		    #"Removed Duplicates"
+	lineageTag: e3105cd7-01ed-4829-8755-ec112af3b6e1
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Purchase_order_lines_V2 =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\PO Lines.xlsx"), null, true),
+		    Purchase_order_lines_V2_Sheet = Source{[Item="Purchase_order_lines_V2",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Purchase_order_lines_V2_Sheet, [PromoteAllScalars=true]),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Promoted Headers",{"PURCHASEORDERNUMBER", "ITEMNUMBER", "PURCHASEPRICE"}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Removed Other Columns",{{"PURCHASEORDERNUMBER", type text}, {"ITEMNUMBER", type text}, {"PURCHASEPRICE", type number}}),
+		    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"PURCHASEORDERNUMBER", Order.Descending}}),
+		    #"Removed Duplicates" = Table.Distinct(#"Sorted Rows", {"ITEMNUMBER"}),
+		    #"Sorted Rows1" = Table.Sort(#"Removed Duplicates",{{"ITEMNUMBER", Order.Ascending}})
+		in
+		    #"Sorted Rows1"
+	lineageTag: d3544a6a-696f-4d00-9f5a-9c37b56ed06a
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Agreement =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Price agreements.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Relation", type text}, {"Currency", type text}, {"Party code type", type text}, {"Account selection", type any}, {"Product code type", type text}, {"Item", type text}, {"Size", type any}, {"Site", type text}, {"Unit", type text}, {"From date", type date}, {"To date", type date}, {"From", Int64.Type}, {"To", Int64.Type}, {"Amount in transaction currency", Int64.Type}, {"Price unit", Int64.Type}, {"Discount percentage 1", Int64.Type}, {"Attribute-based pricing ID", type any}, {"Fixed amount", Int64.Type}, {"Find next", type text}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Relation] = "Price (purch.)") and ([To date] = null)),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"Item", "Amount in transaction currency"}),
+		    #"Sorted Rows" = Table.Sort(#"Removed Other Columns",{{"Item", Order.Ascending}}),
+		    #"Removed Duplicates" = Table.Distinct(#"Sorted Rows", {"Item"})
+		in
+		    #"Removed Duplicates"
+	lineageTag: e069d988-f018-4c4e-8531-7dc780476af6
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Parameter15 = #"Sample File (15)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (15)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 71389ab4-255f-4db4-a8fe-c93d1fcedec5
+	queryGroup: 'Transform File from SALES-TAX DATA\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (15)' =
+		let
+		    Source = Excel.Workbook(Parameter15, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 3f2bf2f3-e777-4d39-9795-84f36f5453c4
+	queryGroup: 'Transform File from SALES-TAX DATA'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (15)' =
+		let
+		    Source = Folder.Files("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\SALES-TAX DATA"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: bcf84776-7983-4590-bb34-95984fa37715
+	queryGroup: 'Transform File from SALES-TAX DATA\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (15)' =
+		let
+		    Source = (Parameter15 as binary) => let
+		    Source = Excel.Workbook(Parameter15, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (15)""}" ]
+	lineageTag: ea1dd6af-8e62-481e-9faa-96f10dedc378
+	queryGroup: 'Transform File from SALES-TAX DATA\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression OFT_Images =
+		let
+		    Source = Sql.Database("202.142.187.28", "OFTRBI"),
+		    dbo_ShopifyProductImages = Source{[Schema="dbo",Item="ShopifyProductImages"]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(dbo_ShopifyProductImages,{{"id", type text}, {"product_id", type text}}),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"position", "src"}),
+		    #"Duplicated Column" = Table.DuplicateColumn(#"Removed Other Columns", "src", "src - Copy"),
+		    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "src - Copy", Splitter.SplitTextByEachDelimiter({"/"}, QuoteStyle.Csv, true), {"src - Copy.1", "src - Copy.2"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Split Column by Delimiter",{"src - Copy.1"}),
+		    #"Split Column by Delimiter1" = Table.SplitColumn(#"Removed Columns", "src - Copy.2", Splitter.SplitTextByEachDelimiter({"_"}, QuoteStyle.Csv, false), {"src - Copy.2.1", "src - Copy.2.2"}),
+		    #"Removed Columns1" = Table.RemoveColumns(#"Split Column by Delimiter1",{"src - Copy.2.2"}),
+		    #"Split Column by Position" = Table.SplitColumn(#"Removed Columns1", "src - Copy.2.1", Splitter.SplitTextByPositions({0, 5}, false), {"src - Copy.2.1.1", "src - Copy.2.1.2"}),
+		    #"Split Column by Position1" = Table.SplitColumn(#"Split Column by Position", "src - Copy.2.1.2", Splitter.SplitTextByPositions({0, 3}, false), {"src - Copy.2.1.2.1", "src - Copy.2.1.2.2"}),
+		    #"Split Column by Position2" = Table.SplitColumn(#"Split Column by Position1", "src - Copy.2.1.2.2", Splitter.SplitTextByPositions({0, 3}, false), {"src - Copy.2.1.2.2.1", "src - Copy.2.1.2.2.2"}),
+		    #"Removed Columns3" = Table.RemoveColumns(#"Split Column by Position2",{"src - Copy.2.1.2.2.2"}),
+		    #"Added Custom" = Table.AddColumn(#"Removed Columns3", "ItemID", each [#"src - Copy.2.1.1"]&"/"&[#"src - Copy.2.1.2.1"]&"/"&[#"src - Copy.2.1.2.2.1"]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"ItemID", type text}}),
+		    #"Removed Columns2" = Table.RemoveColumns(#"Changed Type1",{"src - Copy.2.1.1", "src - Copy.2.1.2.1", "src - Copy.2.1.2.2.1"}),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Removed Columns2",{"ItemID", "position", "src"}),
+		    #"Removed Duplicates" = Table.Distinct(#"Reordered Columns", {"ItemID"}),
+		    #"Removed Columns4" = Table.RemoveColumns(#"Removed Duplicates",{"position"})
+		in
+		    #"Removed Columns4"
+	lineageTag: 92901c52-ce46-42b6-985a-8135e13adccc
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression ETH_Imagess =
+		let
+		    Source = Sql.Database("202.142.187.28", "OFTRBI"),
+		    dbo_vShopifyProductImagess = Source{[Schema="dbo",Item="vShopifyProductImagess"]}[Data],
+		    #"Removed Other Columns" = Table.SelectColumns(dbo_vShopifyProductImagess,{"src"}),
+		    #"Duplicated Column" = Table.DuplicateColumn(#"Removed Other Columns", "src", "src - Copy"),
+		    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "src - Copy", Splitter.SplitTextByEachDelimiter({"/"}, QuoteStyle.Csv, true), {"src - Copy.1", "src - Copy.2"}),
+		    #"Split Column by Delimiter1" = Table.SplitColumn(#"Split Column by Delimiter", "src - Copy.2", Splitter.SplitTextByEachDelimiter({"_"}, QuoteStyle.Csv, false), {"src - Copy.2.1", "src - Copy.2.2"}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Split Column by Delimiter1",{"src - Copy.2.2", "src - Copy.1"}),
+		    #"Split Column by Delimiter2" = Table.SplitColumn(#"Removed Columns", "src - Copy.2.1", Splitter.SplitTextByDelimiter("-", QuoteStyle.Csv), {"src - Copy.2.1.1", "src - Copy.2.1.2", "src - Copy.2.1.3"}),
+		    #"Added Custom" = Table.AddColumn(#"Split Column by Delimiter2", "ItemID", each [#"src - Copy.2.1.1"]&"/"&[#"src - Copy.2.1.2"]&"/"&[#"src - Copy.2.1.3"]),
+		    #"Removed Columns1" = Table.RemoveColumns(#"Added Custom",{"src - Copy.2.1.1", "src - Copy.2.1.2", "src - Copy.2.1.3"}),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Removed Columns1",{"ItemID", "src"}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Reordered Columns",{{"ItemID", type text}}),
+		    #"Removed Duplicates" = Table.Distinct(#"Changed Type", {"ItemID"}),
+		    #"Filtered Rows" = Table.SelectRows(#"Removed Duplicates", each ([ItemID] <> null))
+		in
+		    #"Filtered Rows"
+	lineageTag: 3577d88b-989b-4be0-8154-799346144376
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression ETH_Cluster =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Catogery Hireracy-Ethnic.xlsx"), null, true),
+		    Category_Sheet = Source{[Item="Category",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Category_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Retail Catogery", type text}, {"Gender", type text}, {"Gender-Comb", type text}, {"Collection", type text}, {"Class", type text}, {"Class1", type text}, {"Sub-class", type text}, {"Cluster", type text}, {"Cluster Short", type text}, {"Column10", type any}, {"Column11", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: adcb4599-ab95-4985-90ba-9976cdd3bac9
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Product_Cluster =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Product Category Assignments.xlsx"), null, true),
+		    Product_category_assignments_Sheet = Source{[Item="Product_category_assignments",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Product_category_assignments_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PRODUCTNUMBER", type text}, {"PRODUCTCATEGORYNAME", type text}, {"PRODUCTCATEGORYHIERARCHYNAME", type text}, {"DISPLAYORDER", Int64.Type}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([PRODUCTCATEGORYHIERARCHYNAME] = "OUTFITTERS STORES FG CATEGORY")),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"PRODUCTNUMBER", "PRODUCTCATEGORYNAME"}),
+		    #"Merged Queries" = Table.NestedJoin(#"Removed Other Columns", {"PRODUCTCATEGORYNAME"}, ETH_Cluster, {"Retail Catogery"}, "ETH_Cluster", JoinKind.LeftOuter),
+		    #"Expanded ETH_Cluster" = Table.ExpandTableColumn(#"Merged Queries", "ETH_Cluster", {"Gender", "Gender-Comb", "Collection", "Class", "Class1", "Sub-class", "Cluster", "Cluster Short"}, {"Gender", "Gender-Comb", "Collection", "Class", "Class1", "Sub-class", "Cluster", "Cluster Short"})
+		in
+		    #"Expanded ETH_Cluster"
+	lineageTag: 36a5b209-3efa-4384-ab98-a4a80d3636ae
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression FF_2026 =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Footfall_Data\2026.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Applied filters:#(lf)Year is 2026", type text}, {"Column2", type text}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type text}, {"Column9", type text}, {"Column10", type text}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"LocationID", type text}, {"Store Name", type text}, {"Date", type date}, {"No of Transactions", Int64.Type}, {"Footfall", Int64.Type}, {"TY Net Sls U", Int64.Type}, {"NetSalesIncTax", Int64.Type}, {"Tax Amount", type text}, {"TY Rtn U", type text}, {"TY Rtn", type text}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type1", each ([LocationID] <> null))
+		in
+		    #"Filtered Rows"
+	lineageTag: 96e00d7b-e4ab-40ae-813f-e19aafd84870
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression FF_2020 =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Footfall_Data\2020.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Applied filters:#(lf)Year is 2020", type text}, {"Column2", type text}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"LocationID", type text}, {"Store Name", type text}, {"Date", type date}, {"No of Transactions", Int64.Type}, {"Footfall", Int64.Type}, {"TY Net Sls U", Int64.Type}, {"NetSalesIncTax", Int64.Type}, {"TY Rtn U", Int64.Type}, {"TY Rtn", Int64.Type}})
+		in
+		    #"Changed Type1"
+	lineageTag: 615060c1-b6a3-48c3-b44c-859f1e3e6d16
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression FF_2022 =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Footfall_Data\2022.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Applied filters:#(lf)Year is 2022", type text}, {"Column2", type text}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([#"Applied filters:#(lf)Year is 2022"] <> null)),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Filtered Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"LocationID", type text}, {"Store Name", type text}, {"Date", type date}, {"No of Transactions", type number}, {"Footfall", Int64.Type}, {"TY Net Sls U", Int64.Type}, {"NetSalesIncTax", Int64.Type}, {"TY Rtn U", Int64.Type}, {"TY Rtn", Int64.Type}})
+		in
+		    #"Changed Type1"
+	lineageTag: 4bca70dd-c6af-4f02-a7a8-7af78d791fd6
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression FF_2023 =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Footfall_Data\2023.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Applied filters:#(lf)Year is 2023", type text}, {"Column2", type text}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"LocationID", type text}, {"Store Name", type text}, {"Date", type date}, {"No of Transactions", type number}, {"Footfall", Int64.Type}, {"TY Net Sls U", type number}, {"NetSalesIncTax", Int64.Type}, {"Tax Amount", type number}, {"TY Rtn U", Int64.Type}, {"TY Rtn", Int64.Type}}),
+		    #"Appended Query" = Table.Combine({#"Changed Type1", FF_2024})
+		in
+		    #"Appended Query"
+	lineageTag: 4e74ae32-dd81-48fd-a014-7a5ea9e260b0
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression FF_2024 =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Footfall_Data\2024.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Applied filters:#(lf)Year is 2024", type text}, {"Column2", type text}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type text}, {"Column9", type text}, {"Column10", type text}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"LocationID", type text}, {"Store Name", type text}, {"Date", type date}, {"No of Transactions", Int64.Type}, {"Footfall", Int64.Type}, {"TY Net Sls U", Int64.Type}, {"NetSalesIncTax", Int64.Type}, {"Tax Amount", type text}, {"TY Rtn U", type text}, {"TY Rtn", type text}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}})
+		in
+		    #"Changed Type1"
+	lineageTag: 789d3666-c8e5-40d2-9176-967b349fd505
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression FF_2025 =
+		let
+		    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\Footfall_Data\2025.xlsx"), null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Applied filters:#(lf)Year is 2025", type text}, {"Column2", type text}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type any}, {"Column8", type text}, {"Column9", type text}, {"Column10", type text}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers1" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers1",{{"LocationID", type text}, {"Store Name", type text}, {"Date", type date}, {"No of Transactions", Int64.Type}, {"Footfall", Int64.Type}, {"TY Net Sls U", Int64.Type}, {"NetSalesIncTax", Int64.Type}, {"Tax Amount", type text}, {"TY Rtn U", type text}, {"TY Rtn", type text}, {"Column11", type any}, {"Column12", type any}, {"Column13", type any}, {"Column14", type any}}),
+		    #"Filtered Rows" = Table.SelectRows(#"Changed Type1", each ([LocationID] <> null))
+		in
+		    #"Filtered Rows"
+	lineageTag: 02fc4a9f-326d-4bf5-b239-9275cac399ff
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression stg_ShopifyProductImages =
+		let
+		    Source = Sql.Database("202.142.187.28", "OFTRBI"),
+		    dbo_stg_ShopifyProductImages = Source{[Schema="dbo",Item="stg_ShopifyProductImages"]}[Data]
+		in
+		    dbo_stg_ShopifyProductImages
+	lineageTag: f12402f3-0c20-49ac-80f3-50db061ae2d9
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+
+expression Images_DB =
+		let
+		    Source = Table.Combine({ETH_Imagess, OFT_Images}),
+		    #"Replaced Value" = Table.ReplaceValue(Source,"f","F",Replacer.ReplaceText,{"ItemID"}),
+		    #"Removed Duplicates" = Table.Distinct(#"Replaced Value", {"ItemID"})
+		in
+		    #"Removed Duplicates"
+	lineageTag: 4b0784c6-f675-4748-954b-b94f129170f7
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

@@ -1,0 +1,144 @@
+table UAE_Measures
+	lineageTag: 2b66af05-4aa1-42ed-bc24-3127e65a5d3a
+
+	measure UAE_Sales_OL(Rs) = SUM(Shopify_UAE_OT[SaleV])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: cd711706-74d4-4404-a6dd-56715151e48b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UAE_Sales (Rs)' = [UAE_Sales_OL(Rs)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 7e32db73-1f1d-4e48-b209-4a43794b8137
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UAE_MTD_Sales_Rs = TOTALMTD([UAE_Sales (Rs)],'Calendar'[Date])
+		dataType: variant
+		displayFolder: Targets\MTD
+		lineageTag: 424821bd-5105-4914-81f2-efc5a8875928
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UAE_Targets_RS = SUM(UAE_Targets[Targets (PKR)])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets
+		lineageTag: 6df334f0-4ef1-4a16-935c-a59258127643
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UAE_MTD_Targets_Rs = TOTALMTD([UAE_Targets_RS],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets\MTD
+		lineageTag: c4c6fc73-1803-49a5-bbac-2c51147f816a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UAE_Budget (Rs)' = SUM('Budget-UAE'[Targets (PKR)])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 00277d6e-821e-474e-8b7f-bbd0ff81c53b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'UAE_MTD Budget' = TOTALMTD([UAE_Budget (Rs)],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: f5532430-d8d2-4422-aee6-ef9e9b79c044
+
+	measure UAE_Budget_YTD = TOTALYTD([UAE_Budget (Rs)],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: c82f0c72-2417-4257-a229-5ec190699318
+
+	measure 'UAE_YTD Sales (Rs)' = TOTALYTD([UAE_Sales (Rs)],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Targets\YTD
+		lineageTag: ba051b67-49e2-4c31-9a60-108892b2ee6e
+
+	measure 'UAE_Budget Var' = [UAE_Sales (Rs)]-[UAE_Budget (Rs)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: d3fdfb4b-7951-4652-866d-8a2424f4e783
+
+	measure 'UAE_Budget Var%' = DIVIDE([UAE_Sales (Rs)]-[UAE_Budget (Rs)],[UAE_Budget (Rs)])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: 6e9a8dc5-fbcc-4fd4-9dc5-2aa027bdab16
+
+	measure 'UAE_MTD Budget Var' = [UAE_MTD_Sales_Rs]-[UAE_MTD Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: fe491ef2-5a8f-443b-a060-4f35f2917a38
+
+	measure 'UAE_MTD Budget Var%' = DIVIDE([UAE_MTD_Sales_Rs]-[UAE_MTD Budget],[UAE_MTD Budget])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: 794850b4-79eb-4df9-8961-977fa5bd59a2
+
+	measure 'UAE_YTD Budget Var' = [UAE_YTD Sales (Rs)]-[UAE_Budget_YTD]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: fdbb3b17-107c-48e9-937b-3cdc30aec273
+
+	measure 'UAE_YTD Budget Var%' = DIVIDE([UAE_YTD Sales (Rs)]-[UAE_Budget_YTD],[UAE_Budget_YTD])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: 0398309a-e065-4d0d-bcc2-99c04cff89db
+
+	measure 'UAE_LY Sales (Rs)' = CALCULATE([UAE_Sales (Rs)],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 6cd05c2b-be3a-48a7-8922-386b0e535deb
+
+	measure 'UAE_MTD LY Sales (Rs)' = CALCULATE([UAE_MTD_Sales_Rs],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 91f88c5b-6c86-46e9-9d42-29f17c972202
+
+	measure 'UAE_YTD LY Sales (Rs)' = CALCULATE([UAE_YTD Sales (Rs)],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 8a188830-57a5-4e22-ab44-1844d6265b5b
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: f42112e7-5a2f-4b27-92d1-07072c9c19e3
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition UAE_Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,361 @@
+table Inv_Aging
+	lineageTag: 28047b31-5675-4539-a55a-4a83930de4a1
+
+	column 'Item number'
+		dataType: string
+		lineageTag: e39c0c03-1c70-4f3b-a7a9-3f8904de8ae7
+		summarizeBy: none
+		sourceColumn: Item number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product name'
+		dataType: string
+		lineageTag: 2863de3f-8cf4-4c78-b700-ad5300f9d06e
+		summarizeBy: none
+		sourceColumn: Product name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory unit'
+		dataType: string
+		lineageTag: c623328a-7248-4ccd-8388-de50af627739
+		summarizeBy: none
+		sourceColumn: Inventory unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Warehouse
+		dataType: string
+		lineageTag: 0481cfbb-9eb3-4096-9bba-ea1781bd3d93
+		summarizeBy: none
+		sourceColumn: Warehouse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 9ece11d6-c3fb-41a3-820b-5c72c47764ba
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'On-hand quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: a3a41d92-ddc1-424a-afb7-f0d08a02285e
+		summarizeBy: sum
+		sourceColumn: On-hand quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'On-hand value'
+		dataType: double
+		lineageTag: 212f2db0-0626-46fd-b164-98331f739c25
+		summarizeBy: sum
+		sourceColumn: On-hand value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inventory value quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1eb4fb6b-6149-482e-85f9-7925bad7d0e1
+		summarizeBy: sum
+		sourceColumn: Inventory value quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory value'
+		dataType: double
+		lineageTag: 86267611-940f-4743-b375-b2dbb4e74dd2
+		summarizeBy: sum
+		sourceColumn: Inventory value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Average unit cost'
+		dataType: double
+		lineageTag: 08019b69-96ad-4d8f-8998-be2b181f5f25
+		summarizeBy: sum
+		sourceColumn: Average unit cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Period 1: Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: b37a5b2f-00a5-40af-add7-fd5b2e07f47e
+		summarizeBy: sum
+		sourceColumn: Period 1: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period 1: Amount'
+		dataType: double
+		lineageTag: b14ec978-198f-4eb8-9698-6256365403cd
+		summarizeBy: sum
+		sourceColumn: Period 1: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Period 2: Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9adfcc2d-d73a-434c-951e-a04842ddb8c8
+		summarizeBy: sum
+		sourceColumn: Period 2: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period 2: Amount'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b9f23e2-41ac-4ba8-adf1-b3a533f2b4f9
+		summarizeBy: sum
+		sourceColumn: Period 2: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period 3: Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: d97a2719-dc21-4a19-98d3-3d61224a0364
+		summarizeBy: sum
+		sourceColumn: Period 3: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period 3: Amount'
+		dataType: int64
+		formatString: 0
+		lineageTag: 56e1607a-b771-4901-94a6-500ba52f4f13
+		summarizeBy: sum
+		sourceColumn: Period 3: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period 4: Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4cdd6bc7-b16c-4039-bd03-b156765769a9
+		summarizeBy: sum
+		sourceColumn: Period 4: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period 4: Amount'
+		dataType: int64
+		formatString: 0
+		lineageTag: ff656b8d-a5cf-49fc-b7ba-e6ed8ccb97ff
+		summarizeBy: sum
+		sourceColumn: Period 4: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period 5: Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: f72bd329-8c16-427f-b9f3-b339aeea8242
+		summarizeBy: sum
+		sourceColumn: Period 5: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Period 5: Amount'
+		dataType: double
+		lineageTag: 10bfe29e-bb56-4f24-8997-2a9cf47f8b07
+		summarizeBy: sum
+		sourceColumn: Period 5: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Location Type'
+		dataType: string
+		lineageTag: c740733c-e44b-4f21-8a17-7e6f7e3b6016
+		summarizeBy: none
+		sourceColumn: Location Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Solid Item'
+		dataType: string
+		lineageTag: f0dc823a-05ae-4765-b0c2-ad5ee0326356
+		summarizeBy: none
+		sourceColumn: Solid Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Kit Component' = IF(LOOKUPVALUE(Kit[Quantity],Kit[Style],[Item number])=BLANK(),1,LOOKUPVALUE(Kit[Quantity],Kit[Style],[Item number]))
+		dataType: int64
+		formatString: 0
+		lineageTag: 834f692e-68c2-4bb4-9911-998945f258e6
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Solid Qty' = [On-hand quantity]*[Kit Component]
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c48066d-0571-4503-859e-db1d232ed6f3
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Value' = [Solid Qty]*[Final Cost]
+		dataType: double
+		lineageTag: e0df4d1a-266f-4ddf-a6e2-edbad14993cf
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '30 Days-U' = [Period 1: Quantity]*[Kit Component]
+		dataType: int64
+		formatString: 0
+		lineageTag: 08ccdf89-1132-45a1-8893-8694d28d5317
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column '30 Days-C' = [30 Days-U]*[Final Cost]
+		dataType: double
+		lineageTag: a6607ca4-edf5-4f8d-b110-572dac33b190
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '60 Days-U' = [Period 2: Quantity]*[Kit Component]
+		dataType: int64
+		formatString: 0
+		lineageTag: c14febe6-62d1-4200-93e6-974dff80a1b0
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column '60 Days-C' = [60 Days-U]*[Final Cost]
+		dataType: double
+		lineageTag: 05dac443-7676-4a22-9ad4-717e5271c2f7
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '90 Days-U' = [Period 3: Quantity]*[Kit Component]
+		dataType: int64
+		formatString: 0
+		lineageTag: 37dec995-93fc-429c-8090-3d3fd7366a13
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column '90 Days-C' = [90 Days-U]*[Final Cost]
+		dataType: double
+		lineageTag: f323a34d-917f-4bf3-aaf4-8519114c9b08
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '120 Days-U' = [Period 4: Quantity]*[Kit Component]
+		dataType: int64
+		formatString: 0
+		lineageTag: 54592d65-5da0-44df-840d-15fc14e02a76
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column '120 Days-C' = [120 Days-U]*[Final Cost]
+		dataType: double
+		lineageTag: beaab0bd-4d4b-4f6b-9400-08d4aa83c86f
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '120+ Days-U' = [Period 5: Quantity]*[Kit Component]
+		dataType: int64
+		formatString: 0
+		lineageTag: 480af313-4da4-40ba-87cb-ad1e32b8e7b8
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column '120+ Days-C' = [120+ Days-U]*[Final Cost]
+		dataType: double
+		lineageTag: 3c8457d6-b5a3-480b-a29d-fd253ad6bb85
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Final Cost'
+		dataType: double
+		lineageTag: b019142f-58ee-438a-a36a-db73aaa1bda6
+		summarizeBy: sum
+		sourceColumn: Final Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Inv_Aging = m
+		mode: import
+		source = ```
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Inventory Check\Inventory Aging.xlsx"), null, true),
+				    AxTable1_Table = Source{[Item="AxTable1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(AxTable1_Table,{{"Item number", type text}, {"Product name", type text}, {"Inventory unit", type text}, {"Warehouse", type text}, {"Location", type text}, {"On-hand quantity", Int64.Type}, {"On-hand value", type number}, {"Inventory value quantity", Int64.Type}, {"Inventory value", type number}, {"Average unit cost", type number}, {"Period 1: Quantity", Int64.Type}, {"Period 1: Amount", type number}, {"Period 2: Quantity", Int64.Type}, {"Period 2: Amount", Int64.Type}, {"Period 3: Quantity", Int64.Type}, {"Period 3: Amount", Int64.Type}, {"Period 4: Quantity", Int64.Type}, {"Period 4: Amount", Int64.Type}, {"Period 5: Quantity", Int64.Type}, {"Period 5: Amount", type number}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Location Type", each if [Location] = null then "Transit"
+				else if Text.StartsWith(Text.Upper([Location]), "UK") then "UK" 
+				else if Text.StartsWith(Text.Upper([Location]), "US") then "US" 
+				else "Local"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Location Type", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type1", each true),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Filtered Rows", "Item number", "Item number - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "Item number - Copy", Splitter.SplitTextByEachDelimiter({":"}, QuoteStyle.Csv, false), {"Item number - Copy.1", "Item number - Copy.2"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Item number - Copy.1", type text}, {"Item number - Copy.2", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type2",{"Item number - Copy.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Item number - Copy.1", "Solid Item"}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Renamed Columns", {"Solid Item"}, Cost_Inv, {"ITEMNUMBER"}, "DimCost", JoinKind.LeftOuter),
+				    #"Expanded DimCost" = Table.ExpandTableColumn(#"Merged Queries", "DimCost", {"PURCHASEPRICE"}, {"PURCHASEPRICE"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Expanded DimCost",{{"PURCHASEPRICE", "Final Cost"}})
+				in
+				    #"Renamed Columns1"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

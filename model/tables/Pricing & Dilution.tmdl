@@ -1,0 +1,278 @@
+table 'Pricing & Dilution'
+	isHidden
+
+	measure Dilution% = ([Full Price Sale Vaule]-[Sale-Value])/[Full Price Sale Vaule]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Dilution
+		lineageTag: aee8bd96-34bd-4c3f-8fdd-bc1392fe04d9
+
+		changedProperty = FormatString
+
+	measure 'Dilution (V)' = [Full Price Sale Vaule]-[Sale-Value]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Dilution
+		lineageTag: 4b81e7c9-ae35-4b37-9605-c8aeeef86201
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Dilution' = DIVIDE(([LY Full Price Sale]-[LY Sales]),[LY Full Price Sale])
+		dataType: variant
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Dilution
+		lineageTag: 58e21659-92cb-403a-a5ac-77470e1bccf4
+
+	measure 'Dilution% Var' = [Dilution%]-[LY Dilution]
+		dataType: variant
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Dilution
+		lineageTag: 0a2e2bb1-f2b1-4789-b2fb-0ff8568f5a2c
+
+	measure 'MTD Dilution%' = IFERROR(([MTD Full Price Sales]-[MTD Sales])/[MTD Full Price Sales],"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Dilution\MTD
+		lineageTag: 542c9a0e-0b2d-4138-b185-b1eedc78fcf6
+
+	measure 'LY MTD DILUTION%' = DIVIDE([LY MTD Full Sales]-[LY MTD Sales],[LY MTD Full Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Dilution\MTD
+		lineageTag: 030414f4-6af4-440e-8f87-f25542c4a5ee
+
+	measure 'MTD DILUTION% VAR' = [MTD Dilution%]-[LY MTD DILUTION%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Dilution\MTD
+		lineageTag: fbf8abc9-5b52-4542-bdea-3722d7120a17
+
+	measure 'MTD DILUTION% SHORT' = DIVIDE([MTD DILUTION% VAR],[LY MTD DILUTION%])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Dilution\MTD
+		lineageTag: e60cba71-0e87-4925-b6f8-79ab32a2ccba
+
+	measure 'YTD Dilution%' = DIVIDE([YTD Full Sales]-[YTD Sales],[YTD Full Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Dilution\YTD
+		lineageTag: 3dbb1900-7714-45bf-99d3-c2e305086360
+
+	measure 'LYTD Dilution%' = DIVIDE([LYTD Full Sales]-[LYTD Sales],[LYTD Full Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Dilution\YTD
+		lineageTag: 5b40a868-84ab-459e-8f34-ac0c06d88af2
+
+	measure 'YTD Dilution Var%' = [YTD Dilution%]-[LYTD Dilution%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Dilution\YTD
+		lineageTag: 60a3ec59-dd08-4708-bd0b-5c3d0415dd7f
+
+	measure 'YTD Dilution Short%' = [YTD Dilution Var%]/[LYTD Dilution%]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Dilution\YTD
+		lineageTag: 26146aec-ceae-4e20-b33a-4b6aaf3ba69b
+
+	measure Disct% =
+			VAR FullPrice =SUM(SALES[Base Price])
+			VAR Soldprice =SUM(SALES[Sold Price])
+			Return
+			(fullprice-Soldprice)/FullPrice
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Discount
+		lineageTag: 784c96ed-1d79-434e-a814-a3646a73409f
+
+	measure 'Discount (V) Sale' = [Full Price Sale Vaule]-[Sale-Value]
+		dataType: variant
+		displayFolder: Discount
+		lineageTag: 3c5edfa5-ec5b-414a-8d19-ddb6eff61402
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Full Price Sale Vaule' =
+			SUMX(
+			        SALES,
+			        SALES[QtySold] * RELATED('Product'[RetailPrice1])
+			    )
+		dataType: variant
+		formatString: #,0
+		displayFolder: Full Price
+		lineageTag: 2bbf33c5-ac65-47b0-b8f0-ada557a70521
+
+	measure 'LY Full Price Sale' = CALCULATE([Full Price Sale Vaule],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Full Price
+		lineageTag: 8c1281e8-3358-4ce9-ac8c-fd775c9c7a68
+
+	measure 'LY MTD Full Sales' = CALCULATE([MTD Full Price Sales],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Full Price
+		lineageTag: 2d6852c0-4b60-4de2-8722-6d37f21fabff
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LYTD Full Sales' = CALCULATE([YTD Full Sales],SAMEPERIODLASTYEAR('calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Full Price
+		lineageTag: 793b52a5-6377-4772-888b-4bc7db202b09
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD Full Sales' = TOTALYTD([Full Price Sale Vaule],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Full Price
+		lineageTag: 04ff4a8f-435c-4fe5-b1db-3097124bd850
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD Full Price Sales' = TOTALMTD([Full Price Sale Vaule],'calendar'[Date])
+		dataType: variant
+		formatString: 0
+		displayFolder: Full Price
+		lineageTag: c89dd018-9fe3-4819-a00e-cd595ae1b4d8
+
+	measure 'Season Sale' = CALCULATE([Sale-Value],Product_Inv[Curt Season]="CY Season")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season & Events
+		lineageTag: 7d354f8f-013b-494f-a120-efbc63795453
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Season Sale Var' = [Season Sale]-[LY Season Sale-0]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season & Events
+		lineageTag: ea11547e-4301-458f-a42f-a2d3d43b7839
+
+	measure 'Season Sale Var%' = DIVIDE([Season Sale Var],[LY Season Sale-0])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Season & Events
+		lineageTag: cb7dd676-a218-4a57-9b2b-ba4bd297ad9e
+
+	measure 'Season Sale (U)' = CALCULATE([Sale-Units],Product[LY Season]="CY Season")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season & Events
+		lineageTag: f69c1c0f-318c-4587-a1f7-63c8ee96f851
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Season Sale (U) Var%' = DIVIDE(([Season Sale (U)]-[LY Season Sale-(U)]),[LY Season Sale-(U)])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Season & Events
+		lineageTag: 6e28c53d-9226-4547-8ce7-c9eed30f2d18
+
+	measure 'Current Season Sale' = CALCULATE([Sale-Value],'Product'[Season-SS]="WS-20")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season & Events
+		lineageTag: 1e90beb2-f2e3-4e89-8163-78ecd29a0cc5
+
+	measure 'Mother Day Sale' = CALCULATE([Sale-Value],'Calendar'[Ramzan]="ESS-Winter",'Calendar'[Year]="2022")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season & Events
+		lineageTag: ceff08c6-376a-445b-9dc9-b6562f74b675
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Mother Day Targets' = CALCULATE([TGT],'Calendar'[Ramzan]="ESS-Winter")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season & Events
+		lineageTag: 41e6b0f4-1a4b-44fe-997e-f7ee5b2b2a1b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Mother Day Units' = CALCULATE([Sale-Units],'Calendar'[Ramzan]="ESS-Winter",'Calendar'[Year]="2022")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season & Events
+		lineageTag: 8db6d3f8-c4fe-483b-8c33-c79bd10707fd
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Mother Day' = CALCULATE([Sale-Value],'Calendar'[Ramzan]="ESS-Winter",'Calendar'[Year]="2021")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season & Events
+		lineageTag: 14754d17-71c1-4bb5-a64e-352a8d162a5a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MD TGT Var%' = IFERROR([Mother Day Sale]/[Mother Day Targets]-1,"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Season & Events
+		lineageTag: dbcc6108-1921-444c-96db-b3612f340307
+
+	measure 'WF Var%' = IFERROR([Mother Day Sale]/[LY WF]-1,"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Season & Events
+		lineageTag: ba513981-eb55-4cfb-92b0-70f3b82917db
+
+	measure 'LY WF' = CALCULATE([Sale-Value],'Calendar'[Ramzan]="ESS-Winter",'Calendar'[Year]="2021")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Season & Events
+		lineageTag: d7b6b32f-25ca-4e2c-af79-8e94e98ee596
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY WF (U)' = CALCULATE([Sale-Units],'Calendar'[Ramzan]="ESS-Winter",'Calendar'[Year]="2021")
+		dataType: variant
+		displayFolder: Season & Events
+		lineageTag: 6b83cc7f-52ed-4d92-8a6c-159575c499e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Promo GP%' = CALCULATE([GP%],'Calendar'[Ramzan]="White Friday",'Calendar'[Year]="2021")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Season & Events
+		lineageTag: 1b640016-84f5-4216-b490-f94085b595d8
+
+	measure 'LY Promo GP%' = CALCULATE([GP%],'Calendar'[Ramzan]="White Friday",'Calendar'[Year]="2020")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Season & Events
+		lineageTag: 9c59b860-2cb8-4318-a8b6-37a5453ddfce
+
+	measure 'Promo (U) Var%' = IFERROR( ([Mother Day Units]-[LY WF (U)])/[LY WF (U)],0)
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Season & Events
+		lineageTag: 0ea8d09a-8029-43b8-8800-3d784b8f2517
+
+	measure 'Promo (V) Var%' = IFERROR( ([Mother Day Sale]-[LY WF])/[LY WF],0)
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Season & Events
+		lineageTag: d9a3fe9f-0b5e-4590-8ec3-878c7af78f30
+
+	measure 'LY Promo Inv' = SUM(Promo_LY_Inventory[Soild Qty])
+		dataType: variant
+		displayFolder: Season & Events
+		lineageTag: ce06da55-c081-4817-8b09-47386a383a54
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure LY_Promo_Liq% = [LY WF (U)]/[LY Promo Inv]
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Season & Events
+		lineageTag: 43f710ca-4430-4fa6-b5e1-922398235476
+

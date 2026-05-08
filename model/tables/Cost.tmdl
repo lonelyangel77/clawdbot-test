@@ -1,0 +1,74 @@
+table Cost
+	lineageTag: f2dca83c-c738-4392-aa8f-442c25a29715
+
+	column 'OFTR. STYLE'
+		dataType: string
+		lineageTag: f0d0852e-b3d5-41f3-a93d-242a55a64bce
+		summarizeBy: none
+		sourceColumn: OFTR. STYLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'COST PRICE'
+		dataType: double
+		lineageTag: 5a356f8b-f165-4128-8661-a268b6c2535f
+		summarizeBy: sum
+		sourceColumn: COST PRICE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Retail Price'
+		dataType: int64
+		formatString: 0
+		lineageTag: a4597fdc-b60a-45a1-ad41-d7bdf9ef38e1
+		summarizeBy: sum
+		sourceColumn: Retail Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Factor'
+		dataType: double
+		lineageTag: b37fd9fa-6a7e-4c2d-83a3-08594114bbb0
+		summarizeBy: sum
+		sourceColumn: Cost Factor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'ACQUIRED QTY'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a94f5be-8156-4ff5-888c-c6d9b3841ae5
+		summarizeBy: sum
+		sourceColumn: ACQUIRED QTY
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tax Cost'
+		dataType: double
+		lineageTag: 9c583ce2-1c76-44d7-a8fc-9ad299f1cb7d
+		summarizeBy: sum
+		sourceColumn: Tax Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Cost-4b7cb6b8-1ad0-47b0-a1f5-fd0da30bb510 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\WINTER-16 ACQ QTY.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"OFTR. STYLE", type text}, {"ACQUIRED QTY", Int64.Type}, {"COST PRICE", type number}, {"Retail Price", Int64.Type}, {"Cost Factor", type number}, {"Tax Cost", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

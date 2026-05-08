@@ -1,0 +1,64 @@
+table 'Price Aggreement'
+	lineageTag: 5b4d1f27-27ec-473e-adc7-710f469628b8
+
+	column Relation
+		dataType: string
+		lineageTag: 62ef3ad4-2ba6-47a9-915c-510b62ee9874
+		summarizeBy: none
+		sourceColumn: Relation
+
+		annotation SummarizationSetBy = Automatic
+
+	column Item
+		dataType: string
+		lineageTag: 908621e3-221a-4678-b067-8a6d894fe28c
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'From date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 729576a0-3d4c-4108-98e2-11719155bd13
+		summarizeBy: none
+		sourceColumn: From date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'To date'
+		dataType: string
+		lineageTag: e47e0787-e41f-413d-a2d4-c818faaf1fbb
+		summarizeBy: none
+		sourceColumn: To date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Amount in transaction currency'
+		dataType: int64
+		formatString: 0
+		lineageTag: 23316d11-a1f3-4d36-aac1-14aa5808998d
+		summarizeBy: sum
+		sourceColumn: Amount in transaction currency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Price Aggreement' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Price agreements.xlsx"), null, true),
+				    AxTable1_Table = Source{[Item="AxTable1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(AxTable1_Table,{{"Relation", type text}, {"Currency", type text}, {"Party code type", type text}, {"Account selection", type any}, {"Product code type", type text}, {"Item", type text}, {"Size", type any}, {"Site", type text}, {"Unit", type text}, {"From date", type date}, {"To date", type any}, {"From", Int64.Type}, {"To", Int64.Type}, {"Amount in transaction currency", Int64.Type}, {"Price unit", Int64.Type}, {"Discount percentage 1", Int64.Type}, {"Attribute-based pricing ID", type any}, {"Fixed amount", Int64.Type}, {"Find next", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Relation] = "Price (sales)")),
+				    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows",{"Currency", "Party code type", "Account selection", "Product code type", "Size", "Site", "Unit", "From", "To", "Price unit", "Discount percentage 1", "Attribute-based pricing ID", "Fixed amount", "Find next"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns", {"Item"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

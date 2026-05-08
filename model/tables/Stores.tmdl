@@ -1,0 +1,415 @@
+table Stores
+	lineageTag: 62a63d0a-14ee-422b-82d5-dc718483a822
+
+	measure 'M.SQFT' = SUM(Stores[Area (New)] )
+		dataType: variant
+		displayFolder: Store Info
+		lineageTag: 83e7e2b1-2efa-43ff-bc33-10fa0326f2f5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure BrandN = SELECTEDVALUE('Stores'[Brand])
+		dataType: variant
+		displayFolder: Store Info
+		lineageTag: d5310009-3e89-4ece-8053-0800e9e51ac8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Code
+		dataType: string
+		lineageTag: a2913e03-3d31-4671-983b-95a977ef26c1
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shop Code'
+		dataType: string
+		lineageTag: 6cfea56b-e73a-4219-8899-286e18708ed0
+		summarizeBy: none
+		sourceColumn: Shop Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Retail Code'
+		dataType: string
+		lineageTag: bf8c24be-b6dd-4447-a77d-f02974253635
+		summarizeBy: none
+		sourceColumn: Retail Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreName
+		dataType: string
+		lineageTag: 800d9247-73ae-4ab3-97fb-b8331f43f773
+		summarizeBy: none
+		sourceColumn: StoreName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreName-1
+		dataType: string
+		lineageTag: 742b124c-bd55-483f-bd0c-1379e6fa4a61
+		summarizeBy: none
+		sourceColumn: StoreName-1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'D365 Name'
+		dataType: string
+		lineageTag: fb9862a7-b6f1-42f0-b10c-cf238b7a6458
+		summarizeBy: none
+		sourceColumn: D365 Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region-New
+		dataType: string
+		lineageTag: 02610273-0344-4b91-81a6-c0d9422bbb33
+		summarizeBy: none
+		sourceColumn: Region-New
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 3c4a9d13-4254-48c6-b073-4dc3c13c9f16
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region-City
+		dataType: string
+		lineageTag: 1e95f4f2-be0f-44ea-bc39-abe8c865cbfd
+		summarizeBy: none
+		sourceColumn: Region-City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Province
+		dataType: string
+		lineageTag: f7e77932-ef47-41fe-bf55-dba6d52d2787
+		summarizeBy: none
+		sourceColumn: Province
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: c77d34e9-1c06-494b-93ad-199e5f4d0c7a
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreName(OLD)
+		dataType: string
+		lineageTag: 87f4e31f-2966-419d-a202-ca7f3e9b708c
+		summarizeBy: none
+		sourceColumn: StoreName(OLD)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 28249254-b72d-42dd-9ba9-a0f1389f4eb0
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column OK-Wrong
+		dataType: string
+		lineageTag: ef50131c-0053-4fa9-be8c-ad92f26a709c
+		summarizeBy: none
+		sourceColumn: OK-Wrong
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Type (New)'
+		dataType: string
+		lineageTag: c7be1987-f855-4c67-b856-0af18a5cc911
+		summarizeBy: none
+		sourceColumn: Store Type (New)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Type'
+		dataType: string
+		lineageTag: 7116b92a-174b-4329-9648-e1a115417d3d
+		summarizeBy: none
+		sourceColumn: Store Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Class'
+		dataType: string
+		lineageTag: e7637c78-5a4e-42fe-b402-6b7fb3366473
+		summarizeBy: none
+		sourceColumn: Store Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Brick & Morter'
+		dataType: string
+		lineageTag: 56546f3d-62ef-4b21-abf3-e0f74817fe4e
+		summarizeBy: none
+		sourceColumn: Brick & Morter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Category'
+		dataType: string
+		lineageTag: 27c22dd3-9c3f-492f-9349-df0e3fb2284d
+		summarizeBy: none
+		sourceColumn: Store Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ownership
+		dataType: string
+		lineageTag: bdbfb0fc-68b5-4190-8be2-f3d99c0ff855
+		summarizeBy: none
+		sourceColumn: Ownership
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Operational Control'
+		dataType: string
+		lineageTag: 6c55a2b9-3319-408f-ae77-a6376a11955c
+		summarizeBy: none
+		sourceColumn: Operational Control
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location Status'
+		dataType: string
+		lineageTag: 3b6ce474-294f-4d81-bca5-881f02d3d298
+		summarizeBy: none
+		sourceColumn: Location Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date of Opening'
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: d92581bd-46e6-4048-96b8-cabc936f545c
+		summarizeBy: none
+		sourceColumn: Date of Opening
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Area (New)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c066563-5b9d-4adc-a08e-0daf26799769
+		summarizeBy: sum
+		sourceColumn: Area (New)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Area (Sq. Ft.)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 58a4fde4-20c5-42f4-889b-35f4bf8f6d65
+		summarizeBy: sum
+		sourceColumn: Area (Sq. Ft.)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rent per Month'
+		dataType: double
+		lineageTag: 5524dae9-4268-4534-bbf1-309f1a3492ce
+		summarizeBy: sum
+		sourceColumn: Rent per Month
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Area (Sq. Ft.)-OLD'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b0c89f6-6c6c-446a-a774-18bbf9ef4cf8
+		summarizeBy: sum
+		sourceColumn: Area (Sq. Ft.)-OLD
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Area Coordinator'
+		dataType: string
+		lineageTag: 99aa1bc1-05ea-4912-bc0a-aa6fdd14cf39
+		summarizeBy: none
+		sourceColumn: Area Coordinator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Territory Manager'
+		dataType: string
+		lineageTag: 2f750472-9654-490f-8595-c2b4ae41767e
+		summarizeBy: none
+		sourceColumn: Territory Manager
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Operational Status'
+		dataType: string
+		lineageTag: cdb453c2-2dae-43a1-b240-5ba535d556f8
+		summarizeBy: none
+		sourceColumn: Operational Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contact Number'
+		dataType: string
+		lineageTag: 698834a8-5a22-4767-a3a4-d657e6c627db
+		summarizeBy: none
+		sourceColumn: Contact Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Postal Address'
+		dataType: string
+		lineageTag: 1034af6b-8dcf-4504-80ac-9d2733bc0ba7
+		summarizeBy: none
+		sourceColumn: Postal Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date of Closing'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 31ee13ea-3b05-4389-a688-279d2056aa29
+		summarizeBy: none
+		sourceColumn: Date of Closing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Store Class-O'
+		dataType: string
+		lineageTag: 0b38e9fb-09cd-4639-a756-001f7377acd3
+		summarizeBy: none
+		sourceColumn: Store Class-O
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand-1
+		dataType: string
+		lineageTag: 1e911757-ccb8-44ef-9317-ad4bcff3864b
+		summarizeBy: none
+		sourceColumn: Brand-1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region-1
+		dataType: string
+		lineageTag: be336735-4404-49bb-8191-f734a74819ae
+		summarizeBy: none
+		sourceColumn: Region-1
+
+		annotation SummarizationSetBy = Automatic
+
+	column ASM
+		dataType: string
+		lineageTag: 842a00b4-8dc3-4257-bbdd-2944d2d3b278
+		summarizeBy: none
+		sourceColumn: ASM
+
+		annotation SummarizationSetBy = Automatic
+
+	column MID
+		dataType: string
+		lineageTag: 9a4670a4-879c-4938-873a-b60ae6a5d8da
+		summarizeBy: none
+		sourceColumn: MID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combine = [StoreName]&[Brand]
+		dataType: string
+		lineageTag: 5267538d-22be-4767-a5ea-4987c8ca7190
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MTD Status' = IF([Store Class-O]="Online","Online",IF([Opening Date]=BLANK(),"TBO",if([Date of Closing]>0,"Closed",if([Date of Opening]>TODAY()-365,"New","LFL"))))
+		dataType: string
+		lineageTag: 25f1e24a-bb2b-4d44-b367-3101275f4459
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'YTD Status' = IF([Store Class-O]="Online","Online",IF([Date of Closing]>0,"Closed",IF([Date of Opening]<DATE(2024,07,01),"LFL",IF([Date of Opening]>DATE(2025,06,30),"New","Roll Over"))))
+		dataType: string
+		lineageTag: 7af23c25-cc67-4560-9ba5-4495dfe484d6
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LYTD Status' = IF([Store Class-O]="Online","Online",IF([Date of Closing]>0,"Closed",IF([Date of Opening]<DATE(2023,07,01),":LFL",IF([Date of Opening]>DATE(2024,06,30),"New","Roll Over"))))
+		dataType: string
+		lineageTag: 2db48585-6626-4bbd-a290-20a02a361bfc
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupCode =
+			IF(AND([Brand]="Outfitters",[Store Class-O]="A-Class"),1,
+			IF(AND([Brand]="Outfitters",[Store Class-O]="FOL"),2,
+			IF(AND([Brand]="Outfitters",[Store Class-O]="Online"),3,
+			IF(AND([Brand]="Ethnic",[Store Class-O]="A-Class"),4,
+			IF(AND([Brand]="Ethnic",[Store Class-O]="FOL"),5,
+			IF(AND([Brand]="Ethnic",[Store Class-O]="Online"),6,0))))))
+		dataType: int64
+		formatString: 0
+		lineageTag: 5b1aa98e-ac5b-4897-bbb6-7ec97fd67c7c
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comb
+		dataType: string
+		lineageTag: 5e969684-2b60-417a-9313-6d44452aed4c
+		summarizeBy: none
+		sourceColumn: Comb
+
+		annotation SummarizationSetBy = Automatic
+
+	column Territory
+		dataType: string
+		lineageTag: 064834ff-abbf-4984-b795-a58cb823b309
+		summarizeBy: none
+		sourceColumn: Territory
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Stores-f9b8b170-7e89-4dc8-b15a-ad7e6f35feae = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\outlet status.xlsx"), null, true),
+				    Stores_Sheet = Source{[Item="Stores",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Stores_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Code", type text}, {"Shop Code", type text}, {"Retail Code", type text}, {"StoreName", type text}, {"StoreName-1", type text}, {"D365 Name", type text}, {"Region-New", type text}, {"Region", type text}, {"Region-City", type text}, {"Province", type text}, {"City", type text}, {"StoreName(OLD)", type text}, {"Brand", type text}, {"OK-Wrong", type text}, {"Store Type (New)", type text}, {"Store Type", type text}, {"Store Class", type text}, {"Brick & Morter", type text}, {"Store Category", type text}, {"Ownership", type text}, {"Operational Control", type text}, {"Location Status", type text}, {"Date of Opening", type date}, {"Area (New)", Int64.Type}, {"Area (Sq. Ft.)", Int64.Type}, {"Rent per Month", type number}, {"Area (Sq. Ft.)-OLD", Int64.Type}, {"Area Coordinator", type text}, {"Territory Manager", type text}, {"Operational Status", type text}, {"Contact Number", type text}, {"Postal Address", type text}, {"Date of Closing", type date}, {"Store Class-O", type text}, {"Brand-1", type text}, {"Region-1", type text}, {"ASM", type text}, {"MID", type text}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Comb", each [Retail Code]&[Brand]),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Custom", each ([Retail Code] <> "0") and ([StoreName] <> "DESPATCH WAREHOUSE" and [StoreName] <> "Fragrance Tester Warehouse")),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Filtered Rows",{{"Territory", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

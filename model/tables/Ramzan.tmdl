@@ -1,0 +1,45 @@
+table Ramzan
+	excludeFromModelRefresh
+	lineageTag: e2314342-fd44-4cc0-b273-84a8b2e4f3b1
+
+	column 'R.No'
+		dataType: int64
+		formatString: 0
+		lineageTag: a2c9f899-0051-4029-bcad-e2b02b26e19d
+		summarizeBy: sum
+		sourceColumn: R.No
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 20237d89-fb5e-44ef-8aa7-776982938608
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Promo
+		dataType: string
+		lineageTag: f6de25b9-8228-4037-8497-12576d0b8311
+		summarizeBy: none
+		sourceColumn: Promo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Ramzan-6e989c9a-ca34-497b-a15a-b0d00b9fe7c4 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\Ramzan Dates.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"R.No", Int64.Type}, {"Date", type date}, {"Promo", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

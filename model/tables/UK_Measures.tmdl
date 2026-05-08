@@ -1,0 +1,824 @@
+table UK_Measures
+	lineageTag: 9a150b82-c694-4886-8a1a-47a90a97fac2
+
+	measure UK_INV_Charges = SUM('UK_Inv-Head'[TOTALCHARGEAMOUNT])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Invoicing
+		lineageTag: dab12600-0dfb-430e-8e3e-7df3b58cd4a0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_INV_Net Sales' = SUM('UK_Inv-Head'[TOTALINVOICEAMOUNT])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Invoicing
+		lineageTag: d0f06d38-31e5-4532-8296-8eac08c55456
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_INV_Orders = DISTINCTCOUNT('UK_Inv-Head'[CUSTOMERSORDERREFERENCE])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Invoicing
+		lineageTag: bed605ee-ea97-4739-bd1a-f06e22ee8e2f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_INV_Tax = SUM('UK_Inv-Head'[TOTALTAXAMOUNT])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Invoicing
+		lineageTag: 53709bc0-7f3a-4152-9927-57f090d57292
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_MTD Sales' = TOTALMTD([UK_Sale(Rs)],'calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Sales
+		lineageTag: d9ee31d6-46e3-416e-bee9-8d128413cd1b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_MTD Targets' = TOTALMTD([UK_Targets(PKR)],'calendar'[Date])
+		dataType: variant
+		displayFolder: UK_Sales
+		lineageTag: bb54ce40-f828-450a-85f4-7843fcd1c48a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'UK_No of Orders' = CALCULATE(DISTINCTCOUNT(UK_Lines[SHOPIFYORDER]),UK_Lines[FULFILLMENTSTATUS]="Invoiced")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_B&M
+		lineageTag: b84b5a51-d18e-4235-84cf-80cc95997417
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_Return_No of Orders' = CALCULATE(DISTINCTCOUNT(UK_Lines[SHOPIFYORDER]),UK_Lines[SALESORDERLINESTATUS]="Backorder",UK_Lines[FULFILLMENTSTATUS]="Invoiced")
+		dataType: variant
+		displayFolder: UK_Sales
+		lineageTag: 248ee1b8-353a-480c-9296-49b2ba2d45f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'UK_Return_Sale Units' = CALCULATE(SUM(UK_Lines[ORDEREDSALESQUANTITY]),UK_Lines[SALESORDERLINESTATUS]="Backorder",UK_Lines[FULFILLMENTSTATUS]="Invoiced")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Sales
+		lineageTag: 4d0a73ac-5b55-41ad-8e5b-7da4874dfb90
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_Return_Sale Value' = CALCULATE(SUM(UK_Lines[LINEAMOUNT]),UK_Lines[SALESORDERLINESTATUS]="Backorder",UK_Lines[FULFILLMENTSTATUS]="Invoiced")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Sales
+		lineageTag: bafc4de8-705b-4393-92a3-92df8a4c781e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_Sale Units' = CALCULATE(SUM(UK_Lines[ORDEREDSALESQUANTITY]),UK_Lines[FULFILLMENTSTATUS]="Invoiced")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Sales
+		lineageTag: aaeae7b4-b8c6-4bd4-ab60-a84c5ce555de
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_Sale Value' = CALCULATE(SUM(UK_Lines[LINEAMOUNT]),UK_Lines[FULFILLMENTSTATUS]="Invoiced")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Sales
+		lineageTag: 93c99bab-2bda-416a-a16a-2a75707e8b7c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_Sale_Rs = CALCULATE(SUM(UK_Lines[Sale in RS]),UK_Lines[FULFILLMENTSTATUS]="Invoiced")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 7c7b290c-01d7-4b1a-aa79-714ce6bcca07
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_Targets(GBP) = SUM(UK_Targets[Target])
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Sales
+		lineageTag: a188dcae-7905-46f5-bfc6-62ac7af19378
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_Targets(PKR) = SUM(UK_Targets[TGT(PKR)])
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Sales
+		lineageTag: 4d988559-e5c5-41a8-9c04-8a040ca8c6c0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_YTD Sales' = TOTALYTD([UK_Sale(Rs)],'calendar'[Date],'calendar'[Date]="6/30")
+		dataType: int64
+		formatString: #,0
+		displayFolder: UK_Sales
+		lineageTag: db9278cb-e251-45d0-8958-7247b10fe9c0
+
+	measure 'MTD Sales All' = [MTD Sales]+[UK_MTD Sales]+[US_MTD Sales]+[UK_Sales_B&M_MTD]+[UAE_MTD_Sales_Rs]+[ROW_MTD Sales]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine\MTD
+		lineageTag: d7b5a4c7-44a8-4225-a93c-c1da1dfba701
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD Target Var All' = [MTD Sales All]-[MTD Targets All]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine\MTD
+		lineageTag: 538ad121-8980-4475-9f49-4aa5ca779bd0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD Target Var% All' = DIVIDE([MTD Sales All]-[MTD Targets All],[MTD Targets All])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: UK_Combine\MTD
+		lineageTag: 04fa75e1-02e6-4573-86d0-1c3cb749f616
+
+	measure 'MTD Targets All' = [MTD Target]+[UK_MTD Targets]+[US_MTD Targets]+[UAE_MTD_Targets_Rs]+[ROW_MTD Targets]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine\MTD
+		lineageTag: 43ace2b1-407c-4793-a446-83737d47062a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_MTD Sales Var%' = DIVIDE([UK_MTD Sales]-[UK_MTD Targets],[UK_MTD Targets])
+		dataType: variant
+		formatString: #,0%;-#,0%;#,0%
+		displayFolder: UK_Sales
+		lineageTag: f9969fec-0d35-4f01-a8bf-8db34e82e55d
+
+	measure 'MTD Budget Sales All' = [MTD Forecast Sales]+[UK_MTD Targets]+[US_MTD Targets]+[UAE_MTD_Targets_Rs]+[ROW_MTD Targets]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine\MTD
+		lineageTag: 455d3c01-06c1-4584-8ef2-cdce543923c4
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD Budget Sales Var All' = [MTD Sales All]-[MTD Budget Sales All]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine\MTD
+		lineageTag: 179182f4-4e5d-446a-938a-3eecc97ee14b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'MTD Budget Sales Var% All' = DIVIDE([MTD Sales All]-[MTD Budget Sales All],[MTD Budget Sales All])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: UK_Combine\MTD
+		lineageTag: 75c60eff-0fad-429c-8eef-9e1946d37bea
+
+	measure 'UK_Net Sales' = SUM(UK_Lines1[Net-PKR])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 46d46581-b953-4b33-aec1-6e57f337f4fb
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_Tax = SUM(UK_Lines1[Tax-PKR])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 6c75774d-344d-4482-9c90-96f29d28db7b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_Sales Value' = [UK_Net Sales]+[UK_Tax]
+		dataType: variant
+		displayFolder: Sales
+		lineageTag: a38d65ec-40af-42dc-9f57-afd16edbbb47
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UK_CGS = SUM(UK_Lines1[Cost-PKR])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 72ad5e84-5436-4c62-843b-ac0b487ea4bc
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_FullPrice = SUM(UK_Lines1[FP-PKR])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 7287afc8-f402-4892-995e-37043203db08
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Sale-Value All' = [Sale-Value]+[UK_Sale(Rs)]+[US_Sale(Rs)]+[UK_Sale_B&M (Rs)]+[US_Sales_BM (Rs)]+[UAE_Sales (Rs)]+[ROW_Sale(Rs)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: c9a58101-661b-4837-82cd-9347f184098f
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Targets All' = [TGT]+[UK_Targets(PKR)]+[US_Targets Value]+[UAE_Targets_RS]+[ROW_Targets Value]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: 5c133e2b-c1fe-4baf-aa56-1aae19899f59
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Targets Var% All' = DIVIDE([Sale-Value All]-[Targets All],[Targets All])
+		dataType: variant
+		formatString: #,0%;-#,0%;#,0%
+		displayFolder: UK_Combine
+		lineageTag: 6fb9ee6e-7b5a-469f-9c9e-61047e6fe185
+
+	measure 'Fullprice All' = [Full Price Sale Vaule]+[UK_FullPrice]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: 80d6cdf5-8406-4b73-95fa-44806d326b58
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Dilution% All' = DIVIDE([Fullprice All]-[Sale-Value All],[Fullprice All])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: UK_Combine
+		lineageTag: 023d6ea3-3324-40ba-a923-ad85c29b16cc
+
+	measure UK_GP = [UK_Net Sales]-[UK_CGS]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 1250edca-0eac-4bbe-aeef-46b79b964d11
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_GP% = DIVIDE([UK_GP],[UK_Net Sales])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: Sales
+		lineageTag: c40e2e1f-2734-48fb-8154-0700ea10b0a9
+
+	measure 'Previous Day Sales All' = CALCULATE([Sale-Value All],PREVIOUSDAY('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: 6ca6e9d4-89b5-4be8-b032-ec38d596ef78
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Previous Day % All' = IFERROR(DIVIDE([Sale-Value All]-[Previous Day Sales All],[Previous Day Sales All]),"")
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: UK_Combine
+		lineageTag: f8be4e3f-92de-4eda-99e8-6a5d78876f6c
+
+	measure 'Net Sales All' = [Net Sales]+[UK_Net Sales]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: 8e565769-42ed-4c4f-9fa3-44616cb63860
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'CGS All' = [CGS]+[UK_CGS]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: 7b728372-c4ba-4b99-8bdc-d818f6dc37a4
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'GP All' = [Net Sales All]-[CGS All]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: 5926751b-9e2e-4b25-8fa9-518dd05c5af6
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'GP% All' = DIVIDE([GP All],[Net Sales All])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: UK_Combine
+		lineageTag: 8777ec82-d829-44b3-b0b2-240d56ee317e
+
+	measure 'UK_LY Sales' = CALCULATE([UK_Sales Value],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 17f60ec8-062c-4a47-8547-24733c2bac43
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Targets Var All' = [Sale-Value All]-[Targets All]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: b94d46c8-c774-4aee-ac83-7f1a2f89ebd0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Sale-Value All' = [LY Sales]+[UK_LY Sale(Rs)]+[US_LY Sales (Rs)]+[UAE_LY Sales (Rs)]+[ROW_LY Sales (Rs)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: 46ee3ee6-dbff-4281-bd86-a85aa2b6f589
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'LY Sale Var% All' = DIVIDE([Sale-Value All]-[LY Sale-Value All],[LY Sale-Value All])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: UK_Combine
+		lineageTag: ff43cabe-3482-4849-9732-a0112f66a16f
+
+	measure UK_fulfilled(Rs) = SUM(Shopify_UK_OT[SaleV])
+		dataType: variant
+		displayFolder: UK_Shopify
+		lineageTag: 93119912-06c5-436d-b51c-b086abaf5bff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UK_Pending(Rs) = CALCULATE(SUM(Shopify_UK[SaleV]),Shopify_UK[Lineitem fulfillment status]="pending")
+		displayFolder: UK_Shopify
+		lineageTag: 5adfe1ee-28ed-4246-a118-d4112977539a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UK_Return(Rs) = CALCULATE(SUM(Shopify_UK[SaleV]),Shopify_UK[Lineitem fulfillment status]="restocked")
+		displayFolder: UK_Shopify
+		lineageTag: 32f1d6a2-5549-4a69-b27c-8665e704d8c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UK_Sale(Rs) = [UK_fulfilled(Rs)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Shopify
+		lineageTag: 5b880f99-905d-4eef-ba8f-fc648013aca7
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_fulfilled(GBP) = SUM(Shopify_UK_OT[Sale-GBP])
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Shopify
+		lineageTag: 268b87a9-d330-490a-9580-e3441d258212
+
+	measure UK_Pending(GBP) = CALCULATE(SUM(Shopify_UK[Sale-GBP]),Shopify_UK[Lineitem fulfillment status]="pending")
+		displayFolder: UK_Shopify
+		lineageTag: 35c8ddbe-40f9-453a-bf8d-1f9fab8939ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UK_Return(GBP) = CALCULATE(SUM(Shopify_UK[Sale-GBP]),Shopify_UK[Lineitem fulfillment status]="restocked")
+		displayFolder: UK_Shopify
+		lineageTag: 6caabb04-7c8b-4c0b-b181-c988eaf517b3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UK_Sale(GBP) = [UK_fulfilled(GBP)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Shopify
+		lineageTag: 83e915d5-05b2-4e86-8e10-27f495bd58d8
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_YTD Sales (Rs)' = TOTALYTD([UK_Sale(Rs)],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Shopify
+		lineageTag: d4d4248c-d3d0-4e44-ad22-c38aaf047955
+
+	measure 'UK_YTD Sales (GBP)' = TOTALYTD([UK_Sale(GBP)],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Shopify
+		lineageTag: cec180e9-0d78-482d-a36c-16c1f262c943
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_YTD Targets (GBP)' = TOTALYTD([UK_Targets(GBP)],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Shopify
+		lineageTag: 8f246373-c83a-4799-a5ec-a4119d474741
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_MTD Sales (GBP)' = TOTALMTD([UK_Sale(GBP)],'calendar'[Date])
+		dataType: variant
+		formatString: "£"#,0;-"£"#,0;"£"#,0
+		displayFolder: UK_Shopify
+		lineageTag: 9f932cd3-12db-49d8-815a-87e79b00661a
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	measure 'UK_MTD Targets (GBP)' = TOTALMTD([UK_Targets(GBP)],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Shopify
+		lineageTag: e549d27a-8a49-4eea-8cfc-c1b2a988be5e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_SalesTax(GBP) = SUM(Shopify_UK_OT[Taxes])
+		dataType: variant
+		displayFolder: UK_Shopify
+		lineageTag: 9eda9a14-23d7-45fe-9e55-56cab1f4da47
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UK_fulfilled(USD) = SUM(Shopify_UK_OT[Sale-USD])
+		dataType: variant
+		displayFolder: UK_Shopify
+		lineageTag: fcd94090-143b-438c-8e87-3cc6d28efebe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UK_Sale(USD) = [UK_fulfilled(USD)]
+		dataType: variant
+		displayFolder: UK_Shopify
+		lineageTag: 7f4d8a4f-4b4a-4db2-9a16-09c8ab42203e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'UK_MTD Sales (USD)' = TOTALMTD([UK_Sale(USD)],'calendar'[Date])
+		dataType: variant
+		displayFolder: UK_Shopify
+		lineageTag: 26f209c7-7dd0-4111-8c93-a2617a04cc1f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'UK_YTD Sales (USD)' = TOTALYTD([UK_Sale(USD)],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		displayFolder: UK_Shopify
+		lineageTag: 6c6363ea-b64b-4109-b9be-e917114ce4db
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UK_Targets(USD) = SUM(UK_Targets[TGT(USD)])
+		dataType: variant
+		displayFolder: UK_Sales
+		lineageTag: 63c41444-ae3b-44d1-ad6e-30dd4b3c51cf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'UK_MTD Targets (USD)' = TOTALMTD([UK_Targets(USD)],'Calendar'[Date])
+		dataType: variant
+		displayFolder: UK_Shopify
+		lineageTag: b9cf21ec-e321-4f85-8e6d-aec4526f05ed
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'UK_YTD Targets (USD)' = TOTALYTD([UK_Targets(USD)],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		displayFolder: UK_Shopify
+		lineageTag: 34020080-8918-49af-b055-44158b6e3c8b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'UK_Sale_B&M (Rs)' = SUM(Sales_UK[Value(PKR)])
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_B&M
+		lineageTag: b4af7455-1da9-43f8-ae01-d6afc84b9b50
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_Sales_B&M_MTD = TOTALMTD([UK_Sale_B&M (Rs)],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_B&M
+		lineageTag: 45b6a25e-9dfc-4cf5-9687-5312435b990d
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_Sales B&M (GBP)' = SUM(Sales_UK[Amount before tax])*-1
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 49085ff1-dc9a-40e1-83ec-da5e87f9d7a7
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_TGT_OL = CALCULATE([UK_Targets(GBP)],UK_Targets[Code]="WHUK-001")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Sales
+		lineageTag: dbbf690a-0cc5-4387-ad56-7f869d04d376
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_TGT_BM = CALCULATE([UK_Targets(GBP)],UK_Targets[Code]="440202001")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Sales
+		lineageTag: 7daf7298-1626-44a5-8071-25186b348203
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_Sales_Total = [UK_Sale(GBP)]+[UK_Sales B&M (GBP)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_B&M
+		lineageTag: ba91a570-e1e7-4aa9-9008-8641ff727b8c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_Sales_B&M (GBP)' = SUM(Sales_UK[Amount before tax])*-1
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_B&M
+		lineageTag: 88a8dde5-c4ea-44b7-937c-9de8c3c1ace1
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'UK_Sales_B&M_MTD (GBP)' = TOTALMTD([UK_Sales B&M (GBP)],'Calendar'[Date])
+		dataType: variant
+		formatString: "£"#,0;-"£"#,0;"£"#,0
+		displayFolder: UK_B&M
+		lineageTag: f2f8bd5b-17a4-4996-935c-6f09db7cd604
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	measure 'UK_MTD Sales (Pound)' = [UK_MTD Sales (GBP)]+[UK_Sales_B&M_MTD (GBP)]
+		dataType: variant
+		displayFolder: Budget
+		lineageTag: 7371d6cb-a256-4a45-b637-253c87656aee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure UK_Budget = SUM('Budget-UK'[TGT(PKR)])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 251f00b6-7346-4f09-9def-5d73470f585b
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure MTD_UK_Budget = TOTALMTD([UK_Budget],'Calendar'[Date])
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 3a17e012-5b0a-489f-a5be-b4271fa134d9
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_Sales_B&M_YTD = TOTALYTD([UK_Sales B&M (GBP)],'Calendar'[Date],'calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_B&M
+		lineageTag: 468f2015-5ff3-4718-b1d9-e52e22115aa8
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure UK_Budget_YTD = TOTALYTD([UK_Budget],'Calendar'[Date],'Calendar'[Date], "6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget
+		lineageTag: 99b21523-93e4-486d-a9fe-540f63356cf9
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD Sale-Value All' = TOTALYTD([Sale-Value All],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		formatString: 0
+		displayFolder: UK_Combine YTD
+		lineageTag: d0cb0229-bcf3-488d-8137-0ad00b5c7336
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'YTD Targets All' = TOTALYTD([Targets All],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		displayFolder: UK_Combine YTD
+		lineageTag: b70197b9-9ca9-4c11-8fcc-1899d154c982
+
+	measure 'YTD Fullprice All' = TOTALYTD([Fullprice All],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		displayFolder: UK_Combine YTD
+		lineageTag: 2b91b28e-72a8-4604-aa5e-99e3115f2ec3
+
+	measure 'YTD Net Sales All' = TOTALYTD([Net Sales All],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		displayFolder: UK_Combine YTD
+		lineageTag: bb8db50d-79af-43c7-bb55-1822ce6ee17c
+
+	measure 'YTD CGS All' = TOTALYTD([CGS All],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		displayFolder: UK_Combine YTD
+		lineageTag: c854ff78-3fd4-472e-9b04-853a69a98e87
+
+	measure 'YTD LY Sale-Value All' = TOTALYTD([LY Sale-Value All],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine YTD
+		lineageTag: 369e9663-fe0b-4248-9dd6-c33fdb1b428c
+
+	measure 'YTD Targets Var All' = [YTD Sale-Value All]-[YTD Targets All]
+		dataType: variant
+		displayFolder: UK_Combine YTD
+		lineageTag: 0d79a2d9-b255-441c-b53a-606c088df15c
+
+	measure 'YTD Targets Var% All' = DIVIDE([YTD Sale-Value All]-[YTD Targets All],[YTD Targets All])
+		dataType: variant
+		formatString: 0%;-0%;0%
+		displayFolder: UK_Combine YTD
+		lineageTag: 4eb42669-f305-4a13-bb36-3bdc75985a19
+
+	measure 'YTD Dilution% All' = DIVIDE([YTD Fullprice All]-[YTD Sale-Value All],[YTD Fullprice All])
+		dataType: variant
+		displayFolder: UK_Combine YTD
+		lineageTag: 10458234-6b5b-4236-9795-9ec3988c79f1
+
+	measure 'YTD GP All' = [YTD Net Sales All]-[YTD CGS All]
+		dataType: variant
+		displayFolder: UK_Combine YTD
+		lineageTag: 2b34898f-59ec-44aa-9c4c-5b32604ca397
+
+	measure 'YTD GP% All' = DIVIDE([YTD GP All],[YTD Net Sales All])
+		dataType: variant
+		displayFolder: UK_Combine YTD
+		lineageTag: ee9742a5-3391-48a0-be90-613c36ce197d
+
+	measure 'YTD LY Sale Var% All' = DIVIDE([YTD Sale-Value All]-[YTD LY Sale-Value All],[YTD LY Sale-Value All])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: UK_Combine YTD
+		lineageTag: d338e9c3-e1e2-45ed-8770-e2450d2c1f88
+
+	measure 'YTD Previous Day Sales All' = CALCULATE([YTD Sale-Value All],PREVIOUSDAY('Calendar'[Date]))
+		dataType: variant
+		displayFolder: UK_Combine YTD
+		lineageTag: de5d0b36-8867-4bf9-b83b-129b2b7d7144
+
+	measure 'YTD Previous Day % All' = IFERROR(DIVIDE([YTD Sale-Value All]-[YTD Previous Day Sales All],[YTD Previous Day Sales All]),"")
+		dataType: variant
+		displayFolder: UK_Combine YTD
+		lineageTag: a8042264-a8d5-47a4-8fe2-2405f0e4dcd3
+
+	measure 'MTD Budget All' = [MTD_UK_Budget]+[US_MTD Budget]+[UAE_MTD Budget]+[ROW_MTD Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine\MTD
+		lineageTag: 4434d9ee-c986-4352-b0f7-ae8a2954c894
+
+	measure 'YTD Budget All' = [UK_Budget_YTD]+[US_Budget_YTD]+[UAE_Budget_YTD]+[ROW_Budget_YTD]+[YTD Forecast]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine YTD
+		lineageTag: 45918476-b413-4c32-b85c-11de724ea267
+
+	measure 'UK_Sale_B&M_YTD (Rs)' = TOTALYTD([UK_Sale_B&M (Rs)],'Calendar'[Date],'Calendar'[Date],"6/30")
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_B&M
+		lineageTag: 8b619e80-ee46-4496-9710-3884b12f3e09
+
+	measure 'UK_Budget Var' = [UK_Sale(Rs)]+[UK_Sale_B&M (Rs)]-[UK_Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: 7ab96635-a0fa-4287-bd5b-2cb0858b770a
+
+	measure 'UK_Budget Var%' = DIVIDE([UK_Sale(Rs)]+[UK_Sale_B&M (Rs)]-[UK_Budget],[UK_Budget])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: ab8bd244-2716-4a9b-bb27-dee8c4eee272
+
+	measure 'UK_MTD Budget Var' = [UK_MTD Sales]+[UK_Sales_B&M_MTD]-[MTD_UK_Budget]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: 7e88cd99-9661-4b31-a486-2d4aa4c13f8a
+
+	measure 'UK_MTD Budget Var%' = DIVIDE([UK_MTD Sales]+[UK_Sales_B&M_MTD]-[MTD_UK_Budget],[MTD_UK_Budget])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: 52e969e7-3b09-48f7-a7cc-8a692ca56d31
+
+	measure 'UK_YTD Budget Var' = [UK_YTD Sales (Rs)]+[UK_Sale_B&M_YTD (Rs)]-[UK_Budget_YTD]
+		dataType: variant
+		formatString: #,0
+		displayFolder: Budget\Variance
+		lineageTag: bba6504b-6028-4b88-b32d-3ef83fb98869
+
+	measure 'UK_YTD Budget Var%' = DIVIDE([UK_YTD Sales (Rs)]+[UK_Sale_B&M_YTD (Rs)]-[UK_Budget_YTD],[UK_Budget_YTD])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: Budget\Variance
+		lineageTag: 5561fc53-a2cb-403c-99b4-a4054a0c4349
+
+	measure 'Budget All' = [UK_Budget]+[US_Budget]+[UAE_Budget (Rs)]+[ROW_Budget (Rs)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: d85d2481-8dfa-457c-bf8c-8fb380d6f985
+
+	measure 'Budget Var All' = [Sale-Value All]-[Budget All]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine
+		lineageTag: 8e7308e7-b663-44c0-b7cd-6418562dda91
+
+	measure 'Budget Var% All' = DIVIDE([Sale-Value All]-[Budget All],[Budget All])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: UK_Combine
+		lineageTag: 58a71ff7-09ab-4bdc-a4ca-aeaf956f5a1f
+
+	measure 'MTD Budget Var All' = [MTD Sales All]-[MTD Budget All]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine\MTD
+		lineageTag: 008b551a-706d-4fb3-808b-d28069fc0e54
+
+	measure 'MTD Budget Var% All' = DIVIDE([MTD Sales All]-[MTD Budget All],[MTD Budget All])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: UK_Combine\MTD
+		lineageTag: e026fdd6-ba29-4d73-896f-b274d8e04aaa
+
+	measure 'YTD Budget Var All' = [YTD Sale-Value All]-[YTD Budget All]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine YTD
+		lineageTag: 2b9a0ae9-a10d-4497-a49d-ba18873eea70
+
+	measure 'YTD Budget Var% All' = DIVIDE([YTD Sale-Value All]-[YTD Budget All],[YTD Budget All])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: UK_Combine YTD
+		lineageTag: adf5220e-a7a3-472a-97bd-54c53376e49e
+
+	measure 'UK_LY Sale(Rs)' = CALCULATE([UK_Sale(Rs)]+[UK_Sale_B&M (Rs)],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: d33b074a-dbbb-417a-a259-6cc8cb0f876d
+
+	measure 'UK_MTD LY Sales (Rs)' = CALCULATE([UK_MTD Sales]+[UK_Sales_B&M_MTD],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: 2dd49605-ba37-4731-ad2f-72f3c1398713
+
+	measure 'UK_YTD LY Sales (Rs)' = CALCULATE([UK_YTD Sales (Rs)]+[UK_Sale_B&M_YTD (Rs)],SAMEPERIODLASTYEAR('Calendar'[Date]))
+		dataType: variant
+		formatString: #,0
+		displayFolder: LY
+		lineageTag: a6eb8e90-d03b-4ab4-bda9-41236ccff700
+
+	measure 'MTD LY Sales All' = [UK_MTD LY Sales (Rs)]+[US_MTD LY Sales (Rs)]+[UAE_MTD LY Sales (Rs)]+[ROW_MTD LY Sales (Rs)]
+		dataType: variant
+		formatString: #,0
+		displayFolder: UK_Combine\MTD
+		lineageTag: d97a97fd-83d8-4189-9d3a-1678894f1698
+
+	measure 'MTD LY Sale Var% All' = DIVIDE([MTD Sales All]-[MTD LY Sales All],[MTD LY Sales All])
+		dataType: variant
+		formatString: #,##0.00%
+		displayFolder: UK_Combine\MTD
+		lineageTag: c5469f13-dcd5-48d0-aa04-07c459d60427
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: b11ed1a0-409f-4353-a69e-1d26c92e0797
+		summarizeBy: none
+		sourceColumn: Column1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition UK_Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

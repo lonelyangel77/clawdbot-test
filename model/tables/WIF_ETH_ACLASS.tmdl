@@ -1,0 +1,26 @@
+table WIF_ETH_ACLASS
+	lineageTag: 9fdb2706-e57a-4563-ab67-e29669a1b0d9
+
+	measure 'WIF_ETH_ACLASS Value' = SELECTEDVALUE('WIF_ETH_ACLASS'[WIF_ETH_ACLASS], 0)
+		dataType: variant
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b14f79bf-d0a1-4760-b8ea-e4c9bdb092e1
+
+	column WIF_ETH_ACLASS
+		dataType: double
+		formatString: 0%;-0%;0%
+		lineageTag: d649b3dd-ca84-4c93-a949-b03f8fce043b
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata = {"version":0}
+
+		annotation SummarizationSetBy = User
+
+	partition WIF_ETH_ACLASS = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.01)
+
+	annotation PBI_Id = 6f6fb6a36c5c45508a166403b57aaa11
+

@@ -1,0 +1,87 @@
+table USD_PKR
+	lineageTag: ec23c3fa-cc76-4ff6-a776-bb9e8b50bf08
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c72c1f2b-ec8d-4848-aa56-77ea53494092
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Price
+		dataType: double
+		lineageTag: 84279b1b-1078-4285-953d-df832133ffdc
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Open
+		dataType: double
+		lineageTag: 863716fb-94ca-4d1e-94e3-868db931e142
+		summarizeBy: sum
+		sourceColumn: Open
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column High
+		dataType: double
+		lineageTag: 48cc2160-7c03-4341-b138-737d697c2fd7
+		summarizeBy: sum
+		sourceColumn: High
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Low
+		dataType: double
+		lineageTag: 8e3e9536-25ba-4ca1-9d79-37656a5c41ac
+		summarizeBy: sum
+		sourceColumn: Low
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Vol.'
+		dataType: string
+		lineageTag: 5ef8bce1-8c07-4aa1-aec6-9d77b7aa4eb7
+		summarizeBy: none
+		sourceColumn: Vol.
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Change %'
+		dataType: double
+		lineageTag: ac0a8794-b0d7-406d-8978-280f80a299e0
+		summarizeBy: sum
+		sourceColumn: Change %
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition USD_PKR = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\USD_PKR Historical Data.xlsx"), null, true),
+				    #"USD_PKR Historical Data_Sheet" = Source{[Item="USD_PKR Historical Data",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(#"USD_PKR Historical Data_Sheet", [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Price", type number}, {"Open", type number}, {"High", type number}, {"Low", type number}, {"Vol.", type text}, {"Change %", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

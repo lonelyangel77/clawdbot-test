@@ -1,0 +1,374 @@
+table Product_Inv
+	lineageTag: 916c0b48-5c76-47a4-99cc-ed9348388922
+
+	column ItemNumber
+		dataType: string
+		lineageTag: 627d1436-2296-4704-b85e-1af40752d4c1
+		summarizeBy: none
+		sourceColumn: ItemNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: 73af1f1f-7e3b-45a0-a2eb-6238f023a418
+		summarizeBy: none
+		sourceColumn: Product Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: f4ccea64-89dd-4f51-b224-57463a1fd324
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: d629abea-62e8-4728-bafe-68d21420e5df
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Collection
+		dataType: string
+		lineageTag: 831f42f8-199f-4da0-95cc-9820cd753971
+		summarizeBy: none
+		sourceColumn: Collection
+
+		annotation SummarizationSetBy = Automatic
+
+	column Class
+		dataType: string
+		lineageTag: 8dcda463-30e2-42ff-b47b-d989de15aaff
+		summarizeBy: none
+		sourceColumn: Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Class'
+		dataType: string
+		lineageTag: 93f38b86-d295-487e-a867-5579fb7dd712
+		summarizeBy: none
+		sourceColumn: Sub Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season
+		dataType: string
+		lineageTag: 465896b7-b830-49cc-a40c-2c24030aafd0
+		summarizeBy: none
+		sourceColumn: Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season-SS
+		dataType: string
+		lineageTag: 461893c0-b9ef-4ef4-b4b2-ea8af977f9a4
+		summarizeBy: none
+		sourceColumn: Season-SS
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchPrice
+		dataType: int64
+		formatString: 0
+		lineageTag: 42863e8f-531a-48e4-bb01-dcc61818b73a
+		summarizeBy: sum
+		sourceColumn: PurchPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column RetailPrice
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ca8303a-ed88-4ce5-8a31-c10462bd397e
+		summarizeBy: sum
+		sourceColumn: RetailPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tax Group'
+		dataType: string
+		lineageTag: e11e46df-d1c4-4aab-9ba6-5a6d54483cd7
+		summarizeBy: none
+		sourceColumn: Tax Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender-1
+		dataType: string
+		lineageTag: d45a791c-234c-46bb-a7bb-fc98d9220c42
+		summarizeBy: none
+		sourceColumn: Gender-1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Category'
+		dataType: string
+		lineageTag: 38b25988-5e11-4d12-812c-888ff7fb0af2
+		summarizeBy: none
+		sourceColumn: Season Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Category'
+		dataType: string
+		lineageTag: 582821b0-6751-41d1-8c15-9a8faa202c53
+		summarizeBy: none
+		sourceColumn: Product Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Solid Item'
+		dataType: string
+		lineageTag: 37a650cb-50c1-483b-a200-bd13143f37b7
+		summarizeBy: none
+		sourceColumn: Solid Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grade = if(or(mid([ItemNumber],1,1)="X",mid([ItemNumber],1,1)="R"),"R",if(mid([ItemNumber],1,1)="S","S",IF(mid([ItemNumber],1,1)="P","A",if(or(mid([ItemNumber],1,1)="O",mid([ItemNumber],1,1)="EU"),"U",if(mid([ItemNumber],1,1)="U","A",IF(mid([ItemNumber],1,2)="F9","R",IF(mid([ItemNumber],1,2)="E9","R",IF(mid([ItemNumber],1,2)="E8","R","A"))))))))
+		dataType: string
+		lineageTag: b893393c-e52e-4c7c-9365-8feb0d8ba252
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Price' = IF(Product_Inv[RetailPrice]=0,0,LOOKUPVALUE(Cost_Inv[PURCHASEPRICE],Cost_Inv[ITEMNUMBER],[Solid Item]))
+		dataType: double
+		lineageTag: 87530c72-39d0-4fc6-bba8-ce414b0061ba
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gen Category'
+		dataType: string
+		lineageTag: 6f7f6d52-1ff4-4c95-8e4c-eaacfe844919
+		summarizeBy: none
+		sourceColumn: Gen Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Group'
+		dataType: string
+		lineageTag: e088acdb-5113-4ab1-88b3-f8203c27f5ea
+		summarizeBy: none
+		sourceColumn: Item Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GL Code'
+		dataType: string
+		lineageTag: 027afd09-5bba-4718-a782-3966cee700b2
+		summarizeBy: none
+		sourceColumn: GL Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season Cat'
+		dataType: string
+		lineageTag: c13e8e66-8b13-449c-8d6d-77f2b074c675
+		summarizeBy: none
+		sourceColumn: Season Cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weather
+		dataType: string
+		lineageTag: 643d7fed-7cbc-48b1-a77f-f2f93885fa05
+		summarizeBy: none
+		sourceColumn: Weather
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Season D365'
+		dataType: string
+		lineageTag: 825ea519-4350-4374-b467-68301006013a
+		summarizeBy: none
+		sourceColumn: Season D365
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Item Type'
+		dataType: string
+		lineageTag: 6eee1293-6493-40cd-aff5-d86298c0227c
+		summarizeBy: none
+		sourceColumn: Item Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tax% = LOOKUPVALUE(Released_Product[SALES-TAX],Released_Product[ITEMNUMBER],[Solid Item])
+		dataType: double
+		formatString: 0
+		lineageTag: c63a1876-1e81-4489-9a0a-6fca92ba5f4e
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tax Val' = ([Tax%]/100)*[RetailPrice]
+		dataType: double
+		lineageTag: 86529b11-ba87-40d1-a614-bd1e65d1d7bf
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CY Season'
+		dataType: string
+		lineageTag: 20f2e688-6049-4d99-bbe1-805735dd3afb
+		summarizeBy: none
+		sourceColumn: CY Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LY Season'
+		dataType: string
+		lineageTag: 2bfbee08-cea8-4e78-a4ae-a63f3f03727d
+		summarizeBy: none
+		sourceColumn: LY Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Style Number' = if(LEN([Solid Item])=13,LEFT([Solid Item],9),[Solid Item])
+		dataType: string
+		lineageTag: cf0e1b9c-774e-4462-a115-4c81e37af862
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grade-1 = LOOKUPVALUE(Product_Attribute[TEXTVALUE],Product_Attribute[PRODUCTNUMBER],[Solid Item])
+		dataType: string
+		lineageTag: 73f338fa-3189-4348-905c-aaa0bd534468
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Grade-New = IF([Grade-1]="Rejection Product","R",[Grade])
+		dataType: string
+		lineageTag: a59c1f9a-160f-43c4-b173-16a39a232774
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Curt Season'
+		dataType: string
+		lineageTag: 4f7acb4b-5edc-435c-bb43-d132365a605a
+		summarizeBy: none
+		sourceColumn: Curt Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season-SSS
+		dataType: string
+		lineageTag: c86fb2a2-a7ac-4ee1-a3bc-c9cb1eef3848
+		summarizeBy: none
+		sourceColumn: Season-SSS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LY Curt Season'
+		dataType: string
+		lineageTag: 50a0db0b-06ab-4729-aaab-f89b355a066e
+		summarizeBy: none
+		sourceColumn: LY Curt Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Org Season'
+		dataType: string
+		lineageTag: 3543b089-8242-4994-814a-2d2154d5dacd
+		summarizeBy: none
+		sourceColumn: Org Season
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division = LOOKUPVALUE('Division'[PRODUCTNUMBER],'Division'[TEXTVALUE],[Solid Item])
+		dataType: string
+		lineageTag: 176ac473-2029-40c3-9ca3-49b63e878a56
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cluster
+		dataType: string
+		lineageTag: da31e348-24c9-43b2-9ba0-7b429b622a46
+		summarizeBy: none
+		sourceColumn: Cluster
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORGROUPID
+		dataType: string
+		lineageTag: 102ac075-136d-4b82-97eb-3910624611ad
+		summarizeBy: none
+		sourceColumn: VENDORGROUPID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VENDORORGANIZATIONNAME
+		dataType: string
+		lineageTag: 2bc26238-c06e-4245-8bbe-d0f9a484f99a
+		summarizeBy: none
+		sourceColumn: VENDORORGANIZATIONNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product_Inv-8b947a8b-ca69-450d-bc2d-7442dcb4d358 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\Product.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ItemNumber", type text}, {"Product Name", type text}, {"Brand", type text}, {"Gender", type text}, {"Collection", type text}, {"Class", type text}, {"Sub Class", type text}, {"Season", type text}, {"Season-SS", type text}, {"PurchPrice", Int64.Type}, {"RetailPrice", Int64.Type}, {"Tax Group", type text}, {"Gender-1", type text}, {"Season Category", type text}, {"Product Category", type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "ItemNumber", "ItemNumber - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "ItemNumber - Copy", Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv), {"ItemNumber - Copy.1", "ItemNumber - Copy.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"ItemNumber - Copy.1", type text}, {"ItemNumber - Copy.2", type text}}),
+				    #"Split Column by Delimiter1" = Table.SplitColumn(#"Changed Type1", "ItemNumber - Copy.1", Splitter.SplitTextByDelimiter(":", QuoteStyle.Csv), {"ItemNumber - Copy.1.1", "ItemNumber - Copy.1.2"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Delimiter1",{{"ItemNumber - Copy.1.1", type text}, {"ItemNumber - Copy.1.2", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type2",{"ItemNumber - Copy.1.2", "ItemNumber - Copy.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"ItemNumber - Copy.1.1", "Solid Item"}}),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Renamed Columns", "Product Category", "Product Category - Copy"),
+				    #"Split Column by Delimiter2" = Table.SplitColumn(#"Duplicated Column1", "Product Category - Copy", Splitter.SplitTextByDelimiter("-", QuoteStyle.Csv), {"Product Category - Copy.1", "Product Category - Copy.2"}),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Split Column by Delimiter2",{{"Product Category - Copy.1", type text}, {"Product Category - Copy.2", type text}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Changed Type3",{"Product Category - Copy.1"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Columns1",{{"Product Category - Copy.2", "Gen Category"}}),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Renamed Columns1",{{"Season D365", type text}, {"Item Type", type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type4","AS-25","WS-25",Replacer.ReplaceText,{"Season"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","AUTUMN-25","WINTER-25",Replacer.ReplaceText,{"Season D365"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","FRAGRANCES","FREGRANCE",Replacer.ReplaceText,{"Collection"}),
+				    // NEW STEP ADDED: Change Season to "Gen-Season" when Collection = "Fragrance"
+				    #"Updated Season by Collection" = Table.ReplaceValue(
+				        #"Replaced Value2",
+				        each [Season D365],
+				        each if [Collection] = "FRAGRANCE" then "GEN-SEASON" else [Season D365],
+				        Replacer.ReplaceValue,
+				        {"Season D365"}
+				    ),
+				    #"Merged Queries" = Table.NestedJoin(#"Updated Season by Collection", {"ItemNumber"}, Product_Cluster, {"PRODUCTNUMBER"}, "Product_Cluster", JoinKind.LeftOuter),
+				    #"Expanded Product_Cluster" = Table.ExpandTableColumn(#"Merged Queries", "Product_Cluster", {"Cluster"}, {"Cluster"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Expanded Product_Cluster", {"ItemNumber"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Removed Duplicates", {"ItemNumber"}, Vendor_item, {"ITEMNUMBER"}, "Vendor_item", JoinKind.LeftOuter),
+				    #"Expanded Vendor_item" = Table.ExpandTableColumn(#"Merged Queries1", "Vendor_item", {"VENDORGROUPID", "VENDORORGANIZATIONNAME"}, {"VENDORGROUPID", "VENDORORGANIZATIONNAME"})
+				in
+				    #"Expanded Vendor_item"
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navigation
+

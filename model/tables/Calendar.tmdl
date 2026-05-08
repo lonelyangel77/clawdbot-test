@@ -1,0 +1,554 @@
+table Calendar
+	lineageTag: 4a763526-23ef-4add-add6-8c19ce578747
+	dataCategory: Time
+
+	measure 'YTD Selected' = "YTD JUL-25 TO "& SELECTEDVALUE('Calendar'[Date (Month)])
+		dataType: variant
+		displayFolder: Labels
+		lineageTag: 806d31a7-856e-4de3-83ab-51957fcdd6c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MTD Selected' = SELECTEDVALUE('Calendar'[Date (Month)])
+		dataType: variant
+		displayFolder: Labels
+		lineageTag: c4ab70db-a509-4386-a501-ba56c62a7fab
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Yesterday Date' = SELECTEDVALUE('Calendar'[Date-])
+		dataType: variant
+		displayFolder: Labels
+		lineageTag: fe7058d2-72f4-4606-aa07-4059a0b0e431
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ramzan No' = "Ramzan No. "&SELECTEDVALUE('Ramzan'[R.No])
+		dataType: variant
+		displayFolder: Labels
+		lineageTag: b2760e49-f0a9-41b2-97c1-de6c3959e190
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Month Selected' = SELECTEDVALUE('Calendar'[Date (Month)])
+		dataType: variant
+		displayFolder: Labels
+		lineageTag: 7b0d339e-f24e-446e-92da-f11105e6254e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Month' = SELECTEDVALUE('Calendar'[Date (Month)])
+		dataType: variant
+		displayFolder: Labels
+		lineageTag: e29d25fb-4b29-483e-af0a-7d50b622d5f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: dd/mm/yyyy
+		lineageTag: 8b1572fa-97f9-4849-966e-9b2b7ad08cab
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Year
+		dataType: string
+		lineageTag: c4d813b7-cc05-4e1f-80be-b53e8902a5a3
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 72cfb3ed-ace1-4489-b774-6c20c2125a6f
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeek
+		dataType: string
+		lineageTag: de135deb-468f-4cfc-8f38-a525e675a58e
+		summarizeBy: none
+		sourceColumn: DayOfWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date (Month)' = FORMAT([Date], "MMM-YY")
+		dataType: string
+		lineageTag: 8c9d6b19-2044-4a1d-9e9d-b56f31ebb29f
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date (Quarter)' = CONCATENATE("Qtr", INT((MONTH([Date]) + 2) / 3))
+		dataType: string
+		lineageTag: 3eea942b-c353-4d84-b038-8f4c3f6d3cae
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day = FORMAT([Date],"DDDD")
+		dataType: string
+		lineageTag: d76620b6-0166-4426-a3c3-883b55579543
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: 'Week Day'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Year' = ```
+			IF(AND([Date (Year)] ="2012",[Date (Month Index)]<=12),"FY-2012-13",
+			IF(AND([Date (Year)] ="2013",[Date (Month Index)]<=6),"FY-2012-13",
+			IF(AND([Date (Year)] ="2013",[Date (Month Index)]<=12),"FY-2013-14",        
+			IF(AND([Date (Year)] ="2014",[Date (Month Index)]<=6),"FY-2013-14",
+			IF(AND([Date (Year)] ="2014",[Date (Month Index)]<=12),"FY-2014-15",
+			IF(AND([Date (Year)] ="2015",[Date (Month Index)]<=6),"FY-2014-15",
+			IF(AND([Date (Year)] ="2015",[Date (Month Index)]<=12),"FY-2015-16",
+			IF(AND([Date (Year)] ="2016",[Date (Month Index)]<=6),"FY-2015-16",
+			IF(AND([Date (Year)] ="2016",[Date (Month Index)]<=12),"FY-2016-17",
+			IF(AND([Date (Year)] ="2017",[Date (Month Index)]<=6),"FY-2016-17",
+			IF(AND([Date (Year)] ="2017",[Date (Month Index)]<=12),"FY-2017-18",
+			IF(AND([Date (Year)] ="2018",[Date (Month Index)]<=6),"FY-2017-18",
+			IF(AND([Date (Year)] ="2018",[Date (Month Index)]<=12),"FY-2018-19",
+			IF(AND([Date (Year)] ="2019",[Date (Month Index)]<=6),"FY-2018-19",
+			IF(AND([Date (Year)] ="2019",[Date (Month Index)]<=12),"FY-2019-20",
+			IF(AND([Date (Year)] ="2020",[Date (Month Index)]<=6),"FY-2019-20",
+			IF(AND([Date (Year)] ="2020",[Date (Month Index)]<=12),"FY-2020-21",
+			IF(AND([Date (Year)] ="2021",[Date (Month Index)]<=6),"FY-2020-21",
+			IF(AND([Date (Year)] ="2021",[Date (Month Index)]<=12),"FY-2021-22",
+			IF(AND([Date (Year)] ="2022",[Date (Month Index)]<=6),"FY-2021-22",
+			IF(AND([Date (Year)] ="2022",[Date (Month Index)]<=12),"FY-2022-23",
+			IF(AND([Date (Year)] ="2023",[Date (Month Index)]<=6),"FY-2022-23",
+			IF(AND([Date (Year)] ="2023",[Date (Month Index)]<=12),"FY-2023-24",
+			IF(AND([Date (Year)] ="2024",[Date (Month Index)]<=6),"FY-2023-24",
+			IF(AND([Date (Year)] ="2024",[Date (Month Index)]<=12),"FY-2024-25",
+			IF(AND([Date (Year)] ="2025",[Date (Month Index)]<=6),"FY-2024-25",
+			IF(AND([Date (Year)] ="2025",[Date (Month Index)]<=12),"FY-2025-26",
+			IF(AND([Date (Year)] ="2026",[Date (Month Index)]<=6),"FY-2025-26",
+			IF(AND([Date (Year)] ="2026",[Date (Month Index)]<=12),"FY-2026-27",
+			IF(AND([Date (Year)] ="2027",[Date (Month Index)]<=6),"FY-2026-27",
+			IF(AND([Date (Year)] ="2027",[Date (Month Index)]<=12),"FY-2027-28",
+			" ")))))))))))))))))))))))))))))))
+			```
+		dataType: string
+		lineageTag: fd7c4830-a434-49af-8120-d7ba4eafa6c2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Regular/Weekend = IF([Day]="Friday","Weekend",IF([Day]="Saturday","Weekend",IF([Day]="Sunday","Weekend","Weekdays")))
+		dataType: string
+		lineageTag: 24955ce2-7867-4366-bfe7-306712841e01
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Day' = WEEKDAY([Date],2)
+		dataType: int64
+		formatString: 0
+		lineageTag: 21dbe05f-d53f-430c-9504-eecf6ea93ec3
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week No' = WEEKNUM([Date],2)
+		dataType: int64
+		formatString: 0
+		lineageTag: a792c05e-89d8-4728-8da1-c6d35e46c56d
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date (Month Index)' = MONTH([Date])
+		dataType: int64
+		formatString: 0
+		lineageTag: 7460221a-de9d-46fc-819d-58310623fccf
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date (Year)' = FORMAT([Date], "yyyy")
+		dataType: string
+		lineageTag: 6052b952-8d4d-4fbd-aef1-cef202b8a537
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date-
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4c1c1609-e7fc-4ce8-84f7-8e86c0c62d71
+		summarizeBy: none
+		sourceColumn: Date-
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Hijri
+		dataType: string
+		lineageTag: 3dcce9b9-334f-4a62-a374-29758f3cb2f9
+		summarizeBy: none
+		sourceColumn: Hijri
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name' = FORMAT([Date], "MMMM")
+		dataType: string
+		lineageTag: 62c28d38-4447-4329-aa03-13cd65336f99
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: 'Date (Month Index)'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Start Date' = [Date] - WEEKDAY([Date],2) + 1
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 83523d47-2b80-4ea1-91bb-66aee948e97f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Week End Date' = [Date] - WEEKDAY([Date],2) + 7
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 105d548b-111b-462e-b401-0e5555117807
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Week Range' = [Week Start Date]&" - "&[Week End Date]
+		dataType: string
+		lineageTag: c39b2167-aa24-433c-b2d2-4a93b2a4d142
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ramzan
+		dataType: string
+		lineageTag: d5e2d408-94e8-43a5-9725-2efbafeadfd6
+		summarizeBy: none
+		sourceColumn: Ramzan
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Month' =
+			IF('Calendar'[Month Name]="January","07",
+			IF('Calendar'[Month Name]="February","08",
+			IF('Calendar'[Month Name]="March","09",
+			IF('Calendar'[Month Name]="April","10",
+			IF('Calendar'[Month Name]="May","11",
+			IF('Calendar'[Month Name]="June","12",
+			IF('Calendar'[Month Name]="July","01",
+			IF('Calendar'[Month Name]="August","02",
+			IF('Calendar'[Month Name]="September","03",
+			IF('Calendar'[Month Name]="October","04",
+			IF('Calendar'[Month Name]="November","05",
+			IF('Calendar'[Month Name]="December","06"))))))))))))
+		dataType: string
+		lineageTag: 7bbe9d32-e0e3-486a-82dd-d5f35896ee2a
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column '''Date' =
+			
+			VAR TodaysDate =
+			    TODAY ()
+			VAR YesterdayDate =
+			    TODAY () - 1
+			VAR NextMondaysDate =
+			    SWITCH (
+			        TRUE (),
+			        'Calendar'[Date] - WEEKDAY ( 'Calendar'[Date], 2 )
+			            + 1
+			            >= TodaysDate, 'Calendar'[Date] - WEEKDAY ( 'Calendar'[Date], 2 )
+			            + 1,
+			        TODAY () - 9
+			    )
+			VAR NextWorkingDay =
+			    SWITCH (
+			        TRUE (),
+			        'Calendar'[Date] = TodaysDate, "Today",
+			        'Calendar'[Date] = YesterdayDate, "Yesterday",
+			        "Work Day"
+			    )
+			RETURN
+			    NextWorkingDay
+		dataType: string
+		lineageTag: d83b8a35-0bcb-4c7a-81c7-1b9c8e95e74b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Online
+		dataType: string
+		lineageTag: 5b44c530-6698-4fc9-b73d-b94dd6816774
+		summarizeBy: none
+		sourceColumn: Online
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal QTR' =
+			IF('Calendar'[Month Name]="January","QRT 03",
+			IF('Calendar'[Month Name]="February","QRT 03",
+			IF('Calendar'[Month Name]="March","QRT 03",
+			IF('Calendar'[Month Name]="April","QRT 04",
+			IF('Calendar'[Month Name]="May","QRT 04",
+			IF('Calendar'[Month Name]="June","QRT 04",
+			IF('Calendar'[Month Name]="July","QRT 01",
+			IF('Calendar'[Month Name]="August","QRT 01",
+			IF('Calendar'[Month Name]="September","QRT 01",
+			IF('Calendar'[Month Name]="October","QRT 02",
+			IF('Calendar'[Month Name]="November","QRT 02",
+			IF('Calendar'[Month Name]="December","QRT 02"))))))))))))
+		dataType: string
+		lineageTag: fc79a79d-c32d-4551-9403-789008239f76
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LY Year'
+		dataType: string
+		lineageTag: 9e5ef04a-7fed-4df1-8d80-82178d6c504b
+		summarizeBy: none
+		sourceColumn: LY Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LY Week Range' =
+			var StartWeek = ([Date] - WEEKDAY([Date],2) + 1)-365
+			var EndWeek= ([Date] - WEEKDAY([Date],2) + 7)-365
+			Return
+			StartWeek&" - "&EndWeek
+		dataType: string
+		lineageTag: 463a3f49-4cf7-48cf-b0b6-7fcaa8a32c03
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Outfitters
+		dataType: string
+		lineageTag: 6ca8da35-1105-400a-b5c7-49296ea6b482
+		summarizeBy: none
+		sourceColumn: Outfitters
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ethnic
+		dataType: string
+		lineageTag: 5d5bc0c8-2fce-4c94-a0cd-1d5d47a38181
+		summarizeBy: none
+		sourceColumn: Ethnic
+
+		annotation SummarizationSetBy = Automatic
+
+	column OL-OFT
+		dataType: string
+		lineageTag: 408e1b55-8e2b-48d8-98bb-fd9d86098aad
+		summarizeBy: none
+		sourceColumn: OL-OFT
+
+		annotation SummarizationSetBy = Automatic
+
+	column OL-ETH
+		dataType: string
+		lineageTag: 3eb4fc14-d0e9-47fc-9586-d7659cf3cf16
+		summarizeBy: none
+		sourceColumn: OL-ETH
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayNum
+		dataType: string
+		lineageTag: 19f14181-f6f2-48fb-ae3b-d5fc476ad0a5
+		summarizeBy: none
+		sourceColumn: DayNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekNum
+		dataType: string
+		lineageTag: 5edf2973-0b40-4887-be4b-36b537fc3124
+		summarizeBy: none
+		sourceColumn: WeekNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week
+		dataType: string
+		lineageTag: 26886545-5a19-415e-a4fc-7fc095148ac3
+		summarizeBy: none
+		sourceColumn: Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekdayNum
+		dataType: string
+		lineageTag: cf554e52-c232-4862-8bd3-a0b1caa50274
+		summarizeBy: none
+		sourceColumn: WeekdayNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday
+		dataType: string
+		lineageTag: 5b2026b8-0ec0-4887-a69e-d66f664afc61
+		summarizeBy: none
+		sourceColumn: Weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month2
+		dataType: string
+		lineageTag: f992f308-6556-4eed-a16a-690c9613d475
+		summarizeBy: none
+		sourceColumn: Month2
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthDay
+		dataType: string
+		lineageTag: ffde23a5-a166-415f-9230-bfc9d75e891a
+		summarizeBy: none
+		sourceColumn: MonthDay
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNum
+		dataType: string
+		lineageTag: 7c9bd6e3-078f-493c-b55c-ed8291bc3c2c
+		summarizeBy: none
+		sourceColumn: QuarterNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fiscal Quarter'
+		dataType: string
+		lineageTag: bb5a8c51-7d11-43cc-91ba-8a768c26dcc4
+		summarizeBy: none
+		sourceColumn: Fiscal Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: string
+		lineageTag: 8fc2eacd-fa60-4c92-b769-28fbeafa6669
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column DaysInMonth
+		dataType: string
+		lineageTag: 93262639-6993-4515-8e80-9b2c964a6a3f
+		summarizeBy: none
+		sourceColumn: DaysInMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthComplete%
+		dataType: string
+		lineageTag: 32e1a25c-7296-4fc7-9016-8c3b16051b2e
+		summarizeBy: none
+		sourceColumn: MonthComplete%
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthLeft%
+		dataType: string
+		lineageTag: 7604b442-8113-464a-b37d-58ad9cdc7ad2
+		summarizeBy: none
+		sourceColumn: MonthLeft%
+
+		annotation SummarizationSetBy = Automatic
+
+	column DaysLeftInMonth
+		dataType: string
+		lineageTag: 56fac2bd-a218-4bbf-9bb0-7b8855a80275
+		summarizeBy: none
+		sourceColumn: DaysLeftInMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: ab0dfb1d-a55c-4298-9838-4fc70eebf9b5
+		summarizeBy: none
+		sourceColumn: MonthName
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalMonth
+		dataType: string
+		lineageTag: fc9ef065-c52b-4991-ba7e-34b92e1a26c0
+		summarizeBy: none
+		sourceColumn: FiscalMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Rank' = RANKX(all('Calendar'),'Calendar'[Week Start date],,ASC,Dense)
+		dataType: int64
+		formatString: 0
+		lineageTag: 92da9b33-9107-491c-80f1-f10c91b8eb4d
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Date Hierarchy'
+		lineageTag: 35c1fa3b-9604-4a61-9fa0-12868d149111
+
+		level Date
+			lineageTag: a6b3b0d0-942a-495c-b385-27c2f755ee8c
+			column: Date
+
+	partition Calendar-8c1dee84-60dd-4e53-8ce0-42d547587766 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\PP DATA\COMBINE\calendar.XLSX"), null, true),
+				    Calendar_Table = Source{[Item="Calendar",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Calendar_Table,{{"Date", type date}, {"Year", type text}, {"Month", type text}, {"DayOfWeek", type text}, {"Date-", type date}, {"Ramzan", type text}, {"Online", type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "Year", "Year - Copy"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Duplicated Column",{{"Year - Copy", Int64.Type}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type1", "LY Year", each [#"Year - Copy"]-1),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom",{{"LY Year", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type2",{"Year - Copy"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

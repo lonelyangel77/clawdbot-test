@@ -1,0 +1,60 @@
+table Para_Measures_OFT
+	lineageTag: 4523c6c7-1d7f-4ce8-b00d-c8acd50e146b
+
+	column Para_Measures_OFT
+		dataType: string
+		lineageTag: ba2ad0b5-5748-48ea-b1ce-d68ac02f9220
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Para_Measures_OFT Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Para_Measures_OFT Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_Measures_OFT Fields'
+		dataType: string
+		isHidden
+		lineageTag: c9aafd27-8a02-4708-8fde-21236ed68ebe
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Para_Measures_OFT Order'
+
+		extendedProperty ParameterMetadata = {"version":3,"kind":2}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Para_Measures_OFT Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c9b6172e-38a0-4a8d-b2be-ca17d1adbbc0
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Para_Measures_OFT = calculated
+		mode: import
+		source =
+				{
+				    ("CY_Sale", NAMEOF('Promo_Measures'[OFT_Promo_Sale]), 0),
+				    ("CY_Units", NAMEOF('Promo_Measures'[OFT_Promo_Units]), 1),
+				    ("CY_Dilution%", NAMEOF('Promo_Measures'[OFT_Promo_Dilution%]), 2),
+				    ("CY_GP%", NAMEOF('Promo_Measures'[OFT_Promo_GP%]), 3),
+				    ("LY_Sale", NAMEOF('Promo_Measures'[LY_OFT_Promo_Sale]), 4),
+				    ("LY_Units", NAMEOF('Promo_Measures'[LY_OFT_Promo_Units]), 5),
+				    ("LY_Dilution%", NAMEOF('Promo_Measures'[LY_OFT_Promo_Dilution%]), 6),
+				    ("LY_GP%", NAMEOF('Promo_Measures'[LY_OFT_Promo_GP%]), 7),
+				    ("Sale Var%", NAMEOF('Promo_Measures'[LY_OFT Var%]), 8),
+				    ("Units Var%", NAMEOF('Promo_Measures'[LY_OFT_Units Var%]), 9),
+				    ("Dilution Var%", NAMEOF('Promo_Measures'[LY_OFT_Dilution Var%]), 10),
+				    ("GP% Var", NAMEOF('Promo_Measures'[LY_OFT_GP% Var]), 11)
+				}
+
+	annotation PBI_Id = f65a36458ca74dfbb6eb861390b15bc9
+

@@ -1,0 +1,160 @@
+table Promo_LY_Inventory
+	excludeFromModelRefresh
+	lineageTag: 48f0baa5-2992-430d-8420-9336b856a818
+
+	column 'Resource type'
+		dataType: string
+		lineageTag: 46e86045-052e-4478-96cd-668eaf910794
+		summarizeBy: none
+		sourceColumn: Resource type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resource
+		dataType: string
+		lineageTag: e82d5b21-05dc-4363-9b6e-0fcb306f3431
+		summarizeBy: none
+		sourceColumn: Resource
+
+		annotation SummarizationSetBy = Automatic
+
+	column Style
+		dataType: string
+		lineageTag: de52c422-8667-44d8-b2e1-18110f096158
+		summarizeBy: none
+		sourceColumn: Style
+
+		annotation SummarizationSetBy = Automatic
+
+	column Warehouse
+		dataType: string
+		lineageTag: 211184ae-347b-4565-8a89-1b4caa35b2ad
+		summarizeBy: none
+		sourceColumn: Warehouse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reference
+		dataType: string
+		lineageTag: bbbd22b7-708a-4347-8316-551ab7d0061c
+		summarizeBy: none
+		sourceColumn: Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Financial quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: 42c1219f-80da-47ef-b76f-3b0e28bdd513
+		summarizeBy: sum
+		sourceColumn: Inventory: Financial quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Financial amount'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9dd5b1fd-bcf9-4649-8975-7bd1233e4f56
+		summarizeBy: sum
+		sourceColumn: Inventory: Financial amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Physical quantity posted'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a1e2ab1-c327-490b-ab1f-8a59f4230604
+		summarizeBy: sum
+		sourceColumn: Inventory: Physical quantity posted
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Physical amount posted'
+		dataType: int64
+		formatString: 0
+		lineageTag: 98f4e0be-8744-4ce1-a587-e059a1bea242
+		summarizeBy: sum
+		sourceColumn: Inventory: Physical amount posted
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: a15e34d7-73e4-425a-aa2b-9903a4ca1e86
+		summarizeBy: sum
+		sourceColumn: Inventory: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inventory: Amount'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9514119f-958f-4910-80c3-722333237c10
+		summarizeBy: sum
+		sourceColumn: Inventory: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Average unit cost'
+		dataType: int64
+		formatString: 0
+		lineageTag: 936800f3-54ff-43e8-b0bb-8553d35f0b48
+		summarizeBy: sum
+		sourceColumn: Average unit cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Solid Item'
+		dataType: string
+		lineageTag: 22c7832b-e0fb-4ebc-bd81-9afe13db5112
+		summarizeBy: none
+		sourceColumn: Solid Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Soild Qty' =
+			var vKit = IF(LOOKUPVALUE(Kit[Quantity],Kit[Style],[Resource])=BLANK(),1,LOOKUPVALUE(Kit[Quantity],Kit[Style],[Resource]))
+			var qty = [Inventory: Quantity]
+			Return
+			vKit*qty
+		dataType: int64
+		formatString: 0
+		lineageTag: 030923e5-93d0-4a9b-8f97-a97d757acb13
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Value' =
+			var vKit = LOOKUPVALUE(Cost_Inv[PURCHASEPRICE],Cost_Inv[ITEMNUMBER],[Resource])
+			var qty = [Inventory: Quantity]
+			Return
+			vKit*qty
+		dataType: double
+		lineageTag: 82b2c7fe-1ddc-4a22-87e7-9d99d41d47c3
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Promo_LY_Inventory = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Online Promo inventory\LY_Inventory value.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Resource type", type text}, {"Resource", type text}, {"Style", type any}, {"Warehouse", type text}, {"Reference", type text}, {"Inventory: Financial quantity", Int64.Type}, {"Inventory: Financial amount", Int64.Type}, {"Inventory: Physical quantity posted", Int64.Type}, {"Inventory: Physical amount posted", Int64.Type}, {"Inventory: Quantity", Int64.Type}, {"Inventory: Amount", Int64.Type}, {"Average unit cost", Int64.Type}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "Resource", "Resource - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "Resource - Copy", Splitter.SplitTextByDelimiter(":", QuoteStyle.Csv), {"Resource - Copy.1", "Resource - Copy.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Resource - Copy.1", type text}, {"Resource - Copy.2", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"Resource - Copy.2"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Resource - Copy.1", "Solid Item"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

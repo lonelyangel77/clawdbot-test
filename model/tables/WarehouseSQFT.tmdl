@@ -1,0 +1,197 @@
+table WarehouseSQFT
+	lineageTag: f069dbc2-38d3-4295-8d09-bcd0360e4eb5
+
+	column Warehouse
+		dataType: string
+		lineageTag: 1a02459e-5dcc-4df6-be21-f8492400786b
+		summarizeBy: none
+		sourceColumn: Warehouse
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 67cb8204-f6c3-4d2e-b489-18bb642945fa
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 74cc2c30-126d-43e7-82a5-01efe39f29b4
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Code'
+		dataType: string
+		lineageTag: 3c89cd29-9884-4cf0-99e8-65f44918a364
+		summarizeBy: none
+		sourceColumn: Store Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 35a9874a-abf1-4be3-835e-0cfa70c8c7ca
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 0ada837c-3a89-4a87-9a4c-8914f68d01c2
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Class'
+		dataType: string
+		lineageTag: 8ee421d2-c742-42fd-a9f7-9307f4825da5
+		summarizeBy: none
+		sourceColumn: Store Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Location'
+		dataType: string
+		lineageTag: e2ee4f03-4085-4c1b-8a7b-7125003f1e8b
+		summarizeBy: none
+		sourceColumn: Store Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Brick & Morter'
+		dataType: string
+		lineageTag: af839440-32fa-4bfa-bda2-55194bab66a5
+		summarizeBy: none
+		sourceColumn: Brick & Morter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shop Code'
+		dataType: string
+		lineageTag: 299643ba-941a-4e21-815b-e806ed6acc6b
+		summarizeBy: none
+		sourceColumn: Shop Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Genere
+		dataType: string
+		lineageTag: 9ce087b8-9768-41a6-96ad-aa3c7ca0aa9e
+		summarizeBy: none
+		sourceColumn: Genere
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: 7311c5f0-9cdd-4440-acba-77b86cabf0e8
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sq.FT'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6caa15b5-d356-433a-b095-1f898bde32b1
+		summarizeBy: sum
+		sourceColumn: Sq.FT
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date of Opening'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6509de12-5fb0-4d89-94ed-bdeaa72296bd
+		summarizeBy: none
+		sourceColumn: Date of Opening
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Date of Closing'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c64dee72-2e16-4be7-aa16-e013703e25f4
+		summarizeBy: none
+		sourceColumn: Date of Closing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Store Status'
+		dataType: string
+		lineageTag: 95a9b229-8b33-41ea-9201-7a74361cf06e
+		summarizeBy: none
+		sourceColumn: Store Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Old Name'
+		dataType: string
+		lineageTag: 15354ee4-e7f6-4cdc-9770-c159b74c7551
+		summarizeBy: none
+		sourceColumn: Old Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Territory
+		dataType: string
+		lineageTag: 287deb08-a88a-4091-9b51-1a25363362cb
+		summarizeBy: none
+		sourceColumn: Territory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Combine
+		dataType: string
+		lineageTag: bdd772d7-3ae6-4b3b-b633-8fc4bd3e4c8c
+		summarizeBy: none
+		sourceColumn: Combine
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Store Category'
+		dataType: string
+		lineageTag: f0ff9dd5-6b17-4413-8096-ec1d39e21d01
+		summarizeBy: none
+		sourceColumn: Store Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rent PM'
+		dataType: string
+		lineageTag: bfa2f0e6-fc94-40b4-b2b5-18a993835b42
+		summarizeBy: none
+		sourceColumn: Rent PM
+
+		annotation SummarizationSetBy = Automatic
+
+	partition WarehouseSQFT = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Outfitters Stores\BI-Upload - Documents\Reporting\Combine\warehouse.xlsx"), null, true),
+				    WarehouseDB_Sheet = Source{[Item="WarehouseDB",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(WarehouseDB_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Warehouse", type text}, {"Name", type text}, {"Brand", type text}, {"Store Code", type text}, {"City", type text}, {"Store Class", type text}, {"Brick & Morter", type text}, {"Store Location", type text}, {"Shop Code", type text}, {"Genere", type text}, {"Location", type text}, {"Sq.FT", Int64.Type}, {"Date of Opening", type date}, {"Date of Closing", type date}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Genere] = "Store")),
+				    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Combine", each [Old Name]&[Brand]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Combine", type text}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Changed Type1", each ([Warehouse] <> "E-E WH-03"))
+				in
+				    #"Filtered Rows1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
